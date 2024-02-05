@@ -1,3 +1,4 @@
-lyceum/db.sqlite3
-__init__.py
-migrations
+.vscode/
+.idea/
+__pycache__/
+.env
