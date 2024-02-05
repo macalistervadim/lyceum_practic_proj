@@ -8,5 +8,4 @@ mypy-extensions==1.0.0
 packaging==23.2
 pycodestyle==2.11.1
 pyflakes==3.2.0
-sqlparse==0.4.4
 tzdata==2023.4
