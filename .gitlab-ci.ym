@@ -1,8 +1,0 @@
-stages:
-  - test
-
-test:
-  image: python:3.8
-  script:
-    - pip install flake8
-    - flake8 --exclude migrations
