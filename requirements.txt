@@ -1,7 +1,4 @@
 asgiref==3.7.2
-click==8.1.7
 colorama==0.4.6
 Django==4.2
-mccabe==0.7.0
-packaging==23.2
 tzdata==2023.4
