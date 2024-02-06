@@ -54,7 +54,7 @@ flake8-job:
   script:
     - pip install --upgrade pip
     - pip install flake8 flake8-import-order flake8-quotes pep8-naming
-    - flake8 --ignore=E203,W503 --max-line-length=88 --extend-ignore=N802,N806
+    - flake8 --ignore=E203,W503 --extend-ignore=N802,N806
       --import-order-style=google --inline-quotes="double" --docstring-quotes="double" lyceum/
 
 black-check:
