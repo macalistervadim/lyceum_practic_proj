@@ -9,7 +9,7 @@ flake8:
 
 black:
   stage: black
-  image: python 3.9
+  image: python:3.12
   script:
     - pip install black
     - black --config pyproject.toml .
