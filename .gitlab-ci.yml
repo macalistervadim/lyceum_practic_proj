@@ -59,7 +59,7 @@ flake8-job:
       --import-order-style=google --inline-quotes="double" --docstring-quotes="double" lyceum/
 
 black-check:
-  stage: test
+  stage: black
   image: python:3.9
   script:
     - pip install --upgrade pip
