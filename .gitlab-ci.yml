@@ -63,5 +63,4 @@ black-check:
   image: python:3.9
   script:
     - pip install --upgrade pip
-    - black --config pyproject.toml .
     - black --check .
