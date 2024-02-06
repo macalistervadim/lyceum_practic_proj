@@ -47,3 +47,10 @@ deploy-job:      # This job runs in the deploy stage.
   script:
     - echo "Deploying application..."
     - echo "Application successfully deployed."
+
+flake8-job:
+  stage: test
+  script:
+    - pip install flake8  # Убедитесь, что Flake8 установлен в вашем окружении
+    - flake8 lyceum/  # Замените "your_python_code_directory" на путь к вашему коду
+
