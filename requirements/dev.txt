@@ -1,2 +1,0 @@
--r test.txt
-black>=21.12
