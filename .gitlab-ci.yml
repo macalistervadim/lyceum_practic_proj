@@ -64,4 +64,4 @@ black-check:
     - apt-get update
     - apt-get install -y python3-pip
     - pip install black
-    - black .
+    - black --check .
