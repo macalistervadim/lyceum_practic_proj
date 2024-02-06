@@ -60,8 +60,7 @@ flake8-job:
 
 black-check:
   stage: test
-  image: python:3.9
+  image: python:3.12
   script:
     - pip install --upgrade pip
-    - black --config pyproject.toml .
     - black --check .
