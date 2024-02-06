@@ -50,12 +50,13 @@ deploy-job:      # This job runs in the deploy stage.
 
 flake8-job:
   stage: test
-  image: python:latest
+  image: python:3.9
   script:
     - pip install --upgrade pip
     - pip install flake8 flake8-import-order flake8-quotes flake8-naming
     - flake8 --ignore=E203,W503 --max-line-length=88 --extend-ignore=N802,N806
       --import-order-style=google --inline-quotes="double" --docstring-quotes="double" lyceum/
+
 
 black-check:
   stage: test
