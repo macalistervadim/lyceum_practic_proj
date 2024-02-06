@@ -66,7 +66,7 @@ DATABASES = {
 }
 
 
-AUTH_PASSWORD_VALIDATORS = [  # flake8: noqa
+AUTH_PASSWORD_VALIDATORS = [  # noqa
     {
         "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
     },
