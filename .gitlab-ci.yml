@@ -50,6 +50,7 @@ deploy-job:      # This job runs in the deploy stage.
 
 flake8-job:
   stage: test
+  image: python:latest
   script:
     - pip install --upgrade pip
     - pip install flake8 flake8-import-order flake8-quotes flake8-naming
