@@ -51,6 +51,11 @@ deploy-job:      # This job runs in the deploy stage.
 flake8-job:
   stage: test
   script:
-    - pip install flake8  # Убедитесь, что Flake8 установлен в вашем окружении
-    - flake8 lyceum/  # Замените "your_python_code_directory" на путь к вашему коду
+    - pip install flake8 flake8-import-order flake8-quotes flake8-naming
+    - flake8 lyceum/
 
+black-check:
+  stage: test
+  script:
+    - pip install black
+    - black --check .
