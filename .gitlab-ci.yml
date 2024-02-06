@@ -56,6 +56,9 @@ flake8-job:
 
 black-check:
   stage: test
+  image: python:latest
   script:
+    - apt-get update
+    - apt-get install -y python3-pip
     - pip install black
     - black .
