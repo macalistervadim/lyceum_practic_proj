@@ -4,7 +4,7 @@ stages:
 
 flake8:
   stage: linting
-  image: registry.gitlab.com/pipline-components/flake8:latest
+  image: registry.gitlab.com/pipeline-components/flake8:latest
   script:
     - pip install flake8-import-order flake8-quotes pep8-naming
     - flake8 --verbose .
