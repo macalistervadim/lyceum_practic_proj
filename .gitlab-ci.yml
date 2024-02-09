@@ -6,7 +6,7 @@ flake8:
   stage: linting
   script:
     - pip install flake8-import-order flake8-quotes pep8-naming
-    - flake8 .
+    - flake8 --verbose .
 
 black:
   stage: black
