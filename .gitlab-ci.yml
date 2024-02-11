@@ -25,5 +25,9 @@ test:
   stage: test
   image: python:3.12
   script:
+    - python -m venv venv
+    - source venv/bin/activate
     - pip install -r requirements/prod.txt -r requirements/dev.txt
-    - python lyceum/manage.py test
+    - cd lyceum
+    - python manage.py test
+    - deactivate
