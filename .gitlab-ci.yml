@@ -3,9 +3,6 @@ stages:
   - linting
   - black
 
-before_script:
-  - cp .env.example .env
-
 flake8:
   stage: linting
   image: registry.gitlab.com/pipeline-components/flake8:latest
