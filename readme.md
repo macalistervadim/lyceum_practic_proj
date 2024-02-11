@@ -21,9 +21,9 @@ To run the app locally, follow these steps:
 
 The following environment variables need to be defined in your `.env` file:
 
-- `SECRET_KEY`: Django secret key for security (e.g., `SECRET_KEY=your_secret_key`)
-- `DEBUG`: (True or False)
-- `ALLOWED_HOSTS` valid hosts (e.g, `ALLOWRD_HOSTS = []`)
+- `DJANGO_SECRET_KEY`: Django secret key for security (e.g., `SECRET_KEY=your_secret_key`)
+- `DJANGO_DEBUG`: (True or False)
+- `DJANGO_ALLOWED_HOSTS` valid hosts (e.g, `ALLOWRD_HOSTS = []`)
 - Other custom environment variables as required for your project
 
 # Contribution

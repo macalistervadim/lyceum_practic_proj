@@ -2,18 +2,21 @@
 import os
 from pathlib import Path
 
-from dotenv import load_dotenv
+import environ
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-env_path = Path(".") / ".env"
-load_dotenv(dotenv_path=env_path)
+env = environ.Env(
+    DEBUG=(bool, False)
+)
 
-SECRET_KEY = os.getenv("SECRET_KEY")
+env.read_env(os.path.join(BASE_DIR, '.env'))
 
-DEBUG = os.getenv("DEBUG")
+SECRET_KEY = env("DJANGO_SECRET_KEY")
 
-ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS")
+DEBUG = env("DJANGO_DEBUG")
+
+ALLOWED_HOSTS = env.list('DJANGO_ALLOWED_HOSTS')
 
 
 INSTALLED_APPS = [
