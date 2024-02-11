@@ -22,4 +22,4 @@ test:
   stage: test
   script:
     - pip install -r requirements/prod.txt
-    - python manage.py test
+    - python lyceum/manage.py test
