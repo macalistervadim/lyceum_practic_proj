@@ -20,6 +20,6 @@ black:
 
 test:
   stage: test
+  image: python:3.12
   script:
-    - pip install -r requirements/prod.txt
     - python lyceum/manage.py test
