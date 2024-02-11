@@ -10,11 +10,11 @@ env = environ.Env(DEBUG=(bool, False))
 
 env.read_env(os.path.join(BASE_DIR, ".env"))
 
-SECRET_KEY = env("DJANGO_SECRET_KEY")
+SECRET_KEY = env("DJANGO_SECRET_KEY", default="key")
 
-DEBUG = env("DJANGO_DEBUG")
+DEBUG = env("DJANGO_DEBUG", default="True")
 
-ALLOWED_HOSTS = env.list('DJANGO_ALLOWED_HOSTS')
+ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS", default="127.0.0.1")
 
 
 INSTALLED_APPS = [
