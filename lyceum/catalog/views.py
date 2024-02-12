@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 
 
 def item_list(request):
@@ -7,3 +7,11 @@ def item_list(request):
 
 def item_detail(request, pk):
     return HttpResponse("<body>Подробно элемент</body>")
+
+
+def catalog_regex(request, number):
+    return HttpResponse(f"<body>{int(number)}</body>")
+
+
+def catalog_converter(request, number):
+    return HttpResponse(f"<body>{int(number)}</body>")
