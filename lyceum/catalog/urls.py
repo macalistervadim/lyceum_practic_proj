@@ -4,7 +4,7 @@ from . import views
 
 
 class PositiveIntegerConverter:
-    regex = r'\d+'
+    regex = r"\d+"
 
     def to_python(self, value):
         number = int(value)
@@ -16,7 +16,7 @@ class PositiveIntegerConverter:
         return str(value)
 
 
-register_converter(PositiveIntegerConverter, 'positive_int')
+register_converter(PositiveIntegerConverter, "positive_int")
 
 
 urlpatterns = [
