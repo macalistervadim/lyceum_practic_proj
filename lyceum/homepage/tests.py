@@ -13,7 +13,8 @@ class EndPontCoffeeTest(TestCase):
     def test_endpont_coffee(self):
         response = Client().get("/coffee/")
         self.assertEqual(
-            response.status_code, HTTPStatus.IM_A_TEAPOT, "Status code is not 418"
+            response.status_code, HTTPStatus.IM_A_TEAPOT,
+            "Status code is not 418"
         )
 
     def test_coffee_content(self):
