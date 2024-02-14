@@ -12,7 +12,8 @@ env.read_env(os.path.join(BASE_DIR, ".env"))
 
 SECRET_KEY = env("DJANGO_SECRET_KEY", default="key")
 
-DEBUG = env("DJANGO_DEBUG", default="False").lower() in ("true",)
+DEBUG = (env("DJANGO_DEBUG", default="False").lower()
+         in ("true", "t", "1", "yes", "y"))
 
 ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS", default=["*"])
 
