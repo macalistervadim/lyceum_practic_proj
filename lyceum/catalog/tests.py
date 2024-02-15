@@ -33,31 +33,25 @@ class UrlTests(TestCase):
         )
 
     def test_description(self):
-        self.check_response_status("/catalog",
-                                   HTTPStatus.OK)
+        self.check_response_status("/catalog", HTTPStatus.OK)
 
     def test_item_detail(self):
-        self.check_response_status("/catalog/1",
-                                   HTTPStatus.OK)
-        self.check_response_status("/catalog/-1",
-                                   HTTPStatus.NOT_FOUND)
-        self.check_response_status("/catalog/string",
-                                   HTTPStatus.NOT_FOUND)
+        self.check_response_status("/catalog/1", HTTPStatus.OK)
+        self.check_response_status("/catalog/-1", HTTPStatus.NOT_FOUND)
+        self.check_response_status("/catalog/string", HTTPStatus.NOT_FOUND)
 
     @check_catalog_regex
     def test_catalog_regex(self):
-        self.check_response_status("/catalog/re/124",
-                                   HTTPStatus.OK)
-        self.check_response_status("/catalog/re/124abs",
-                                   HTTPStatus.NOT_FOUND)
-        self.check_response_status("/catalog/re/-123",
-                                   HTTPStatus.NOT_FOUND)
+        self.check_response_status("/catalog/re/124", HTTPStatus.OK)
+        self.check_response_status("/catalog/re/124abs", HTTPStatus.NOT_FOUND)
+        self.check_response_status("/catalog/re/-123", HTTPStatus.NOT_FOUND)
 
     @check_catalog_converter
     def test_catalog_converter(self):
-        self.check_response_status("/catalog/converter/124",
-                                   HTTPStatus.OK)
-        self.check_response_status("/catalog/converter/124abs",
-                                   HTTPStatus.NOT_FOUND)
-        self.check_response_status("/catalog/converter/-123",
-                                   HTTPStatus.NOT_FOUND)
+        self.check_response_status("/catalog/converter/124", HTTPStatus.OK)
+        self.check_response_status(
+            "/catalog/converter/124abs", HTTPStatus.NOT_FOUND
+        )
+        self.check_response_status(
+            "/catalog/converter/-123", HTTPStatus.NOT_FOUND
+        )
