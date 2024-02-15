@@ -10,8 +10,8 @@ def item_detail(request, pk):
 
 
 def catalog_regex(request, number):
-    return HttpResponse(f"<body>{int(number)}</body>")
+    return HttpResponse(f"<body>{number}</body>")
 
 
 def catalog_converter(request, number):
-    return HttpResponse(f"<body>{int(number)}</body>")
+    return HttpResponse(f"<body>{number}</body>")

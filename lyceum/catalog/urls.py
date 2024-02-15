@@ -1,6 +1,6 @@
 from django.urls import path, re_path, register_converter
 
-from . import views
+import catalog.views
 
 
 class PositiveIntegerConverter:
@@ -20,8 +20,8 @@ register_converter(PositiveIntegerConverter, "positive_int")
 
 
 urlpatterns = [
-    path("", views.item_list),
-    path("<int:pk>/", views.item_detail),
-    re_path(r"^re/(?P<number>\d+)/$", views.catalog_regex),
-    path("converter/<positive_int:number>/", views.catalog_converter),
+    path("", catalog.views.item_list),
+    path("<int:pk>/", catalog.views.item_detail),
+    re_path(r"^re/(?P<number>\d+)/$", catalog.views.catalog_regex),
+    path("converter/<positive_int:number>/", catalog.views.catalog_converter),
 ]
