@@ -24,8 +24,6 @@ def check_catalog_converter(func):
 
 
 class UrlTests(TestCase):
-    # Придумал вот такой вариант для соблюдения DRY (если честно, то подсказал чатгпт),
-    # не знаю, можно ли так делать, но выглядит лучше чем было
     def check_response_status(self, url, expected_status_code):
         response = Client().get(url, follow=True)
         self.assertEqual(
@@ -35,21 +33,31 @@ class UrlTests(TestCase):
         )
 
     def test_description(self):
-        self.check_response_status("/catalog", HTTPStatus.OK)
+        self.check_response_status("/catalog",
+                                   HTTPStatus.OK)
 
     def test_item_detail(self):
-        self.check_response_status("/catalog/1", HTTPStatus.OK)
-        self.check_response_status("/catalog/-1", HTTPStatus.NOT_FOUND)
-        self.check_response_status("/catalog/string", HTTPStatus.NOT_FOUND)
+        self.check_response_status("/catalog/1",
+                                   HTTPStatus.OK)
+        self.check_response_status("/catalog/-1",
+                                   HTTPStatus.NOT_FOUND)
+        self.check_response_status("/catalog/string",
+                                   HTTPStatus.NOT_FOUND)
 
     @check_catalog_regex
     def test_catalog_regex(self):
-        self.check_response_status("/catalog/re/124", HTTPStatus.OK)
-        self.check_response_status("/catalog/re/124abs", HTTPStatus.NOT_FOUND)
-        self.check_response_status("/catalog/re/-123", HTTPStatus.NOT_FOUND)
+        self.check_response_status("/catalog/re/124",
+                                   HTTPStatus.OK)
+        self.check_response_status("/catalog/re/124abs",
+                                   HTTPStatus.NOT_FOUND)
+        self.check_response_status("/catalog/re/-123",
+                                   HTTPStatus.NOT_FOUND)
 
     @check_catalog_converter
     def test_catalog_converter(self):
-        self.check_response_status("/catalog/converter/124", HTTPStatus.OK)
-        self.check_response_status("/catalog/converter/124abs", HTTPStatus.NOT_FOUND)
-        self.check_response_status("/catalog/converter/-123", HTTPStatus.NOT_FOUND)
+        self.check_response_status("/catalog/converter/124",
+                                   HTTPStatus.OK)
+        self.check_response_status("/catalog/converter/124abs",
+                                   HTTPStatus.NOT_FOUND)
+        self.check_response_status("/catalog/converter/-123",
+                                   HTTPStatus.NOT_FOUND)
