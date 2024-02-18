@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from catalog.models import Tag, Category, Item
+from catalog.models import Category, Item, Tag
 
 
 admin.site.register(Tag)
