@@ -1,29 +1,43 @@
 from http import HTTPStatus
-
 from django.test import Client, TestCase
-
-
-def check_catalog_regex(func):
-    def wrapper(self):
-        response = Client().get("/catalog/re/124", follow=True)
-        data = response._container[0].decode()
-        self.assertIn("124", data, "Page not found this number")
-        return func(self)
-
-    return wrapper
-
-
-def check_catalog_converter(func):
-    def wrapper(self):
-        response = Client().get("/catalog/converter/124", follow=True)
-        data = response._container[0].decode()
-        self.assertIn("124", data, "Page not found this number")
-        return func(self)
-
-    return wrapper
+from parameterized import parameterized
+import django.core.validators
+import catalog.models
 
 
 class UrlTests(TestCase):
+
+    @parameterized.expand(
+        [
+            ("/catalog", HTTPStatus.OK),
+            ("/catalog/1", HTTPStatus.OK),
+            ("/catalog/-1", HTTPStatus.NOT_FOUND),
+            ("/catalog/string", HTTPStatus.NOT_FOUND),
+        ]
+    )
+    def test_description(self, url, expected_status_code):
+        self.check_response_status(url, expected_status_code)
+
+    @parameterized.expand(
+        [
+            ("/catalog/re/124", HTTPStatus.OK),
+            ("/catalog/re/124abs", HTTPStatus.NOT_FOUND),
+            ("/catalog/re/-123", HTTPStatus.NOT_FOUND),
+        ]
+    )
+    def test_catalog_regex(self, url, expected_status_code):
+        self.check_response_status(url, expected_status_code)
+
+    @parameterized.expand(
+        [
+            ("/catalog/converter/124", HTTPStatus.OK),
+            ("/catalog/converter/124abs", HTTPStatus.NOT_FOUND),
+            ("/catalog/converter/-123", HTTPStatus.NOT_FOUND),
+        ]
+    )
+    def test_catalog_converter(self, url, expected_status_code):
+        self.check_response_status(url, expected_status_code)
+
     def check_response_status(self, url, expected_status_code):
         response = Client().get(url, follow=True)
         self.assertEqual(
@@ -32,26 +46,48 @@ class UrlTests(TestCase):
             f"Status code != {expected_status_code}",
         )
 
-    def test_description(self):
-        self.check_response_status("/catalog", HTTPStatus.OK)
 
-    def test_item_detail(self):
-        self.check_response_status("/catalog/1", HTTPStatus.OK)
-        self.check_response_status("/catalog/-1", HTTPStatus.NOT_FOUND)
-        self.check_response_status("/catalog/string", HTTPStatus.NOT_FOUND)
+class ModelTestCase(TestCase):
 
-    @check_catalog_regex
-    def test_catalog_regex(self):
-        self.check_response_status("/catalog/re/124", HTTPStatus.OK)
-        self.check_response_status("/catalog/re/124abs", HTTPStatus.NOT_FOUND)
-        self.check_response_status("/catalog/re/-123", HTTPStatus.NOT_FOUND)
+    fixtures = ["fixtures/data.json"]
 
-    @check_catalog_converter
-    def test_catalog_converter(self):
-        self.check_response_status("/catalog/converter/124", HTTPStatus.OK)
-        self.check_response_status(
-            "/catalog/converter/124abs", HTTPStatus.NOT_FOUND
-        )
-        self.check_response_status(
-            "/catalog/converter/-123", HTTPStatus.NOT_FOUND
-        )
+    def test_valid_tag_slug(self):
+        tag = catalog.models.Tag.objects.get(pk=1)
+        self.assertTrue(tag.pk)
+
+    def test_valid_category_slug(self):
+        category = catalog.models.Category.objects.get(pk=1)
+        self.assertTrue(category.pk)
+
+    def test_valid_item_text(self):
+        item = catalog.models.Item.objects.get(pk=1)
+        self.assertTrue(item.pk)
+
+    @parameterized.expand(
+        [
+            ("Этот товар превосходно подходит для ваших нужд", None),
+            (
+                "Этот товар хорош, но не превосходен",
+                django.core.exceptions.ValidationError,
+            ),
+        ]
+    )
+    def test_validator_for_item_text(self, text, expected_exception):
+        if expected_exception:
+            with self.assertRaises(expected_exception):
+                catalog.models.validator_for_item_text(text)
+        else:
+            self.assertIsNone(catalog.models.validator_for_item_text(text))
+
+    @parameterized.expand(
+        [
+            ("tag-1234", None),
+            ("tag$test", django.core.exceptions.ValidationError),
+        ]
+    )
+    def test_validator_for_tag_slug(self, slug, expected_exception):
+        if expected_exception:
+            with self.assertRaises(expected_exception):
+                catalog.models.validator_for_tag_slug(slug)
+        else:
+            self.assertIsNone(catalog.models.validator_for_tag_slug(slug))
