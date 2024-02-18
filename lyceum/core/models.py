@@ -14,6 +14,7 @@ class TimeStampedModel(django.db.models.Model):
         "название",
         max_length=150,
         help_text="Введите название",
+        unique=True,
     )
     is_published = django.db.models.BooleanField(
         "опубликовано",

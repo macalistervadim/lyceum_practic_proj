@@ -32,12 +32,12 @@ class Tag(core.models.TimeStampedModel):
         validators=[
             validator_for_tag_slug,
         ],
-        help_text="Введите слаг для тэга",
+        help_text="Введите слаг для тега",
     )
 
     class Meta:
-        verbose_name = "тэг"
-        verbose_name_plural = "тэги"
+        verbose_name = "тег"
+        verbose_name_plural = "теги"
 
 
 class Category(core.models.TimeStampedModel):
