@@ -1,10 +1,7 @@
 from http import HTTPStatus
-
-from parameterized import parameterized
-
-from django.test import Client, TestCase
 import django.core.validators
-
+from django.test import Client, TestCase
+from parameterized import parameterized
 import catalog.models
 
 

@@ -1,9 +1,7 @@
+import re
 import django.core.exceptions
 import django.core.validators
 import django.db
-
-import re
-
 import core.models
 
 
@@ -26,7 +24,7 @@ def validator_for_tag_slug(slug):
 
 class Tag(core.models.TimeStampedModel):
     slug = django.db.models.CharField(
-        "Слаг",
+        "слаг",
         max_length=200,
         unique=True,
         validators=[
@@ -36,13 +34,13 @@ class Tag(core.models.TimeStampedModel):
     )
 
     class Meta:
-        verbose_name = "Тэг"
-        verbose_name_plural = "Тэги"
+        verbose_name = "тэг"
+        verbose_name_plural = "тэги"
 
 
 class Category(core.models.TimeStampedModel):
     slug = django.db.models.CharField(
-        "Слаг",
+        "слаг",
         max_length=200,
         unique=True,
         validators=[
@@ -51,7 +49,7 @@ class Category(core.models.TimeStampedModel):
         help_text="Введите слаг для категории",
     )
     weight = django.db.models.IntegerField(
-        "Вес",
+        "вес",
         default=100,
         validators=[
             django.core.validators.MinValueValidator(0),
@@ -61,8 +59,8 @@ class Category(core.models.TimeStampedModel):
     )
 
     class Meta:
-        verbose_name = "Категория"
-        verbose_name_plural = "Категории"
+        verbose_name = "категория"
+        verbose_name_plural = "категории"
 
 
 class Item(core.models.TimeStampedModel):
@@ -80,7 +78,7 @@ class Item(core.models.TimeStampedModel):
         help_text="Выберите тэг",
     )
     text = django.db.models.TextField(
-        "Текст",
+        "текст",
         validators=[
             validator_for_item_text,
         ],
@@ -88,5 +86,5 @@ class Item(core.models.TimeStampedModel):
     )
 
     class Meta:
-        verbose_name = "Товар"
-        verbose_name_plural = "Товары"
+        verbose_name = "товар"
+        verbose_name_plural = "товары"
