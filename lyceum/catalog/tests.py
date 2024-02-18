@@ -1,7 +1,10 @@
 from http import HTTPStatus
+
 import django.core.validators
 from django.test import Client, TestCase
+
 from parameterized import parameterized
+
 import catalog.models
 
 
@@ -13,7 +16,7 @@ class UrlTests(TestCase):
             ("/catalog/1", HTTPStatus.OK),
             ("/catalog/-1", HTTPStatus.NOT_FOUND),
             ("/catalog/string", HTTPStatus.NOT_FOUND),
-        ]
+        ],
     )
     def test_description(self, url, expected_status_code):
         self.check_response_status(url, expected_status_code)
@@ -23,7 +26,7 @@ class UrlTests(TestCase):
             ("/catalog/re/124", HTTPStatus.OK),
             ("/catalog/re/124abs", HTTPStatus.NOT_FOUND),
             ("/catalog/re/-123", HTTPStatus.NOT_FOUND),
-        ]
+        ],
     )
     def test_catalog_regex(self, url, expected_status_code):
         self.check_response_status(url, expected_status_code)
@@ -33,7 +36,7 @@ class UrlTests(TestCase):
             ("/catalog/converter/124", HTTPStatus.OK),
             ("/catalog/converter/124abs", HTTPStatus.NOT_FOUND),
             ("/catalog/converter/-123", HTTPStatus.NOT_FOUND),
-        ]
+        ],
     )
     def test_catalog_converter(self, url, expected_status_code):
         self.check_response_status(url, expected_status_code)
@@ -70,7 +73,7 @@ class ModelTestCase(TestCase):
                 "Этот товар хорош, но не превосходен",
                 django.core.exceptions.ValidationError,
             ),
-        ]
+        ],
     )
     def test_validator_for_item_text(self, text, expected_exception):
         if expected_exception:
@@ -83,7 +86,7 @@ class ModelTestCase(TestCase):
         [
             ("tag-1234", None),
             ("tag$test", django.core.exceptions.ValidationError),
-        ]
+        ],
     )
     def test_validator_for_tag_slug(self, slug, expected_exception):
         if expected_exception:

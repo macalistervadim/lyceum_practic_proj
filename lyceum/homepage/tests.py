@@ -7,7 +7,7 @@ class HomePageTest(TestCase):
     def test_home_page(self):
         response = Client().get("/")
         self.assertEqual(
-            response.status_code, HTTPStatus.OK, "Status code is not 200"
+            response.status_code, HTTPStatus.OK, "Status code is not 200",
         )
 
 

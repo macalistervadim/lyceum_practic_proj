@@ -1,7 +1,9 @@
 import re
+
 import django.core.exceptions
 import django.core.validators
 import django.db
+
 import core.models
 
 
@@ -9,7 +11,7 @@ def validator_for_item_text(value):
     if "превосходно" not in value.lower() and "роскошно" not in value.lower():
         raise django.core.exceptions.ValidationError(
             "Текст должен содержать слово 'превосходно'"
-            " или 'роскошно'."
+            " или 'роскошно'.",
         )
 
 
@@ -18,7 +20,7 @@ def validator_for_tag_slug(slug):
     if not re.match(regex, slug):
         raise django.core.exceptions.ValidationError(
             "Слаг должен содержать только цифры, "
-            "буквы латиницы, и символы '-', '_'"
+            "буквы латиницы, и символы '-', '_'",
         )
 
 
@@ -68,13 +70,13 @@ class Item(core.models.TimeStampedModel):
         Category,
         on_delete=django.db.models.CASCADE,
         related_name="items",
-        verbose_name="Категория",
+        verbose_name="категория",
         help_text="Выберите категорию",
     )
     tags = django.db.models.ManyToManyField(
         Tag,
         related_name="items",
-        verbose_name="Теги",
+        verbose_name="теги",
         help_text="Выберите тэг",
     )
     text = django.db.models.TextField(
