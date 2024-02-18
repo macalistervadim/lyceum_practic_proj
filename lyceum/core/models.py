@@ -11,12 +11,12 @@ class TimeStampedModel(django.db.models.Model):
         help_text="id",
     )
     name = django.db.models.CharField(
-        "Название",
+        "название",
         max_length=150,
         help_text="Введите название",
     )
     is_published = django.db.models.BooleanField(
-        "Опубликовано",
+        "опубликовано",
         default=True,
         help_text="Дата публикации",
     )
