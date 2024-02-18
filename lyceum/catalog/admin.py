@@ -1,13 +1,19 @@
 from django.contrib import admin
 
-from catalog.models import Category, Item, Tag
+import catalog.models
 
 
-admin.site.register(Tag)
-admin.site.register(Category)
+@admin.register(catalog.models.Tag)
+class AdminTag(admin.ModelAdmin):
+    pass
 
 
-@admin.register(Item)
+@admin.register(catalog.models.Category)
+class CatalogTag(admin.ModelAdmin):
+    pass
+
+
+@admin.register(catalog.models.Item)
 class AdminItem(admin.ModelAdmin):
     list_display = ("name", "is_published")
     list_editable = ("is_published",)
