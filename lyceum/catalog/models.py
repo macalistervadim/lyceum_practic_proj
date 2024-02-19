@@ -8,7 +8,9 @@ import core.models
 
 
 def validator_for_item_text(value):
-    russian_words_pattern = re.compile(r'\bпревосходно\b|\bроскошно\b', re.IGNORECASE)
+    russian_words_pattern = re.compile(
+        r'\bпревосходно\b|\bроскошно\b', re.IGNORECASE
+    )
     if not russian_words_pattern.search(value):
         raise django.core.exceptions.ValidationError(
             "Текст должен содержать слово 'превосходно' или 'роскошно'.",
