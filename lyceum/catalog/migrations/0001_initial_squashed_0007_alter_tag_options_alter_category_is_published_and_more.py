@@ -22,6 +22,7 @@ class Migration(migrations.Migration):
             "catalog",
             "0007_alter_tag_options_alter_category_is_published_and_more",
         ),
+        ("catalog", "0008_alter_category_weight"),
     ]
 
     dependencies = []
@@ -199,5 +200,18 @@ class Migration(migrations.Migration):
                 "verbose_name": "товар",
                 "verbose_name_plural": "товары",
             },
+        ),
+        migrations.AlterField(
+            model_name='category',
+            name='weight',
+            field=models.IntegerField(
+                default=100,
+                help_text='Введите вес',
+                validators=[
+                    django.core.validators.MinValueValidator(1),
+                    django.core.validators.MaxValueValidator(32767),
+                ],
+                verbose_name='вес',
+            ),
         ),
     ]
