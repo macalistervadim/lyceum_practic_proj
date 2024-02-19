@@ -11,13 +11,13 @@ def validator_for_item_text(value):
     russian_pattern = re.compile('[а-яА-ЯёЁ\s]*$')
     if not russian_pattern.fullmatch(value):
         raise django.core.exceptions.ValidationError(
-            "Текст должен содержать только русские символы."
+            "Текст должен содержать только русские символы.",
         )
 
     russian_words = {"превосходно", "роскошно"}
     if not any(word in value.lower() for word in russian_words):
         raise django.core.exceptions.ValidationError(
-            "Текст должен содержать слово 'превосходно' или 'роскошно'."
+            "Текст должен содержать слово 'превосходно' или 'роскошно'.",
         )
 
 def validator_for_tag_slug(slug):
