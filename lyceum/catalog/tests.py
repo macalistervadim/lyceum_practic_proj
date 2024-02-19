@@ -52,10 +52,10 @@ class UrlTests(TestCase):
 class ModelTestCase(TestCase):
     def setUp(self):
         self.tag = catalog.models.Tag.objects.create(
-            slug="test-tag", name="Test Tag"
+            slug="test-tag", name="Test Tag",
         )
         self.category = catalog.models.Category.objects.create(
-            slug="test-category", name="Test Category"
+            slug="test-category", name="Test Category",
         )
 
     def test_valid_tag_slug(self):
@@ -70,7 +70,7 @@ class ModelTestCase(TestCase):
             ("valid-slug", -10),
             ("valid-slug", 100),
             ("valid-slug", 32767),
-        ]
+        ],
     )
     def test_category_weight_validation(self, slug, weight):
         try:
@@ -88,7 +88,7 @@ class ModelTestCase(TestCase):
                 )
         else:
             category = catalog.models.Category.objects.get(
-                slug=slug, weight=weight
+                slug=slug, weight=weight,
             )
             self.assertEqual(category.slug, slug)
             self.assertEqual(category.weight, weight)
@@ -108,7 +108,7 @@ class ModelTestCase(TestCase):
         [
             ("этоттоварпревосходноподходитдлявашихнужд", None),
             ("роскошныйтестдляроскошноговалидатора", None),
-        ]
+        ],
     )
     def test_item_text_validator_positive(self, text, _):
         self.assertIsNone(catalog.models.validator_for_item_text(text))
@@ -123,7 +123,7 @@ class ModelTestCase(TestCase):
             ("роскошный!!!", django.core.exceptions.ValidationError),
             ("превосходный!!", django.core.exceptions.ValidationError),
             ("qwertyроскошный", django.core.exceptions.ValidationError),
-        ]
+        ],
     )
     def test_item_text_validator_negative(self, text, expected_exception):
         with self.assertRaises(expected_exception):
