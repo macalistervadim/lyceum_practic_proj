@@ -22,4 +22,4 @@ class EndPontCoffeeTest(TestCase):
             HTTPStatus.IM_A_TEAPOT,
             "Unexpected status code"
         )
-        self.assertEqual(data, 'Я чайник', "Incorrect response text")
+        self.assertEqual(data, "Я чайник", "Incorrect response text")
