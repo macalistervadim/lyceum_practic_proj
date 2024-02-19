@@ -2,6 +2,12 @@
 
 [![pipeline status](https://gitlab.crja72.ru/django/2024/spring/course/students/197286-macalistervadim-course-1112/badges/main/pipeline.svg)](https://gitlab.crja72.ru/django/2024/spring/course/students/197286-macalistervadim-course-1112/commits/main)
 
+## ER Diagram
+
+Here is a visual ER diagram of the existing project database
+
+![ER Diagram](ER.jpg)
+
 To run the app locally, follow these steps:
 
 1. Clone the repository: `git clone {repository_url}`

@@ -7,12 +7,28 @@ import django.db
 import core.models
 
 
-def validator_for_item_text(value):
-    if "превосходно" not in value.lower() and "роскошно" not in value.lower():
-        raise django.core.exceptions.ValidationError(
-            "Текст должен содержать слово 'превосходно'"
-            " или 'роскошно'.",
-        )
+# def validator_for_item_text(value):
+#     if "превосходно" not in value.lower() and "роскошно" not in value.lower():
+#         raise django.core.exceptions.ValidationError(
+#             "Текст должен содержать слово 'превосходно'"
+#             " или 'роскошно'.",
+#         )
+
+def validate_must_contain(value, *words):
+    for word in words:
+        if word.lower() not in value.lower():
+            raise ValidationError(
+                _("%(word)s должно присутствовать в тексте."),
+                params={"word": word},
+            )
+
+
+class ValidateMustContain:
+    def __init__(self, *words):
+        self.words = words
+
+    def __call__(self, value):
+        validate_must_contain(value, *self.words)
 
 
 def validator_for_tag_slug(slug):
@@ -79,14 +95,20 @@ class Item(core.models.TimeStampedModel):
         verbose_name="теги",
         help_text="Выберите тэг",
     )
+    # text = django.db.models.TextField(
+    #     "текст",
+    #     validators=[
+    #         validator_for_item_text,
+    #     ],
+    #     help_text="Введите сообщение",
+    # )
     text = django.db.models.TextField(
         "текст",
         validators=[
-            validator_for_item_text,
+            ValidateMustContain('превосходно', 'роскошно'),
         ],
         help_text="Введите сообщение",
     )
-
     class Meta:
         verbose_name = "товар"
         verbose_name_plural = "товары"
