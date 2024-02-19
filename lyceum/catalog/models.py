@@ -3,6 +3,7 @@ import re
 import django.core.exceptions
 import django.core.validators
 import django.db
+from django.utils.translation import gettext_lazy as _
 
 import core.models
 
@@ -14,21 +15,19 @@ import core.models
 #             " или 'роскошно'.",
 #         )
 
-def validate_must_contain(value, *words):
-    for word in words:
-        if word.lower() not in value.lower():
-            raise ValidationError(
-                _("%(word)s должно присутствовать в тексте."),
-                params={"word": word},
-            )
-
 
 class ValidateMustContain:
     def __init__(self, *words):
         self.words = words
 
     def __call__(self, value):
-        validate_must_contain(value, *self.words)
+        missing_words = [word for word in self.words if word.lower() not in value.lower()]
+        if missing_words:
+            raise django.core.exceptions.ValidationError(
+                _("Следующие слова должны присутствовать в тексте: %(words)s."),
+                params={"words": ", ".join(missing_words)},
+            )
+        return value
 
 
 def validator_for_tag_slug(slug):
@@ -104,11 +103,13 @@ class Item(core.models.TimeStampedModel):
     # )
     text = django.db.models.TextField(
         "текст",
-        validators=[
-            ValidateMustContain('превосходно', 'роскошно'),
-        ],
         help_text="Введите сообщение",
     )
+
+    def clean(self):
+        validator = ValidateMustContain('превосходно', 'роскошно')
+        validator(self.text)
+
     class Meta:
         verbose_name = "товар"
         verbose_name_plural = "товары"

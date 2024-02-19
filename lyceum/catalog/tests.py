@@ -65,21 +65,34 @@ class ModelTestCase(TestCase):
         item = catalog.models.Item.objects.get(pk=1)
         self.assertTrue(item.pk)
 
-    @parameterized.expand(
-        [
-            ("Этот товар превосходно подходит для ваших нужд", None),
-            (
-                "Этот товар хорош, но не превосходен",
-                django.core.exceptions.ValidationError,
-            ),
-        ],
-    )
-    def test_validator_for_item_text(self, text, expected_exception):
+    # @parameterized.expand(
+    #     [
+    #         ("Этот товар превосходно подходит для ваших нужд", None),
+    #         (
+    #             "Этот товар хорош, но не превосходен",
+    #             django.core.exceptions.ValidationError,
+    #         ),
+    #     ],
+    # )
+    # def test_validator_for_item_text(self, text, expected_exception):
+    #     if expected_exception:
+    #         with self.assertRaises(expected_exception):
+    #             catalog.models.validator_for_item_text(text)
+    #     else:
+    #         self.assertIsNone(catalog.models.validator_for_item_text(text))
+
+    @parameterized.expand([
+        ("Этот товар превосходно подходит для ваших нужд, роскошно", None),
+        ("Этот товар хорош, но не превосходен, роскошен",
+         django.core.exceptions.ValidationError),
+    ])
+    def test_validate_must_contain(self, text, expected_exception):
+        validator = catalog.models.ValidateMustContain('превосходно', 'роскошно')
         if expected_exception:
             with self.assertRaises(expected_exception):
-                catalog.models.validator_for_item_text(text)
+                validator(text)
         else:
-            self.assertIsNone(catalog.models.validator_for_item_text(text))
+            self.assertEqual(validator(text), text)
 
     @parameterized.expand(
         [

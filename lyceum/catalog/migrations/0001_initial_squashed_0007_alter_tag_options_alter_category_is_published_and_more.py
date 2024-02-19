@@ -171,7 +171,7 @@ class Migration(migrations.Migration):
                     'text',
                     models.TextField(
                         help_text='Введите сообщение',
-                        validators=[catalog.models.validator_for_item_text],
+                        validators=[catalog.models.ValidateMustContain],
                         verbose_name='текст',
                     ),
                 ),
