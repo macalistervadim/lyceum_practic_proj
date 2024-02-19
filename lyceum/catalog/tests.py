@@ -75,7 +75,7 @@ class ModelTestCase(TestCase):
     def test_category_weight_validation(self, slug, weight):
         try:
             catalog.models.Category.objects.create(slug=slug, weight=weight)
-        except ValidationError as e:
+        except django.core.exceptions.ValidationError as e:
             if weight < 0:
                 self.assertEqual(
                     e.message,
