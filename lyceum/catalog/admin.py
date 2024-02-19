@@ -9,13 +9,13 @@ class AdminTag(admin.ModelAdmin):
 
 
 @admin.register(catalog.models.Category)
-class CatalogTag(admin.ModelAdmin):
+class AdminCategory(admin.ModelAdmin):
     pass
 
 
 @admin.register(catalog.models.Item)
 class AdminItem(admin.ModelAdmin):
-    list_display = ("name", "is_published")
+    list_display = ("name", "is_published",)
     list_editable = ("is_published",)
     list_display_links = ("name",)
     filter_horizontal = ("tags",)
