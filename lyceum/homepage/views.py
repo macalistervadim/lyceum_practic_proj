@@ -8,4 +8,4 @@ def home(request):
 
 
 def endpoint(request):
-    return HttpResponse("<body>Я чайник</body>", status=HTTPStatus.IM_A_TEAPOT)
+    return HttpResponse("Я чайник", status=HTTPStatus.IM_A_TEAPOT)

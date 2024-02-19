@@ -16,8 +16,10 @@ class HomePageTest(TestCase):
 class EndPontCoffeeTest(TestCase):
     def test_coffee_endpoint(self):
         response = Client().get("/coffee/")
+        data = response.content.decode("utf-8")
         self.assertEqual(
             response.status_code,
             HTTPStatus.IM_A_TEAPOT,
             "Unexpected status code"
         )
+        self.assertEqual(data, 'Я чайник', "Incorrect response text")
