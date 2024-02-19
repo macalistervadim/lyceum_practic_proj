@@ -9,7 +9,8 @@ import core.models
 
 
 # def validator_for_item_text(value):
-#     if "превосходно" not in value.lower() and "роскошно" not in value.lower():
+#     if "превосходно" not in value.lower()
+#     and "роскошно" not in value.lower():
 #         raise django.core.exceptions.ValidationError(
 #             "Текст должен содержать слово 'превосходно'"
 #             " или 'роскошно'.",
@@ -21,10 +22,12 @@ class ValidateMustContain:
         self.words = words
 
     def __call__(self, value):
-        missing_words = [word for word in self.words if word.lower() not in value.lower()]
+        missing_words = [word for word in self.words if word.lower()
+                         not in value.lower()]
         if missing_words:
             raise django.core.exceptions.ValidationError(
-                _("Следующие слова должны присутствовать в тексте: %(words)s."),
+                _("Следующие слова должны присутствовать"
+                  " в тексте: %(words)s."),
                 params={"words": ", ".join(missing_words)},
             )
         return value
@@ -107,7 +110,7 @@ class Item(core.models.TimeStampedModel):
     )
 
     def clean(self):
-        validator = ValidateMustContain('превосходно', 'роскошно')
+        validator = ValidateMustContain("превосходно", "роскошно")
         validator(self.text)
 
     class Meta:
