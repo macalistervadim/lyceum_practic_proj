@@ -106,8 +106,8 @@ class ModelTestCase(TestCase):
 
     @parameterized.expand(
         [
-            ("этоттоварпревосходноподходитдлявашихнужд", None),
-            ("роскошныйтестдляроскошноговалидатора", None),
+            ("превосходно", None),
+            ("роскошно", None),
         ],
     )
     def test_item_text_validator_positive(self, text, _):
