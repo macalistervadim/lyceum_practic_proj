@@ -8,10 +8,11 @@ import core.models
 
 
 def validator_for_item_text(value):
-    russian_pattern = re.compile('[а-яА-ЯёЁ]*')
+    russian_pattern = re.compile('[а-яА-ЯёЁ\\s\\d.,!?-]*')
     if not russian_pattern.fullmatch(value):
         raise django.core.exceptions.ValidationError(
-            "Текст должен содержать только русские символы.",
+            f"Текст должен содержать только русские символы."
+            f" Найдены недопустимые символы: {value}",
         )
 
     russian_words = {"превосходно", "роскошно"}

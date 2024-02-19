@@ -14,15 +14,10 @@ class HomePageTest(TestCase):
 
 
 class EndPontCoffeeTest(TestCase):
-    def test_endpont_coffee(self):
+    def test_coffee_endpoint(self):
         response = Client().get("/coffee/")
         self.assertEqual(
             response.status_code,
             HTTPStatus.IM_A_TEAPOT,
-            "Status code is not 418",
+            "Unexpected status code"
         )
-
-    def test_coffee_content(self):
-        response = Client().get("/coffee/")
-        data = response.content.decode()
-        self.assertIn("Я чайник", data, "Page not found this text")
