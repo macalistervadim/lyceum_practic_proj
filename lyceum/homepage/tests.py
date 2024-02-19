@@ -22,5 +22,5 @@ class EndPontCoffeeTest(TestCase):
 
     def test_coffee_content(self):
         response = Client().get("/coffee/")
-        data = response._container[0].decode()
+        data = response.content.decode("utf-8")
         self.assertIn("Я чайник", data, "Page not found this text")

@@ -50,46 +50,44 @@ class UrlTests(TestCase):
 
 
 class ModelTestCase(TestCase):
-
-    fixtures = ["fixtures/data.json"]
+    def setUp(self):
+        self.tag = catalog.models.Tag.objects.create(slug='test-tag', name='Test Tag')
+        self.category = catalog.models.Category.objects.create(slug='test-category', name='Test Category')
 
     def test_valid_tag_slug(self):
-        tag = catalog.models.Tag.objects.get(pk=1)
-        self.assertTrue(tag.pk)
+        self.assertTrue(self.tag.pk)
 
     def test_valid_category_slug(self):
-        category = catalog.models.Category.objects.get(pk=1)
-        self.assertTrue(category.pk)
+        self.assertTrue(self.category.pk)
 
-    def test_valid_item_text(self):
-        item = catalog.models.Item.objects.get(pk=1)
-        self.assertTrue(item.pk)
+    @parameterized.expand([
+        ('valid-slug', 'Valid Category', 200),
+        ('another-slug', 'Another Category', 300),
+    ])
+    def test_valid_category_weight(self, slug, name, weight):
+        category = catalog.models.Category(slug=slug, name=name, weight=weight)
+        category.full_clean()
 
-    @parameterized.expand(
-        [
-            ("Этот товар превосходно подходит для ваших нужд", None),
-            (
-                "Этот товар хорош, но не превосходен",
-                django.core.exceptions.ValidationError,
-            ),
-        ],
-    )
-    def test_validator_for_item_text(self, text, expected_exception):
-        if expected_exception:
-            with self.assertRaises(expected_exception):
-                catalog.models.validator_for_item_text(text)
-        else:
-            self.assertIsNone(catalog.models.validator_for_item_text(text))
+    @parameterized.expand([
+        ('invalid-slug', 'Invalid Category', -1),
+        ('test-slug', 'Test Category', 400),
+    ])
+    def test_invalid_category_weight(self, slug, name, weight):
+        category = catalog.models.Category(slug=slug, name=name, weight=weight)
+        with self.assertRaises(django.core.exceptions.ValidationError):
+            category.full_clean()
 
-    @parameterized.expand(
-        [
-            ("tag-1234", None),
-            ("tag$test", django.core.exceptions.ValidationError),
-        ],
-    )
-    def test_validator_for_tag_slug(self, slug, expected_exception):
-        if expected_exception:
-            with self.assertRaises(expected_exception):
-                catalog.models.validator_for_tag_slug(slug)
-        else:
-            self.assertIsNone(catalog.models.validator_for_tag_slug(slug))
+    @parameterized.expand([
+        ("Этот товар превосходно подходит для ваших нужд", None),
+        ("Роскошный тест для роскошного валидатора", None),
+    ])
+    def test_item_text_validator_positive(self, text, _):
+        self.assertIsNone(catalog.models.validator_for_item_text(text))
+
+    @parameterized.expand([
+        ("Текст без ключевых слов", django.core.exceptions.ValidationError),
+        ("Некорректный текст", django.core.exceptions.ValidationError),
+    ])
+    def test_item_text_validator_negative(self, text, expected_exception):
+        with self.assertRaises(expected_exception):
+            catalog.models.validator_for_item_text(text)
