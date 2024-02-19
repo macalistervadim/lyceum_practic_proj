@@ -8,11 +8,17 @@ import core.models
 
 
 def validator_for_item_text(value):
-    if "превосходно" not in value.lower() and "роскошно" not in value.lower():
+    russian_pattern = re.compile('[а-яА-ЯёЁ\s]*$')
+    if not russian_pattern.fullmatch(value):
         raise django.core.exceptions.ValidationError(
-            "Текст должен содержать слово 'превосходно'" " или 'роскошно'.",
+            "Текст должен содержать только русские символы."
         )
 
+    russian_words = {"превосходно", "роскошно"}
+    if not any(word in value.lower() for word in russian_words):
+        raise django.core.exceptions.ValidationError(
+            "Текст должен содержать слово 'превосходно' или 'роскошно'."
+        )
 
 def validator_for_tag_slug(slug):
     regex = r"^[a-zA-Z0-9_-]+$"
@@ -53,7 +59,7 @@ class Category(core.models.TimeStampedModel):
         "вес",
         default=100,
         validators=[
-            django.core.validators.MinValueValidator(0),
+            django.core.validators.MinValueValidator(1),
             django.core.validators.MaxValueValidator(32767),
         ],
         help_text="Введите вес",
