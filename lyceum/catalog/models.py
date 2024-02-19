@@ -78,7 +78,9 @@ class Item(core.models.TimeStampedModel):
     )
 
     def clean(self):
-        validator = catalog.validators.ValidateMustContain("превосходно", "роскошно")
+        validator = catalog.validators.ValidateMustContain(
+            "превосходно", "роскошно"
+        )
         validator(self.text)
 
     class Meta:
