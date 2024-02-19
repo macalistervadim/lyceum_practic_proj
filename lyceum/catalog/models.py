@@ -4,12 +4,14 @@ import django.core.exceptions
 import django.core.validators
 import django.db
 
+import catalog.validators
 import core.models
 
 
 def validator_for_item_text(value):
     russian_words_pattern = re.compile(
-        r"\bпревосходно\b|\bроскошно\b", re.IGNORECASE,
+        r"\bпревосходно\b|\bроскошно\b",
+        re.IGNORECASE,
     )
     if not russian_words_pattern.search(value):
         raise django.core.exceptions.ValidationError(
@@ -84,7 +86,10 @@ class Item(core.models.TimeStampedModel):
     text = django.db.models.TextField(
         "текст",
         validators=[
-            validator_for_item_text,
+            catalog.validators.ValidateMustContain(
+                "превосходно",
+                "роскошно",
+            )
         ],
         help_text="Введите сообщение",
     )
