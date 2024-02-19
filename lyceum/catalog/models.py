@@ -8,8 +8,7 @@ import core.models
 
 
 def validator_for_item_text(value):
-    if ("превосходно" not in value.lower()
-            and "роскошно" not in value.lower()):
+    if "превосходно" not in value.lower() and "роскошно" not in value.lower():
         raise django.core.exceptions.ValidationError(
             "Текст должен содержать слово 'превосходно'"
             " или 'роскошно'.",
