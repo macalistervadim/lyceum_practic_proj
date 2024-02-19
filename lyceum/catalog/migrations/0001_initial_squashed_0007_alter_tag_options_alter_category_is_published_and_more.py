@@ -9,18 +9,18 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     replaces = [
-        ('catalog', '0001_initial'),
-        ('catalog', '0002_alter_category_id_alter_item_id_alter_tag_id'),
-        ('catalog', '0003_item_category_item_tags'),
+        ("catalog", "0001_initial"),
+        ("catalog", "0002_alter_category_id_alter_item_id_alter_tag_id"),
+        ("catalog", "0003_item_category_item_tags"),
         (
-            'catalog',
-            '0004_alter_category_id_alter_category_is_published_and_more',
+            "catalog",
+            "0004_alter_category_id_alter_category_is_published_and_more",
         ),
-        ('catalog', '0005_alter_category_options_alter_item_options_and_more'),
-        ('catalog', '0006_alter_category_options_alter_item_options_and_more'),
+        ("catalog", "0005_alter_category_options_alter_item_options_and_more"),
+        ("catalog", "0006_alter_category_options_alter_item_options_and_more"),
         (
-            'catalog',
-            '0007_alter_tag_options_alter_category_is_published_and_more',
+            "catalog",
+            "0007_alter_tag_options_alter_category_is_published_and_more",
         ),
     ]
 
@@ -28,176 +28,176 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Category',
+            name="Category",
             fields=[
                 (
-                    'id',
+                    "id",
                     models.BigAutoField(
-                        help_text='id',
+                        help_text="id",
                         primary_key=True,
                         serialize=False,
                         validators=[
                             django.core.validators.MinLengthValidator(1)
                         ],
-                        verbose_name='id',
+                        verbose_name="id",
                     ),
                 ),
                 (
-                    'is_published',
+                    "is_published",
                     models.BooleanField(
                         default=True,
-                        help_text='Дата публикации',
-                        verbose_name='опубликовано',
+                        help_text="Дата публикации",
+                        verbose_name="опубликовано",
                     ),
                 ),
                 (
-                    'name',
+                    "name",
                     models.CharField(
-                        help_text='Введите название',
+                        help_text="Введите название",
                         max_length=150,
                         unique=True,
-                        verbose_name='название',
+                        verbose_name="название",
                     ),
                 ),
                 (
-                    'slug',
+                    "slug",
                     models.CharField(
-                        help_text='Введите слаг для категории',
+                        help_text="Введите слаг для категории",
                         max_length=200,
                         unique=True,
                         validators=[catalog.models.validator_for_tag_slug],
-                        verbose_name='слаг',
+                        verbose_name="слаг",
                     ),
                 ),
                 (
-                    'weight',
+                    "weight",
                     models.IntegerField(
                         default=100,
-                        help_text='Введите вес',
+                        help_text="Введите вес",
                         validators=[
                             django.core.validators.MinValueValidator(0),
                             django.core.validators.MaxValueValidator(32767),
                         ],
-                        verbose_name='вес',
+                        verbose_name="вес",
                     ),
                 ),
             ],
             options={
-                'verbose_name': 'категория',
-                'verbose_name_plural': 'категории',
+                "verbose_name": "категория",
+                "verbose_name_plural": "категории",
             },
         ),
         migrations.CreateModel(
-            name='Tag',
+            name="Tag",
             fields=[
                 (
-                    'id',
+                    "id",
                     models.BigAutoField(
-                        help_text='id',
+                        help_text="id",
                         primary_key=True,
                         serialize=False,
                         validators=[
                             django.core.validators.MinLengthValidator(1)
                         ],
-                        verbose_name='id',
+                        verbose_name="id",
                     ),
                 ),
                 (
-                    'name',
+                    "name",
                     models.CharField(
-                        help_text='Введите название',
+                        help_text="Введите название",
                         max_length=150,
                         unique=True,
-                        verbose_name='название',
+                        verbose_name="название",
                     ),
                 ),
                 (
-                    'is_published',
+                    "is_published",
                     models.BooleanField(
                         default=True,
-                        help_text='Дата публикации',
-                        verbose_name='опубликовано',
+                        help_text="Дата публикации",
+                        verbose_name="опубликовано",
                     ),
                 ),
                 (
-                    'slug',
+                    "slug",
                     models.CharField(
-                        help_text='Введите слаг для тега',
+                        help_text="Введите слаг для тега",
                         max_length=200,
                         unique=True,
                         validators=[catalog.models.validator_for_tag_slug],
-                        verbose_name='слаг',
+                        verbose_name="слаг",
                     ),
                 ),
             ],
             options={
-                'verbose_name': 'тег',
-                'verbose_name_plural': 'теги',
+                "verbose_name": "тег",
+                "verbose_name_plural": "теги",
             },
         ),
         migrations.CreateModel(
-            name='Item',
+            name="Item",
             fields=[
                 (
-                    'id',
+                    "id",
                     models.BigAutoField(
-                        help_text='id',
+                        help_text="id",
                         primary_key=True,
                         serialize=False,
                         validators=[
                             django.core.validators.MinLengthValidator(1)
                         ],
-                        verbose_name='id',
+                        verbose_name="id",
                     ),
                 ),
                 (
-                    'is_published',
+                    "is_published",
                     models.BooleanField(
                         default=True,
-                        help_text='Дата публикации',
-                        verbose_name='опубликовано',
+                        help_text="Дата публикации",
+                        verbose_name="опубликовано",
                     ),
                 ),
                 (
-                    'name',
+                    "name",
                     models.CharField(
-                        help_text='Введите название',
+                        help_text="Введите название",
                         max_length=150,
                         unique=True,
-                        verbose_name='название',
+                        verbose_name="название",
                     ),
                 ),
                 (
-                    'text',
+                    "text",
                     models.TextField(
-                        help_text='Введите сообщение',
-                        validators=[catalog.validators.ValidateMustContain],
-                        verbose_name='текст',
+                        help_text="Введите сообщение",
+                        validators=[catalog.models.validator_for_item_text],
+                        verbose_name="текст",
                     ),
                 ),
                 (
-                    'category',
+                    "category",
                     models.ForeignKey(
-                        help_text='Выберите категорию',
+                        help_text="Выберите категорию",
                         on_delete=django.db.models.deletion.CASCADE,
-                        related_name='items',
-                        to='catalog.category',
-                        verbose_name='категория',
+                        related_name="items",
+                        to="catalog.category",
+                        verbose_name="категория",
                     ),
                 ),
                 (
-                    'tags',
+                    "tags",
                     models.ManyToManyField(
-                        help_text='Выберите тэг',
-                        related_name='items',
-                        to='catalog.tag',
-                        verbose_name='теги',
+                        help_text="Выберите тэг",
+                        related_name="items",
+                        to="catalog.tag",
+                        verbose_name="теги",
                     ),
                 ),
             ],
             options={
-                'verbose_name': 'товар',
-                'verbose_name_plural': 'товары',
+                "verbose_name": "товар",
+                "verbose_name_plural": "товары",
             },
         ),
     ]

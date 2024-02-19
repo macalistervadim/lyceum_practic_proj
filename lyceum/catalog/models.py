@@ -5,7 +5,15 @@ import django.core.validators
 import django.db
 
 import core.models
-import catalog.validators
+
+
+def validator_for_item_text(value):
+    if ("превосходно" not in value.lower()
+            and "роскошно" not in value.lower()):
+        raise django.core.exceptions.ValidationError(
+            "Текст должен содержать слово 'превосходно'"
+            " или 'роскошно'.",
+        )
 
 
 def validator_for_tag_slug(slug):
@@ -74,14 +82,11 @@ class Item(core.models.TimeStampedModel):
     )
     text = django.db.models.TextField(
         "текст",
+        validators=[
+            validator_for_item_text,
+        ],
         help_text="Введите сообщение",
     )
-
-    def clean(self):
-        validator = catalog.validators.ValidateMustContain(
-            "превосходно", "роскошно"
-        )
-        validator(self.text)
 
     class Meta:
         verbose_name = "товар"

@@ -1,21 +1,30 @@
 from django.contrib import admin
 
-from catalog.models import Category, Item, Tag
+import catalog.models
+
+LIST_DISPLAY = ("name", "is_published")
+LIST_EDITABLE = ("is_published",)
+LIST_DISPLAY_LINKS = ("name",)
+FILTER_HORIZONTAL = ("tags",)
 
 
-@admin.register(Tag)
+@admin.register(catalog.models.Tag)
 class AdminTag(admin.ModelAdmin):
-    pass
+    list_display = LIST_DISPLAY
+    list_editable = LIST_EDITABLE
+    list_display_links = LIST_DISPLAY_LINKS
 
 
-@admin.register(Category)
+@admin.register(catalog.models.Category)
 class AdminCategory(admin.ModelAdmin):
-    pass
+    list_display = LIST_DISPLAY
+    list_editable = LIST_EDITABLE
+    list_display_links = LIST_DISPLAY_LINKS
 
 
-@admin.register(Item)
+@admin.register(catalog.models.Item)
 class AdminItem(admin.ModelAdmin):
-    list_display = ("name", "is_published")
-    list_editable = ("is_published",)
-    list_display_links = ("name",)
-    filter_horizontal = ("tags",)
+    list_display = LIST_DISPLAY
+    list_editable = LIST_EDITABLE
+    list_display_links = LIST_DISPLAY_LINKS
+    filter_horizontal = FILTER_HORIZONTAL
