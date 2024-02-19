@@ -89,7 +89,7 @@ class Item(core.models.TimeStampedModel):
             catalog.validators.ValidateMustContain(
                 "превосходно",
                 "роскошно",
-            )
+            ),
         ],
         help_text="Введите сообщение",
     )
