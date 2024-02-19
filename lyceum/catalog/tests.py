@@ -51,8 +51,8 @@ class UrlTests(TestCase):
 
 class ModelTestCase(TestCase):
     def setUp(self):
-        self.tag = catalog.models.Tag.objects.create(slug='test-tag', name='Test Tag')
-        self.category = catalog.models.Category.objects.create(slug='test-category', name='Test Category')
+        self.tag = catalog.models.Tag.objects.create(slug="test-tag", name="Test Tag")
+        self.category = catalog.models.Category.objects.create(slug="test-category", name="Test Category")
 
     def test_valid_tag_slug(self):
         self.assertTrue(self.tag.pk)
@@ -61,16 +61,16 @@ class ModelTestCase(TestCase):
         self.assertTrue(self.category.pk)
 
     @parameterized.expand([
-        ('valid-slug', 'Valid Category', 200),
-        ('another-slug', 'Another Category', 300),
+        ("valid-slug", "Valid Category", 200),
+        ("another-slug", "Another Category", 300),
     ])
     def test_valid_category_weight(self, slug, name, weight):
         category = catalog.models.Category(slug=slug, name=name, weight=weight)
         category.full_clean()
 
     @parameterized.expand([
-        ('invalid-slug', 'Invalid Category', -1),
-        ('test-slug', 'Test Category', 400),
+        ("invalid-slug", "Invalid Category", -1),
+        ("test-slug", "Test Category", 400),
     ])
     def test_invalid_category_weight(self, slug, name, weight):
         category = catalog.models.Category(slug=slug, name=name, weight=weight)
