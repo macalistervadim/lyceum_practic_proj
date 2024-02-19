@@ -51,8 +51,12 @@ class UrlTests(TestCase):
 
 class ModelTestCase(TestCase):
     def setUp(self):
-        self.tag = catalog.models.Tag.objects.create(slug="test-tag", name="Test Tag")
-        self.category = catalog.models.Category.objects.create(slug="test-category", name="Test Category")
+        self.tag = catalog.models.Tag.objects.create(
+            slug="test-tag", name="Test Tag"
+        )
+        self.category = catalog.models.Category.objects.create(
+            slug="test-category", name="Test Category"
+        )
 
     def test_valid_tag_slug(self):
         self.assertTrue(self.tag.pk)
