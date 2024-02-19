@@ -1,4 +1,4 @@
-import django.contrib.admin
+from django.contrib import admin
 
 import catalog.models
 
