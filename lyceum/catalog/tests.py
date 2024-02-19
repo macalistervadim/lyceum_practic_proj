@@ -97,12 +97,16 @@ class ModelTestCase(TestCase):
             self.assertEqual(category.weight, weight)
 
     def test_valid_slug_validation(self):
-        valid_slugs = ["valid-slug", "another-valid-slug", "yet-another-slug"]
+        valid_slugs = [
+            "valid-slug", "another-valid-slug", "yet-another-slug",
+        ]
         for slug in valid_slugs:
             self.assertIsNone(catalog.models.validator_for_tag_slug(slug))
 
     def test_invalid_slug_validation(self):
-        invalid_slugs = ["!@#", "invalid slug", "with space"]
+        invalid_slugs = [
+            "!@#", "invalid slug", "with space",
+        ]
         for slug in invalid_slugs:
             with self.assertRaises(django.core.exceptions.ValidationError):
                 catalog.models.validator_for_tag_slug(slug)
