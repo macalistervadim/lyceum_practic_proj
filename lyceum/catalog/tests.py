@@ -106,8 +106,8 @@ class ModelTestCase(TestCase):
 
     @parameterized.expand(
         [
-            ("Этот товар превосходно подходит для ваших нужд", None),
-            ("Роскошный тест для роскошного валидатора", None),
+            ("этоттоварпревосходноподходитдлявашихнужд", None),
+            ("роскошныйтестдляроскошноговалидатора", None),
         ]
     )
     def test_item_text_validator_positive(self, text, _):
@@ -119,9 +119,9 @@ class ModelTestCase(TestCase):
                 "Текст без ключевых слов",
                 django.core.exceptions.ValidationError,
             ),
-            ("Некорректный текст", django.core.exceptions.ValidationError),
-            ("Роскошный!!!", django.core.exceptions.ValidationError),
-            ("Превосходный!!", django.core.exceptions.ValidationError),
+            ("некорректныйтекст", django.core.exceptions.ValidationError),
+            ("роскошный!!!", django.core.exceptions.ValidationError),
+            ("превосходный!!", django.core.exceptions.ValidationError),
             ("qwertyроскошный", django.core.exceptions.ValidationError),
         ]
     )
