@@ -3,34 +3,9 @@ import re
 import django.core.exceptions
 import django.core.validators
 import django.db
-from django.utils.translation import gettext_lazy as _
 
 import core.models
-
-
-# def validator_for_item_text(value):
-#     if "превосходно" not in value.lower()
-#     and "роскошно" not in value.lower():
-#         raise django.core.exceptions.ValidationError(
-#             "Текст должен содержать слово 'превосходно'"
-#             " или 'роскошно'.",
-#         )
-
-
-class ValidateMustContain:
-    def __init__(self, *words):
-        self.words = words
-
-    def __call__(self, value):
-        missing_words = [word for word in self.words if word.lower()
-                         not in value.lower()]
-        if missing_words:
-            raise django.core.exceptions.ValidationError(
-                _("Следующие слова должны присутствовать"
-                  " в тексте: %(words)s."),
-                params={"words": ", ".join(missing_words)},
-            )
-        return value
+import catalog.validators
 
 
 def validator_for_tag_slug(slug):
@@ -97,20 +72,13 @@ class Item(core.models.TimeStampedModel):
         verbose_name="теги",
         help_text="Выберите тэг",
     )
-    # text = django.db.models.TextField(
-    #     "текст",
-    #     validators=[
-    #         validator_for_item_text,
-    #     ],
-    #     help_text="Введите сообщение",
-    # )
     text = django.db.models.TextField(
         "текст",
         help_text="Введите сообщение",
     )
 
     def clean(self):
-        validator = ValidateMustContain("превосходно", "роскошно")
+        validator = catalog.validators.ValidateMustContain("превосходно", "роскошно")
         validator(self.text)
 
     class Meta:

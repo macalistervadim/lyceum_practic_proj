@@ -8,6 +8,8 @@ Here is a visual ER diagram of the existing project database
 
 ![ER Diagram](ER.jpg)
 
+## Run the app
+
 To run the app locally, follow these steps:
 
 1. Clone the repository: `git clone {repository_url}`
