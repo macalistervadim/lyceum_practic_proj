@@ -1,7 +1,7 @@
 import re
 
-import django.db
 from django.core.exceptions import ValidationError
+import django.db
 
 
 def formatting_value(value):
@@ -64,7 +64,7 @@ class TimeStampedModel(django.db.models.Model):
         )
         if found:
             raise ValidationError(
-                "В ваших исправленных значениях " "уже есть похожее название",
+                "В ваших исправленных значениях уже есть похожее название",
             )
         self.normalized_name = normalized_name
 
