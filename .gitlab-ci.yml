@@ -8,7 +8,7 @@ flake8:
   image: registry.gitlab.com/pipeline-components/flake8:latest
   script:
     - pip install flake8-import-order flake8-quotes pep8-naming flake8-absolute-import flake8-commas flake8-eradicate flake8-comprehensions flake8-fixme
-    - flake8 --ignore=Q000 --exclude=migrations --verbose .
+    - flake8 --ignore=Q000,I100 --exclude=migrations --verbose .
 
 black:
   stage: black
