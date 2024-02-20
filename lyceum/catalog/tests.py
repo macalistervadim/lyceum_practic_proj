@@ -1,11 +1,11 @@
 from http import HTTPStatus
+import itertools
 
 import django.core.validators
 from django.test import Client, TestCase
 from parameterized import parameterized
 
 import catalog.models
-import itertools
 
 
 class UrlTests(TestCase):
