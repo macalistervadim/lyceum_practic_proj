@@ -5,12 +5,12 @@ import catalog.models
 
 @admin.register(catalog.models.Tag)
 class AdminTag(admin.ModelAdmin):
-    pass
+    list_display = (catalog.models.Tag.name.field.name,)
 
 
 @admin.register(catalog.models.Category)
 class AdminCategory(admin.ModelAdmin):
-    pass
+    list_display = (catalog.models.Category.name.field.name,)
 
 
 @admin.register(catalog.models.Item)

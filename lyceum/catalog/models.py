@@ -1,5 +1,3 @@
-import re
-
 import django.core.exceptions
 import django.core.validators
 import django.db
@@ -8,35 +6,15 @@ import catalog.validators
 import core.models
 
 
-def validator_for_item_text(value):
-    russian_words_pattern = re.compile(
-        r"\bпревосходно\b|\bроскошно\b",
-        re.IGNORECASE,
-    )
-    if not russian_words_pattern.search(value):
-        raise django.core.exceptions.ValidationError(
-            "Текст должен содержать слово 'превосходно' или 'роскошно'.",
-        )
-
-
-def validator_for_tag_slug(slug):
-    regex = r"^[a-zA-Z0-9_-]+$"
-    if not re.match(regex, slug):
-        raise django.core.exceptions.ValidationError(
-            "Слаг должен содержать только цифры, "
-            "буквы латиницы, и символы '-', '_'",
-        )
-
-
 class Tag(core.models.TimeStampedModel):
     slug = django.db.models.CharField(
         "слаг",
         max_length=200,
         unique=True,
         validators=[
-            validator_for_tag_slug,
+            catalog.validators.validator_for_tag_slug,
         ],
-        help_text="Введите слаг для тега",
+        help_text="Введите слаг для тэга",
     )
 
     class Meta:
@@ -50,7 +28,7 @@ class Category(core.models.TimeStampedModel):
         max_length=200,
         unique=True,
         validators=[
-            validator_for_tag_slug,
+            catalog.validators.validator_for_tag_slug,
         ],
         help_text="Введите слаг для категории",
     )

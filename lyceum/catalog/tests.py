@@ -5,6 +5,7 @@ from django.test import Client, TestCase
 from parameterized import parameterized
 
 import catalog.models
+import itertools
 
 
 class UrlTests(TestCase):
@@ -49,89 +50,227 @@ class UrlTests(TestCase):
         )
 
 
-class ModelTestCase(TestCase):
-    def setUp(self):
-        self.tag = catalog.models.Tag.objects.create(
-            slug="test-tag",
-            name="Test Tag",
-        )
-        self.category = catalog.models.Category.objects.create(
-            slug="test-category",
-            name="Test Category",
-        )
+class DBItemTests(TestCase):
+    category: catalog.models.Category
+    tag: catalog.models.Tag
 
-    def test_valid_tag_slug(self):
-        self.assertTrue(self.tag.pk)
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
 
-    def test_valid_category_slug(self):
-        self.assertTrue(self.category.pk)
+        cls.category = catalog.models.Category.objects.create(
+            name="Test",
+            slug="test-category-clug",
+        )
+        cls.tag = catalog.models.Tag.objects.create(
+            name="Test",
+            slug="test-slug-tag",
+        )
 
     @parameterized.expand(
         [
-            ("invalid-slug", 500),
-            ("valid-slug", -10),
-            ("valid-slug", 100),
-            ("valid-slug", 32767),
+            ("test", "превосходно", True),
+            ("test", "роскошно", True),
+            ("test", "Я превосходно", True),
+            ("test", "превосходно Я", True),
+            ("test", "превосходно роскошно", True),
+            ("test", "роскошно!", True),
+            ("test", "!роскошно", True),
+            ("test", "!роскошно", True),
+            ("test", "роскошно©", True),
+            ("test", "превосходноН", False),
+            ("test", "превНосходно", False),
+            ("test", "Нпревосходно", False),
+            ("test", "Я превосх%одно", False),
+            ("test", "превосходнороскошно", False),
+            ("test" * 38, "превосходно", False),
         ],
     )
-    def test_category_weight_validation(self, slug, weight):
-        try:
-            catalog.models.Category.objects.create(slug=slug, weight=weight)
-        except django.core.exceptions.ValidationError as e:
-            if weight < 0:
-                self.assertEqual(
-                    e.message,
-                    "Ensure this value is greater than or equal to 0.",
-                )
-            elif weight > 32767:
-                self.assertEqual(
-                    e.message,
-                    "Ensure this value is less than or equal to 32767.",
-                )
-        else:
-            category = catalog.models.Category.objects.get(
-                slug=slug,
-                weight=weight,
+    def test_db_item(self, name, expected_text, expected_status_code):
+        item_count = catalog.models.Item.objects.count()
+        self.item = catalog.models.Item(
+            name=name,
+            text=expected_text,
+            category=self.category,
+        )
+        if not expected_status_code:
+            with self.assertRaises(django.core.validators.ValidationError):
+                self.item.full_clean()
+                self.item.tags.add(self.tag)
+                self.item.save()
+            self.assertEqual(
+                catalog.models.Item.objects.count(),
+                item_count,
+                msg="Объект не добавлен",
             )
-            self.assertEqual(category.slug, slug)
-            self.assertEqual(category.weight, weight)
+        else:
+            self.item.full_clean()
+            self.item.save()
+            self.item.tags.add(self.tag)
+            self.assertEqual(
+                catalog.models.Item.objects.count(),
+                item_count + 1,
+                msg="Объект добавлен",
+            )
 
-    def test_valid_slug_validation(self):
-        valid_slugs = [
-            "valid-slug", "another-valid-slug", "yet-another-slug",
-        ]
-        for slug in valid_slugs:
-            self.assertIsNone(catalog.models.validator_for_tag_slug(slug))
 
-    def test_invalid_slug_validation(self):
-        invalid_slugs = [
-            "!@#", "invalid slug", "with space",
-        ]
-        for slug in invalid_slugs:
-            with self.assertRaises(django.core.exceptions.ValidationError):
-                catalog.models.validator_for_tag_slug(slug)
-
+class DBCategoryTests(TestCase):
     @parameterized.expand(
         [
-            ("превосходно", None),
-            ("роскошно", None),
+            ("test", "abs", 1, True),
+            ("test", "1abs2", 1, True),
+            ("test", "a12bs", 1, True),
+            ("test", "ABS", 1, True),
+            ("test", "-abs-", 1, True),
+            ("test", "_abs_", 1, True),
+            ("test", "_abs_", 32767, True),
+            ("test", "Я", 1, False),
+            ("test", "Яabs", 1, False),
+            ("test", "Я abs", 1, False),
+            ("test", "aЯbs", 1, False),
+            ("test", "absЯ", 1, False),
+            ("test", "abs Я", 1, False),
+            ("test", "*abs*", 1, False),
+            ("test", "a*bs", 1, False),
+            ("test" * 38, "abs", 1, False),
+            ("test", "abs" * 67, 1, False),
+            ("test", "abs", 32768, False),
+            ("test", "abs", 0, False),
+            ("test", "abs", -1, False),
         ],
     )
-    def test_item_text_validator_positive(self, text, _):
-        self.assertIsNone(catalog.models.validator_for_item_text(text))
+    def test_db_category(self, name, slug, weight, expected_status_code):
+        category_count = catalog.models.Category.objects.count()
+        self.category = catalog.models.Category(
+            name=name,
+            slug=slug,
+            weight=weight,
+        )
+        if not expected_status_code:
+            with self.assertRaises(django.core.validators.ValidationError):
+                self.category.full_clean()
+                self.category.save()
+            self.assertEqual(
+                catalog.models.Item.objects.count(),
+                category_count,
+                msg="Объект не добавлен",
+            )
+        else:
+            self.category.full_clean()
+            self.category.save()
+            self.assertEqual(
+                catalog.models.Category.objects.count(),
+                category_count + 1,
+                msg="Объект добавлен",
+            )
 
+
+class DBItemTest(TestCase):
     @parameterized.expand(
         [
-            (
-                "Текст без ключевых слов",
-                django.core.exceptions.ValidationError,
-            ),
-            ("некорректныйтекст", django.core.exceptions.ValidationError),
-            ("роскошный!!!", django.core.exceptions.ValidationError),
-            ("превосходный!!", django.core.exceptions.ValidationError),
-            ("qwertyроскошный", django.core.exceptions.ValidationError),
+            ("test", "abs", True),
+            ("test", "1abs2", True),
+            ("test", "a12bs", True),
+            ("test", "ABS", True),
+            ("test", "-abs-", True),
+            ("test", "_abs_", True),
+            ("test", "Я", False),
+            ("test", "Яabs", False),
+            ("test", "Я abs", False),
+            ("test", "aЯbs", False),
+            ("test", "absЯ", False),
+            ("test", "abs Я", False),
+            ("test", "*abs*", False),
+            ("test", "a*bs", False),
+            ("test" * 38, "abs", False),
+            ("test", "abs" * 67, False),
         ],
     )
-    def test_item_text_validator_negative(self, text, expected_exception):
-        with self.assertRaises(expected_exception):
-            catalog.models.validator_for_item_text(text)
+    def test_db_tag(self, name, slug, expected_status_code):
+        tag_count = catalog.models.Tag.objects.count()
+        self.tag = catalog.models.Tag(
+            name=name,
+            slug=slug,
+        )
+        if not expected_status_code:
+            with self.assertRaises(django.core.validators.ValidationError):
+                self.tag.full_clean()
+                self.tag.save()
+            self.assertEqual(
+                catalog.models.Tag.objects.count(),
+                tag_count,
+                msg="Объект не добавлен",
+            )
+        else:
+            self.tag.full_clean()
+            self.tag.save()
+            self.assertEqual(
+                catalog.models.Tag.objects.count(),
+                tag_count + 1,
+                msg="Объект добавлен",
+            )
+
+
+class DBNormalizeTest(TestCase):
+    @parameterized.expand(
+        (
+            (x[0], x[1][0], x[1][1])
+            for x in itertools.product(
+                [
+                    ("test"),
+                    ("Тest"),
+                    ("tЕst"),
+                ],
+                [
+                    ("test test", True),
+                    ("itfaketest", True),
+                    ("test, test", True),
+                    ("test!test", True),
+                    ("testt", True),
+                    ("test!", False),
+                    ("!test", False),
+                    ("!test!", False),
+                    (" test ", False),
+                    ("test,", False),
+                    (".test", False),
+                    ("te st", False),
+                    ("te sТ", False),
+                    ("tеst", False),
+                ],
+            )
+        ),
+    )
+    def test_db_normalize_text(self, name1, name2, is_validate):
+        tag_count = catalog.models.Category.objects.count()
+        self.tag1 = catalog.models.Tag(
+            name=name1,
+            slug="1",
+        )
+        self.tag2 = catalog.models.Tag(
+            name=name2,
+            slug="2",
+        )
+        if not is_validate:
+            with self.assertRaises(
+                django.core.validators.ValidationError,
+                msg=f"Добавлено {name2} а ожидалось {name1}",
+            ):
+                self.tag2.full_clean()
+                self.tag2.save()
+                self.tag1.full_clean()
+                self.tag1.save()
+            self.assertEqual(
+                catalog.models.Tag.objects.count(),
+                tag_count + 1,
+                msg="Объекты не добавлены",
+            )
+        else:
+            self.tag1.full_clean()
+            self.tag1.save()
+            self.tag2.full_clean()
+            self.tag2.save()
+            self.assertEqual(
+                catalog.models.Tag.objects.count(),
+                tag_count + 2,
+                msg="Объекты добавлены",
+            )

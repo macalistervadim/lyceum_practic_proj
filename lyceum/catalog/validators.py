@@ -17,3 +17,23 @@ class ValidateMustContain:
         raise django.core.exceptions.ValidationError(
             f"Должно быть слово: {str_words}",
         )
+
+
+def validator_for_tag_slug(slug):
+    regex = r"^[a-zA-Z0-9_-]+$"
+    if not re.match(regex, slug):
+        raise django.core.exceptions.ValidationError(
+            "Слаг должен содержать только цифры, "
+            "буквы латиницы, и символы '-', '_'",
+        )
+
+
+def validator_for_item_text(value):
+    russian_words_pattern = re.compile(
+        r"\bпревосходно\b|\bроскошно\b",
+        re.IGNORECASE,
+    )
+    if not russian_words_pattern.search(value):
+        raise django.core.exceptions.ValidationError(
+            "Текст должен содержать слово 'превосходно' или 'роскошно'.",
+        )

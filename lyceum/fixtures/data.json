@@ -1,164 +1,179 @@
 [
 {
-  "model": "catalog.tag",
-  "pk": 1,
-  "fields": {
-    "name": "sdfsd",
-    "is_published": true,
-    "slug": "sfdsfd"
-  }
+    "model": "catalog.tag",
+    "pk": 1,
+    "fields": {
+        "name": "Один",
+        "is_published": true,
+        "normalized_name": "один",
+        "slug": "one"
+    }
 },
 {
-  "model": "catalog.tag",
-  "pk": 2,
-  "fields": {
-    "name": "╥ху1",
-    "is_published": true,
-    "slug": "sdffsdsfd-"
-  }
+    "model": "catalog.tag",
+    "pk": 2,
+    "fields": {
+        "name": "Два",
+        "is_published": true,
+        "normalized_name": "два",
+        "slug": "two"
+    }
 },
 {
-  "model": "catalog.tag",
-  "pk": 3,
-  "fields": {
-    "name": "╥ху2",
-    "is_published": true,
-    "slug": "sdffsdsdf-"
-  }
+    "model": "catalog.tag",
+    "pk": 3,
+    "fields": {
+        "name": "Три",
+        "is_published": true,
+        "normalized_name": "три",
+        "slug": "three"
+    }
 },
 {
-  "model": "catalog.tag",
-  "pk": 4,
-  "fields": {
-    "name": "╥ху3",
-    "is_published": true,
-    "slug": "sdfsfdsfd_"
-  }
+    "model": "catalog.tag",
+    "pk": 4,
+    "fields": {
+        "name": "Четыре",
+        "is_published": true,
+        "normalized_name": "четыре",
+        "slug": "four"
+    }
 },
 {
-  "model": "catalog.tag",
-  "pk": 5,
-  "fields": {
-    "name": "╥ху4",
-    "is_published": true,
-    "slug": "sfdsdfsdffsd_"
-  }
+    "model": "catalog.tag",
+    "pk": 5,
+    "fields": {
+        "name": "Пять",
+        "is_published": true,
+        "normalized_name": "пять",
+        "slug": "five"
+    }
 },
 {
-  "model": "catalog.tag",
-  "pk": 6,
-  "fields": {
-    "name": "╥ху5",
-    "is_published": true,
-    "slug": "sdfdfssdfsdf_"
-  }
+    "model": "catalog.tag",
+    "pk": 6,
+    "fields": {
+        "name": "6",
+        "is_published": true,
+        "normalized_name": "",
+        "slug": "six"
+    }
 },
 {
-  "model": "catalog.category",
-  "pk": 1,
-  "fields": {
-    "name": "sdffsd",
-    "is_published": true,
-    "slug": "sfdsdf",
-    "weight": 0
-  }
+    "model": "catalog.category",
+    "pk": 1,
+    "fields": {
+        "name": "Одежда",
+        "is_published": true,
+        "normalized_name": "одежда",
+        "slug": "clothes",
+        "weight": 100
+    }
 },
 {
-  "model": "catalog.category",
-  "pk": 2,
-  "fields": {
-    "name": "╩рЄ1",
-    "is_published": true,
-    "slug": "sdfsfdsfddf",
-    "weight": 100
-  }
+    "model": "catalog.category",
+    "pk": 2,
+    "fields": {
+        "name": "Обувь",
+        "is_published": true,
+        "normalized_name": "обувь",
+        "slug": "shoes",
+        "weight": 100
+    }
 },
 {
-  "model": "catalog.category",
-  "pk": 3,
-  "fields": {
-    "name": "╩рЄ2",
-    "is_published": true,
-    "slug": "sdfdsfsdf",
-    "weight": 3120
-  }
+    "model": "catalog.category",
+    "pk": 3,
+    "fields": {
+        "name": "Очки",
+        "is_published": true,
+        "normalized_name": "очки",
+        "slug": "glasses",
+        "weight": 100
+    }
 },
 {
-  "model": "catalog.item",
-  "pk": 1,
-  "fields": {
-    "name": "dfggfd",
-    "is_published": true,
-    "category": 1,
-    "text": "яЁхтюёїюфэю",
-    "tags": [
-      1
-    ]
-  }
+    "model": "catalog.item",
+    "pk": 1,
+    "fields": {
+        "name": "Руковицы",
+        "is_published": true,
+        "normalized_name": "руковицы",
+        "category": 1,
+        "text": "превосходно",
+        "tags": [
+            1
+        ]
+    }
 },
 {
-  "model": "catalog.item",
-  "pk": 2,
-  "fields": {
-    "name": "√трт√√рт",
-    "is_published": true,
-    "category": 1,
-    "text": "яЁхтюёїюфэю",
-    "tags": [
-      1
-    ]
-  }
+    "model": "catalog.item",
+    "pk": 2,
+    "fields": {
+        "name": "Перчатки",
+        "is_published": true,
+        "normalized_name": "перчатки",
+        "category": 1,
+        "text": "превосходно",
+        "tags": [
+            1
+        ]
+    }
 },
 {
-  "model": "catalog.item",
-  "pk": 3,
-  "fields": {
-    "name": "╥ют1",
-    "is_published": true,
-    "category": 1,
-    "text": "яЁхтюёїюфэю",
-    "tags": [
-      4
-    ]
-  }
+    "model": "catalog.item",
+    "pk": 3,
+    "fields": {
+        "name": "Пять",
+        "is_published": true,
+        "normalized_name": "пять",
+        "category": 3,
+        "text": "превосходно",
+        "tags": [
+            5
+        ]
+    }
 },
 {
-  "model": "catalog.item",
-  "pk": 4,
-  "fields": {
-    "name": "╥ют2",
-    "is_published": true,
-    "category": 1,
-    "text": "яЁхтюёїюфэю",
-    "tags": [
-      6
-    ]
-  }
+    "model": "catalog.item",
+    "pk": 4,
+    "fields": {
+        "name": "Лук",
+        "is_published": true,
+        "normalized_name": "лук",
+        "category": 1,
+        "text": "превосходно",
+        "tags": [
+            4
+        ]
+    }
 },
 {
-  "model": "catalog.item",
-  "pk": 5,
-  "fields": {
-    "name": "╥ют3",
-    "is_published": true,
-    "category": 2,
-    "text": "яЁхтюёїюфэю",
-    "tags": [
-      2
-    ]
-  }
+    "model": "catalog.item",
+    "pk": 5,
+    "fields": {
+        "name": "Носки",
+        "is_published": true,
+        "normalized_name": "носки",
+        "category": 1,
+        "text": "превосходно",
+        "tags": [
+            5
+        ]
+    }
 },
 {
-  "model": "catalog.item",
-  "pk": 6,
-  "fields": {
-    "name": "╥ют5",
-    "is_published": true,
-    "category": 1,
-    "text": "яЁхтюёїюфэю",
-    "tags": [
-      4
-    ]
-  }
+    "model": "catalog.item",
+    "pk": 6,
+    "fields": {
+        "name": "Нос",
+        "is_published": true,
+        "normalized_name": "нос",
+        "category": 3,
+        "text": "превосходно",
+        "tags": [
+            5
+        ]
+    }
 }
 ]
