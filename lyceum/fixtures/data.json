@@ -1,179 +1,201 @@
 [
 {
-    "model": "catalog.tag",
-    "pk": 1,
-    "fields": {
-        "name": "Один",
-        "is_published": true,
-        "normalized_name": "один",
-        "slug": "one"
-    }
+  "model": "catalog.tag",
+  "pk": 1,
+  "fields": {
+    "name": "tag1",
+    "is_published": true,
+    "normalized_name": "таg",
+    "slug": "tag_num_1"
+  }
 },
 {
-    "model": "catalog.tag",
-    "pk": 2,
-    "fields": {
-        "name": "Два",
-        "is_published": true,
-        "normalized_name": "два",
-        "slug": "two"
-    }
+  "model": "catalog.tag",
+  "pk": 2,
+  "fields": {
+    "name": "tags2",
+    "is_published": true,
+    "normalized_name": "таgs",
+    "slug": "tag_num_2"
+  }
 },
 {
-    "model": "catalog.tag",
-    "pk": 3,
-    "fields": {
-        "name": "Три",
-        "is_published": true,
-        "normalized_name": "три",
-        "slug": "three"
-    }
+  "model": "catalog.tag",
+  "pk": 3,
+  "fields": {
+    "name": "tagnum3",
+    "is_published": true,
+    "normalized_name": "таgnuм",
+    "slug": "tag_num_3"
+  }
 },
 {
-    "model": "catalog.tag",
-    "pk": 4,
-    "fields": {
-        "name": "Четыре",
-        "is_published": true,
-        "normalized_name": "четыре",
-        "slug": "four"
-    }
+  "model": "catalog.tag",
+  "pk": 4,
+  "fields": {
+    "name": "taging_4",
+    "is_published": true,
+    "normalized_name": "таging",
+    "slug": "tag_num_4"
+  }
 },
 {
-    "model": "catalog.tag",
-    "pk": 5,
-    "fields": {
-        "name": "Пять",
-        "is_published": true,
-        "normalized_name": "пять",
-        "slug": "five"
-    }
+  "model": "catalog.tag",
+  "pk": 5,
+  "fields": {
+    "name": "tag_monster_6",
+    "is_published": true,
+    "normalized_name": "таgмоnsтег",
+    "slug": "tag_num_6"
+  }
 },
 {
-    "model": "catalog.tag",
-    "pk": 6,
-    "fields": {
-        "name": "6",
-        "is_published": true,
-        "normalized_name": "",
-        "slug": "six"
-    }
+  "model": "catalog.tag",
+  "pk": 6,
+  "fields": {
+    "name": "tag_very_big_5",
+    "is_published": true,
+    "normalized_name": "таgvегувig",
+    "slug": "tag_num_5"
+  }
 },
 {
-    "model": "catalog.category",
-    "pk": 1,
-    "fields": {
-        "name": "Одежда",
-        "is_published": true,
-        "normalized_name": "одежда",
-        "slug": "clothes",
-        "weight": 100
-    }
+  "model": "catalog.category",
+  "pk": 2,
+  "fields": {
+    "name": "Категория1",
+    "is_published": true,
+    "normalized_name": "категория",
+    "slug": "cat_1",
+    "weight": 100
+  }
 },
 {
-    "model": "catalog.category",
-    "pk": 2,
-    "fields": {
-        "name": "Обувь",
-        "is_published": true,
-        "normalized_name": "обувь",
-        "slug": "shoes",
-        "weight": 100
-    }
+  "model": "catalog.category",
+  "pk": 3,
+  "fields": {
+    "name": "перчатки",
+    "is_published": true,
+    "normalized_name": "перчатки",
+    "slug": "category_2",
+    "weight": 100
+  }
 },
 {
-    "model": "catalog.category",
-    "pk": 3,
-    "fields": {
-        "name": "Очки",
-        "is_published": true,
-        "normalized_name": "очки",
-        "slug": "glasses",
-        "weight": 100
-    }
+  "model": "catalog.category",
+  "pk": 4,
+  "fields": {
+    "name": "Варежки",
+    "is_published": true,
+    "normalized_name": "варежки",
+    "slug": "category_2",
+    "weight": 100
+  }
 },
 {
-    "model": "catalog.item",
-    "pk": 1,
-    "fields": {
-        "name": "Руковицы",
-        "is_published": true,
-        "normalized_name": "руковицы",
-        "category": 1,
-        "text": "превосходно",
-        "tags": [
-            1
-        ]
-    }
+  "model": "catalog.category",
+  "pk": 5,
+  "fields": {
+    "name": "Кросовок",
+    "is_published": true,
+    "normalized_name": "кросовок",
+    "slug": "cross_5",
+    "weight": 100
+  }
 },
 {
-    "model": "catalog.item",
-    "pk": 2,
-    "fields": {
-        "name": "Перчатки",
-        "is_published": true,
-        "normalized_name": "перчатки",
-        "category": 1,
-        "text": "превосходно",
-        "tags": [
-            1
-        ]
-    }
+  "model": "catalog.category",
+  "pk": 6,
+  "fields": {
+    "name": "Кеды",
+    "is_published": true,
+    "normalized_name": "кеды",
+    "slug": "cedi_3",
+    "weight": 100
+  }
 },
 {
-    "model": "catalog.item",
-    "pk": 3,
-    "fields": {
-        "name": "Пять",
-        "is_published": true,
-        "normalized_name": "пять",
-        "category": 3,
-        "text": "превосходно",
-        "tags": [
-            5
-        ]
-    }
+  "model": "catalog.item",
+  "pk": 1,
+  "fields": {
+    "name": "Кеда",
+    "is_published": true,
+    "normalized_name": "кеда",
+    "category": 2,
+    "text": "превосходно",
+    "tags": [
+      4
+    ]
+  }
 },
 {
-    "model": "catalog.item",
-    "pk": 4,
-    "fields": {
-        "name": "Лук",
-        "is_published": true,
-        "normalized_name": "лук",
-        "category": 1,
-        "text": "превосходно",
-        "tags": [
-            4
-        ]
-    }
+  "model": "catalog.item",
+  "pk": 2,
+  "fields": {
+    "name": "Кроссовок",
+    "is_published": true,
+    "normalized_name": "кроссовок",
+    "category": 2,
+    "text": "превосходно",
+    "tags": [
+      6
+    ]
+  }
 },
 {
-    "model": "catalog.item",
-    "pk": 5,
-    "fields": {
-        "name": "Носки",
-        "is_published": true,
-        "normalized_name": "носки",
-        "category": 1,
-        "text": "превосходно",
-        "tags": [
-            5
-        ]
-    }
+  "model": "catalog.item",
+  "pk": 3,
+  "fields": {
+    "name": "Шапка",
+    "is_published": true,
+    "normalized_name": "шапка",
+    "category": 6,
+    "text": "превосходно",
+    "tags": [
+      2
+    ]
+  }
 },
 {
-    "model": "catalog.item",
-    "pk": 6,
-    "fields": {
-        "name": "Нос",
-        "is_published": true,
-        "normalized_name": "нос",
-        "category": 3,
-        "text": "превосходно",
-        "tags": [
-            5
-        ]
-    }
+  "model": "catalog.item",
+  "pk": 4,
+  "fields": {
+    "name": "Куртка",
+    "is_published": true,
+    "normalized_name": "куртка",
+    "category": 5,
+    "text": "превосходно",
+    "tags": [
+      6
+    ]
+  }
+},
+{
+  "model": "catalog.item",
+  "pk": 5,
+  "fields": {
+    "name": "Худи",
+    "is_published": true,
+    "normalized_name": "худи",
+    "category": 2,
+    "text": "превосходно",
+    "tags": [
+      2
+    ]
+  }
+},
+{
+  "model": "catalog.item",
+  "pk": 6,
+  "fields": {
+    "name": "Носки",
+    "is_published": true,
+    "normalized_name": "носки",
+    "category": 3,
+    "text": "превосходно",
+    "tags": [
+      3
+    ]
+  }
 }
 ]

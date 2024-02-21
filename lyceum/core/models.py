@@ -1,41 +1,32 @@
 import re
 
-from django.core.exceptions import ValidationError
+import django.core.exceptions
 import django.db
 
 
-def formatting_value(value):
-    similar_chars = {
-        "a": "а",
-        "o": "о",
-        "y": "у",
-        "e": "е",
-        "c": "с",
-        "m": "м",
-        "p": "р",
-        "t": "т",
-        "x": "х",
-        "b": "в",
-        "k": "к",
-        "h": "н",
-        "r": "г",
-    }
-    words = re.findall("[а-яёa-z]+", value.lower())
-    new_value = "".join(
-        (similar_chars.get(char, char) for char in "".join(words)),
-    )
-    return new_value
-
-
 class TimeStampedModel(django.db.models.Model):
-    id = django.db.models.BigAutoField(
-        "id",
-        primary_key=True,
-        validators=[
-            django.core.validators.MinLengthValidator(1),
-        ],
-        help_text="id",
-    )
+    def formatting_value(self, value):
+        similar_chars = {
+            "a": "а",
+            "o": "о",
+            "y": "у",
+            "e": "е",
+            "c": "с",
+            "m": "м",
+            "p": "р",
+            "t": "т",
+            "x": "х",
+            "b": "в",
+            "k": "к",
+            "h": "н",
+            "r": "г",
+        }
+        words = re.findall("[а-яёa-z]+", value.lower())
+        new_value = "".join(
+            (similar_chars.get(char, char) for char in "".join(words)),
+        )
+        return new_value
+
     name = django.db.models.CharField(
         "название",
         max_length=150,
@@ -57,13 +48,23 @@ class TimeStampedModel(django.db.models.Model):
     def __str__(self):
         return self.name[:15]
 
+    def save(self, *args, **kwargs):
+        try:
+            self.normalized_name = self.formatting_value(self.name)
+            super().save(*args, **kwargs)
+        except django.core.exceptions.ValidationError as e:
+            if 'normalized_name' in e.error_dict:
+                pass  
+            else:
+                raise e
+
     def clean(self):
-        normalized_name = formatting_value(self.name)
+        normalized_name = self.formatting_value(self.name)
         found = self.__class__.objects.filter(
             normalized_name=normalized_name,
         )
         if found:
-            raise ValidationError(
+            raise django.core.exceptions.ValidationError(
                 "В ваших исправленных значениях уже есть похожее название",
             )
         self.normalized_name = normalized_name

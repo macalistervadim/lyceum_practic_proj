@@ -19,15 +19,6 @@ class ValidateMustContain:
         )
 
 
-def validator_for_tag_slug(slug):
-    regex = r"^[a-zA-Z0-9_-]+$"
-    if not re.match(regex, slug):
-        raise django.core.exceptions.ValidationError(
-            "Слаг должен содержать только цифры, "
-            "буквы латиницы, и символы '-', '_'",
-        )
-
-
 def validator_for_item_text(value):
     russian_words_pattern = re.compile(
         r"\bпревосходно\b|\bроскошно\b",

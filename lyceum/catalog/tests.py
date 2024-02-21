@@ -1,8 +1,9 @@
-from http import HTTPStatus
+import http
 import itertools
 
 import django.core.validators
 from django.test import Client, TestCase
+
 from parameterized import parameterized
 
 import catalog.models
@@ -12,10 +13,10 @@ class UrlTests(TestCase):
 
     @parameterized.expand(
         [
-            ("/catalog", HTTPStatus.OK),
-            ("/catalog/1", HTTPStatus.OK),
-            ("/catalog/-1", HTTPStatus.NOT_FOUND),
-            ("/catalog/string", HTTPStatus.NOT_FOUND),
+            ("/catalog", http.HTTPStatus.OK),
+            ("/catalog/1", http.HTTPStatus.OK),
+            ("/catalog/-1", http.HTTPStatus.NOT_FOUND),
+            ("/catalog/string", http.HTTPStatus.NOT_FOUND),
         ],
     )
     def test_description(self, url, expected_status_code):
@@ -23,9 +24,9 @@ class UrlTests(TestCase):
 
     @parameterized.expand(
         [
-            ("/catalog/re/124", HTTPStatus.OK),
-            ("/catalog/re/124abs", HTTPStatus.NOT_FOUND),
-            ("/catalog/re/-123", HTTPStatus.NOT_FOUND),
+            ("/catalog/re/124", http.HTTPStatus.OK),
+            ("/catalog/re/124abs", http.HTTPStatus.NOT_FOUND),
+            ("/catalog/re/-123", http.HTTPStatus.NOT_FOUND),
         ],
     )
     def test_catalog_regex(self, url, expected_status_code):
@@ -33,9 +34,13 @@ class UrlTests(TestCase):
 
     @parameterized.expand(
         [
-            ("/catalog/converter/124", HTTPStatus.OK),
-            ("/catalog/converter/124abs", HTTPStatus.NOT_FOUND),
-            ("/catalog/converter/-123", HTTPStatus.NOT_FOUND),
+            ("/catalog/converter/124", http.HTTPStatus.OK),
+            ("/catalog/converter/124abs", http.HTTPStatus.NOT_FOUND),
+            ("/catalog/converter/-123", http.HTTPStatus.NOT_FOUND),
+            ("/catalog/converter/a2b1c3egz", http.HTTPStatus.NOT_FOUND),
+            ("/catalog/converter/0123456", http.HTTPStatus.OK),
+            ("/catalog/converter/abcde", http.HTTPStatus.NOT_FOUND),
+            ("/catalog/converter/0", http.HTTPStatus.NOT_FOUND),
         ],
     )
     def test_catalog_converter(self, url, expected_status_code):

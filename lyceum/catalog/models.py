@@ -3,17 +3,14 @@ import django.core.validators
 import django.db
 
 import catalog.validators
+
 import core.models
 
 
 class Tag(core.models.TimeStampedModel):
-    slug = django.db.models.CharField(
+    slug = django.db.models.SlugField(
         "слаг",
         max_length=200,
-        unique=True,
-        validators=[
-            catalog.validators.validator_for_tag_slug,
-        ],
         help_text="Введите слаг для тэга",
     )
 
@@ -23,13 +20,9 @@ class Tag(core.models.TimeStampedModel):
 
 
 class Category(core.models.TimeStampedModel):
-    slug = django.db.models.CharField(
+    slug = django.db.models.SlugField(
         "слаг",
         max_length=200,
-        unique=True,
-        validators=[
-            catalog.validators.validator_for_tag_slug,
-        ],
         help_text="Введите слаг для категории",
     )
     weight = django.db.models.IntegerField(
