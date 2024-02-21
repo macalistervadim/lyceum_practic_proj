@@ -53,8 +53,8 @@ class TimeStampedModel(django.db.models.Model):
             self.normalized_name = self.formatting_value(self.name)
             super().save(*args, **kwargs)
         except django.core.exceptions.ValidationError as e:
-            if 'normalized_name' in e.error_dict:
-                pass  
+            if "normalized_name" in e.error_dict:
+                pass
             else:
                 raise e
 
