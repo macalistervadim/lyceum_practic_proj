@@ -5,7 +5,53 @@ import django.db
 
 
 class TimeStampedModel(django.db.models.Model):
-    def formatting_value(self, value):
+    name = django.db.models.CharField(
+        "название",
+        max_length=150,
+        help_text="Введите название",
+        unique=True,
+    )
+    is_published = django.db.models.BooleanField(
+        "опубликовано",
+        default=True,
+        help_text="Дата публикации",
+    )
+    normalized_name = django.db.models.CharField(
+        "исправленное значение",
+        max_length=150,
+        unique=True,
+        editable=False,
+    )
+
+    class Meta:
+        abstract = True
+
+    def __str__(self):
+        return self.name[:15]
+
+    def save(self, *args, **kwargs):
+        if not self.pk:
+            self.clean()
+        else:
+            old_instance = self.__class__.objects.get(pk=self.pk)
+            if old_instance.name != self.name:
+                self.clean()
+
+        self.normalized_name = self._formatting_value(self.name)
+        super().save(*args, **kwargs)
+
+    def clean(self):
+        normalized_name = self._formatting_value(self.name)
+        found = self.__class__.objects.filter(
+            normalized_name=normalized_name,
+        )
+        if found and found[0].pk != self.pk:
+            raise django.core.exceptions.ValidationError(
+                "В ваших исправленных значениях уже есть похожее название",
+            )
+        self.normalized_name = normalized_name
+
+    def _formatting_value(self, value):
         similar_chars = {
             "a": "а",
             "o": "о",
@@ -26,48 +72,3 @@ class TimeStampedModel(django.db.models.Model):
             (similar_chars.get(char, char) for char in "".join(words)),
         )
         return new_value
-
-    name = django.db.models.CharField(
-        "название",
-        max_length=150,
-        help_text="Введите название",
-        unique=True,
-    )
-    is_published = django.db.models.BooleanField(
-        "опубликовано",
-        default=True,
-        help_text="Дата публикации",
-    )
-    normalized_name = django.db.models.CharField(
-        "исправленное значение",
-        max_length=150,
-        unique=True,
-        editable=False,
-    )
-
-    def __str__(self):
-        return self.name[:15]
-
-    def save(self, *args, **kwargs):
-        try:
-            self.normalized_name = self.formatting_value(self.name)
-            super().save(*args, **kwargs)
-        except django.core.exceptions.ValidationError as e:
-            if "normalized_name" in e.error_dict:
-                pass
-            else:
-                raise e
-
-    def clean(self):
-        normalized_name = self.formatting_value(self.name)
-        found = self.__class__.objects.filter(
-            normalized_name=normalized_name,
-        )
-        if found:
-            raise django.core.exceptions.ValidationError(
-                "В ваших исправленных значениях уже есть похожее название",
-            )
-        self.normalized_name = normalized_name
-
-    class Meta:
-        abstract = True
