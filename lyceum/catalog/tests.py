@@ -10,13 +10,15 @@ import catalog.models
 
 
 class UrlTests(TestCase):
-
     @parameterized.expand(
         [
             ("/catalog", http.HTTPStatus.OK),
             ("/catalog/1", http.HTTPStatus.OK),
             ("/catalog/-1", http.HTTPStatus.NOT_FOUND),
             ("/catalog/string", http.HTTPStatus.NOT_FOUND),
+            ("/catalog/a2b1c3egz", http.HTTPStatus.NOT_FOUND),
+            ("/catalog/0123456", http.HTTPStatus.OK),
+            ("/catalog/0", http.HTTPStatus.OK),
         ],
     )
     def test_description(self, url, expected_status_code):
@@ -27,6 +29,10 @@ class UrlTests(TestCase):
             ("/catalog/re/124", http.HTTPStatus.OK),
             ("/catalog/re/124abs", http.HTTPStatus.NOT_FOUND),
             ("/catalog/re/-123", http.HTTPStatus.NOT_FOUND),
+            ("/catalog/re/a2b1c3egz", http.HTTPStatus.NOT_FOUND),
+            ("/catalog/re/0123456", http.HTTPStatus.OK),
+            ("/catalog/re/abcde", http.HTTPStatus.NOT_FOUND),
+            ("/catalog/re/0", http.HTTPStatus.OK),
         ],
     )
     def test_catalog_regex(self, url, expected_status_code):

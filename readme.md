@@ -1,5 +1,5 @@
-# How to get started with the application
-
+# How to get started with the application 📝
+ 
 [![pipeline status](https://gitlab.crja72.ru/django/2024/spring/course/students/197286-macalistervadim-course-1112/badges/main/pipeline.svg)](https://gitlab.crja72.ru/django/2024/spring/course/students/197286-macalistervadim-course-1112/commits/main)
 
 ## ER Diagram
@@ -8,7 +8,7 @@ Here is a visual ER diagram of the existing project database
 
 ![ER Diagram](ER.jpg)
 
-## Run the app
+## Run the app 🚀
 
 To run the app locally, follow these steps:
 
@@ -29,7 +29,7 @@ To run the app locally, follow these steps:
 
 Define the variables of your virtual environment. An example is the file `config.env`
 
-# Contribution
+# Contribution 🔥
 
 Thank you for your interest in this repository! Your contributions are highly appreciated. If you encounter any issues or have suggestions, please feel free to create an issue or pull request. We hope this app aids in your understanding and experience.
 
