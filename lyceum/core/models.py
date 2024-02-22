@@ -29,23 +29,12 @@ class TimeStampedModel(django.db.models.Model):
     def __str__(self):
         return self.name[:15]
 
-    def save(self, *args, **kwargs):
-        if not self.pk:
-            self.clean()
-        else:
-            old_instance = self.__class__.objects.get(pk=self.pk)
-            if old_instance.name != self.name:
-                self.clean()
-
-        self.normalized_name = self._formatting_value(self.name)
-        super().save(*args, **kwargs)
-
     def clean(self):
         normalized_name = self._formatting_value(self.name)
-        found = self.__class__.objects.filter(
+        found = self.__class__.objects.exclude(pk=self.pk).filter(
             normalized_name=normalized_name,
         )
-        if found and found[0].pk != self.pk:
+        if found.exists():
             raise django.core.exceptions.ValidationError(
                 "В ваших исправленных значениях уже есть похожее название",
             )
