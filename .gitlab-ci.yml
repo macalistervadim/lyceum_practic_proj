@@ -24,7 +24,7 @@ test:
   script:
     - python -m venv venv
     - source venv/bin/activate
-    - pip install -r requirements/prod.txt -r requirements/dev.txt -r requirements/test.txt
+    - pip install -r requirements/prod.txt -r requirements/test.txt
     - cd lyceum
     - python manage.py test
     - deactivate
