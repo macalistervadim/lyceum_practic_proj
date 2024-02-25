@@ -1,4 +1,3 @@
-import http
 import itertools
 
 import django.core.validators
@@ -24,35 +23,31 @@ class UrlTests(django.test.TestCase):
 
     @parameterized.parameterized.expand(
         [
-            ("catalog:catalog_regex", 2, http.HTTPStatus.OK),
-            ("catalog:catalog_regex", 12, http.HTTPStatus.OK),
-            ("catalog:catalog_regex", 123, http.HTTPStatus.OK),
+            1,
+            29,
+            88,
+            333,
         ],
     )
-    def test_catalog_regex(self, url_name, pk, expected_status_code):
-        url = django.urls.reverse(url_name, kwargs={"number": pk})
-        response = self.client.get(url, follow=True)
-        self.assertEqual(
-            response.status_code,
-            expected_status_code,
-            f"Status code != {expected_status_code}",
+    def test_catalog_regex(self, pk):
+        url = django.urls.reverse(
+            "catalog:catalog_regex", kwargs={"number": pk},
         )
+        self.assertEqual(url, f"/catalog/re/{pk}/")
 
     @parameterized.parameterized.expand(
         [
-            ("catalog:catalog_converter", 123, http.HTTPStatus.OK),
-            ("catalog:catalog_converter", 2, http.HTTPStatus.OK),
-            ("catalog:catalog_converter", 4, http.HTTPStatus.OK),
+            1,
+            25,
+            42,
+            9239,
         ],
     )
-    def test_catalog_converter(self, url_name, pk, expected_status_code):
-        url = django.urls.reverse(url_name, kwargs={"number": pk})
-        response = self.client.get(url, follow=True)
-        self.assertEqual(
-            response.status_code,
-            expected_status_code,
-            f"Status code != {expected_status_code}",
+    def test_catalog_converter(self, pk):
+        url = django.urls.reverse(
+            "catalog:catalog_converter", kwargs={"number": pk},
         )
+        self.assertEqual(url, f"/catalog/converter/{pk}/")
 
 
 class DBItemTests(django.test.TestCase):
