@@ -5,7 +5,6 @@ import django.db
 import django.utils.html
 
 import catalog.validators
-
 import core.models
 
 

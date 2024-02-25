@@ -3,7 +3,6 @@ import re
 import django.core.exceptions
 import django.db
 import django.utils.html
-
 import sorl.thumbnail
 
 

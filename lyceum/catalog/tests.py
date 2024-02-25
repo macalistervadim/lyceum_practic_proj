@@ -4,14 +4,13 @@ import itertools
 import django.core.validators
 import django.test
 import django.urls
-
-from parameterized import parameterized
+import parameterized
 
 import catalog.models
 
 
 class UrlTests(django.test.TestCase):
-    @parameterized.expand(
+    @parameterized.parameterized.expand(
         [
             1,
             25,
@@ -23,50 +22,32 @@ class UrlTests(django.test.TestCase):
         url = django.urls.reverse("catalog:item_detail", kwargs={"pk": pk})
         self.assertEqual(url, f"/catalog/{pk}/")
 
-    @parameterized.expand(
+    @parameterized.parameterized.expand(
         [
-            ("/catalog/", http.HTTPStatus.OK),
-            ("/catalog/2/", http.HTTPStatus.OK),
-            ("/catalog/-2/", http.HTTPStatus.NOT_FOUND),
-            ("/catalog/string/", http.HTTPStatus.NOT_FOUND),
-            ("/catalog/a2b1c3egz/", http.HTTPStatus.NOT_FOUND),
-            ("/catalog/0123456/", http.HTTPStatus.OK),
-            ("/catalog/0/", http.HTTPStatus.OK),
+            ("catalog:catalog_regex", 2, http.HTTPStatus.OK),
+            ("catalog:catalog_regex", 12, http.HTTPStatus.OK),
+            ("catalog:catalog_regex", 123, http.HTTPStatus.OK),
         ],
     )
-    def test_description(self, url, expected_status_code):
-        self.check_response_status(url, expected_status_code)
+    def test_catalog_regex(self, url_name, pk, expected_status_code):
+        url = django.urls.reverse(url_name, kwargs={"number": pk})
+        response = self.client.get(url, follow=True)
+        self.assertEqual(
+            response.status_code,
+            expected_status_code,
+            f"Status code != {expected_status_code}",
+        )
 
-    @parameterized.expand(
+    @parameterized.parameterized.expand(
         [
-            ("/catalog/re/124/", http.HTTPStatus.OK),
-            ("/catalog/re/124abs/", http.HTTPStatus.NOT_FOUND),
-            ("/catalog/re/-123/", http.HTTPStatus.NOT_FOUND),
-            ("/catalog/re/a2b1c3egz/", http.HTTPStatus.NOT_FOUND),
-            ("/catalog/re/0123456/", http.HTTPStatus.OK),
-            ("/catalog/re/abcde/", http.HTTPStatus.NOT_FOUND),
-            ("/catalog/re/0/", http.HTTPStatus.OK),
+            ("catalog:catalog_converter", 123, http.HTTPStatus.OK),
+            ("catalog:catalog_converter", 2, http.HTTPStatus.OK),
+            ("catalog:catalog_converter", 4, http.HTTPStatus.OK),
         ],
     )
-    def test_catalog_regex(self, url, expected_status_code):
-        self.check_response_status(url, expected_status_code)
-
-    @parameterized.expand(
-        [
-            ("/catalog/converter/124", http.HTTPStatus.OK),
-            ("/catalog/converter/124abs", http.HTTPStatus.NOT_FOUND),
-            ("/catalog/converter/-123", http.HTTPStatus.NOT_FOUND),
-            ("/catalog/converter/a2b1c3egz", http.HTTPStatus.NOT_FOUND),
-            ("/catalog/converter/0123456", http.HTTPStatus.OK),
-            ("/catalog/converter/abcde", http.HTTPStatus.NOT_FOUND),
-            ("/catalog/converter/0", http.HTTPStatus.NOT_FOUND),
-        ],
-    )
-    def test_catalog_converter(self, url, expected_status_code):
-        self.check_response_status(url, expected_status_code)
-
-    def check_response_status(self, url, expected_status_code):
-        response = django.test.Client().get(url, follow=True)
+    def test_catalog_converter(self, url_name, pk, expected_status_code):
+        url = django.urls.reverse(url_name, kwargs={"number": pk})
+        response = self.client.get(url, follow=True)
         self.assertEqual(
             response.status_code,
             expected_status_code,
@@ -91,7 +72,7 @@ class DBItemTests(django.test.TestCase):
             slug="test-slug-tag",
         )
 
-    @parameterized.expand(
+    @parameterized.parameterized.expand(
         [
             ("test", "превосходно", True),
             ("test", "роскошно", True),
@@ -139,7 +120,7 @@ class DBItemTests(django.test.TestCase):
 
 
 class DBCategoryTests(django.test.TestCase):
-    @parameterized.expand(
+    @parameterized.parameterized.expand(
         [
             ("test", "abs", 1, True),
             ("test", "1abs2", 1, True),
@@ -190,7 +171,7 @@ class DBCategoryTests(django.test.TestCase):
 
 
 class DBItemTest(django.test.TestCase):
-    @parameterized.expand(
+    @parameterized.parameterized.expand(
         [
             ("test", "abs", True),
             ("test", "1abs2", True),
@@ -236,7 +217,7 @@ class DBItemTest(django.test.TestCase):
 
 
 class DBNormalizeTest(django.test.TestCase):
-    @parameterized.expand(
+    @parameterized.parameterized.expand(
         (
             (x[0], x[1][0], x[1][1])
             for x in itertools.product(

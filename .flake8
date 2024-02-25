@@ -2,3 +2,4 @@
 application_import_names = homepage, about, catalog, lyceum, core
 inline-quotes = double
 exclude = migrations
+import-order-style = google
