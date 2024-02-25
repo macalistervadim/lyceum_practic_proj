@@ -1,11 +1,19 @@
-from http import HTTPStatus
+import http
 
-from django.http import HttpResponse
+import django.http
+import django.shortcuts
+
+import catalog.models
 
 
 def home(request):
-    return HttpResponse("<body>Главная</body>")
+    template = "homepage/home.html"
+    items = catalog.models.Item.objects.all()
+    context = {"items": items}
+    return django.shortcuts.render(request, template, context)
 
 
 def endpoint(request):
-    return HttpResponse("Я чайник", status=HTTPStatus.IM_A_TEAPOT)
+    return django.http.HttpResponse(
+        "Я чайник", status=http.HTTPStatus.IM_A_TEAPOT,
+    )

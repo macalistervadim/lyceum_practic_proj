@@ -2,6 +2,9 @@ import re
 
 import django.core.exceptions
 import django.db
+import django.utils.html
+
+import sorl.thumbnail
 
 
 class TimeStampedModel(django.db.models.Model):
@@ -61,3 +64,26 @@ class TimeStampedModel(django.db.models.Model):
             (similar_chars.get(char, char) for char in "".join(words)),
         )
         return new_value
+
+
+class AbstractModelImage(django.db.models.Model):
+    class Meta:
+        abstract = True
+
+    def __str__(self):
+        return f"Картинка для {self.item}"
+
+    def get_image_300x300(self):
+        return sorl.thumbnail.get_thumbnail(
+            self.image, "300x300", crop="center", quality=51,
+        )
+
+    def image_tmb(self):
+        if self.image:
+            return django.utils.html.mark_safe(
+                f"<img src='{self.get_image_300x300().url}' width='50'>",
+            )
+        return "Нет изображения"
+
+    image_tmb.short_description = "превью"
+    image_tmb.allow_tags = True

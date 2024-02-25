@@ -3,81 +3,82 @@
   "model": "catalog.tag",
   "pk": 1,
   "fields": {
-    "name": "tag1",
+    "name": "tag_1",
     "is_published": true,
     "normalized_name": "таg",
-    "slug": "tag_num_1"
+    "slug": "tag_1"
   }
 },
 {
   "model": "catalog.tag",
   "pk": 2,
   "fields": {
-    "name": "tags2",
+    "name": "tagg_2",
     "is_published": true,
-    "normalized_name": "таgs",
-    "slug": "tag_num_2"
+    "normalized_name": "таgg",
+    "slug": "tag_2"
   }
 },
 {
   "model": "catalog.tag",
   "pk": 3,
   "fields": {
-    "name": "tagnum3",
+    "name": "taggg_3",
     "is_published": true,
-    "normalized_name": "таgnuм",
-    "slug": "tag_num_3"
+    "normalized_name": "таggg",
+    "slug": "tag_3"
   }
 },
 {
   "model": "catalog.tag",
   "pk": 4,
   "fields": {
-    "name": "taging_4",
+    "name": "тэг 4",
     "is_published": true,
-    "normalized_name": "таging",
-    "slug": "tag_num_4"
+    "normalized_name": "тэг",
+    "slug": "tag_4"
   }
 },
 {
   "model": "catalog.tag",
   "pk": 5,
   "fields": {
-    "name": "tag_monster_6",
+    "name": "тэгс 5",
     "is_published": true,
-    "normalized_name": "таgмоnsтег",
-    "slug": "tag_num_6"
-  }
-},
-{
-  "model": "catalog.tag",
-  "pk": 6,
-  "fields": {
-    "name": "tag_very_big_5",
-    "is_published": true,
-    "normalized_name": "таgvегувig",
-    "slug": "tag_num_5"
+    "normalized_name": "тэгс",
+    "slug": "tag_5"
   }
 },
 {
   "model": "catalog.category",
-  "pk": 2,
+  "pk": 1,
   "fields": {
-    "name": "Категория1",
+    "name": "кат_1",
     "is_published": true,
-    "normalized_name": "категория",
+    "normalized_name": "кат",
     "slug": "cat_1",
     "weight": 100
   }
 },
 {
   "model": "catalog.category",
+  "pk": 2,
+  "fields": {
+    "name": "кате_2",
+    "is_published": true,
+    "normalized_name": "кате",
+    "slug": "cate_2",
+    "weight": 100
+  }
+},
+{
+  "model": "catalog.category",
   "pk": 3,
   "fields": {
-    "name": "перчатки",
+    "name": "катег_3",
     "is_published": true,
-    "normalized_name": "перчатки",
-    "slug": "category_2",
+    "normalized_name": "катег",
+    "slug": "categ_3",
     "weight": 100
   }
 },
@@ -85,43 +86,49 @@
   "model": "catalog.category",
   "pk": 4,
   "fields": {
-    "name": "Варежки",
+    "name": "катего_4",
     "is_published": true,
-    "normalized_name": "варежки",
-    "slug": "category_2",
-    "weight": 100
-  }
-},
-{
-  "model": "catalog.category",
-  "pk": 5,
-  "fields": {
-    "name": "Кросовок",
-    "is_published": true,
-    "normalized_name": "кросовок",
-    "slug": "cross_5",
-    "weight": 100
-  }
-},
-{
-  "model": "catalog.category",
-  "pk": 6,
-  "fields": {
-    "name": "Кеды",
-    "is_published": true,
-    "normalized_name": "кеды",
-    "slug": "cedi_3",
+    "normalized_name": "катего",
+    "slug": "catego_4",
     "weight": 100
   }
 },
 {
   "model": "catalog.item",
-  "pk": 1,
+  "pk": 2,
   "fields": {
-    "name": "Кеда",
+    "name": "Tea",
     "is_published": true,
-    "normalized_name": "кеда",
-    "category": 2,
+    "normalized_name": "теа",
+    "category": 1,
+    "text": "роскошно",
+    "tags": [
+      1
+    ]
+  }
+},
+{
+  "model": "catalog.item",
+  "pk": 3,
+  "fields": {
+    "name": "Рукавицы",
+    "is_published": true,
+    "normalized_name": "рукавицы",
+    "category": 1,
+    "text": "роскошно",
+    "tags": [
+      5
+    ]
+  }
+},
+{
+  "model": "catalog.item",
+  "pk": 4,
+  "fields": {
+    "name": "Child",
+    "is_published": true,
+    "normalized_name": "снild",
+    "category": 4,
     "text": "превосходно",
     "tags": [
       4
@@ -130,57 +137,15 @@
 },
 {
   "model": "catalog.item",
-  "pk": 2,
-  "fields": {
-    "name": "Кроссовок",
-    "is_published": true,
-    "normalized_name": "кроссовок",
-    "category": 2,
-    "text": "превосходно",
-    "tags": [
-      6
-    ]
-  }
-},
-{
-  "model": "catalog.item",
-  "pk": 3,
-  "fields": {
-    "name": "Шапка",
-    "is_published": true,
-    "normalized_name": "шапка",
-    "category": 6,
-    "text": "превосходно",
-    "tags": [
-      2
-    ]
-  }
-},
-{
-  "model": "catalog.item",
-  "pk": 4,
-  "fields": {
-    "name": "Куртка",
-    "is_published": true,
-    "normalized_name": "куртка",
-    "category": 5,
-    "text": "превосходно",
-    "tags": [
-      6
-    ]
-  }
-},
-{
-  "model": "catalog.item",
   "pk": 5,
   "fields": {
-    "name": "Худи",
+    "name": "Для взрослого",
     "is_published": true,
-    "normalized_name": "худи",
+    "normalized_name": "длявзрослого",
     "category": 2,
     "text": "превосходно",
     "tags": [
-      2
+      5
     ]
   }
 },
@@ -188,14 +153,102 @@
   "model": "catalog.item",
   "pk": 6,
   "fields": {
-    "name": "Носки",
+    "name": "Категория1",
     "is_published": true,
-    "normalized_name": "носки",
-    "category": 3,
+    "normalized_name": "категория",
+    "category": 2,
     "text": "превосходно",
     "tags": [
-      3
+      1
     ]
+  }
+},
+{
+  "model": "catalog.mainimage",
+  "pk": 1,
+  "fields": {
+    "item": 2,
+    "image": "main_image_items/django-logo.png"
+  }
+},
+{
+  "model": "catalog.mainimage",
+  "pk": 2,
+  "fields": {
+    "item": 3,
+    "image": "main_image_items/photo_2023-09-29_18-30-28.jpg"
+  }
+},
+{
+  "model": "catalog.mainimage",
+  "pk": 3,
+  "fields": {
+    "item": 4,
+    "image": "main_image_items/enot.jpg"
+  }
+},
+{
+  "model": "catalog.mainimage",
+  "pk": 4,
+  "fields": {
+    "item": 5,
+    "image": "main_image_items/enot_QrMKFDD.jpg"
+  }
+},
+{
+  "model": "catalog.mainimage",
+  "pk": 5,
+  "fields": {
+    "item": 6,
+    "image": "main_image_items/enot_QCt0tSr.jpg"
+  }
+},
+{
+  "model": "catalog.galleryimage",
+  "pk": 2,
+  "fields": {
+    "item": 2,
+    "image": "gallery_images_item/enot.jpg"
+  }
+},
+{
+  "model": "catalog.galleryimage",
+  "pk": 3,
+  "fields": {
+    "item": 3,
+    "image": "gallery_images_item/enot_fmUOV3j.jpg"
+  }
+},
+{
+  "model": "catalog.galleryimage",
+  "pk": 4,
+  "fields": {
+    "item": 3,
+    "image": "gallery_images_item/django-logo.png"
+  }
+},
+{
+  "model": "catalog.galleryimage",
+  "pk": 5,
+  "fields": {
+    "item": 4,
+    "image": "gallery_images_item/enot_75h4I0P.jpg"
+  }
+},
+{
+  "model": "catalog.galleryimage",
+  "pk": 6,
+  "fields": {
+    "item": 5,
+    "image": "gallery_images_item/enot_enscvWI.jpg"
+  }
+},
+{
+  "model": "catalog.galleryimage",
+  "pk": 7,
+  "fields": {
+    "item": 6,
+    "image": "gallery_images_item/enot_1vzavv2.jpg"
   }
 }
 ]

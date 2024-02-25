@@ -1,6 +1,8 @@
+import django.contrib
 import django.core.exceptions
 import django.core.validators
 import django.db
+import django.utils.html
 
 import catalog.validators
 
@@ -68,3 +70,37 @@ class Item(core.models.TimeStampedModel):
     class Meta:
         verbose_name = "товар"
         verbose_name_plural = "товары"
+
+
+class MainImage(core.models.AbstractModelImage):
+    item = django.db.models.OneToOneField(
+        Item, on_delete=django.db.models.CASCADE,
+    )
+    image = django.db.models.ImageField(
+        "главное изображение",
+        upload_to="main_image_items/",
+        help_text="будет приведено к размеру 300x300",
+    )
+
+
+class GalleryImage(core.models.AbstractModelImage):
+    item = django.db.models.ForeignKey(
+        Item,
+        on_delete=django.db.models.CASCADE,
+        related_name="gallery_images",
+    )
+    image = django.db.models.ImageField(
+        "изображения",
+        upload_to="gallery_images_item/",
+        help_text="будет приведено к размеру 300x300",
+    )
+
+
+class MainImageInline(django.contrib.admin.StackedInline):
+    model = MainImage
+    extra = 0
+
+
+class GalleryImageInline(django.contrib.admin.StackedInline):
+    model = GalleryImage
+    extra = 0
