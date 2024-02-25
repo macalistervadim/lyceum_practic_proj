@@ -15,8 +15,9 @@ class AdminCategory(admin.ModelAdmin):
 
 @admin.register(catalog.models.Item)
 class AdminItem(admin.ModelAdmin):
-    inlines = [catalog.models.MainImageInline,
-            catalog.models.GalleryImageInline
+    inlines = [
+        catalog.models.MainImageInline,
+        catalog.models.GalleryImageInline,
     ]
     list_display = (
         catalog.models.Item.name.field.name,
