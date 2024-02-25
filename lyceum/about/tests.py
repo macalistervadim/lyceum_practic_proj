@@ -1,12 +1,14 @@
-from http import HTTPStatus
+import http
 
-from django.test import Client, TestCase
+import django.test
+import django.urls
 
 
-class AboutPageTest(TestCase):
+class AboutPageTest(django.test.TestCase):
     def test_about_page(self):
-        response = Client().get("/about/")
-        self.assertEqual(response.status_code, HTTPStatus.OK)
+        url = django.urls.reverse("about:about")
+        response = django.test.Client().get(url)
+        self.assertEqual(response.status_code, http.HTTPStatus.OK)
 
 
 __all__ = []

@@ -1,11 +1,13 @@
 from http import HTTPStatus
 
-from django.test import Client, TestCase
+import django.test
+import django.urls
 
 
-class HomePageTest(TestCase):
+class HomePageTest(django.test.TestCase):
     def test_home_page(self):
-        response = Client().get("/")
+        url = django.urls.reverse("homepage:home")
+        response = django.test.Client().get(url)
         self.assertEqual(
             response.status_code,
             HTTPStatus.OK,
@@ -13,9 +15,10 @@ class HomePageTest(TestCase):
         )
 
 
-class EndPontCoffeeTest(TestCase):
+class EndPointCoffeeTest(django.test.TestCase):
     def test_coffee_endpoint(self):
-        response = Client().get("/coffee/")
+        url = django.urls.reverse("homepage:coffee")
+        response = django.test.Client().get(url)
         data = response.content.decode("utf-8")
         self.assertEqual(
             response.status_code,
