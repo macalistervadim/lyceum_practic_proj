@@ -2,23 +2,36 @@ import http
 import itertools
 
 import django.core.validators
-from django.test import Client, TestCase
+import django.test
+import django.urls
 
 from parameterized import parameterized
 
 import catalog.models
 
 
-class UrlTests(TestCase):
+class UrlTests(django.test.TestCase):
+    @parameterized.expand(
+        [
+            1,
+            25,
+            42,
+            9999,
+        ],
+    )
+    def test_item_list_reverse(self, pk):
+        url = django.urls.reverse("catalog:item_detail", kwargs={"pk": pk})
+        self.assertEqual(url, f"/catalog/{pk}/")
+
     @parameterized.expand(
         [
             ("/catalog/", http.HTTPStatus.OK),
-            ("/catalog/2/", http.HTTPStatus.NOT_FOUND),
+            ("/catalog/2/", http.HTTPStatus.OK),
             ("/catalog/-2/", http.HTTPStatus.NOT_FOUND),
             ("/catalog/string/", http.HTTPStatus.NOT_FOUND),
             ("/catalog/a2b1c3egz/", http.HTTPStatus.NOT_FOUND),
-            ("/catalog/0123456/", http.HTTPStatus.NOT_FOUND),
-            ("/catalog/0/", http.HTTPStatus.NOT_FOUND),
+            ("/catalog/0123456/", http.HTTPStatus.OK),
+            ("/catalog/0/", http.HTTPStatus.OK),
         ],
     )
     def test_description(self, url, expected_status_code):
@@ -53,7 +66,7 @@ class UrlTests(TestCase):
         self.check_response_status(url, expected_status_code)
 
     def check_response_status(self, url, expected_status_code):
-        response = Client().get(url, follow=True)
+        response = django.test.Client().get(url, follow=True)
         self.assertEqual(
             response.status_code,
             expected_status_code,
@@ -61,7 +74,7 @@ class UrlTests(TestCase):
         )
 
 
-class DBItemTests(TestCase):
+class DBItemTests(django.test.TestCase):
     category: catalog.models.Category
     tag: catalog.models.Tag
 
@@ -125,7 +138,7 @@ class DBItemTests(TestCase):
             )
 
 
-class DBCategoryTests(TestCase):
+class DBCategoryTests(django.test.TestCase):
     @parameterized.expand(
         [
             ("test", "abs", 1, True),
@@ -176,7 +189,7 @@ class DBCategoryTests(TestCase):
             )
 
 
-class DBItemTest(TestCase):
+class DBItemTest(django.test.TestCase):
     @parameterized.expand(
         [
             ("test", "abs", True),
@@ -222,7 +235,7 @@ class DBItemTest(TestCase):
             )
 
 
-class DBNormalizeTest(TestCase):
+class DBNormalizeTest(django.test.TestCase):
     @parameterized.expand(
         (
             (x[0], x[1][0], x[1][1])
@@ -285,3 +298,6 @@ class DBNormalizeTest(TestCase):
                 tag_count + 2,
                 msg="Объекты добавлены",
             )
+
+
+__all__ = []

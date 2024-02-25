@@ -15,5 +15,9 @@ def home(request):
 
 def endpoint(request):
     return django.http.HttpResponse(
-        "Я чайник", status=http.HTTPStatus.IM_A_TEAPOT,
+        "Я чайник",
+        status=http.HTTPStatus.IM_A_TEAPOT,
     )
+
+
+__all__ = []

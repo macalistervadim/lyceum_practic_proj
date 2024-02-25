@@ -23,3 +23,6 @@ class EndPontCoffeeTest(TestCase):
             "Unexpected status code",
         )
         self.assertEqual(data, "Я чайник", "Incorrect response text")
+
+
+__all__ = []

@@ -75,7 +75,10 @@ class AbstractModelImage(django.db.models.Model):
 
     def get_image_300x300(self):
         return sorl.thumbnail.get_thumbnail(
-            self.image, "300x300", crop="center", quality=51,
+            self.image,
+            "300x300",
+            crop="center",
+            quality=51,
         )
 
     def image_tmb(self):
@@ -87,3 +90,6 @@ class AbstractModelImage(django.db.models.Model):
 
     image_tmb.short_description = "превью"
     image_tmb.allow_tags = True
+
+
+__all__ = []

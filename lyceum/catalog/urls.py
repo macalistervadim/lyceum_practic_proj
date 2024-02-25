@@ -35,3 +35,6 @@ urlpatterns = [
         name="catalog_converter",
     ),
 ]
+
+
+__all__ = []

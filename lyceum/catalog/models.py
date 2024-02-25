@@ -74,7 +74,8 @@ class Item(core.models.TimeStampedModel):
 
 class MainImage(core.models.AbstractModelImage):
     item = django.db.models.OneToOneField(
-        Item, on_delete=django.db.models.CASCADE,
+        Item,
+        on_delete=django.db.models.CASCADE,
     )
     image = django.db.models.ImageField(
         "главное изображение",
@@ -104,3 +105,6 @@ class MainImageInline(django.contrib.admin.StackedInline):
 class GalleryImageInline(django.contrib.admin.StackedInline):
     model = GalleryImage
     extra = 0
+
+
+__all__ = []

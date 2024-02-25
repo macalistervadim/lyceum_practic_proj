@@ -28,3 +28,6 @@ def validator_for_item_text(value):
         raise django.core.exceptions.ValidationError(
             "Текст должен содержать слово 'превосходно' или 'роскошно'.",
         )
+
+
+__all__ = []
