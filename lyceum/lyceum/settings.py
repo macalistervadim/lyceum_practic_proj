@@ -2,6 +2,7 @@
 import os
 import pathlib
 
+import django.utils.translation
 import environ
 
 BASE_DIR = pathlib.Path(__file__).resolve().parent.parent
@@ -99,8 +100,8 @@ AUTH_PASSWORD_VALIDATORS = [
 LANGUAGE_CODE = "ru"
 
 LANGUAGES = [
-    ("en", "English"),
-    ("ru", "Russian"),
+    ("en", django.utils.translation.gettext_lazy("English")),
+    ("ru", django.utils.translation.gettext_lazy("Russian")),
 ]
 
 LOCALE_PATHS = [

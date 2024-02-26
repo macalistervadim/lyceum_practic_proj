@@ -25,9 +25,9 @@ Define the variables of your virtual environment. An example is the file `config
 
 ## Managing Translations 🌐
 
-1. Create translation files: `django-admin manage.py makemessages -l 'language'`
+1. Create translation files: `django-admin makemessages -l 'language'`
 2. Edit translation files: Use a text editor to modify the `.po` files and add translations for the strings.
-3. Compile translation files: `django-admin manage.py compilemessages`
+3. Compile translation files: `django-admin compilemessages`
 
 ## Database
 
