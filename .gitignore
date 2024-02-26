@@ -3,3 +3,4 @@
 **/__pycache__/
 lyceum/.env
 .settings.vscode
+*.mo
