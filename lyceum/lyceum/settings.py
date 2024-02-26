@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 import os
-from pathlib import Path
+import pathlib
 
 import environ
 
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = pathlib.Path(__file__).resolve().parent.parent
 
 env = environ.Env(DEBUG=(bool, False))
 
@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "sorl.thumbnail",
     "django_cleanup.apps.CleanupConfig",
+    "django_summernote",
 ]
 
 MIDDLEWARE = [
@@ -108,6 +109,8 @@ MEDIA_ROOT = BASE_DIR / "media"
 MEDIA_URL = "/media/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+X_FRAME_OPTIONS = "SAMEORIGIN"
 
 if DEBUG:
     STATICFILES_DIRS = [BASE_DIR / "static_dev"]

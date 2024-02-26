@@ -1,20 +1,22 @@
-from django.contrib import admin
+import django.contrib
+import django_summernote.admin
 
 import catalog.models
 
 
-@admin.register(catalog.models.Tag)
-class AdminTag(admin.ModelAdmin):
+@django.contrib.admin.register(catalog.models.Tag)
+class AdminTag(django.contrib.admin.ModelAdmin):
     list_display = (catalog.models.Tag.name.field.name,)
 
 
-@admin.register(catalog.models.Category)
-class AdminCategory(admin.ModelAdmin):
+@django.contrib.admin.register(catalog.models.Category)
+class AdminCategory(django.contrib.admin.ModelAdmin):
     list_display = (catalog.models.Category.name.field.name,)
 
 
-@admin.register(catalog.models.Item)
-class AdminItem(admin.ModelAdmin):
+@django.contrib.admin.register(catalog.models.Item)
+class AdminItem(django_summernote.admin.SummernoteModelAdmin):
+    summernote_fields = (catalog.models.Item.text.field.name,)
     inlines = [
         catalog.models.MainImageInline,
         catalog.models.GalleryImageInline,

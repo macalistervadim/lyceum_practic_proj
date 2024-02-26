@@ -1,10 +1,10 @@
-from django.urls import path
+import django.urls
 
-from homepage.views import endpoint, home
+import homepage.views
 
 app_name = "homepage"
 
 urlpatterns = [
-    path("", home, name="home"),
-    path("coffee/", endpoint, name="coffee"),
+    django.urls.path("", homepage.views.home, name="home"),
+    django.urls.path("coffee/", homepage.views.endpoint, name="coffee"),
 ]

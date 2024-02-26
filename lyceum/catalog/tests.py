@@ -31,7 +31,8 @@ class UrlTests(django.test.TestCase):
     )
     def test_catalog_regex(self, pk):
         url = django.urls.reverse(
-            "catalog:catalog_regex", kwargs={"number": pk},
+            "catalog:catalog_regex",
+            kwargs={"number": pk},
         )
         self.assertEqual(url, f"/catalog/re/{pk}/")
 
@@ -45,7 +46,8 @@ class UrlTests(django.test.TestCase):
     )
     def test_catalog_converter(self, pk):
         url = django.urls.reverse(
-            "catalog:catalog_converter", kwargs={"number": pk},
+            "catalog:catalog_converter",
+            kwargs={"number": pk},
         )
         self.assertEqual(url, f"/catalog/converter/{pk}/")
 

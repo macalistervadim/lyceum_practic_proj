@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 import os
 
-from django.core.asgi import get_asgi_application
+import django.core.asgi
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "lyceum.settings")
 
-application = get_asgi_application()
+application = django.core.asgi.get_asgi_application()
