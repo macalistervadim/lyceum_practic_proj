@@ -3,4 +3,4 @@ django-environ==0.11.2
 pillow==10.2.0
 django-cleanup==8.1.0
 sorl-thumbnail==12.10.0
-django-summernote==0.8.20.0
+django-tinymce==3.7.1

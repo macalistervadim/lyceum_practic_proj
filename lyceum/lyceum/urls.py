@@ -8,23 +8,18 @@ urlpatterns = [
     django.urls.path("", django.urls.include("homepage.urls")),
     django.urls.path("catalog/", django.urls.include("catalog.urls")),
     django.urls.path("about/", django.urls.include("about.urls")),
-    django.urls.path("editor/", django.urls.include("django_summernote.urls")),
+    django.urls.path("tinymce/", django.urls.include("tinymce.urls")),
 ]
 
 if django.conf.settings.DEBUG:
     import debug_toolbar
+    import django.conf.urls.static
 
-    urlpatterns += (
+    urlpatterns += [
         django.urls.path(
-            "__debug__/",
-            django.urls.include(debug_toolbar.urls),
+            "__debug__/", django.urls.include(debug_toolbar.urls),
         ),
-    )
-    urlpatterns += django.conf.urls.static.static(
+    ] + django.conf.urls.static.static(
         django.conf.settings.STATIC_URL,
-        document_root=django.conf.settings.STATICFILES_DIRS,
-    )
-    urlpatterns += django.conf.urls.static.static(
-        django.conf.settings.MEDIA_URL,
-        document_root=django.conf.settings.MEDIA_ROOT,
+        document_root=django.conf.settings.STATIC_ROOT,
     )

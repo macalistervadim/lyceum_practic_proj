@@ -3,6 +3,7 @@ import django.core.exceptions
 import django.core.validators
 import django.db
 import django.utils.html
+import tinymce.models
 
 import catalog.validators
 import core.models
@@ -55,7 +56,7 @@ class Item(core.models.TimeStampedModel):
         verbose_name="теги",
         help_text="Выберите тэг",
     )
-    text = django.db.models.TextField(
+    text = tinymce.models.HTMLField(
         "текст",
         validators=[
             catalog.validators.ValidateMustContain(

@@ -36,7 +36,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "sorl.thumbnail",
     "django_cleanup.apps.CleanupConfig",
-    "django_summernote",
+    "tinymce",
 ]
 
 MIDDLEWARE = [
@@ -110,10 +110,10 @@ MEDIA_URL = "/media/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-X_FRAME_OPTIONS = "SAMEORIGIN"
-
 if DEBUG:
     STATICFILES_DIRS = [BASE_DIR / "static_dev"]
-    INSTALLED_APPS.append("debug_toolbar")
+    INSTALLED_APPS.append(
+        "debug_toolbar",
+    )
     MIDDLEWARE.insert(0, "debug_toolbar.middleware.DebugToolbarMiddleware")
     INTERNAL_IPS = ["127.0.0.1", "localhost"]

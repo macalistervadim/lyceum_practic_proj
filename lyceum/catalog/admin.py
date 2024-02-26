@@ -1,5 +1,4 @@
 import django.contrib
-import django_summernote.admin
 
 import catalog.models
 
@@ -15,8 +14,7 @@ class AdminCategory(django.contrib.admin.ModelAdmin):
 
 
 @django.contrib.admin.register(catalog.models.Item)
-class AdminItem(django_summernote.admin.SummernoteModelAdmin):
-    summernote_fields = (catalog.models.Item.text.field.name,)
+class AdminItem(django.contrib.admin.ModelAdmin):
     inlines = [
         catalog.models.MainImageInline,
         catalog.models.GalleryImageInline,
