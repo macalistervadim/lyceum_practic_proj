@@ -28,3 +28,9 @@ msgstr "About"
 #: .\templates\includes\header.html:23
 msgid "Список товаров"
 msgstr "Items"
+
+msgid "Английский"
+msgstr "English"
+
+msgid "Русский"
+msgstr "Russian"
