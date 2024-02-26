@@ -17,7 +17,8 @@ if django.conf.settings.DEBUG:
 
     urlpatterns += [
         django.urls.path(
-            "__debug__/", django.urls.include(debug_toolbar.urls),
+            "__debug__/",
+            django.urls.include(debug_toolbar.urls),
         ),
     ] + django.conf.urls.static.static(
         django.conf.settings.STATIC_URL,
