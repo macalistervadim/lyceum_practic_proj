@@ -4,27 +4,26 @@ import django.core.exceptions
 import django.utils.deconstruct
 
 
+WORDS_REGEX = re.compile(r"\w+|\W+")
+
+
 @django.utils.deconstruct.deconstructible
 class ValidateMustContain:
-    def __init__(self, *words):
-        self.words = words
-        self.pattern = "|".join(f"\\b{word}\\b" for word in words)
+    def __init__(self, *args):
+        self.validate_words = {word.lower() for word in args}
+        self.pattern = ", ".join(self.validate_words)
 
     def __call__(self, value):
-        if re.findall(self.pattern, value, re.IGNORECASE):
-            return
-        str_words = " ".join(self.words)
-        raise django.core.exceptions.ValidationError(
-            f"Должно быть слово: {str_words}",
-        )
+        words = set(WORDS_REGEX.findall(value.lower()))
+        if not self.validate_words & words:
+            raise django.core.exceptions.ValidationError(
+                f"В тексте '{value}' нет слов {self.pattern} ",
+            )
 
 
 def validator_for_item_text(value):
-    russian_words_pattern = re.compile(
-        r"\bпревосходно\b|\bроскошно\b",
-        re.IGNORECASE,
-    )
-    if not russian_words_pattern.search(value):
+    words = set(WORDS_REGEX.findall(value.lower()))
+    if not {"превосходно", "роскошно"} & words:
         raise django.core.exceptions.ValidationError(
             "Текст должен содержать слово 'превосходно' или 'роскошно'.",
         )

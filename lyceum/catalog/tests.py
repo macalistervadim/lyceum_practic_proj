@@ -48,8 +48,9 @@ class UrlTests(django.test.TestCase):
             self.assertEqual(url, f"/catalog/re/{pk}/")
         else:
             with self.assertRaises(django.urls.NoReverseMatch):
-                django.urls.reverse("catalog:catalog_regex",
-                                    kwargs={"number": pk})
+                django.urls.reverse(
+                    "catalog:catalog_regex", kwargs={"number": pk},
+                )
 
     @parameterized.parameterized.expand(
         [
@@ -71,8 +72,9 @@ class UrlTests(django.test.TestCase):
             self.assertEqual(url, f"/catalog/converter/{pk}/")
         else:
             with self.assertRaises(django.urls.NoReverseMatch):
-                django.urls.reverse("catalog:catalog_converter",
-                                    kwargs={"number": pk})
+                django.urls.reverse(
+                    "catalog:catalog_converter", kwargs={"number": pk},
+                )
 
 
 class DBItemTests(django.test.TestCase):
