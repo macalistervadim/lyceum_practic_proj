@@ -23,18 +23,11 @@ To run the app locally, follow these steps:
 
 Define the variables of your virtual environment. An example is the file `config.env`
 
-## Managing Translations 🌐
+## Managing Translations
 
 1. Create translation files: `django-admin makemessages -l 'language'`
 2. Edit translation files: Use a text editor to modify the `.po` files and add translations for the strings.
 3. Compile translation files: `django-admin compilemessages`
-
-## Database
-
-To successfully launch the application, you will need a database. It is provided as part of the test application in the repository files. To run an application using a test database, follow several conditions:
-
-1. Create a superuser: `python manage.py createsuperuser`
-2. additionally perform migrations: `python manage.py migrate`
 
 ## ER Diagram
 

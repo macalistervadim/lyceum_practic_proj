@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import django.conf
 import django.contrib
 import django.urls

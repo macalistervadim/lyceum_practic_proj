@@ -1,6 +1,7 @@
 <footer class="mt-5">
-    <div class="container">
-        <p>&copy; 2024 Специализация Джанго - боль</p>
-        <p id="current-year">{% now "Y" %}</p>
-    </div>
+  <div class="container">
+      {% load i18n %}
+      <p id="current-year">{% now "Y" %}</p>
+      <p>&copy; {% trans 'Специализация Джанго - боль' %}</p>
+  </div>
 </footer>

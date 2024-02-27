@@ -1,25 +1,28 @@
 {% extends 'base.html' %}
 
-{% block title %}Главная страница{% endblock %}
+{% load i18n %}
+
+{% block title %}{% trans 'Главная' %}{% endblock %}
 
 {% block content %}
-<h1>Добро пожаловать на главную страницу сайта одного из страдальцев специализации Яндекс Лицея "Django"!</h1>
-<p>Очень надеюсь, что злой енотик не попадет в мой репозиторий и не напишет ишьюсы в 2 раза больше самого задания :)</p>
+<h1>{% trans 'Добро пожаловать на главную страницу сайта одного из страдальцев специализации Яндекс Лицея "Django"!' %}</h1>
+<p>{% trans 'Очень надеюсь, что злой енотик не попадет в мой репозиторий и не напишет ишьюсы в 2 раза больше самого задания' %}</p>
 {% load static %}
-<img src="{% static 'img/enot.jpg' %}" alt="Фото злого енотика" class="img-fluid mt-3" width="500" height="250">
-
-<h2>Список товаров</h2>
+<img src="{% static 'img/enot.jpg' %}" alt="image-error" class="img-fluid mt-3" width="500" height="250">
+<hr>
+<h2>{% trans 'Список товаров' %}</h2>
+<hr>
 <div class="row">
-    {% for item in items %}
-    <div class="col-md-4 mb-4">
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">{{ item.name }}</h5>
-                <p class="card-text">Текст: {{ item.text }}</p>
-                <a href="{% url 'catalog:item_detail' pk=item.pk %}" class="btn btn-primary">Подробнее</a>
-            </div>
-        </div>
-    </div>
-    {% endfor %}
+  {% for item in items %}
+  <div class="col-md-4 mb-4">
+      <div class="card h-100 border border-primary">
+          <div class="card-body">
+              <h5 class="card-title">{{ item.name }}</h5>
+              <p class="card-text">{{ item.text|truncatechars:20|safe }}</p>
+              <a href="{% url 'catalog:item_detail' pk=item.pk %}" class="btn btn-outline-primary">{% trans 'Подробнее' %}</a>
+          </div>
+      </div>
+  </div>
+  {% endfor %}
 </div>
 {% endblock %}

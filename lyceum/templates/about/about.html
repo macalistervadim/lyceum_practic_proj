@@ -1,8 +1,20 @@
 {% extends 'base.html' %}
 
-{% block title %}О самой жестокой специализации{% endblock %}
+{% load i18n %}
+
+{% block title %}{% trans 'О самой жестокой специализации' %}{% endblock %}
 
 {% block content %}
-<h1>Коротко о самой жестокой специализации</h1>
-<p>Совет - ни за что на свете, не пытайтесь дети, не пытайтесь дети, в специализацию по джанге лезть!</p>
+<div class="container">
+  <div class="row justify-content-left">
+      <div class="col-md-10">
+          <div class="card mt-7">
+              <div class="card-body">
+                  <h1 class="card-title">{% trans 'Коротко о самой жестокой специализации' %}</h1>
+                  <p class="card-text">{% trans 'Совет - ни за что на свете, не пытайтесь дети, не пытайтесь дети, в специализацию по джанге лезть!' %}</p>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
 {% endblock %}

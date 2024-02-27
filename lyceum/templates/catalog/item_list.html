@@ -1,20 +1,23 @@
 {% extends 'base.html' %}
 
-{% block title %}Список товаров{% endblock %}
+{% load i18n %}
+
+{% block title %}{% trans 'Список товаров' %}{% endblock %}
 
 {% block content %}
-<h1>Список всех товаров</h1>
+<h2>{% trans 'Список товаров' %}</h2>
+<hr>
 <div class="row">
-    {% for item in items %}
-    <div class="col-md-4 mb-4">
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">{{ item.name }}</h5>
-                <p class="card-text">Текст: {{ item.text }}</p>
-                <a href="{% url 'catalog:item_detail' pk=item.pk %}" class="btn btn-primary">Подробнее</a>
-            </div>
-        </div>
-    </div>
-    {% endfor %}
+  {% for item in items %}
+  <div class="col-md-4 mb-4">
+      <div class="card h-100 border border-primary">
+          <div class="card-body">
+              <h5 class="card-title">{{ item.name }}</h5>
+              <p class="card-text">{{ item.text|truncatechars:20|safe }}</p>
+              <a href="{% url 'catalog:item_detail' pk=item.pk %}" class="btn btn-outline-primary">{% trans 'Подробнее' %}</a>
+          </div>
+      </div>
+  </div>
+  {% endfor %}
 </div>
 {% endblock %}
