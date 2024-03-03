@@ -3,6 +3,7 @@ import django.shortcuts
 
 import catalog.models
 
+
 def item_list(request):
     template = "catalog/item_list.html"
     items = (
@@ -25,7 +26,6 @@ def item_list(request):
     return django.shortcuts.render(request, template, context)
 
 
-
 def item_detail(request, pk):
     template = "catalog/item.html"
     queryset = (
@@ -39,10 +39,10 @@ def item_detail(request, pk):
         .only("name", "text", "category__name")
     )
     item = django.shortcuts.get_object_or_404(queryset, pk=pk)
-    
-    main_image = item.mainimage if hasattr(item, 'mainimage') else None
+
+    main_image = item.mainimage if hasattr(item, "mainimage") else None
     main_image_url = get_thumbnail_url(main_image) if main_image else None
-    
+
     gallery_images = item.gallery_images.all()
     gallery_images_urls = [
         get_thumbnail_url(image) for image in gallery_images
@@ -54,6 +54,7 @@ def item_detail(request, pk):
         "gallery_images_urls": gallery_images_urls,
     }
     return django.shortcuts.render(request, template, context)
+
 
 def get_thumbnail_url(image):
     if image:
