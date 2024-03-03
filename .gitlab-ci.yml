@@ -29,8 +29,3 @@ test:
     - cd lyceum
     - python manage.py test
     - deactivate
-
-deploy_to_github:
-  stage: github
-  script:
-    - git push github --all
