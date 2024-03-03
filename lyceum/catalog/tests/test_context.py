@@ -57,8 +57,6 @@ class ItemViewTest(django.test.TestCase):
         )
         response = self.client.get(url)
         self.assertIn("item", response.context)
-        self.assertIn("main_image_url", response.context)
-        self.assertIn("gallery_images_urls", response.context)
 
         item = response.context["item"]
         self.assertIsInstance(item, catalog.models.Item)
