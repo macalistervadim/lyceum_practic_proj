@@ -51,7 +51,11 @@ def item_detail(request, pk):
         category__is_published=True,
         is_published=True,
     )
-    context = {"item": item}
+    main_image = item.mainimage if hasattr(item, "mainimage") else None
+    context = {
+        "item": item,
+        "main_image": main_image,
+    }
     return django.shortcuts.render(request, "catalog/item.html", context)
 
 
