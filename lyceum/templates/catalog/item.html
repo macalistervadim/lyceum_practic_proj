@@ -7,8 +7,10 @@
 {% block content %}
 <div class="container">
     <h1>{{ item.name }}</h1>
-    {% if item.mainimage %}
-    <img src="{{ item.mainimage.image.url }}" alt="{{ item.name }}" class="img-fluid mb-3">
+    {% if main_image %}
+        <div class="col-md-3 mb-3">
+            <img src="{{ main_image.get_image_x1280.url }}" alt="Main Image" class="img-thumbnail">
+        </div>
     {% endif %}
     <p>{{ item.text }}</p>
     <p>Категория: {{ item.category.name }}</p>
