@@ -46,7 +46,9 @@ class ItemViewTest(django.test.TestCase):
         url = django.urls.reverse("catalog:item_list")
         response = self.client.get(url)
         items = response.context["items"]
-        self.assertEqual(items.count(), 1)
+        self.assertEqual(len(items), 1)
+        for item in items:
+            self.assertIsInstance(item, catalog.models.Item)
 
     def test_item_detail_context(self):
         url = django.urls.reverse(
@@ -59,6 +61,7 @@ class ItemViewTest(django.test.TestCase):
         self.assertIn("gallery_images_urls", response.context)
 
         item = response.context["item"]
+        self.assertIsInstance(item, catalog.models.Item)
         self.assertEqual(item.name, "Опублик. товар")
 
 

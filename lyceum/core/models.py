@@ -36,7 +36,8 @@ class TimeStampedModel(django.db.models.Model):
         return self.name[:15]
 
     def save(self, *args, **kwargs):
-        self.normalized_name = self._formatting_value()
+        if not self.pk:
+            self.normalized_name = self._formatting_value()
         super().save(*args, **kwargs)
 
     def clean(self):
@@ -45,8 +46,7 @@ class TimeStampedModel(django.db.models.Model):
             type(self)
             .objects.filter(normalized_name=self.normalized_name)
             .exclude(id=self.id)
-            .count()
-            > 0
+            .exists()
         ):
             raise django.core.exceptions.ValidationError(
                 "Похожее имя есть в базе данных",

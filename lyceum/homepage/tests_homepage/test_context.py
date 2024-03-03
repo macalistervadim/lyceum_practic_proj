@@ -47,11 +47,15 @@ class HomePageContext(django.test.TestCase):
         response = self.client.get(url)
         self.assertIn("items", response.context)
 
+        items = response.context["items"]
+        for item in items:
+            self.assertIsInstance(item, catalog.models.Item)
+
     def test_homepage_context_count(self):
         url = django.urls.reverse("homepage:home")
         response = self.client.get(url)
         items = response.context["items"]
-        self.assertEqual(items.count(), 1)
+        self.assertEqual(len(items), 1)
 
 
 __all__ = []

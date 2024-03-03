@@ -127,9 +127,9 @@
   "model": "catalog.item",
   "pk": 4,
   "fields": {
-    "name": "Сланц",
+    "name": "Слан",
     "is_published": true,
-    "normalized_name": "slants",
+    "normalized_name": "slan",
     "category": 2,
     "text": "<p>превосходно</p>",
     "is_on_main": true,
@@ -167,6 +167,42 @@
       2,
       3,
       4
+    ]
+  }
+},
+{
+  "model": "catalog.item",
+  "pk": 7,
+  "fields": {
+    "name": "Слaнц",
+    "is_published": true,
+    "normalized_name": "slants",
+    "category": 1,
+    "text": "<p>роскошно</p>",
+    "is_on_main": true,
+    "tags": [
+      2,
+      3,
+      5
+    ]
+  }
+},
+{
+  "model": "catalog.item",
+  "pk": 8,
+  "fields": {
+    "name": "Слaнцы",
+    "is_published": true,
+    "normalized_name": "slantsy",
+    "category": 1,
+    "text": "<p>роскошно</p>",
+    "is_on_main": false,
+    "tags": [
+      1,
+      2,
+      3,
+      4,
+      5
     ]
   }
 },
@@ -231,7 +267,15 @@
   "pk": 6,
   "fields": {
     "item": 6,
-    "image": "catalog/6/05e2b2b1-a3f1-4049-bfeb-84a39c8f72bb.jpeg"
+    "image": "catalog/6/c32eef52-5a08-401f-89bf-c239120110da.jpeg"
+  }
+},
+{
+  "model": "catalog.galleryimage",
+  "pk": 7,
+  "fields": {
+    "item": 6,
+    "image": "catalog/6/f7fcf1b3-a31d-45ba-a0db-1c692f7c8995.jpg"
   }
 }
 ]

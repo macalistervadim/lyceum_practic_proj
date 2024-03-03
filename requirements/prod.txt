@@ -4,3 +4,4 @@ pillow==10.2.0
 django-cleanup==8.1.0
 sorl-thumbnail==12.10.0
 django-tinymce==3.7.1
+transliterate==1.10.2
