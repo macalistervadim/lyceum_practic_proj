@@ -33,5 +33,4 @@ test:
 deploy_to_github:
   stage: github
   script:
-    - git remote add github git@github.com:macalistervadim/lyceum_practic_proj.git
     - git push github --all
