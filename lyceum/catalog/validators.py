@@ -15,14 +15,11 @@ class ValidateMustContain:
 
     def __call__(self, value):
         words = set(WORDS_REGEX.findall(value.lower()))
-        print(words)
         if not self.validate_words & words:
             raise django.core.exceptions.ValidationError(
                 f"В тексте '{value}' нет слов {self.pattern} ",
             )
 
-val = ValidateMustContain("превосходно", "роскошно")
-val("Это превосходно!")
 
 def validator_for_item_text(value):
     words = set(WORDS_REGEX.findall(value.lower()))

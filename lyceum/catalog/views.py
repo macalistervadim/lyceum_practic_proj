@@ -6,15 +6,55 @@ import catalog.models
 
 def item_list(request):
     template = "catalog/item_list.html"
-    items = catalog.models.Item.objects.all()
+    items = (
+        catalog.models.Item.objects.filter(is_published=True)
+        .order_by("category__name", "name")
+        .only(
+            "name",
+            "text",
+        )
+        .prefetch_related(
+            django.db.models.Prefetch(
+                "tags", queryset=catalog.models.Tag.objects.only("name"),
+            ),
+        )
+    )
     context = {"items": items}
     return django.shortcuts.render(request, template, context)
 
 
 def item_detail(request, pk):
     template = "catalog/item.html"
-    context = {}
+    queryset = (
+        catalog.models.Item.objects.only("name", "text", "category__name")
+        .select_related("category")
+        .prefetch_related(
+            django.db.models.Prefetch(
+                "tags", queryset=catalog.models.Tag.objects.only("name"),
+            ),
+        )
+    )
+    item = django.shortcuts.get_object_or_404(queryset, pk=pk)
+    main_image = catalog.models.MainImage.objects.filter(item=item).first()
+    gallery_images = catalog.models.GalleryImage.objects.filter(item=item)
+
+    main_image_url = get_thumbnail_url(main_image)
+    gallery_images_urls = [
+        get_thumbnail_url(image) for image in gallery_images
+    ]
+
+    context = {
+        "item": item,
+        "main_image_url": main_image_url,
+        "gallery_images_urls": gallery_images_urls,
+    }
     return django.shortcuts.render(request, template, context)
+
+
+def get_thumbnail_url(image):
+    if image:
+        return image.get_image_300x300().url
+    return None
 
 
 def catalog_regex(request, number):

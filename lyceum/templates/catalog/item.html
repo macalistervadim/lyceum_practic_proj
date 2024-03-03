@@ -1,15 +1,30 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% load i18n %}
 
 {% block title %}{% trans 'Детали товара' %}{% endblock %}
 
 {% block content %}
 <div class="container">
+  <h1>{{ item.name }}</h1>
+  {% if main_image_url %}
+  <img src="{{ main_image_url }}" alt="{{ item.name }}" class="img-fluid mb-3">
+  {% endif %}
+  <p>{{ item.description }}</p>
+  <p>Категория: {{ item.category.name }}</p>
+  <p>Тэги:
+      {% for tag in item.tags.all %}
+          <span class="badge bg-secondary">{{ tag.name }}</span>
+          {% if not forloop.last %},{% endif %}
+      {% endfor %}
+  </p>
+  <h2>Каталог изображений</h2>
   <div class="row">
-      <div class="col-md-6">
-          <h2>Cooming soon...</h2>
-      </div>
+      {% for gallery_image_url in gallery_images_urls %}
+          <div class="col-md-3 mb-3">
+              <img src="{{ gallery_image_url }}" alt="Gallery Image" class="img-thumbnail">
+          </div>
+      {% endfor %}
   </div>
 </div>
 {% endblock %}

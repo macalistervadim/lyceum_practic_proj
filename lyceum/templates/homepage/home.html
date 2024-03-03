@@ -12,17 +12,7 @@
 <hr>
 <h2>{% trans 'Список товаров' %}</h2>
 <hr>
-<div class="row">
-  {% for item in items %}
-  <div class="col-md-4 mb-4">
-      <div class="card h-100 border border-primary">
-          <div class="card-body">
-              <h5 class="card-title">{{ item.name }}</h5>
-              <p class="card-text">{{ item.text|truncatechars:20|safe }}</p>
-              <a href="{% url 'catalog:item_detail' pk=item.pk %}" class="btn btn-outline-primary">{% trans 'Подробнее' %}</a>
-          </div>
-      </div>
-  </div>
-  {% endfor %}
-</div>
+
+{% include 'includes/item_card.html' %}
+
 {% endblock %}

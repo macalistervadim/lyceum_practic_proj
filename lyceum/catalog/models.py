@@ -1,3 +1,6 @@
+import os
+import uuid
+
 import django.contrib
 import django.core.exceptions
 import django.core.validators
@@ -8,6 +11,12 @@ import tinymce.models
 
 import catalog.validators
 import core.models
+
+
+def item_directory_path(instance, filename):
+    ext = filename.split(".")[-1]
+    filename = f"{uuid.uuid4()}.{ext}"
+    return os.path.join("catalog", str(instance.item.id), filename)
 
 
 class Tag(core.models.TimeStampedModel):
@@ -67,8 +76,12 @@ class Item(core.models.TimeStampedModel):
         ],
         help_text="Введите сообщение",
     )
+    is_on_main = django.db.models.BooleanField(
+        default=False,
+    )
 
     class Meta:
+        ordering = ("name",)
         verbose_name = "товар"
         verbose_name_plural = "товары"
 
@@ -80,7 +93,7 @@ class MainImage(core.models.AbstractModelImage):
     )
     image = django.db.models.ImageField(
         "главное изображение",
-        upload_to="main_image_items/",
+        upload_to=item_directory_path,
         help_text="будет приведено к размеру 300x300",
     )
 
@@ -93,7 +106,7 @@ class GalleryImage(core.models.AbstractModelImage):
     )
     image = django.db.models.ImageField(
         "изображения",
-        upload_to="gallery_images_item/",
+        upload_to=item_directory_path,
         help_text="будет приведено к размеру 300x300",
     )
 

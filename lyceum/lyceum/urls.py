@@ -14,12 +14,19 @@ if django.conf.settings.DEBUG:
     import debug_toolbar
     import django.conf.urls.static
 
-    urlpatterns += [
-        django.urls.path(
-            "__debug__/",
-            django.urls.include(debug_toolbar.urls),
-        ),
-    ] + django.conf.urls.static.static(
-        django.conf.settings.STATIC_URL,
-        document_root=django.conf.settings.STATIC_ROOT,
+    urlpatterns += (
+        [
+            django.urls.path(
+                "__debug__/",
+                django.urls.include(debug_toolbar.urls),
+            ),
+        ]
+        + django.conf.urls.static.static(
+            django.conf.settings.STATIC_URL,
+            document_root=django.conf.settings.STATIC_ROOT,
+        )
+        + django.conf.urls.static.static(
+            django.conf.settings.MEDIA_URL,
+            document_root=django.conf.settings.MEDIA_ROOT,
+        )
     )
