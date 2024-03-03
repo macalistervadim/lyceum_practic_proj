@@ -87,7 +87,7 @@ class AbstractModelImage(django.db.models.Model):
             crop="center",
             quality=51,
         )
-    
+
     def get_image_x1280(self):
         return sorl.thumbnail.get_thumbnail(
             self.image,
