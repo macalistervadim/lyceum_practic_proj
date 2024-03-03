@@ -2,10 +2,10 @@ import re
 
 import django.core.exceptions
 import django.db
+import django.dispatch
 import django.utils.html
 import sorl.thumbnail
 import transliterate
-
 
 ONLY_LETTERS_REGEX = re.compile(r"[^\w]")
 
@@ -34,6 +34,11 @@ class TimeStampedModel(django.db.models.Model):
 
     def __str__(self):
         return self.name[:15]
+
+    @django.dispatch.receiver(django.db.models.signals.pre_save)
+    def pre_save_handler(sender, instance, **kwargs):
+        if issubclass(sender, TimeStampedModel):
+            instance.normalized_name = instance._formatting_value()
 
     def save(self, *args, **kwargs):
         if not self.pk:
