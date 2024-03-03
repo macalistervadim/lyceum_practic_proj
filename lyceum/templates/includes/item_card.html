@@ -9,7 +9,7 @@
                   {{ tag.name }}
                   {% if not forloop.last %},{% endif %}
                 {% endfor %}
-                <p class="card-text">{{ item.text|truncatechars:10|safe }}</p>
+                <p class="card-text">{{ item.text|truncatewords_html:10|safe }}</p>
                 <a href="{% url 'catalog:item_detail' pk=item.pk %}" class="btn btn-outline-primary">{% trans 'Подробнее' %}</a>
             </div>
         </div>
