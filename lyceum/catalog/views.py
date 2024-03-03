@@ -1,3 +1,4 @@
+import django.db
 import django.http
 import django.shortcuts
 
@@ -11,7 +12,6 @@ def item_list(request):
         .order_by("category__name", "name")
         .only(
             "id",
-            "category_id",
             "name",
             "text",
         )
@@ -28,17 +28,28 @@ def item_list(request):
 
 def item_detail(request, pk):
     template = "catalog/item.html"
-    queryset = (
-        catalog.models.Item.objects.select_related("category")
+    item = django.shortcuts.get_object_or_404(
+        catalog.models.Item.objects.select_related(
+            "category",
+            "mainimage",
+        )
         .prefetch_related(
             django.db.models.Prefetch(
-                "tags", queryset=catalog.models.Tag.objects.only("name"),
+                "tags",
+                queryset=catalog.models.Tag.objects.only("name"),
             ),
             "gallery_images",
         )
-        .only("name", "text", "category__name")
+        .only(
+            "category__name",
+            "mainimage__image",
+            "name",
+            "text",
+        ),
+        pk=pk,
+        category__is_published=True,
+        is_published=True,
     )
-    item = django.shortcuts.get_object_or_404(queryset, pk=pk)
 
     main_image = item.mainimage if hasattr(item, "mainimage") else None
     main_image_url = get_thumbnail_url(main_image) if main_image else None
