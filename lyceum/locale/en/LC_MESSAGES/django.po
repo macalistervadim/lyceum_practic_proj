@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-27 19:45+0600\n"
+"POT-Creation-Date: 2024-03-03 15:56+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,23 +18,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: .\lyceum\settings.py:102
-msgid "Английский"
-msgstr "English"
-
-#: .\lyceum\settings.py:103
-msgid "Русский"
-msgstr "Russian"
-
-#: .\templates\about\about.html:5
+#: .\lyceum\templates\about\about.html:5
 msgid "О самой жестокой специализации"
 msgstr "About the most brutal specialization"
 
-#: .\templates\about\about.html:13
+#: .\lyceum\templates\about\about.html:13
 msgid "Коротко о самой жестокой специализации"
 msgstr "Briefly about the most brutal specialization"
 
-#: .\templates\about\about.html:14
+#: .\lyceum\templates\about\about.html:14
 msgid ""
 "Совет - ни за что на свете, не пытайтесь дети, не пытайтесь дети, в "
 "специализацию по джанге лезть!"
@@ -42,24 +34,23 @@ msgstr ""
 "Advice - no way in the world, do not try children, do not try children, to "
 "get into the specialization in Django!"
 
-#: .\templates\catalog\item.html:5
+#: .\lyceum\templates\catalog\item.html:5
 msgid "Детали товара"
 msgstr "Item detail"
 
-#: .\templates\catalog\item_list.html:5 .\templates\catalog\item_list.html:8
-#: .\templates\homepage\home.html:13 .\templates\includes\header.html:23
+#: .\lyceum\templates\catalog\item_list.html:5
+#: .\lyceum\templates\catalog\item_list.html:8
+#: .\lyceum\templates\homepage\home.html:13
+#: .\lyceum\templates\includes\header.html:23
 msgid "Список товаров"
 msgstr "Items"
 
-#: .\templates\catalog\item_list.html:17 .\templates\homepage\home.html:22
-msgid "Подробнее"
-msgstr "About"
-
-#: .\templates\homepage\home.html:5 .\templates\includes\header.html:17
+#: .\lyceum\templates\homepage\home.html:5
+#: .\lyceum\templates\includes\header.html:17
 msgid "Главная"
 msgstr "Home"
 
-#: .\templates\homepage\home.html:8
+#: .\lyceum\templates\homepage\home.html:8
 msgid ""
 "Добро пожаловать на главную страницу сайта одного из страдальцев "
 "специализации Яндекс Лицея \"Django\"!"
@@ -67,7 +58,7 @@ msgstr ""
 "Welcome to the main page of the website of one of the sufferers of the "
 "\"specialization of Yandex Lyceum \"Django\"!"
 
-#: .\templates\homepage\home.html:9
+#: .\lyceum\templates\homepage\home.html:9
 msgid ""
 "Очень надеюсь, что злой енотик не попадет в мой репозиторий и не напишет "
 "ишьюсы в 2 раза больше самого задания"
@@ -75,10 +66,20 @@ msgstr ""
 "I really hope that the evil raccoon does not get into my repository and does "
 "not write the questions are 2 times more than the task itself"
 
-#: .\templates\includes\footer.html:5
+#: .\lyceum\templates\includes\footer.html:5
 msgid "Специализация Джанго - боль"
 msgstr "Django's specialty is pain"
 
-#: .\templates\includes\header.html:20
+#: .\lyceum\templates\includes\header.html:20
 msgid "О проекте"
 msgstr "About"
+
+#: .\lyceum\templates\includes\item_card.html:13
+msgid "Подробнее"
+msgstr "About"
+
+#~ msgid "Английский"
+#~ msgstr "English"
+
+#~ msgid "Русский"
+#~ msgstr "Russian"

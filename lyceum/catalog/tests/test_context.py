@@ -50,7 +50,8 @@ class ItemViewTest(django.test.TestCase):
 
     def test_item_detail_context(self):
         url = django.urls.reverse(
-            "catalog:item_detail", kwargs={"pk": self.published_item.pk},
+            "catalog:item_detail",
+            kwargs={"pk": self.published_item.pk},
         )
         response = self.client.get(url)
         self.assertIn("item", response.context)

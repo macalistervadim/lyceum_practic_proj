@@ -15,7 +15,8 @@ def item_list(request):
         )
         .prefetch_related(
             django.db.models.Prefetch(
-                "tags", queryset=catalog.models.Tag.objects.only("name"),
+                "tags",
+                queryset=catalog.models.Tag.objects.only("name"),
             ),
         )
     )
@@ -30,7 +31,8 @@ def item_detail(request, pk):
         .select_related("category")
         .prefetch_related(
             django.db.models.Prefetch(
-                "tags", queryset=catalog.models.Tag.objects.only("name"),
+                "tags",
+                queryset=catalog.models.Tag.objects.only("name"),
             ),
         )
     )
