@@ -1,4 +1,4 @@
-import os
+import pathlib
 import uuid
 
 import django.contrib
@@ -16,7 +16,7 @@ import core.models
 def item_directory_path(instance, filename):
     ext = filename.split(".")[-1]
     filename = f"{uuid.uuid4()}.{ext}"
-    return os.path.join("catalog", str(instance.item.id), filename)
+    return pathlib.Path("catalog") / str(instance.item.id) / filename
 
 
 class Tag(core.models.TimeStampedModel):
@@ -57,6 +57,7 @@ class Item(core.models.TimeStampedModel):
         Category,
         on_delete=django.db.models.CASCADE,
         related_name="items",
+        related_query_name="item",
         verbose_name="категория",
         help_text="Выберите категорию",
     )
@@ -103,6 +104,7 @@ class GalleryImage(core.models.AbstractModelImage):
         Item,
         on_delete=django.db.models.CASCADE,
         related_name="gallery_images",
+        related_query_name="gallery_image",
     )
     image = django.db.models.ImageField(
         "изображения",

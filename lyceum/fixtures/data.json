@@ -3,9 +3,9 @@
   "model": "catalog.tag",
   "pk": 1,
   "fields": {
-    "name": "Старые",
+    "name": "Старый",
     "is_published": true,
-    "normalized_name": "старые",
+    "normalized_name": "staryj",
     "slug": "old"
   }
 },
@@ -13,9 +13,9 @@
   "model": "catalog.tag",
   "pk": 2,
   "fields": {
-    "name": "Новые",
+    "name": "Новый",
     "is_published": true,
-    "normalized_name": "новые",
+    "normalized_name": "novyj",
     "slug": "now"
   }
 },
@@ -23,9 +23,9 @@
   "model": "catalog.tag",
   "pk": 3,
   "fields": {
-    "name": "Актуальные",
+    "name": "Актуальный",
     "is_published": true,
-    "normalized_name": "актуальные",
+    "normalized_name": "aktualnyj",
     "slug": "relevant"
   }
 },
@@ -33,9 +33,9 @@
   "model": "catalog.tag",
   "pk": 4,
   "fields": {
-    "name": "Неактуальные",
+    "name": "Неактуальный",
     "is_published": true,
-    "normalized_name": "неактуальные",
+    "normalized_name": "neaktualnyj",
     "slug": "no_relevant"
   }
 },
@@ -43,9 +43,9 @@
   "model": "catalog.tag",
   "pk": 5,
   "fields": {
-    "name": "Прошлые",
+    "name": "Прошлый",
     "is_published": true,
-    "normalized_name": "прошлые",
+    "normalized_name": "proshlyj",
     "slug": "past"
   }
 },
@@ -53,9 +53,9 @@
   "model": "catalog.category",
   "pk": 1,
   "fields": {
-    "name": "Для пап",
+    "name": "Для папы",
     "is_published": true,
-    "normalized_name": "дляпап",
+    "normalized_name": "dljapapy",
     "slug": "for_dad",
     "weight": 100
   }
@@ -64,9 +64,9 @@
   "model": "catalog.category",
   "pk": 2,
   "fields": {
-    "name": "Для мам",
+    "name": "Для мамы",
     "is_published": true,
-    "normalized_name": "длямам",
+    "normalized_name": "dljamamy",
     "slug": "for_mom",
     "weight": 100
   }
@@ -75,9 +75,9 @@
   "model": "catalog.category",
   "pk": 3,
   "fields": {
-    "name": "Для дедуль",
+    "name": "Для дедули",
     "is_published": true,
-    "normalized_name": "длядедуль",
+    "normalized_name": "dljadeduli",
     "slug": "for_df",
     "weight": 100
   }
@@ -86,9 +86,9 @@
   "model": "catalog.category",
   "pk": 4,
   "fields": {
-    "name": "Для бабушек",
+    "name": "Для бабушки",
     "is_published": true,
-    "normalized_name": "dljababushek",
+    "normalized_name": "dljababushki",
     "slug": "for_gm",
     "weight": 100
   }
@@ -97,9 +97,9 @@
   "model": "catalog.item",
   "pk": 2,
   "fields": {
-    "name": "Тапок",
+    "name": "Тапки",
     "is_published": true,
-    "normalized_name": "tapok",
+    "normalized_name": "tapki",
     "category": 4,
     "text": "<p>превосходно</p>",
     "is_on_main": true,
@@ -112,9 +112,9 @@
   "model": "catalog.item",
   "pk": 3,
   "fields": {
-    "name": "Шапка",
+    "name": "Шапки",
     "is_published": true,
-    "normalized_name": "шапка",
+    "normalized_name": "shapki",
     "category": 1,
     "text": "<p>превосходно</p>",
     "is_on_main": false,
@@ -127,9 +127,9 @@
   "model": "catalog.item",
   "pk": 4,
   "fields": {
-    "name": "Сланцы",
+    "name": "Сланц",
     "is_published": true,
-    "normalized_name": "slantsy",
+    "normalized_name": "slants",
     "category": 2,
     "text": "<p>превосходно</p>",
     "is_on_main": true,
@@ -142,9 +142,9 @@
   "model": "catalog.item",
   "pk": 5,
   "fields": {
-    "name": "Шлепки",
+    "name": "Шлепк",
     "is_published": true,
-    "normalized_name": "шлепки",
+    "normalized_name": "shlepk",
     "category": 4,
     "text": "<p>превосходно</p>",
     "is_on_main": false,
@@ -157,9 +157,9 @@
   "model": "catalog.item",
   "pk": 6,
   "fields": {
-    "name": "test",
+    "name": "тесты",
     "is_published": true,
-    "normalized_name": "test",
+    "normalized_name": "testy",
     "category": 4,
     "text": "<p>роскошно</p>",
     "is_on_main": false,
