@@ -2,6 +2,7 @@ stages:
   - test
   - linting
   - black
+  - github
 
 flake8:
   stage: linting
@@ -28,3 +29,9 @@ test:
     - cd lyceum
     - python manage.py test
     - deactivate
+
+deploy_to_github:
+  stage: github
+  script:
+    - git remote add github https://github.com/macalistervadim/lyceum_practic_proj.git
+    - git push github --all

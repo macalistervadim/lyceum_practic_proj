@@ -14,3 +14,4 @@ flake8-type-ignore==0.1.0.post2
 flake8-comments==0.1.2
 flake8-use-pathlib==0.3.0
 flake8-builtins==2.2.0
+pep8-naming==0.13.3
