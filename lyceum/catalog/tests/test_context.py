@@ -42,6 +42,10 @@ class ItemViewTest(django.test.TestCase):
         cls.published_item.tags.add(cls.published_tag.pk)
         cls.published_item.tags.add(cls.unpublished_tag.pk)
 
+        cls.main_image = catalog.models.MainImage.objects.create(
+            item=cls.published_item, image="main_image_items/enot_2reqxJv.jpg",
+        )
+
     def test_item_list_context(self):
         url = django.urls.reverse("catalog:item_list")
         response = self.client.get(url)

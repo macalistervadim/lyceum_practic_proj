@@ -27,18 +27,18 @@ def item_list(request):
 def item_detail(request, pk):
     template = "catalog/item.html"
     queryset = (
-        catalog.models.Item.objects.only("name", "text", "category__name")
-        .select_related("category")
+        catalog.models.Item.objects.select_related("category", "mainimage")
         .prefetch_related(
             django.db.models.Prefetch(
-                "tags",
-                queryset=catalog.models.Tag.objects.only("name"),
+                "tags", queryset=catalog.models.Tag.objects.only("name"),
             ),
+            "gallery_images",
         )
+        .only("name", "text", "category__name")
     )
     item = django.shortcuts.get_object_or_404(queryset, pk=pk)
-    main_image = catalog.models.MainImage.objects.filter(item=item).first()
-    gallery_images = catalog.models.GalleryImage.objects.filter(item=item)
+    main_image = item.mainimage
+    gallery_images = item.gallery_images.all()
 
     main_image_url = get_thumbnail_url(main_image)
     gallery_images_urls = [
