@@ -35,6 +35,7 @@ class TimeStampedModel(django.db.models.Model):
     def __str__(self):
         return self.name[:15]
 
+    @classmethod
     @django.dispatch.receiver(django.db.models.signals.pre_save)
     def pre_save_handler(sender, instance, **kwargs):
         if issubclass(sender, TimeStampedModel):

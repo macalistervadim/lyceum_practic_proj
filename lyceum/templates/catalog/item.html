@@ -20,10 +20,10 @@
   </p>
   <h2>Изображения галереи</h2>
   <div class="row">
-      {% for gallery_image_url in gallery_images_urls %}
-          <div class="col-md-3 mb-3">
-              <img src="{{ gallery_image_url }}" alt="Gallery Image" class="img-thumbnail">
-          </div>
-      {% endfor %}
-  </div>
+    {% for gallery_image in item.gallery_images.all %}
+        <div class="col-md-3 mb-3">
+            <img src="{{ gallery_image.get_image_300x300.url }}" alt="Gallery Image" class="img-thumbnail">
+        </div>
+    {% endfor %}
+</div>
 {% endblock %}
