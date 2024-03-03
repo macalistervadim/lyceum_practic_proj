@@ -3,7 +3,7 @@ import unittest
 
 def suite():
     loader = unittest.TestLoader()
-    start_dir = "tests"
+    start_dir = "test_case"
     suite = loader.discover(start_dir)
     return suite
 
