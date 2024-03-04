@@ -75,20 +75,26 @@ class HomePageContext(django.test.TestCase):
     def test_not_existing_fields_in_db_answer(self):
         item_model = catalog.models.Item
 
-        additional_fields = {'gallery_image', 'tags', 'mainimage'}
+        additional_fields = {"gallery_image", "tags", "mainimage"}
 
         items_on_main = item_model.objects.on_main()
 
         for item in items_on_main:
             for field in additional_fields:
-                self.assertNotIn(field, item.__dict__,
-                                f"{field} field should not exist in the DB answer")
+                self.assertNotIn(
+                    field,
+                    item.__dict__,
+                    f"{field} field should not exist in the DB answer",
+                )
 
     def test_prefetched_objects_in_db_answer(self):
         item = catalog.models.Item.objects.on_main().first()
-        
-        self.assertNotIn('tags', item._prefetched_objects_cache,
-                        "Prefetched objects should not exist in the DB answer")
+
+        self.assertNotIn(
+            "tags",
+            item._prefetched_objects_cache,
+            "Prefetched objects should not exist in the DB answer",
+        )
 
 
 __all__ = []
