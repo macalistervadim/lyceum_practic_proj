@@ -30,6 +30,7 @@ class ItemManager(django.db.models.Manager):
                 django.db.models.Prefetch(
                     "tags",
                     queryset=catalog.models.Tag.objects.only("name"),
+                    to_attr="tag_names",
                 ),
             )
         )
