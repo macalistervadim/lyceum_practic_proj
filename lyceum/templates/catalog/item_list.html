@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-
 {% load i18n %}
 
 {% block title %}{% trans 'Список товаров' %}{% endblock %}
@@ -8,6 +7,12 @@
 <h2>{% trans 'Список товаров' %}</h2>
 <hr>
 
-{% include 'includes/item_card.html' %}
-
+{% for item in items %}
+    {% ifchanged item.category.name %}
+        <h3>{{ item.category.name }}</h3>
+    {% endifchanged %}
+    <div class="row">
+        {% include 'includes/item_card.html' %}
+    </div>
+{% endfor %}
 {% endblock %}

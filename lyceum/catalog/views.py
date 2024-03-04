@@ -6,23 +6,8 @@ import catalog.models
 
 
 def item_list(request):
-    items = (
-        catalog.models.Item.objects.only(
-            "category__name",
-            "mainimage__image",
-            "name",
-            "text",
-        )
-        .select_related("category", "mainimage")
-        .prefetch_related(
-            django.db.models.Prefetch(
-                "tags",
-                queryset=catalog.models.Tag.objects.only("name"),
-            ),
-        )
-        .filter(category__is_published=True, is_published=True)
-        .order_by("category__name")
-    )
+    items = catalog.models.Item.objects.published()
+
     context = {
         "items": items,
     }

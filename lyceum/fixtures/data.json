@@ -117,7 +117,7 @@
     "normalized_name": "shapki",
     "category": 1,
     "text": "<p>превосходно</p>",
-    "is_on_main": false,
+    "is_on_main": true,
     "tags": [
       3
     ]
@@ -147,7 +147,7 @@
     "normalized_name": "shlepk",
     "category": 4,
     "text": "<p>превосходно</p>",
-    "is_on_main": false,
+    "is_on_main": true,
     "tags": [
       4
     ]
@@ -162,7 +162,7 @@
     "normalized_name": "testy",
     "category": 4,
     "text": "<p>роскошно</p>",
-    "is_on_main": false,
+    "is_on_main": true,
     "tags": [
       2,
       3,
@@ -196,7 +196,7 @@
     "normalized_name": "slantsy",
     "category": 1,
     "text": "<p>роскошно</p>",
-    "is_on_main": false,
+    "is_on_main": true,
     "tags": [
       1,
       2,
