@@ -12,7 +12,7 @@
             <img src="{{ main_image.get_image_x1280.url }}" alt="Main Image" class="img-thumbnail">
         </div>
     {% endif %}
-    <p>{{ item.text }}</p>
+    <p>{{ item.text|safe }}</p>
     <p>Категория: {{ item.category.name }}</p>
     <p>Тэги:
         {% for tag in item.tags.all %}

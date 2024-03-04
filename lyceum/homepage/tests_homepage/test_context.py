@@ -57,5 +57,20 @@ class HomePageContext(django.test.TestCase):
         items = response.context["items"]
         self.assertEqual(len(items), 1)
 
+    def test_on_main_queryset_fields(self):
+        item_model = catalog.models.Item
+
+        all_fields = {field.name for field in item_model._meta.get_fields()}
+
+        internal_fields = {"_state", "_prefetched_objects_cache"}
+        additional_fields = {"gallery_image", "tags", "mainimage"}
+
+        expected_fields = all_fields - internal_fields - additional_fields
+        items_on_main = item_model.objects.on_main()
+
+        for item in items_on_main:
+            item_fields = {field.name for field in item._meta.fields}
+            self.assertEqual(item_fields, expected_fields)
+
 
 __all__ = []
