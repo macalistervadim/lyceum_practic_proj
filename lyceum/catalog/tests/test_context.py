@@ -5,6 +5,8 @@ import catalog.models
 
 
 class ItemViewTest(django.test.TestCase):
+    ignored_fields = ["is_published", "gallery_image"]
+
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -61,6 +63,29 @@ class ItemViewTest(django.test.TestCase):
         item = response.context["item"]
         self.assertIsInstance(item, catalog.models.Item)
         self.assertEqual(item.name, "Опублик. товар")
+
+    def test_fields_item_published(self):
+        response = self.client.get(django.urls.reverse("catalog:item_list"))
+        for field_name in self.ignored_fields:
+            self.assertNotIn(
+                field_name,
+                response.context["items"].first().__dict__,
+            )
+
+    def test_fields_tags_published(self):
+        response = self.client.get(django.urls.reverse("catalog:item_list"))
+        items = response.context["items"]
+        for item in items:
+            if hasattr(item, "tag_names"):
+                tag_names = getattr(item, "tag_names", [])
+                for tag in tag_names:
+                    expected_fields = ["_state", "id", "name"]
+                    if hasattr(tag, "_prefetch_related_val_item_id"):
+                        expected_fields.append("_prefetch_related_val_item_id")
+                    self.assertQuerySetEqual(
+                        tag.__dict__,
+                        expected_fields,
+                    )
 
 
 __all__ = []

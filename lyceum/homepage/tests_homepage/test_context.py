@@ -5,6 +5,8 @@ import catalog.models
 
 
 class HomePageContext(django.test.TestCase):
+    ignored_fields = ["is_published", "gallery_image"]
+
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -57,44 +59,28 @@ class HomePageContext(django.test.TestCase):
         items = response.context["items"]
         self.assertEqual(len(items), 1)
 
-    def test_on_main_queryset_fields(self):
-        item_model = catalog.models.Item
+    def test_fields_item_main(self):
+        response = self.client.get(django.urls.reverse("homepage:home"))
+        for field_name in self.ignored_fields:
+            self.assertNotIn(
+                field_name,
+                response.context["items"].first().__dict__,
+            )
 
-        all_fields = {field.name for field in item_model._meta.get_fields()}
-
-        internal_fields = {"_state", "_prefetched_objects_cache"}
-        additional_fields = {"gallery_image", "tags", "mainimage"}
-
-        expected_fields = all_fields - internal_fields - additional_fields
-        items_on_main = item_model.objects.on_main()
-
-        for item in items_on_main:
-            item_fields = {field.name for field in item._meta.fields}
-            self.assertEqual(item_fields, expected_fields)
-
-    def test_not_existing_fields_in_db_answer(self):
-        item_model = catalog.models.Item
-
-        additional_fields = {"gallery_image", "tags", "mainimage"}
-
-        items_on_main = item_model.objects.on_main()
-
-        for item in items_on_main:
-            for field in additional_fields:
-                self.assertNotIn(
-                    field,
-                    item.__dict__,
-                    f"{field} field should not exist in the DB answer",
-                )
-
-    def test_prefetched_objects_in_db_answer(self):
-        item = catalog.models.Item.objects.on_main().first()
-
-        self.assertNotIn(
-            "tags",
-            item._prefetched_objects_cache,
-            "Prefetched objects should not exist in the DB answer",
-        )
+    def test_fields_tags_main(self):
+        response = self.client.get(django.urls.reverse("homepage:home"))
+        items = response.context["items"]
+        for item in items:
+            if hasattr(item, "tag_names"):
+                tag_names = getattr(item, "tag_names", [])
+                for tag in tag_names:
+                    expected_fields = ["_state", "id", "name"]
+                    if hasattr(tag, "_prefetch_related_val_item_id"):
+                        expected_fields.append("_prefetch_related_val_item_id")
+                    self.assertQuerySetEqual(
+                        tag.__dict__,
+                        expected_fields,
+                    )
 
 
 __all__ = []

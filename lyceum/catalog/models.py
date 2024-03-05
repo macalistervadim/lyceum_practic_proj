@@ -40,7 +40,6 @@ class ItemManager(django.db.models.Manager):
             self.get_queryset()
             .select_related(
                 "category",
-                "mainimage",
             )
             .prefetch_related(
                 django.db.models.Prefetch(
@@ -50,7 +49,7 @@ class ItemManager(django.db.models.Manager):
                     ),
                 ),
             )
-            .only("category__name", "mainimage__image", "name", "text")
+            .only("category__name", "name", "text")
             .filter(category__is_published=True, is_published=True)
             .order_by("category__name")
         )
