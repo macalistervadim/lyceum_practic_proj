@@ -91,6 +91,14 @@ class Category(core.models.TimeStampedModel):
 class Item(core.models.TimeStampedModel):
     objects = ItemManager()
 
+    created = django.db.models.DateTimeField(
+        "дата создания",
+        auto_now_add=True,
+    )
+    updated = django.db.models.DateTimeField(
+        "последнее изменение",
+        auto_now=True,
+    )
     category = django.db.models.ForeignKey(
         Category,
         on_delete=django.db.models.CASCADE,
@@ -116,6 +124,7 @@ class Item(core.models.TimeStampedModel):
         help_text="Введите сообщение",
     )
     is_on_main = django.db.models.BooleanField(
+        "для главной",
         default=False,
     )
 

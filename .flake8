@@ -1,5 +1,5 @@
 [flake8]
-application_import_names = homepage, about, catalog, lyceum, core
+application_import_names = homepage, about, catalog, lyceum, core, download
 inline-quotes = double
 exclude = migrations, .git, venv, __pycache__
 import-order-style = google

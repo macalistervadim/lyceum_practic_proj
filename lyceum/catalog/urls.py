@@ -38,6 +38,13 @@ urlpatterns = [
         catalog.views.catalog_converter,
         name="catalog_converter",
     ),
+    django.urls.path("new/", catalog.views.new_items, name="new_items"),
+    django.urls.path(
+        "friday/", catalog.views.friday_items, name="friday_items",
+    ),
+    django.urls.path(
+        "unverified/", catalog.views.unverified_items, name="unverified_items",
+    ),
 ]
 
 

@@ -30,6 +30,10 @@ class AdminItem(django.contrib.admin.ModelAdmin):
     )
     list_display_links = (catalog.models.Item.name.field.name,)
     filter_horizontal = (catalog.models.Item.tags.field.name,)
+    readonly_fields = (
+        catalog.models.Item.created.field.name,
+        catalog.models.Item.updated.field.name,
+    )
 
 
 __all__ = []

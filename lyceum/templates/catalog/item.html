@@ -9,6 +9,7 @@
     <h1>{{ item.name }}</h1>
     {% if main_image %}
         <div class="col-md-3 mb-3">
+                <a href="{% url 'download:download_image' item.mainimage.image.name %}">Скачать картинку</a>
             <img src="{{ main_image.get_image_x1280.url }}" alt="Main Image" class="img-thumbnail">
         </div>
     {% endif %}
@@ -22,11 +23,15 @@
     </p>
     <h2>Изображения галереи</h2>
     <div class="row">
-      {% for gallery_image in item.gallery_images.all %}
-          <div class="col-md-3 mb-3">
-              <img src="{{ gallery_image.get_image_300x300.url }}" alt="Gallery Image" class="img-thumbnail">
-          </div>
-      {% endfor %}
+        <div class="row">
+            {% for gallery_image in item.gallery_images.all %}
+                <div class="col-md-3 mb-3">
+                    <a href="{% url 'download:download_image' gallery_image.image.name %}">Скачать картинку</a>
+                        <img src="{{ gallery_image.get_image_300x300.url }}" alt="Gallery Image" class="img-thumbnail">
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
     </div>
   </div>
   

@@ -8,6 +8,7 @@ urlpatterns = [
     django.urls.path("catalog/", django.urls.include("catalog.urls")),
     django.urls.path("about/", django.urls.include("about.urls")),
     django.urls.path("tinymce/", django.urls.include("tinymce.urls")),
+    django.urls.path("download/", django.urls.include("download.urls")),
 ]
 
 if django.conf.settings.DEBUG:
