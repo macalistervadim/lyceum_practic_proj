@@ -3,60 +3,60 @@
   "model": "catalog.tag",
   "pk": 1,
   "fields": {
-    "name": "Старый",
+    "name": "к_1",
     "is_published": true,
-    "normalized_name": "staryj",
-    "slug": "old"
+    "normalized_name": "k_1",
+    "slug": "c_1"
   }
 },
 {
   "model": "catalog.tag",
   "pk": 2,
   "fields": {
-    "name": "Новый",
+    "name": "ка_2",
     "is_published": true,
-    "normalized_name": "novyj",
-    "slug": "now"
+    "normalized_name": "ka_2",
+    "slug": "ca_2"
   }
 },
 {
   "model": "catalog.tag",
   "pk": 3,
   "fields": {
-    "name": "Актуальный",
+    "name": "кат_3",
     "is_published": true,
-    "normalized_name": "aktualnyj",
-    "slug": "relevant"
+    "normalized_name": "kat_3",
+    "slug": "cat_3"
   }
 },
 {
   "model": "catalog.tag",
   "pk": 4,
   "fields": {
-    "name": "Неактуальный",
+    "name": "кате_4",
     "is_published": true,
-    "normalized_name": "neaktualnyj",
-    "slug": "no_relevant"
+    "normalized_name": "kate_4",
+    "slug": "cate_4"
   }
 },
 {
   "model": "catalog.tag",
   "pk": 5,
   "fields": {
-    "name": "Прошлый",
+    "name": "катег_5",
     "is_published": true,
-    "normalized_name": "proshlyj",
-    "slug": "past"
+    "normalized_name": "kateg_5",
+    "slug": "categ_5"
   }
 },
 {
   "model": "catalog.category",
   "pk": 1,
   "fields": {
-    "name": "Для папы",
+    "name": "к1",
     "is_published": true,
-    "normalized_name": "dljapapy",
-    "slug": "for_dad",
+    "normalized_name": "к1",
+    "slug": "c_1",
     "weight": 100
   }
 },
@@ -64,74 +64,76 @@
   "model": "catalog.category",
   "pk": 2,
   "fields": {
-    "name": "Для мамы",
+    "name": "ка_2",
     "is_published": true,
-    "normalized_name": "dljamamy",
-    "slug": "for_mom",
-    "weight": 100
+    "normalized_name": "ka_2",
+    "slug": "ca_2",
+    "weight": 101
   }
 },
 {
   "model": "catalog.category",
   "pk": 3,
   "fields": {
-    "name": "Для дедули",
+    "name": "кат_3",
     "is_published": true,
-    "normalized_name": "dljadeduli",
-    "slug": "for_df",
-    "weight": 100
+    "normalized_name": "kat_3",
+    "slug": "cat_3",
+    "weight": 103
   }
 },
 {
   "model": "catalog.category",
   "pk": 4,
   "fields": {
-    "name": "Для бабушки",
+    "name": "кате_4",
     "is_published": true,
-    "normalized_name": "dljababushki",
-    "slug": "for_gm",
-    "weight": 100
+    "normalized_name": "kate_4",
+    "slug": "cate_4",
+    "weight": 105
+  }
+},
+{
+  "model": "catalog.category",
+  "pk": 5,
+  "fields": {
+    "name": "катег_5",
+    "is_published": true,
+    "normalized_name": "kateg_5",
+    "slug": "categ_6",
+    "weight": 110
+  }
+},
+{
+  "model": "catalog.item",
+  "pk": 1,
+  "fields": {
+    "name": "ыв123",
+    "is_published": true,
+    "normalized_name": "yv123",
+    "created": "2024-03-05T12:31:38.442Z",
+    "updated": "2024-03-05T12:31:38.448Z",
+    "category": 5,
+    "text": "<p style=\"text-align: right;\">роскошно</p>",
+    "is_on_main": true,
+    "tags": [
+      3,
+      4,
+      5
+    ]
   }
 },
 {
   "model": "catalog.item",
   "pk": 2,
   "fields": {
-    "name": "Тапки",
+    "name": "ывааываы",
     "is_published": true,
-    "normalized_name": "tapki",
-    "category": 4,
-    "text": "<p>превосходно</p>",
-    "is_on_main": true,
-    "tags": [
-      3
-    ]
-  }
-},
-{
-  "model": "catalog.item",
-  "pk": 3,
-  "fields": {
-    "name": "Шапки",
-    "is_published": true,
-    "normalized_name": "shapki",
+    "normalized_name": "yvaayvay",
+    "created": "2024-03-05T12:52:57.483Z",
+    "updated": "2024-03-05T13:26:03.069Z",
     "category": 1,
-    "text": "<p>превосходно</p>",
-    "is_on_main": true,
-    "tags": [
-      3
-    ]
-  }
-},
-{
-  "model": "catalog.item",
-  "pk": 4,
-  "fields": {
-    "name": "Слан",
-    "is_published": true,
-    "normalized_name": "slan",
-    "category": 2,
-    "text": "<p>превосходно</p>",
+    "text": "<p>роскошно</p>",
     "is_on_main": true,
     "tags": [
       5
@@ -140,16 +142,54 @@
 },
 {
   "model": "catalog.item",
-  "pk": 5,
+  "pk": 3,
   "fields": {
-    "name": "Шлепк",
+    "name": "ыва",
     "is_published": true,
-    "normalized_name": "shlepk",
-    "category": 4,
-    "text": "<p>превосходно</p>",
-    "is_on_main": true,
+    "normalized_name": "yva",
+    "created": "2024-03-05T12:53:10.112Z",
+    "updated": "2024-03-05T12:53:10.112Z",
+    "category": 5,
+    "text": "<p>роскошно</p>",
+    "is_on_main": false,
+    "tags": [
+      3
+    ]
+  }
+},
+{
+  "model": "catalog.item",
+  "pk": 4,
+  "fields": {
+    "name": "рпопро",
+    "is_published": true,
+    "normalized_name": "rpopro",
+    "created": "2024-03-05T12:53:18.157Z",
+    "updated": "2024-03-05T12:53:18.157Z",
+    "category": 1,
+    "text": "<p>роскошно</p>",
+    "is_on_main": false,
     "tags": [
       4
+    ]
+  }
+},
+{
+  "model": "catalog.item",
+  "pk": 5,
+  "fields": {
+    "name": "олрромси",
+    "is_published": true,
+    "normalized_name": "olrromsi",
+    "created": "2024-03-05T12:53:28.727Z",
+    "updated": "2024-03-05T12:53:28.727Z",
+    "category": 4,
+    "text": "<p>роскошно</p>",
+    "is_on_main": true,
+    "tags": [
+      3,
+      4,
+      5
     ]
   }
 },
@@ -157,44 +197,12 @@
   "model": "catalog.item",
   "pk": 6,
   "fields": {
-    "name": "тесты",
+    "name": "рпопропро",
     "is_published": true,
-    "normalized_name": "testy",
-    "category": 4,
-    "text": "<p>роскошно</p>",
-    "is_on_main": true,
-    "tags": [
-      2,
-      3,
-      4
-    ]
-  }
-},
-{
-  "model": "catalog.item",
-  "pk": 7,
-  "fields": {
-    "name": "Слaнц",
-    "is_published": true,
-    "normalized_name": "slants",
-    "category": 1,
-    "text": "<p>роскошно</p>",
-    "is_on_main": true,
-    "tags": [
-      2,
-      3,
-      5
-    ]
-  }
-},
-{
-  "model": "catalog.item",
-  "pk": 8,
-  "fields": {
-    "name": "Слaнцы",
-    "is_published": true,
-    "normalized_name": "slantsy",
-    "category": 1,
+    "normalized_name": "rpopropro",
+    "created": "2024-03-08T13:09:56.196Z",
+    "updated": "2024-03-08T13:09:56.196Z",
+    "category": 2,
     "text": "<p>роскошно</p>",
     "is_on_main": true,
     "tags": [
@@ -208,74 +216,34 @@
 },
 {
   "model": "catalog.mainimage",
-  "pk": 2,
-  "fields": {
-    "item": 2,
-    "image": "main_image_items/enot_8euwJFs.jpg"
-  }
-},
-{
-  "model": "catalog.mainimage",
   "pk": 3,
   "fields": {
+    "item": 1,
+    "image": "catalog/1/79d36a40-b717-4364-8825-f59e08431086.jpg"
+  }
+},
+{
+  "model": "catalog.mainimage",
+  "pk": 4,
+  "fields": {
     "item": 3,
-    "image": "main_image_items/enot_2reqxJv.jpg"
-  }
-},
-{
-  "model": "catalog.mainimage",
-  "pk": 5,
-  "fields": {
-    "item": 4,
-    "image": "catalog/4/function_uuid4_at_0x00000150D8407100-s-l1600.jpg"
-  }
-},
-{
-  "model": "catalog.mainimage",
-  "pk": 6,
-  "fields": {
-    "item": 6,
-    "image": "catalog/6/bf51a0b6-9970-4f2c-b130-a4c2ce656525.jpg"
+    "image": "catalog/3/f0b10a0b-ddb2-4014-a004-53e09b92e6ab.jpg"
   }
 },
 {
   "model": "catalog.galleryimage",
   "pk": 2,
   "fields": {
-    "item": 2,
-    "image": "gallery_images_item/django-logo_ER3Qs0U.png"
+    "item": 1,
+    "image": "catalog/1/1996a603-0b2c-471e-8ecc-823514065885.jpg"
   }
 },
 {
   "model": "catalog.galleryimage",
   "pk": 3,
   "fields": {
-    "item": 3,
-    "image": "gallery_images_item/django-logo_ggNdgFD.png"
-  }
-},
-{
-  "model": "catalog.galleryimage",
-  "pk": 5,
-  "fields": {
-    "item": 4,
-    "image": "catalog/4/function_uuid4_at_0x00000150D8407100-s-l1600_Pk2afcm.jpg"
-  }
-},
-{
-  "model": "catalog.galleryimage",
-  "pk": 6,
-  "fields": {
-    "item": 6,
-    "image": "catalog/6/c32eef52-5a08-401f-89bf-c239120110da.jpeg"
-  }
-},
-{
-  "model": "catalog.galleryimage",
-  "pk": 7,
-  "fields": {
-    "item": 6,
-    "image": "catalog/6/f7fcf1b3-a31d-45ba-a0db-1c692f7c8995.jpg"
+    "item": 2,
+    "image": "catalog/2/f3fae9ae-2d26-4668-a29d-8297489d427f.jpg"
   }
 }
 ]
