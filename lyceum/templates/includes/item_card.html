@@ -4,8 +4,8 @@
         <div class="card h-100 border border-primary">
             <div class="card-body">
                 <h5 class="card-title">{{ item.name }}</h5>
-                {% for tag_name in item.tag_names %}
-                  {{ tag_name }}
+                {% for tag in item.tags.all %}
+                  {{ tag.name }}
                   {% if not forloop.last %},{% endif %}
                 {% endfor %}
                 <p class="card-text">{{ item.text|truncatewords_html:10|safe }}</p>

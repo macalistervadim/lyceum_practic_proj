@@ -30,7 +30,6 @@ class ItemManager(django.db.models.Manager):
                 django.db.models.Prefetch(
                     "tags",
                     queryset=catalog.models.Tag.objects.only("name"),
-                    to_attr="tag_names",
                 ),
             )
         )
@@ -38,15 +37,11 @@ class ItemManager(django.db.models.Manager):
     def published(self):
         return (
             self.get_queryset()
-            .select_related(
-                "category",
-            )
+            .select_related("category")
             .prefetch_related(
                 django.db.models.Prefetch(
                     "tags",
-                    queryset=catalog.models.Tag.objects.filter(
-                        is_published=True,
-                    ),
+                    queryset=catalog.models.Tag.objects.only("name"),
                 ),
             )
             .only("category__name", "name", "text")
@@ -99,6 +94,7 @@ class Item(core.models.TimeStampedModel):
     updated = django.db.models.DateTimeField(
         "последнее изменение",
         auto_now=True,
+        null=True,
     )
     category = django.db.models.ForeignKey(
         Category,
