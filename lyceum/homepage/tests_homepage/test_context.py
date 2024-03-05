@@ -77,6 +77,7 @@ class HomePageContext(django.test.TestCase):
                     expected_fields = ["_state", "id", "name"]
                     if hasattr(tag, "_prefetch_related_val_item_id"):
                         expected_fields.append("_prefetch_related_val_item_id")
+                    self.assertNotIn("_prefetched_objects_cache", tag.__dict__)
                     self.assertQuerySetEqual(
                         tag.__dict__,
                         expected_fields,
