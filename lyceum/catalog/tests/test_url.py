@@ -74,5 +74,22 @@ class UrlTests(django.test.TestCase):
                     kwargs={"number": pk},
                 )
 
+    def test_new_items_view(self):
+        response = self.client.get(django.urls.reverse("catalog:new_items"))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "catalog/item_filter_date.html")
+
+    def test_friday_items_view(self):
+        response = self.client.get(django.urls.reverse("catalog:friday_items"))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "catalog/item_filter_date.html")
+
+    def test_unverified_items_view(self):
+        response = self.client.get(
+            django.urls.reverse("catalog:unverified_items"),
+        )
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "catalog/item_filter_date.html")
+
 
 __all__ = []

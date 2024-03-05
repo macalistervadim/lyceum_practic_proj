@@ -25,14 +25,23 @@ def new_items(request):
     ).values_list("id", flat=True)
     if my_ids:
         random_ids = random.sample(list(my_ids), min(len(my_ids), 5))
-        new_items = catalog.models.Item.objects.filter(id__in=random_ids).only(
-            "name", "text",
+        new_items = (
+            catalog.models.Item.objects.filter(id__in=random_ids)
+            .prefetch_related(
+                django.db.models.Prefetch(
+                    "tags",
+                    queryset=catalog.models.Tag.objects.only("name"),
+                    to_attr="tag_names",
+                ),
+            )
+            .only("name", "text", "tags__name")
         )
     else:
         new_items = []
-
     return django.shortcuts.render(
-        request, "catalog/item_filter_date.html", {"items": new_items},
+        request,
+        "catalog/item_filter_date.html",
+        {"items": new_items, "view_type": "new_items"},
     )
 
 
@@ -42,24 +51,44 @@ def friday_items(request):
     ).values_list("id", flat=True)
     if my_ids:
         random_ids = random.sample(list(my_ids), min(len(my_ids), 5))
-        new_items = catalog.models.Item.objects.filter(id__in=random_ids).only(
-            "name", "text",
+        new_items = (
+            catalog.models.Item.objects.filter(id__in=random_ids)
+            .prefetch_related(
+                django.db.models.Prefetch(
+                    "tags",
+                    queryset=catalog.models.Tag.objects.only("name"),
+                    to_attr="tag_names",
+                ),
+            )
+            .only("name", "text", "tags__name")
         )
     else:
         new_items = []
-
     return django.shortcuts.render(
-        request, "catalog/item_filter_date.html", {"items": new_items},
+        request,
+        "catalog/item_filter_date.html",
+        {"items": new_items, "view_type": "friday_items"},
     )
 
 
 def unverified_items(request):
-    unverified_items = catalog.models.Item.objects.filter(
-        created=django.db.models.F("updated"),
-    ).only("name", "text")
-
+    unverified_items = (
+        catalog.models.Item.objects.filter(
+            created=django.db.models.F("updated"),
+        )
+        .prefetch_related(
+            django.db.models.Prefetch(
+                "tags",
+                queryset=catalog.models.Tag.objects.only("name"),
+                to_attr="tag_names",
+            ),
+        )
+        .only("name", "text", "tags__name")
+    )
     return django.shortcuts.render(
-        request, "catalog/item_filter_date.html", {"items": unverified_items},
+        request,
+        "catalog/item_filter_date.html",
+        {"items": unverified_items, "view_type": "unverified_items"},
     )
 
 

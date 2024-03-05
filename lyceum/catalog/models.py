@@ -94,6 +94,7 @@ class Item(core.models.TimeStampedModel):
     created = django.db.models.DateTimeField(
         "дата создания",
         auto_now_add=True,
+        null=True,
     )
     updated = django.db.models.DateTimeField(
         "последнее изменение",
