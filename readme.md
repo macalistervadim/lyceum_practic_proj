@@ -52,20 +52,20 @@ To get started with the project, you'll need to copy the `.env.example` file and
    ```
 
 2. Open the `.env` file and set the required environment variables:
-   ```plaintext
-   # Example .env file
+    ```plaintext
+    # Example .env file
 
-   # Django secret key
-   `DJANGO_SECRET_KEY=your_secret_key_here`
-   
-   # Django debug
-   `DJANGO_DEBUG=True/False`
+    # Django secret key
+    `DJANGO_SECRET_KEY=your_secret_key_here`
+    
+    # Django debug
+    `DJANGO_DEBUG=True/False`
 
-   # DJANGO allowed hosts
-   `DJANGO_ALLOWED_HOSTS=127.0.0.1,localhost`
+    # DJANGO allowed hosts
+    `DJANGO_ALLOWED_HOSTS=127.0.0.1,localhost`
 
-   # Other environment variables...
-   ```
+    # Other environment variables...
+    ```
 
 ## Managing Translations
 
@@ -97,11 +97,18 @@ To use fixtures in your Django project, follow these steps:
 
 1. Create fixture files containing serialized data for your models. You can generate fixture files using the `dumpdata` management command:
 
+   Windows:
    ```bash
    python -Xutf8 manage.py dumpdata --indent 2 -o fixtures/data.json (or you optional dir_name)
+   ```
+   Linux:
+   ```bash
+   python3 manage.py dumpdata --indent 2 -o fixtures/data.json (or you optional dir_name)
+   ```
+   
 2. Load fixture data into your database using the loaddata management command:
    ```bash
-      python3 manage.py loaddata fixtures/data.json (or you optional dir_name)
+   python3 manage.py loaddata fixtures/data.json (or you optional dir_name)
 ## ER Diagram
 Here is a visual ER diagram of the existing project database
 
