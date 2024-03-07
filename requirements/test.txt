@@ -12,6 +12,6 @@ flake8-quotes==3.4.0
 flake8-type-ignore==0.1.0.post2
 flake8-use-pathlib==0.3.0
 flake8-builtins==2.2.0
-mccabe==0.6.1
+mccabe==0.7.0
 parameterized==0.9.0
 pep8-naming==0.13.3
