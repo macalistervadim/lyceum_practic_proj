@@ -21,7 +21,12 @@ To run the app locally, follow these steps:
 ## Database
 The project uses a ready-made database for educational purposes.
 
-To use superuser, use the following data:
+1. Perform database migrations:
+   ```
+   python3 manage.py migrate
+   ```
+
+2. To use superuser, use the following data:
 
 ```
 login: `admin`
