@@ -21,7 +21,9 @@ def new_items(request):
         "view_type": "new_items",
     }
     return django.shortcuts.render(
-        request, "catalog/item_filter_date.html", context,
+        request,
+        "catalog/item_filter_date.html",
+        context,
     )
 
 
@@ -32,7 +34,9 @@ def friday_items(request):
         "view_type": "friday_items",
     }
     return django.shortcuts.render(
-        request, "catalog/item_filter_date.html", context,
+        request,
+        "catalog/item_filter_date.html",
+        context,
     )
 
 
@@ -43,13 +47,16 @@ def unverified_items(request):
         "view_type": "unverified_items",
     }
     return django.shortcuts.render(
-        request, "catalog/item_filter_date.html", context,
+        request,
+        "catalog/item_filter_date.html",
+        context,
     )
 
 
 def item_detail(request, pk):
     item = django.shortcuts.get_object_or_404(
-        catalog.models.Item.objects_item_detail, pk=pk,
+        catalog.models.Item.objects_item_detail,
+        pk=pk,
     )
     main_image = item.mainimage if hasattr(item, "mainimage") else None
     context = {

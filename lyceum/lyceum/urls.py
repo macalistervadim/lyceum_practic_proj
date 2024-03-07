@@ -11,7 +11,9 @@ urlpatterns = [
     django.urls.path("download/", django.urls.include("download.urls")),
     django.urls.path("tinymce/", django.urls.include("tinymce.urls")),
     django.urls.path(
-        "set-language/", django.views.i18n.set_language, name="set_language",
+        "set-language/",
+        django.views.i18n.set_language,
+        name="set_language",
     ),
 ]
 

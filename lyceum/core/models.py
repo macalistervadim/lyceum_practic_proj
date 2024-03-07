@@ -62,7 +62,9 @@ class TimeStampedModel(django.db.models.Model):
     def _formatting_value(self):
         try:
             transliterated_name = transliterate.translit(
-                self.name.lower(), "ru", reversed=True,
+                self.name.lower(),
+                "ru",
+                reversed=True,
             )
         except transliterate.exceptions.LanguageDetectionError:
             transliterated_name = self.name.lower()
@@ -74,7 +76,8 @@ class TimeStampedModel(django.db.models.Model):
 
         for char, replacement in char_replace_dict.items():
             transliterated_name = transliterated_name.replace(
-                char, replacement,
+                char,
+                replacement,
             )
 
         return ONLY_LETTERS_REGEX.sub("", transliterated_name)

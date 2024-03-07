@@ -22,12 +22,12 @@ To run the app locally, follow these steps:
 The project uses a ready-made database for educational purposes.
 
 1. Perform database migrations:
-   ```
-   python3 manage.py migrate
-   ```
+
+```
+python3 manage.py migrate
+```
 
 2. To use superuser, use the following data:
-
 ```
 login: `admin`
 password: `admin`
@@ -43,29 +43,29 @@ To get started with the project, you'll need to copy the `.env.example` file and
 1. Copy the `.env.example` file:
    
    Linux:
-    ```bash
-    cp .env.example .env
-    ```
+   ```bash
+   cp .env.example .env
+   ```
    Windows:
    ```cmd
-    copy .env.example .env
-    ```
+   copy .env.example .env
+   ```
 
 2. Open the `.env` file and set the required environment variables:
-    ```plaintext
-    # Example .env file
+   ```plaintext
+   # Example .env file
 
-    # Django secret key
-    `DJANGO_SECRET_KEY=your_secret_key_here`
-    
-    # Django debug
-    `DJANGO_DEBUG=True/False`
+   # Django secret key
+   `DJANGO_SECRET_KEY=your_secret_key_here`
+   
+   # Django debug
+   `DJANGO_DEBUG=True/False`
 
-    # DJANGO allowed hosts
-    `DJANGO_ALLOWED_HOSTS=127.0.0.1,localhost`
+   # DJANGO allowed hosts
+   `DJANGO_ALLOWED_HOSTS=127.0.0.1,localhost`
 
-    # Other environment variables...
-    ```
+   # Other environment variables...
+   ```
 
 ## Managing Translations
 

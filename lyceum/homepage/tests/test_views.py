@@ -66,7 +66,9 @@ class HomePageContext(django.test.TestCase):
         response = self.client.get(url)
         items = response.context["items"]
         self.assertEqual(
-            len(items), 1, msg="Expected exactly 1 item in 'items' context",
+            len(items),
+            1,
+            msg="Expected exactly 1 item in 'items' context",
         )
 
     def test_fields_item_main(self):
@@ -76,7 +78,7 @@ class HomePageContext(django.test.TestCase):
                 field_name,
                 response.context["items"].first().__dict__,
                 msg=f"Field '{field_name}' found in Item instance, "
-                    "but should be ignored",
+                "but should be ignored",
             )
 
     def test_fields_tags_main(self):
@@ -93,7 +95,7 @@ class HomePageContext(django.test.TestCase):
                         "_prefetched_objects_cache",
                         tag.__dict__,
                         msg="Unexpected '_prefetched_objects_cache' "
-                            "attribute in Tag instance",
+                        "attribute in Tag instance",
                     )
                     self.assertQuerySetEqual(
                         tag.__dict__,

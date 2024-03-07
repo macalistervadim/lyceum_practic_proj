@@ -250,7 +250,8 @@ class TestOtherNormalizedNames(django.test.TestCase):
 
         with self.assertRaises(Exception):
             catalog.models.Category.objects.create(
-                name=name2, normalized_name=normalized_name,
+                name=name2,
+                normalized_name=normalized_name,
             )
 
 

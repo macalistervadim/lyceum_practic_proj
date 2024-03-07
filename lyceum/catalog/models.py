@@ -65,7 +65,8 @@ class ItemManager(django.db.models.Manager):
     def get_new_items(self):
         week_ago = django.utils.timezone.now() - datetime.timedelta(days=6)
         my_ids = self.filter(created__gte=week_ago).values_list(
-            "id", flat=True,
+            "id",
+            flat=True,
         )
         random_ids = random.sample(list(my_ids), min(len(my_ids), 5))
         return (
@@ -228,8 +229,10 @@ class Item(core.models.TimeStampedModel):
                 "роскошно",
             ),
         ],
-        help_text=("Введите сообщение с содержанием следующих слов: "
-                   "превосходно/роскошно"),
+        help_text=(
+            "Введите сообщение с содержанием следующих слов: "
+            "превосходно/роскошно"
+        ),
     )
     is_on_main = django.db.models.BooleanField(
         "для главной",

@@ -34,7 +34,8 @@ class UrlTests(django.test.TestCase):
         try:
             if isinstance(pk, int):
                 url = django.urls.reverse(
-                    "catalog:item_detail", kwargs={"pk": pk},
+                    "catalog:item_detail",
+                    kwargs={"pk": pk},
                 )
                 response = self.client.get(url)
                 if response.status_code == http.HTTPStatus.OK:

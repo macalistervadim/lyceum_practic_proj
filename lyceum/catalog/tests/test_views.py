@@ -49,7 +49,9 @@ class ItemViewTest(django.test.TestCase):
         response = self.client.get(url)
         items = response.context["items"]
         self.assertEqual(
-            len(items), 1, msg="Expected exactly 1 item in 'items' context",
+            len(items),
+            1,
+            msg="Expected exactly 1 item in 'items' context",
         )
         for item in items:
             self.assertIsInstance(
@@ -65,8 +67,9 @@ class ItemViewTest(django.test.TestCase):
         )
         response = self.client.get(url)
         self.assertIn(
-            "item", response.context, msg="Expected 'item' "
-                                          "in response context",
+            "item",
+            response.context,
+            msg="Expected 'item' " "in response context",
         )
 
         item = response.context["item"]
@@ -76,7 +79,9 @@ class ItemViewTest(django.test.TestCase):
             msg="Expected 'Item' instance in 'item' context",
         )
         self.assertEqual(
-            item.name, "Опублик. товар", msg="Unexpected item name in context",
+            item.name,
+            "Опублик. товар",
+            msg="Unexpected item name in context",
         )
 
     def test_fields_item_published(self):
@@ -86,7 +91,7 @@ class ItemViewTest(django.test.TestCase):
                 field_name,
                 response.context["items"].first().__dict__,
                 msg=f"Field '{field_name}' found in Item instance, "
-                    "but should be ignored",
+                "but should be ignored",
             )
 
     def test_fields_tags_published(self):
@@ -103,7 +108,7 @@ class ItemViewTest(django.test.TestCase):
                         "_prefetched_objects_cache",
                         tag.__dict__,
                         msg="Unexpected '_prefetched_objects_cache' "
-                            "attribute in Tag instance",
+                        "attribute in Tag instance",
                     )
                     self.assertQuerySetEqual(
                         tag.__dict__,
