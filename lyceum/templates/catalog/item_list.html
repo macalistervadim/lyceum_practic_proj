@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 {% extends 'base.html' %}
 {% load i18n %}
 
@@ -8,11 +9,11 @@
 <hr>
 
 {% for item in items %}
-    {% ifchanged item.category.name %}
-        <h3>{{ item.category.name }}</h3>
-    {% endifchanged %}
-    <div class="row">
-        {% include 'includes/item_card.html' %}
-    </div>
+  {% ifchanged item.category.name %}
+      <h3>{{ item.category.name }}</h3>
+  {% endifchanged %}
+  <div class="row">
+      {% include 'includes/item_card.html' %}
+  </div>
 {% endfor %}
 {% endblock %}

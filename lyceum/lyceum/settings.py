@@ -1,4 +1,3 @@
-import os
 import pathlib
 
 import django.utils.translation
@@ -8,7 +7,7 @@ BASE_DIR = pathlib.Path(__file__).resolve().parent.parent
 
 env = environ.Env(DEBUG=(bool, False))
 
-env.read_env(os.path.join(BASE_DIR, ".env"))
+env.read_env(BASE_DIR / ".env")
 
 SECRET_KEY = env("DJANGO_SECRET_KEY", default="key")
 
@@ -27,8 +26,8 @@ INSTALLED_APPS = [
     "core.apps.CoreConfig",
     "about.apps.AboutConfig",
     "catalog.apps.CatalogConfig",
-    "homepage.apps.HomepageConfig",
     "download.apps.DownloadConfig",
+    "homepage.apps.HomepageConfig",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -36,12 +35,13 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "sorl.thumbnail",
-    "django_cleanup.apps.CleanupConfig",
     "tinymce",
+    "django_cleanup.apps.CleanupConfig",
 ]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -51,7 +51,16 @@ MIDDLEWARE = [
     "django.middleware.locale.LocaleMiddleware",
 ]
 
+if DEBUG:
+    INSTALLED_APPS.append(
+        "debug_toolbar",
+    )
+    MIDDLEWARE.insert(0, "debug_toolbar.middleware.DebugToolbarMiddleware")
+    INTERNAL_IPS = ["127.0.0.1", "localhost"]
+
 ROOT_URLCONF = "lyceum.urls"
+
+TEMPLATES_DIRS = BASE_DIR / "templates"
 
 TEMPLATES = [
     {
@@ -80,20 +89,20 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        "NAME": "django.contrib.auth.password_validation."
-        "UserAttributeSimilarityValidator",
+        "NAME": "django.contrib.auth.password_validation"
+        ".UserAttributeSimilarityValidator",
     },
     {
-        "NAME": "django.contrib.auth.password_validation."
-        "MinimumLengthValidator",
+        "NAME": "django.contrib.auth.password_validation"
+        ".MinimumLengthValidator",
     },
     {
-        "NAME": "django.contrib.auth.password_validation."
-        "CommonPasswordValidator",
+        "NAME": "django.contrib.auth.password_validation"
+        ".CommonPasswordValidator",
     },
     {
-        "NAME": "django.contrib.auth.password_validation."
-        "NumericPasswordValidator",
+        "NAME": "django.contrib.auth.password_validation"
+        ".NumericPasswordValidator",
     },
 ]
 
@@ -116,17 +125,11 @@ USE_L10N = True
 
 USE_TZ = True
 
-STATIC_URL = "/static/"
+STATIC_URL = "static/"
+STATICFILES_DIRS = [BASE_DIR / "static_dev"]
+STATIC_ROOT = BASE_DIR / "static"
 
 MEDIA_ROOT = BASE_DIR / "media"
 MEDIA_URL = "/media/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-
-if DEBUG:
-    STATICFILES_DIRS = [BASE_DIR / "static_dev"]
-    INSTALLED_APPS.append(
-        "debug_toolbar",
-    )
-    MIDDLEWARE.insert(0, "debug_toolbar.middleware.DebugToolbarMiddleware")
-    INTERNAL_IPS = ["127.0.0.1", "localhost"]

@@ -1,31 +1,32 @@
+
 {% extends "base.html" %}
 {% load i18n %}
 
 {% block title %}
-    {% if view_type == "new_items" %}
-        {% trans "Новинки" %}
-    {% elif view_type == "friday_items" %}
-        {% trans "Пятница" %}
-    {% elif view_type == "unverified_items" %}
-        {% trans "Непроверенное" %}
-    {% endif %}
+{% if view_type == "new_items" %}
+    {% trans "Новинки" %}
+{% elif view_type == "friday_items" %}
+    {% trans "Пятница" %}
+{% elif view_type == "unverified_items" %}
+    {% trans "Непроверенное" %}
+{% endif %}
 {% endblock %}
 
 {% block content %}
 <h2>
-    {% if view_type == "new_items" %}
-        {% trans "Новинки" %}
-    {% elif view_type == "friday_items" %}
-        {% trans "Пятница" %}
-    {% elif view_type == "unverified_items" %}
-        {% trans "Непроверенное" %}
-    {% endif %}
+{% if view_type == "new_items" %}
+    {% trans "Новинки" %}
+{% elif view_type == "friday_items" %}
+    {% trans "Пятница" %}
+{% elif view_type == "unverified_items" %}
+    {% trans "Непроверенное" %}
+{% endif %}
 </h2>
 <hr>
 
 {% for item in items %}
-    <div class="row">
-        {% include "includes/item_card.html" %}
-    </div>
+<div class="row">
+    {% include "includes/item_card.html" %}
+</div>
 {% endfor %}
 {% endblock %}

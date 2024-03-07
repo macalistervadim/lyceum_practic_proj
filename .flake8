@@ -1,6 +1,6 @@
 [flake8]
-application_import_names = homepage, about, catalog, lyceum, core, download
+application_import_names = about, catalog, core, download, homepage, lyceum
 inline-quotes = double
-exclude = migrations, .git, venv, __pycache__
+exclude = .git, __pycache__, migrations, venv
 import-order-style = google
 max-line-lenght = 79

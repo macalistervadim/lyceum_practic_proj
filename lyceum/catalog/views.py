@@ -1,6 +1,3 @@
-import datetime
-import random
-
 import django.db
 import django.http
 import django.shortcuts
@@ -11,7 +8,6 @@ import catalog.models
 
 def item_list(request):
     items = catalog.models.Item.objects.published()
-
     context = {
         "items": items,
     }
@@ -19,100 +15,41 @@ def item_list(request):
 
 
 def new_items(request):
-    week_ago = django.utils.timezone.now() - datetime.timedelta(days=6)
-    my_ids = catalog.models.Item.objects.filter(
-        created__gte=week_ago,
-    ).values_list("id", flat=True)
-    if my_ids:
-        random_ids = random.sample(list(my_ids), min(len(my_ids), 5))
-        new_items = (
-            catalog.models.Item.objects.filter(id__in=random_ids)
-            .prefetch_related(
-                django.db.models.Prefetch(
-                    "tags",
-                    queryset=catalog.models.Tag.objects.only("name"),
-                    to_attr="tag_names",
-                ),
-            )
-            .only("name", "text", "tags__name")
-        )
-    else:
-        new_items = []
+    new_items = catalog.models.Item.objects.get_new_items()
+    context = {
+        "items": new_items,
+        "view_type": "new_items",
+    }
     return django.shortcuts.render(
-        request,
-        "catalog/item_filter_date.html",
-        {"items": new_items, "view_type": "new_items"},
+        request, "catalog/item_filter_date.html", context,
     )
 
 
 def friday_items(request):
-    my_ids = catalog.models.Item.objects.filter(
-        updated__week_day=5,
-    ).values_list("id", flat=True)
-    if my_ids:
-        random_ids = random.sample(list(my_ids), min(len(my_ids), 5))
-        new_items = (
-            catalog.models.Item.objects.filter(id__in=random_ids)
-            .prefetch_related(
-                django.db.models.Prefetch(
-                    "tags",
-                    queryset=catalog.models.Tag.objects.only("name"),
-                    to_attr="tag_names",
-                ),
-            )
-            .only("name", "text", "tags__name")
-        )
-    else:
-        new_items = []
+    friday_items = catalog.models.Item.objects.get_friday_items()
+    context = {
+        "items": friday_items,
+        "view_type": "friday_items",
+    }
     return django.shortcuts.render(
-        request,
-        "catalog/item_filter_date.html",
-        {"items": new_items, "view_type": "friday_items"},
+        request, "catalog/item_filter_date.html", context,
     )
 
 
 def unverified_items(request):
-    unverified_items = (
-        catalog.models.Item.objects.filter(
-            created=django.db.models.F("updated"),
-        )
-        .prefetch_related(
-            django.db.models.Prefetch(
-                "tags",
-                queryset=catalog.models.Tag.objects.only("name"),
-                to_attr="tag_names",
-            ),
-        )
-        .only("name", "text", "tags__name")
-    )
+    unverified_items = catalog.models.Item.objects.get_unverified_items()
+    context = {
+        "items": unverified_items,
+        "view_type": "unverified_items",
+    }
     return django.shortcuts.render(
-        request,
-        "catalog/item_filter_date.html",
-        {"items": unverified_items, "view_type": "unverified_items"},
+        request, "catalog/item_filter_date.html", context,
     )
 
 
 def item_detail(request, pk):
     item = django.shortcuts.get_object_or_404(
-        (
-            catalog.models.Item.objects.select_related(
-                "category",
-                "mainimage",
-            )
-            .prefetch_related(
-                django.db.models.Prefetch(
-                    "tags",
-                    queryset=catalog.models.Tag.objects.only("name").filter(
-                        is_published=True,
-                    ),
-                ),
-                "gallery_images",
-            )
-            .only("category__name", "mainimage__image", "name", "text")
-        ),
-        pk=pk,
-        category__is_published=True,
-        is_published=True,
+        catalog.models.Item.objects_item_detail, pk=pk,
     )
     main_image = item.mainimage if hasattr(item, "mainimage") else None
     context = {
@@ -120,14 +57,6 @@ def item_detail(request, pk):
         "main_image": main_image,
     }
     return django.shortcuts.render(request, "catalog/item.html", context)
-
-
-def catalog_regex(request, number):
-    return django.http.HttpResponse(f"<body>{number}</body>")
-
-
-def catalog_converter(request, number):
-    return django.http.HttpResponse(f"<body>{number}</body>")
 
 
 __all__ = []

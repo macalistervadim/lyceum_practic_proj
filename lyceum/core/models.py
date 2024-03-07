@@ -7,14 +7,15 @@ import django.utils.html
 import sorl.thumbnail
 import transliterate
 
-ONLY_LETTERS_REGEX = re.compile(r"[^\w]")
+
+ONLY_LETTERS_REGEX = re.compile(r"[^a-z0-9]")
 
 
 class TimeStampedModel(django.db.models.Model):
     name = django.db.models.CharField(
         "название",
         max_length=150,
-        help_text="Введите название",
+        help_text="Введите название, максимальная длинна - 150",
         unique=True,
     )
     is_published = django.db.models.BooleanField(
@@ -35,12 +36,6 @@ class TimeStampedModel(django.db.models.Model):
     def __str__(self):
         return self.name[:15]
 
-    @staticmethod
-    @django.dispatch.receiver(django.db.models.signals.pre_save)
-    def pre_save_handler(sender, instance, **kwargs):
-        if issubclass(sender, TimeStampedModel):
-            instance.normalized_name = instance._formatting_value()
-
     def save(self, *args, **kwargs):
         if not self.pk:
             self.normalized_name = self._formatting_value()
@@ -58,19 +53,31 @@ class TimeStampedModel(django.db.models.Model):
                 "Похожее имя есть в базе данных",
             )
 
+    @staticmethod
+    @django.dispatch.receiver(django.db.models.signals.pre_save)
+    def pre_save_handler(sender, instance, **kwargs):
+        if issubclass(sender, TimeStampedModel):
+            instance.normalized_name = instance._formatting_value()
+
     def _formatting_value(self):
         try:
-            transliterated = transliterate.translit(
-                self.name.lower(),
-                reversed=True,
+            transliterated_name = transliterate.translit(
+                self.name.lower(), "ru", reversed=True,
             )
         except transliterate.exceptions.LanguageDetectionError:
-            transliterated = self.name.lower()
+            transliterated_name = self.name.lower()
 
-        return ONLY_LETTERS_REGEX.sub(
-            "",
-            transliterated,
-        )
+        char_replace_dict = {
+            "v": "b",
+            "p": "r",
+        }
+
+        for char, replacement in char_replace_dict.items():
+            transliterated_name = transliterated_name.replace(
+                char, replacement,
+            )
+
+        return ONLY_LETTERS_REGEX.sub("", transliterated_name)
 
 
 class AbstractModelImage(django.db.models.Model):

@@ -13,7 +13,7 @@ flake8:
 
 black:
   stage: black
-  image: python:3.12
+  image: registry.gitlab.com/pipeline-components/black:latest
   script:
     - pip install black
     - black --config pyproject.toml .
@@ -23,9 +23,10 @@ test:
   stage: test
   image: python:3.12
   script:
-    - python -m venv venv
-    - source venv/bin/activate
+    - python -m venv $CI_PROJECT_DIR/venv
+    - source $CI_PROJECT_DIR/venv/bin/activate
     - pip install -r requirements/prod.txt -r requirements/test.txt
-    - cd lyceum
+    - cd $CI_PROJECT_DIR/lyceum
     - python manage.py test
     - deactivate
+    - rm -rf $CI_PROJECT_DIR/venv

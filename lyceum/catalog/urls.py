@@ -6,7 +6,7 @@ app_name = "catalog"
 
 
 class PositiveIntegerConverter:
-    regex = r"\d+"
+    regex = r"\d*[1-9]\d*"
 
     def to_python(self, value):
         number = int(value)
@@ -28,24 +28,28 @@ urlpatterns = [
         catalog.views.item_detail,
         name="item_detail",
     ),
+    django.urls.path(
+        "converter-item/<positive_int:number>/",
+        catalog.views.item_detail,
+        name="catalog_converter",
+    ),
     django.urls.re_path(
-        r"^re/(?P<number>\d+)/$",
-        catalog.views.catalog_regex,
+        r"^re/(?P<number>\d*[1-9]\d*)/$",
+        catalog.views.item_detail,
         name="catalog_regex",
     ),
     django.urls.path(
-        "converter/<positive_int:number>/",
-        catalog.views.catalog_converter,
-        name="catalog_converter",
-    ),
-    django.urls.path("new/", catalog.views.new_items, name="new_items"),
-    django.urls.path(
-        "friday/",
+        "friday-items/",
         catalog.views.friday_items,
         name="friday_items",
     ),
     django.urls.path(
-        "unverified/",
+        "new-items/",
+        catalog.views.new_items,
+        name="new_items",
+    ),
+    django.urls.path(
+        "unverified-items/",
         catalog.views.unverified_items,
         name="unverified_items",
     ),

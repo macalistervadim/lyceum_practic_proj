@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 {% extends 'base.html' %}
 
 {% load i18n %}
@@ -14,9 +15,9 @@
 <hr>
 
 {% for item in items %}
-    <div class="row">
-        {% include 'includes/item_card.html' %}
-    </div>
+  <div class="row">
+      {% include 'includes/item_card.html' %}
+  </div>
 {% endfor %}
 
 {% endblock %}

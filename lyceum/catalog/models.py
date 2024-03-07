@@ -1,12 +1,13 @@
+import datetime
 import pathlib
+import random
 import uuid
 
 import django.contrib
 import django.core.exceptions
 import django.core.validators
 import django.db
-import django.utils.html
-import django.utils.translation
+import django.utils
 import tinymce.models
 
 import catalog.validators
@@ -24,12 +25,18 @@ class ItemManager(django.db.models.Manager):
         return (
             self.get_queryset()
             .filter(is_on_main=True)
-            .only("name", "text", "category__name")
-            .select_related("category")
+            .only(
+                catalog.models.Item.name.field.name,
+                catalog.models.Item.text.field.name,
+                catalog.models.Item.category.field.name + "__name",
+            )
+            .select_related(catalog.models.Item.category.field.name)
             .prefetch_related(
                 django.db.models.Prefetch(
-                    "tags",
-                    queryset=catalog.models.Tag.objects.only("name"),
+                    catalog.models.Item.tags.field.name,
+                    queryset=catalog.models.Tag.objects.only(
+                        catalog.models.Tag.name.field.name,
+                    ),
                 ),
             )
         )
@@ -37,16 +44,116 @@ class ItemManager(django.db.models.Manager):
     def published(self):
         return (
             self.get_queryset()
-            .select_related("category")
+            .select_related(catalog.models.Item.category.field.name)
             .prefetch_related(
                 django.db.models.Prefetch(
-                    "tags",
-                    queryset=catalog.models.Tag.objects.only("name"),
+                    catalog.models.Item.tags.field.name,
+                    queryset=catalog.models.Tag.objects.only(
+                        catalog.models.Tag.name.field.name,
+                    ),
                 ),
             )
-            .only("category__name", "name", "text")
+            .only(
+                catalog.models.Item.category.field.name + "__name",
+                catalog.models.Item.name.field.name,
+                catalog.models.Item.text.field.name,
+            )
             .filter(category__is_published=True, is_published=True)
-            .order_by("category__name")
+            .order_by(catalog.models.Item.category.field.name + "__name")
+        )
+
+    def get_new_items(self):
+        week_ago = django.utils.timezone.now() - datetime.timedelta(days=6)
+        my_ids = self.filter(created__gte=week_ago).values_list(
+            "id", flat=True,
+        )
+        random_ids = random.sample(list(my_ids), min(len(my_ids), 5))
+        return (
+            self.get_queryset()
+            .filter(id__in=random_ids)
+            .prefetch_related(
+                django.db.models.Prefetch(
+                    catalog.models.Item.tags.field.name,
+                    queryset=catalog.models.Tag.objects.only(
+                        catalog.models.Tag.name.field.name,
+                    ),
+                ),
+            )
+            .only(
+                catalog.models.Item.name.field.name,
+                catalog.models.Item.text.field.name,
+                catalog.models.Tag.name.field.name,
+            )
+        )
+
+    def get_friday_items(self):
+        my_ids = self.filter(updated__week_day=4).values_list("id", flat=True)
+        random_ids = random.sample(list(my_ids), min(len(my_ids), 5))
+        return (
+            self.get_queryset()
+            .filter(id__in=random_ids)
+            .prefetch_related(
+                django.db.models.Prefetch(
+                    catalog.models.Item.tags.field.name,
+                    queryset=catalog.models.Tag.objects.only(
+                        catalog.models.Tag.name.field.name,
+                    ),
+                ),
+            )
+            .only(
+                catalog.models.Item.name.field.name,
+                catalog.models.Item.text.field.name,
+                catalog.models.Tag.name.field.name,
+            )
+        )
+
+    def get_unverified_items(self):
+        return (
+            self.get_queryset()
+            .filter(
+                created=django.db.models.F(
+                    catalog.models.Item.updated.field.name,
+                ),
+            )
+            .prefetch_related(
+                django.db.models.Prefetch(
+                    catalog.models.Item.tags.field.name,
+                    queryset=catalog.models.Tag.objects.only(
+                        catalog.models.Tag.name.field.name,
+                    ),
+                ),
+            )
+            .only(
+                catalog.models.Item.name.field.name,
+                catalog.models.Item.text.field.name,
+                catalog.models.Tag.name.field.name,
+            )
+        )
+
+
+class ItemManagerItemDetail(django.db.models.Manager):
+    def item_detail(self):
+        return (
+            self.get_queryset()
+            .select_related(
+                catalog.models.Item.category.field.name,
+                catalog.models.MainImage.image.field.name,
+            )
+            .only(
+                catalog.models.Item.category.field.name + "__name",
+                catalog.models.MainImage.image.field.name,
+                catalog.models.Item.name.field.name,
+                catalog.models.Item.text.field.name,
+            )
+            .prefetch_related(
+                django.db.models.Prefetch(
+                    catalog.models.Item.tags.field.name,
+                    queryset=catalog.models.Tag.objects.only(
+                        catalog.models.Tag.name.field.name,
+                    ).filter(is_published=True),
+                ),
+                catalog.models.GalleryImages.image.field.name,
+            )
         )
 
 
@@ -54,10 +161,11 @@ class Tag(core.models.TimeStampedModel):
     slug = django.db.models.SlugField(
         "слаг",
         max_length=200,
-        help_text="Введите слаг для тэга",
+        help_text="Введите слаг для тэга, максимальная длинна - 200",
     )
 
     class Meta:
+        ordering = ("name",)
         verbose_name = "тег"
         verbose_name_plural = "теги"
 
@@ -66,7 +174,7 @@ class Category(core.models.TimeStampedModel):
     slug = django.db.models.SlugField(
         "слаг",
         max_length=200,
-        help_text="Введите слаг для категории",
+        help_text="Введите слаг для тэга, максимальная длинна - 200",
     )
     weight = django.db.models.IntegerField(
         "вес",
@@ -75,16 +183,18 @@ class Category(core.models.TimeStampedModel):
             django.core.validators.MinValueValidator(1),
             django.core.validators.MaxValueValidator(32767),
         ],
-        help_text="Введите вес",
+        help_text="Введите вес (от 1 до 32767)",
     )
 
     class Meta:
+        ordering = ("name",)
         verbose_name = "категория"
         verbose_name_plural = "категории"
 
 
 class Item(core.models.TimeStampedModel):
     objects = ItemManager()
+    objects_item_detail = ItemManagerItemDetail()
 
     created = django.db.models.DateTimeField(
         "дата создания",
@@ -118,7 +228,8 @@ class Item(core.models.TimeStampedModel):
                 "роскошно",
             ),
         ],
-        help_text="Введите сообщение",
+        help_text=("Введите сообщение с содержанием следующих слов: "
+                   "превосходно/роскошно"),
     )
     is_on_main = django.db.models.BooleanField(
         "для главной",
@@ -139,7 +250,7 @@ class MainImage(core.models.AbstractModelImage):
     image = django.db.models.ImageField(
         "главное изображение",
         upload_to=item_directory_path,
-        help_text="будет приведено к размеру 300x300",
+        help_text="Будет приведено к размеру 300x300",
     )
 
 
@@ -153,7 +264,7 @@ class GalleryImage(core.models.AbstractModelImage):
     image = django.db.models.ImageField(
         "изображения",
         upload_to=item_directory_path,
-        help_text="будет приведено к размеру 300x300",
+        help_text="Будет приведено к размеру 300x300",
     )
 
 
