@@ -55,7 +55,7 @@ def unverified_items(request):
 
 def item_detail(request, pk):
     item = django.shortcuts.get_object_or_404(
-        catalog.models.Item.objects_item_detail,
+        catalog.models.Item.objects.item_detail(),
         pk=pk,
     )
     main_image = item.mainimage if hasattr(item, "mainimage") else None

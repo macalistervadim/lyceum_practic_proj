@@ -131,20 +131,12 @@ class ItemManager(django.db.models.Manager):
             )
         )
 
-
-class ItemManagerItemDetail(django.db.models.Manager):
     def item_detail(self):
         return (
             self.get_queryset()
             .select_related(
                 catalog.models.Item.category.field.name,
-                catalog.models.MainImage.image.field.name,
-            )
-            .only(
-                catalog.models.Item.category.field.name + "__name",
-                catalog.models.MainImage.image.field.name,
-                catalog.models.Item.name.field.name,
-                catalog.models.Item.text.field.name,
+                "mainimage",
             )
             .prefetch_related(
                 django.db.models.Prefetch(
@@ -153,7 +145,16 @@ class ItemManagerItemDetail(django.db.models.Manager):
                         catalog.models.Tag.name.field.name,
                     ).filter(is_published=True),
                 ),
-                catalog.models.GalleryImages.image.field.name,
+                django.db.models.Prefetch(
+                    "gallery_images",
+                    queryset=catalog.models.GalleryImage.objects.only("image"),
+                ),
+            )
+            .only(
+                catalog.models.Item.category.field.name + "__name",
+                "mainimage",
+                catalog.models.Item.name.field.name,
+                catalog.models.Item.text.field.name,
             )
         )
 
@@ -195,7 +196,6 @@ class Category(core.models.TimeStampedModel):
 
 class Item(core.models.TimeStampedModel):
     objects = ItemManager()
-    objects_item_detail = ItemManagerItemDetail()
 
     created = django.db.models.DateTimeField(
         "дата создания",
