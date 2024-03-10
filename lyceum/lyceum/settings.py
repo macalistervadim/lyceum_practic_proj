@@ -20,7 +20,7 @@ DEBUG = load_bool("DJANGO_DEBUG", default=False)
 
 DJANGO_ALLOW_REVERSE = load_bool("DJANGO_ALLOW_REVERSE", default=False)
 
-ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", default=["*"]).split(",")
+ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", default="*").split(",")
 
 INSTALLED_APPS = [
     "about.apps.AboutConfig",
