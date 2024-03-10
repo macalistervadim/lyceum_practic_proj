@@ -105,14 +105,36 @@
   }
 },
 {
+  "model": "catalog.category",
+  "pk": 6,
+  "fields": {
+    "name": "Вот корги!",
+    "is_published": true,
+    "normalized_name": "votkorgi",
+    "slug": "dsfsfdsfd",
+    "weight": 100
+  }
+},
+{
+  "model": "catalog.category",
+  "pk": 7,
+  "fields": {
+    "name": "bot-kop-Ги",
+    "is_published": true,
+    "normalized_name": "botkopgi",
+    "slug": "fds",
+    "weight": 100
+  }
+},
+{
   "model": "catalog.item",
   "pk": 1,
   "fields": {
     "name": "ыв123",
     "is_published": true,
-    "normalized_name": "yv123",
+    "normalized_name": "yb123",
     "created": "2024-03-05T12:31:38.442Z",
-    "updated": "2024-03-05T12:31:38.448Z",
+    "updated": "2024-03-10T05:43:17.286Z",
     "category": 5,
     "text": "<p style=\"text-align: right;\">роскошно</p>",
     "is_on_main": true,
@@ -129,9 +151,9 @@
   "fields": {
     "name": "ывааываы",
     "is_published": true,
-    "normalized_name": "yvaayvay",
+    "normalized_name": "ybaaybay",
     "created": "2024-03-05T12:52:57.483Z",
-    "updated": "2024-03-05T13:26:03.069Z",
+    "updated": "2024-03-10T05:43:17.289Z",
     "category": 1,
     "text": "<p>роскошно</p>",
     "is_on_main": true,
@@ -146,12 +168,12 @@
   "fields": {
     "name": "ыва",
     "is_published": true,
-    "normalized_name": "yva",
+    "normalized_name": "yba",
     "created": "2024-03-05T12:53:10.112Z",
-    "updated": "2024-03-05T12:53:10.112Z",
+    "updated": "2024-03-10T05:43:17.287Z",
     "category": 5,
     "text": "<p>роскошно</p>",
-    "is_on_main": false,
+    "is_on_main": true,
     "tags": [
       3
     ]
@@ -163,12 +185,12 @@
   "fields": {
     "name": "рпопро",
     "is_published": true,
-    "normalized_name": "rpopro",
+    "normalized_name": "rrorro",
     "created": "2024-03-05T12:53:18.157Z",
-    "updated": "2024-03-05T12:53:18.157Z",
+    "updated": "2024-03-10T05:43:17.284Z",
     "category": 1,
     "text": "<p>роскошно</p>",
-    "is_on_main": false,
+    "is_on_main": true,
     "tags": [
       4
     ]
@@ -182,7 +204,7 @@
     "is_published": true,
     "normalized_name": "olrromsi",
     "created": "2024-03-05T12:53:28.727Z",
-    "updated": "2024-03-05T12:53:28.727Z",
+    "updated": "2024-03-10T05:43:17.282Z",
     "category": 4,
     "text": "<p>роскошно</p>",
     "is_on_main": true,
@@ -199,9 +221,9 @@
   "fields": {
     "name": "рпопропро",
     "is_published": true,
-    "normalized_name": "rpopropro",
+    "normalized_name": "rrorrorro",
     "created": "2024-03-08T13:09:56.196Z",
-    "updated": "2024-03-08T13:09:56.196Z",
+    "updated": "2024-03-10T05:43:17.284Z",
     "category": 2,
     "text": "<p>роскошно</p>",
     "is_on_main": true,
@@ -209,8 +231,25 @@
       1,
       2,
       3,
-      4,
-      5
+      4
+    ]
+  }
+},
+{
+  "model": "catalog.item",
+  "pk": 7,
+  "fields": {
+    "name": "шщяэыь",
+    "is_published": true,
+    "normalized_name": "shschjaey",
+    "created": "2024-03-08T05:28:44.271Z",
+    "updated": "2024-03-10T05:43:17.285Z",
+    "category": 4,
+    "text": "<p>роскошно</p>",
+    "is_on_main": true,
+    "tags": [
+      2,
+      3
     ]
   }
 },
@@ -231,6 +270,14 @@
   }
 },
 {
+  "model": "catalog.mainimage",
+  "pk": 5,
+  "fields": {
+    "item": 7,
+    "image": "catalog/7/c943198c-3b55-4c5e-ad41-e9e22df36976.jpg"
+  }
+},
+{
   "model": "catalog.galleryimage",
   "pk": 2,
   "fields": {
@@ -244,6 +291,30 @@
   "fields": {
     "item": 2,
     "image": "catalog/2/f3fae9ae-2d26-4668-a29d-8297489d427f.jpg"
+  }
+},
+{
+  "model": "catalog.galleryimage",
+  "pk": 4,
+  "fields": {
+    "item": 7,
+    "image": "catalog/7/b6ca9aa5-c170-4f6b-a9dd-1fc49d7092e6.jpg"
+  }
+},
+{
+  "model": "catalog.galleryimage",
+  "pk": 5,
+  "fields": {
+    "item": 7,
+    "image": "catalog/7/aca861b0-6f17-4e88-bd3c-634d76b47837.jpg"
+  }
+},
+{
+  "model": "catalog.galleryimage",
+  "pk": 6,
+  "fields": {
+    "item": 7,
+    "image": "catalog/7/7fc05bef-295a-4f15-84f8-2b074edbaae0.jpeg"
   }
 }
 ]

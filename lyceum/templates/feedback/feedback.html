@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+
+{% load i18n %}
+{% load static %}
+
+{% block title %}{% trans 'Обратная связь' %}{% endblock %}
+
+{% block content %}
+{% if messages %}
+    <div class="alert alert-info" role="alert">
+        <ul class="list-unstyled mb-0">
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}
+<h1>{% trans 'Форма обратной связи для психически неуравновешанных страдальцев джанги' %}</h1>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Отправить</button>
+</form>
+{% endblock %}

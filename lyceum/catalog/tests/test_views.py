@@ -69,7 +69,7 @@ class ItemViewTest(django.test.TestCase):
         self.assertIn(
             "item",
             response.context,
-            msg="Expected 'item' " "in response context",
+            msg="Expected 'item' in response context",
         )
 
         item = response.context["item"]
@@ -104,12 +104,14 @@ class ItemViewTest(django.test.TestCase):
                     expected_fields = ["_state", "id", "name"]
                     if hasattr(tag, "_prefetch_related_val_item_id"):
                         expected_fields.append("_prefetch_related_val_item_id")
+
                     self.assertNotIn(
                         "_prefetched_objects_cache",
                         tag.__dict__,
                         msg="Unexpected '_prefetched_objects_cache' "
                         "attribute in Tag instance",
                     )
+
                     self.assertQuerySetEqual(
                         tag.__dict__,
                         expected_fields,

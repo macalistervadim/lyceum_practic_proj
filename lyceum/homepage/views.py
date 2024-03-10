@@ -5,6 +5,7 @@ import django.http
 import django.shortcuts
 
 import catalog.models
+import homepage.forms
 
 
 def home(request):
@@ -21,6 +22,28 @@ def endpoint(request):
         "Я чайник",
         status=http.HTTPStatus.IM_A_TEAPOT,
     )
+
+
+def echo(request):
+    template = "homepage/echo.html"
+    if request.method == "POST":
+        form = homepage.forms.EchoForm()
+        context = {
+            "form": form,
+        }
+        return django.shortcuts.render(request, template, context)
+
+    return django.http.HttpResponseNotAllowed(["POST"])
+
+
+def submit_echo(request):
+    if request.method == "POST":
+        form = homepage.forms.EchoForm(request.POST)
+        if form.is_valid():
+            text = form.cleaned_data["text"]
+            return django.http.HttpResponse(text, content_type="text/plain")
+
+    return django.http.HttpResponseNotAllowed(["POST"])
 
 
 __all__ = []

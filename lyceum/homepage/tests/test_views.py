@@ -50,7 +50,7 @@ class HomePageContext(django.test.TestCase):
         self.assertIn(
             "items",
             response.context,
-            msg="Expected 'items' in response context",
+            msg="Expected items in response context",
         )
 
         items = response.context["items"]
@@ -58,7 +58,7 @@ class HomePageContext(django.test.TestCase):
             self.assertIsInstance(
                 item,
                 catalog.models.Item,
-                msg="Expected 'Item' instance in 'items' context",
+                msg="Expected Item instance in items context",
             )
 
     def test_homepage_context_count(self):
@@ -68,7 +68,7 @@ class HomePageContext(django.test.TestCase):
         self.assertEqual(
             len(items),
             1,
-            msg="Expected exactly 1 item in 'items' context",
+            msg="Expected exactly 1 item in items context",
         )
 
     def test_fields_item_main(self):
@@ -91,6 +91,7 @@ class HomePageContext(django.test.TestCase):
                     expected_fields = ["_state", "id", "name"]
                     if hasattr(tag, "_prefetch_related_val_item_id"):
                         expected_fields.append("_prefetch_related_val_item_id")
+
                     self.assertNotIn(
                         "_prefetched_objects_cache",
                         tag.__dict__,

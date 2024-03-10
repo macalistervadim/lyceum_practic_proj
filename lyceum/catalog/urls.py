@@ -10,8 +10,10 @@ class PositiveIntegerConverter:
 
     def to_python(self, value):
         number = int(value)
+
         if number <= 0:
             raise ValueError("Number must be a positive integer")
+
         return number
 
     def to_url(self, value):

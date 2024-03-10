@@ -80,6 +80,12 @@ To get started with the project, you'll need to copy the `.env.example` file and
     # DJANGO allowed hosts
     `DJANGO_ALLOWED_HOSTS=127.0.0.1,localhost`
 
+    # DJANGO_MAIL
+    `DJANGO_MAIL=admin@admin.ru`
+
+    # DJANGO_ALLOW_REVERSE
+    `DJANGO_ALLOW_REVERSE=True/False`
+    
     # Other environment variables...
     ```
 

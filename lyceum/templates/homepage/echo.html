@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+
+{% load i18n %}
+{% load static %}
+
+{% block title %}{% trans 'Эхо форма' %}{% endblock %}
+
+{% block content %}
+<h2>Введите текст:</h2>
+    <form action="{% url 'homepage:submit-echo' %}" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit">Отправить</button>
+    </form>
+{% endblock %}

@@ -1,32 +1,33 @@
+import os
 import pathlib
 
 import django.utils.translation
-import environ
+import dotenv
+
+dotenv.load_dotenv()
+
+
+def load_bool(name, default):
+    value = os.getenv(name, str(default)).lower()
+    return value in ("", "true", "True", "t", "y", "yes", "YES", "1")
+
 
 BASE_DIR = pathlib.Path(__file__).resolve().parent.parent
 
-env = environ.Env(DEBUG=(bool, False))
+SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", default="key")
 
-env.read_env(BASE_DIR / ".env")
+DEBUG = load_bool("DJANGO_DEBUG", default=False)
 
-SECRET_KEY = env("DJANGO_SECRET_KEY", default="key")
+DJANGO_ALLOW_REVERSE = load_bool("DJANGO_ALLOW_REVERSE", default=False)
 
-DEBUG = env("DJANGO_DEBUG", default="False").lower() in (
-    "true",
-    "t",
-    "1",
-    "yes",
-    "y",
-)
-
-ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS", default=["*"])
-
+ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", default=["*"]).split(",")
 
 INSTALLED_APPS = [
     "about.apps.AboutConfig",
     "catalog.apps.CatalogConfig",
     "core.apps.CoreConfig",
     "download.apps.DownloadConfig",
+    "feedback.apps.FeedbackConfig",
     "homepage.apps.HomepageConfig",
     "django.contrib.admin",
     "django.contrib.auth",
@@ -49,6 +50,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django.middleware.locale.LocaleMiddleware",
+    "lyceum.middleware.ReverseRussianMiddleware",
 ]
 
 if DEBUG:
@@ -57,6 +59,10 @@ if DEBUG:
     )
     MIDDLEWARE.insert(0, "debug_toolbar.middleware.DebugToolbarMiddleware")
     INTERNAL_IPS = ["127.0.0.1", "localhost"]
+    EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+    EMAIL_FILE_PATH = BASE_DIR / "send_mail"
+    DJANGO_MAIL = os.getenv("DJANGO_MAIL", default="admin-default@mail.ru")
+    EMAIL_HOST = DJANGO_MAIL
 
 ROOT_URLCONF = "lyceum.urls"
 
@@ -141,3 +147,6 @@ MEDIA_ROOT = BASE_DIR / "media"
 MEDIA_URL = "/media/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
+__all__ = []

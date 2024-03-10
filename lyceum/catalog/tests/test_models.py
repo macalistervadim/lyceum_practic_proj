@@ -56,6 +56,7 @@ class DBItemTests(django.test.TestCase):
                 self.item.full_clean()
                 self.item.tags.add(self.tag)
                 self.item.save()
+
             self.assertEqual(
                 catalog.models.Item.objects.count(),
                 item_count,
@@ -108,6 +109,7 @@ class DBCategoryTests(django.test.TestCase):
             with self.assertRaises(django.core.validators.ValidationError):
                 self.category.full_clean()
                 self.category.save()
+
             self.assertEqual(
                 catalog.models.Item.objects.count(),
                 category_count,
@@ -154,6 +156,7 @@ class DBItemTest(django.test.TestCase):
             with self.assertRaises(django.core.validators.ValidationError):
                 self.tag.full_clean()
                 self.tag.save()
+
             self.assertEqual(
                 catalog.models.Tag.objects.count(),
                 tag_count,
@@ -217,6 +220,7 @@ class DBNormalizeTest(django.test.TestCase):
                 self.tag2.save()
                 self.tag1.full_clean()
                 self.tag1.save()
+
             self.assertEqual(
                 catalog.models.Tag.objects.count(),
                 tag_count + 1,

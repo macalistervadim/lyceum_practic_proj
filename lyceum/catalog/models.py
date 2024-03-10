@@ -1,6 +1,4 @@
-import datetime
 import pathlib
-import random
 import uuid
 
 import django.contrib
@@ -10,6 +8,7 @@ import django.db
 import django.utils
 import tinymce.models
 
+import catalog.models
 import catalog.validators
 import core.models
 
@@ -21,140 +20,47 @@ def item_directory_path(instance, filename):
 
 
 class ItemManager(django.db.models.Manager):
+    def published(self):
+        oredered_field_item_category = catalog.models.Item.category.field.name
+        ordered_field_category_name = catalog.models.Category.name.field.name
+        publish = self.get_queryset().filter(
+            is_published=True,
+            category__is_published=True,
+        )
+        order_by = publish.order_by(
+            f"{oredered_field_item_category}__{ordered_field_category_name}",
+            catalog.models.Item.name.field.name,
+        )
+        select_related = order_by.select_related(
+            oredered_field_item_category,
+            catalog.models.Item.mainimage.related.name,
+        )
+        prefetch_related = select_related.prefetch_related(
+            django.db.models.Prefetch(
+                catalog.models.Item.tags.field.name,
+                queryset=catalog.models.Tag.objects.filter(
+                    is_published=True,
+                ).only(
+                    catalog.models.Tag.name.field.name,
+                ),
+            ),
+        )
+        return prefetch_related.only(
+            catalog.models.Item.name.field.name,
+            catalog.models.Item.text.field.name,
+            catalog.models.Item.mainimage.related.name,
+            f"{oredered_field_item_category}__"
+            f"{ordered_field_category_name}",
+        )
+
     def on_main(self):
         return (
-            self.get_queryset()
-            .filter(is_on_main=True)
-            .only(
-                catalog.models.Item.name.field.name,
-                catalog.models.Item.text.field.name,
-                catalog.models.Item.category.field.name + "__name",
-            )
-            .select_related(catalog.models.Item.category.field.name)
-            .prefetch_related(
-                django.db.models.Prefetch(
-                    catalog.models.Item.tags.field.name,
-                    queryset=catalog.models.Tag.objects.only(
-                        catalog.models.Tag.name.field.name,
-                    ),
-                ),
-            )
-        )
-
-    def published(self):
-        return (
-            self.get_queryset()
-            .select_related(catalog.models.Item.category.field.name)
-            .prefetch_related(
-                django.db.models.Prefetch(
-                    catalog.models.Item.tags.field.name,
-                    queryset=catalog.models.Tag.objects.only(
-                        catalog.models.Tag.name.field.name,
-                    ),
-                ),
-            )
-            .only(
-                catalog.models.Item.category.field.name + "__name",
-                catalog.models.Item.name.field.name,
-                catalog.models.Item.text.field.name,
-            )
-            .filter(category__is_published=True, is_published=True)
-            .order_by(catalog.models.Item.category.field.name + "__name")
-        )
-
-    def get_new_items(self):
-        week_ago = django.utils.timezone.now() - datetime.timedelta(days=6)
-        my_ids = self.filter(created__gte=week_ago).values_list(
-            "id",
-            flat=True,
-        )
-        random_ids = random.sample(list(my_ids), min(len(my_ids), 5))
-        return (
-            self.get_queryset()
-            .filter(id__in=random_ids)
-            .prefetch_related(
-                django.db.models.Prefetch(
-                    catalog.models.Item.tags.field.name,
-                    queryset=catalog.models.Tag.objects.only(
-                        catalog.models.Tag.name.field.name,
-                    ),
-                ),
-            )
-            .only(
-                catalog.models.Item.name.field.name,
-                catalog.models.Item.text.field.name,
-                catalog.models.Tag.name.field.name,
-            )
-        )
-
-    def get_friday_items(self):
-        my_ids = self.filter(updated__week_day=6).values_list("id", flat=True)
-        random_ids = random.sample(list(my_ids), min(len(my_ids), 5))
-        return (
-            self.get_queryset()
-            .filter(id__in=random_ids)
-            .prefetch_related(
-                django.db.models.Prefetch(
-                    catalog.models.Item.tags.field.name,
-                    queryset=catalog.models.Tag.objects.only(
-                        catalog.models.Tag.name.field.name,
-                    ),
-                ),
-            )
-            .only(
-                catalog.models.Item.name.field.name,
-                catalog.models.Item.text.field.name,
-                catalog.models.Tag.name.field.name,
-            )
-        )
-
-    def get_unverified_items(self):
-        return (
-            self.get_queryset()
+            self.published()
             .filter(
-                created=django.db.models.F(
-                    catalog.models.Item.updated.field.name,
-                ),
+                is_on_main=True,
             )
-            .prefetch_related(
-                django.db.models.Prefetch(
-                    catalog.models.Item.tags.field.name,
-                    queryset=catalog.models.Tag.objects.only(
-                        catalog.models.Tag.name.field.name,
-                    ),
-                ),
-            )
-            .only(
+            .order_by(
                 catalog.models.Item.name.field.name,
-                catalog.models.Item.text.field.name,
-                catalog.models.Tag.name.field.name,
-            )
-        )
-
-    def item_detail(self):
-        return (
-            self.get_queryset()
-            .select_related(
-                catalog.models.Item.category.field.name,
-                "mainimage",
-            )
-            .prefetch_related(
-                django.db.models.Prefetch(
-                    catalog.models.Item.tags.field.name,
-                    queryset=catalog.models.Tag.objects.only(
-                        catalog.models.Tag.name.field.name,
-                    ).filter(is_published=True),
-                ),
-                django.db.models.Prefetch(
-                    "gallery_images",
-                    queryset=catalog.models.GalleryImage.objects.only("image"),
-                ),
-            )
-            .only(
-                catalog.models.Item.category.field.name + "__name",
-                "mainimage",
-                catalog.models.Item.name.field.name,
-                catalog.models.Item.text.field.name,
             )
         )
 

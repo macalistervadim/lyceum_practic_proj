@@ -39,6 +39,7 @@ class TimeStampedModel(django.db.models.Model):
     def save(self, *args, **kwargs):
         if not self.pk:
             self.normalized_name = self._formatting_value()
+
         super().save(*args, **kwargs)
 
     def clean(self):
@@ -110,6 +111,7 @@ class AbstractModelImage(django.db.models.Model):
             return django.utils.html.mark_safe(
                 f"<img src='{self.get_image_300x300().url}' width='50'>",
             )
+
         return "Нет изображения"
 
     image_tmb.short_description = "превью"
