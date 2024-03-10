@@ -4,29 +4,31 @@
 
 {% block title %}
 {% if view_type == "new_items" %}
-    {% trans "Новинки" %}
+  {% trans "Новинки" %}
 {% elif view_type == "friday_items" %}
-    {% trans "Пятница" %}
+  {% trans "Пятница" %}
 {% elif view_type == "unverified_items" %}
-    {% trans "Непроверенное" %}
+  {% trans "Непроверенное" %}
 {% endif %}
 {% endblock %}
 
 {% block content %}
 <h2>
 {% if view_type == "new_items" %}
-    {% trans "Новинки" %}
+  {% trans "Новинки" %}
 {% elif view_type == "friday_items" %}
-    {% trans "Пятница" %}
+  {% trans "Пятница" %}
 {% elif view_type == "unverified_items" %}
-    {% trans "Непроверенное" %}
+  {% trans "Непроверенное" %}
 {% endif %}
 </h2>
 <hr>
 
 {% for item in items %}
 <div class="row">
-    {% include "includes/item_card.html" %}
+  {% include "includes/item_card.html" %}
 </div>
+{% empty %}
+  {% trans "К сожалению, здесь пока ничего нет" %}
 {% endfor %}
 {% endblock %}

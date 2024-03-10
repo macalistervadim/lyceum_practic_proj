@@ -34,7 +34,7 @@ class UrlTests(django.test.TestCase):
         try:
             if isinstance(pk, int):
                 url = django.urls.reverse(
-                    "catalog:item_detail",
+                    "catalog:item-detail",
                     kwargs={"pk": pk},
                 )
                 response = self.client.get(url)
@@ -62,7 +62,7 @@ class UrlTests(django.test.TestCase):
         try:
             if isinstance(pk, int):
                 url = django.urls.reverse(
-                    "catalog:catalog_regex",
+                    "catalog:catalog-regex",
                     kwargs={"pk": pk},
                 )
                 response = self.client.get(url)
@@ -90,7 +90,7 @@ class UrlTests(django.test.TestCase):
         try:
             if isinstance(pk, int):
                 url = django.urls.reverse(
-                    "catalog:catalog_converter",
+                    "catalog:catalog-converter",
                     kwargs={"pk": pk},
                 )
                 response = self.client.get(url)
@@ -114,7 +114,7 @@ class UrlTests(django.test.TestCase):
             pass
 
     def test_new_items_view(self):
-        response = self.client.get(django.urls.reverse("catalog:new_items"))
+        response = self.client.get(django.urls.reverse("catalog:new-items"))
         self.assertEqual(
             response.status_code,
             http.HTTPStatus.OK,
@@ -129,7 +129,7 @@ class UrlTests(django.test.TestCase):
         )
 
     def test_friday_items_view(self):
-        response = self.client.get(django.urls.reverse("catalog:friday_items"))
+        response = self.client.get(django.urls.reverse("catalog:friday-items"))
         self.assertEqual(
             response.status_code,
             http.HTTPStatus.OK,
@@ -145,7 +145,7 @@ class UrlTests(django.test.TestCase):
 
     def test_unverified_items_view(self):
         response = self.client.get(
-            django.urls.reverse("catalog:unverified_items"),
+            django.urls.reverse("catalog:unverified-items"),
         )
         self.assertEqual(
             response.status_code,

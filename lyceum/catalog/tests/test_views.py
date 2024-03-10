@@ -62,7 +62,7 @@ class ItemViewTest(django.test.TestCase):
 
     def test_item_detail_context(self):
         url = django.urls.reverse(
-            "catalog:item_detail",
+            "catalog:item-detail",
             kwargs={"pk": self.published_item.pk},
         )
         response = self.client.get(url)
@@ -85,7 +85,7 @@ class ItemViewTest(django.test.TestCase):
         )
 
     def test_fields_item_published(self):
-        response = self.client.get(django.urls.reverse("catalog:item_list"))
+        response = self.client.get(django.urls.reverse("catalog:item-list"))
         for field_name in self.ignored_fields:
             self.assertNotIn(
                 field_name,
@@ -95,7 +95,7 @@ class ItemViewTest(django.test.TestCase):
             )
 
     def test_fields_tags_published(self):
-        response = self.client.get(django.urls.reverse("catalog:item_list"))
+        response = self.client.get(django.urls.reverse("catalog:item-list"))
         items = response.context["items"]
         for item in items:
             if hasattr(item, "tag_names"):

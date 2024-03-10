@@ -6,34 +6,50 @@
 
 To run the app locally, follow these steps:
 
-1. Clone the repository: `git clone {repository_url}`
-2. Navigate to the project directory: `cd lyceum`
-3. Create and activate a virtual environment:
+Open your terminal.
+1. Navigate to the "projects" directory: `cd ~/projects` (to select this folder, create this directory in your directory or specify any of your previously created ones)
+2. Clone the repository: `git clone {repository_url}`
+3. Navigate to the project directory: `cd lyceum`
+4. Create and activate a virtual environment:
    - Linux/macOS: `python3 -m venv venv && source venv/bin/activate`
-   - Windows: `python3 -m venv venv && venv\Scripts\activate`
-4. Install the main dependencies for production: `pip3 install -r requirements/prod.txt`
-5. Set up your database: `python3 manage.py migrate`
-6. Create a superuser: `python3 manage.py createsuperuser`
-7. Create a `.env` file in the root of your project and define your environment variables (see below for example variables)
-8. Run the development server: `python3 manage.py runserver`
-9. Access the app at [http://127.0.0.1:8000/](http://127.0.0.1:8000/) in your browser.
+   - Windows: `python -m venv venv && venv\Scripts\activate`
+5. Install the main dependencies for production: `pip3 install -r requirements/prod.txt`
+6. Set up your database: `python3 manage.py migrate`
+7. Create a superuser: `python3 manage.py createsuperuser`
+8. Create a `.env` file in the root of your project and define your environment variables (see below for example variables)
+9. Run the development server: `python3 manage.py runserver`
+10. Access the app at [http://127.0.0.1:8000/](http://127.0.0.1:8000/) in your browser.
+
+# Important note
+Please note that all the following points below are executed strictly in the base directory of the project, in which you have compiled the repository earlier in the paragraph above
 
 ## Database
 The project uses a ready-made database for educational purposes.
 
+Open your terminal.
 1. Perform database migrations:
-
 ```
 python3 manage.py migrate
 ```
 
 2. To use superuser, use the following data:
 ```
-login: `admin`
-password: `admin`
+login: admin
+password: admin
 ```
 
 *note: mail is not used in the project for superuser*
+
+## Collectstatic
+
+To work correctly and display static files in prod mode, you need to perform a couple of procedures before starting the project
+
+1. Generate static files
+```
+python3 manage.py collectstatic
+```
+
+*note: Please note that the folder where static files will be collected is specified in the project settings under the name "STATIC_ROOT"*
 
 ## Environment Variables
 
@@ -98,17 +114,20 @@ To use fixtures in your Django project, follow these steps:
 1. Create fixture files containing serialized data for your models. You can generate fixture files using the `dumpdata` management command:
 
    Windows:
-   ```bash
-   python -Xutf8 manage.py dumpdata --indent 2 -o fixtures/data.json (or you optional dir_name)
+   ```
+   python -Xutf8 manage.py dumpdata --indent 2 -o fixtures/data.json 
    ```
    Linux:
-   ```bash
-   python3 manage.py dumpdata --indent 2 -o fixtures/data.json (or you optional dir_name)
+   ```
+   python3 manage.py dumpdata --indent 2 -o fixtures/data.json 
    ```
    
 2. Load fixture data into your database using the loaddata management command:
-   ```bash
-   python3 manage.py loaddata fixtures/data.json (or you optional dir_name)
+   ```
+   python3 manage.py loaddata fixtures/data.json 
+   ```
+*note: you can also specify fixtures/data instead of the name.json your folder if desired. But it must be located along the path: BASE_DIR / dir_name*
+
 ## ER Diagram
 Here is a visual ER diagram of the existing project database
 

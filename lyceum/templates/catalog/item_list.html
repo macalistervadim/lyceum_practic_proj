@@ -10,10 +10,12 @@
 
 {% for item in items %}
   {% ifchanged item.category.name %}
-      <h3>{{ item.category.name }}</h3>
+    <h3>{{ item.category.name }}</h3>
   {% endifchanged %}
   <div class="row">
-      {% include 'includes/item_card.html' %}
+    {% include 'includes/item_card.html' %}
   </div>
+{% empty %}
+  {% trans "К сожалению, здесь пока ничего нет" %}
 {% endfor %}
 {% endblock %}

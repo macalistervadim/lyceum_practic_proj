@@ -155,7 +155,6 @@ cython_debug/
 # IDE
 .vscode/
 .idea/
-.DS_Store
 
 # media-files
 cache/
@@ -167,3 +166,4 @@ node_modules/
 
 # static files
 static/
+.DS_Store

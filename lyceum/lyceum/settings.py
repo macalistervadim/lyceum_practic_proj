@@ -23,9 +23,9 @@ ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS", default=["*"])
 
 
 INSTALLED_APPS = [
-    "core.apps.CoreConfig",
     "about.apps.AboutConfig",
     "catalog.apps.CatalogConfig",
+    "core.apps.CoreConfig",
     "download.apps.DownloadConfig",
     "homepage.apps.HomepageConfig",
     "django.contrib.admin",
@@ -65,7 +65,7 @@ TEMPLATES_DIRS = BASE_DIR / "templates"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [BASE_DIR / "templates"],
+        "DIRS": [TEMPLATES_DIRS],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -89,20 +89,28 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        "NAME": "django.contrib.auth.password_validation"
-        ".UserAttributeSimilarityValidator",
+        "NAME": (
+            "django.contrib.auth.password_validation"
+            ".UserAttributeSimilarityValidator"
+        ),
     },
     {
-        "NAME": "django.contrib.auth.password_validation"
-        ".MinimumLengthValidator",
+        "NAME": (
+            "django.contrib.auth.password_validation"
+            ".MinimumLengthValidator",
+        ),
     },
     {
-        "NAME": "django.contrib.auth.password_validation"
-        ".CommonPasswordValidator",
+        "NAME": (
+            "django.contrib.auth.password_validation"
+            ".CommonPasswordValidator",
+        ),
     },
     {
-        "NAME": "django.contrib.auth.password_validation"
-        ".NumericPasswordValidator",
+        "NAME": (
+            "django.contrib.auth.password_validation"
+            ".NumericPasswordValidator",
+        ),
     },
 ]
 

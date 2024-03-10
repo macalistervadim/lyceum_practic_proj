@@ -88,7 +88,7 @@ class ItemManager(django.db.models.Manager):
         )
 
     def get_friday_items(self):
-        my_ids = self.filter(updated__week_day=4).values_list("id", flat=True)
+        my_ids = self.filter(updated__week_day=6).values_list("id", flat=True)
         random_ids = random.sample(list(my_ids), min(len(my_ids), 5))
         return (
             self.get_queryset()

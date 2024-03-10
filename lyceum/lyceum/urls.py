@@ -13,7 +13,7 @@ urlpatterns = [
     django.urls.path(
         "set-language/",
         django.views.i18n.set_language,
-        name="set_language",
+        name="set-language",
     ),
 ]
 

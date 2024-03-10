@@ -8,7 +8,7 @@ urlpatterns = [
     django.urls.re_path(
         r"^(?P<path>.+)$",
         download.views.download,
-        name="download_image",
+        name="download-image",
     ),
 ]
 

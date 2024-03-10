@@ -1,9 +1,9 @@
-django-debug-toolbar==4.3.0
+-r dev.txt
 flake8==7.0.0
 flake8-absolute-import==1.0.0.2
+flake8-builtins==2.2.0
 flake8-comments==0.1.2
 flake8-comprehensions==3.14.0
-flake8-absolute-import==1.0.0.2
 flake8-eradicate==1.5.0
 flake8-fixme==1.1.1
 flake8-import-order==0.18.2
@@ -11,7 +11,6 @@ flake8-print==5.0.0
 flake8-quotes==3.4.0
 flake8-type-ignore==0.1.0.post2
 flake8-use-pathlib==0.3.0
-flake8-builtins==2.2.0
 mccabe==0.7.0
 parameterized==0.9.0
 pep8-naming==0.13.3

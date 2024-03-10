@@ -15,7 +15,6 @@ black:
   stage: black
   image: registry.gitlab.com/pipeline-components/black:latest
   script:
-    - pip install black
     - black --config pyproject.toml --check .
 
 test:
