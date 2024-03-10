@@ -45,7 +45,7 @@ class ItemViewTest(django.test.TestCase):
         cls.published_item.tags.add(cls.unpublished_tag.pk)
 
     def test_item_list_context(self):
-        url = django.urls.reverse("catalog:item_list")
+        url = django.urls.reverse("catalog:item-list")
         response = self.client.get(url)
         items = response.context["items"]
         self.assertEqual(
