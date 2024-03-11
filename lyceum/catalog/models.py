@@ -12,14 +12,12 @@ import core.models
 
 class ItemManager(django.db.models.Manager):
     def published(self):
-        oredered_field_item_category = (
-            catalog.models.Item.category.field.name)
-        ordered_field_category_name = (
-            catalog.models.Category.name.field.name)
+        oredered_field_item_category = catalog.models.Item.category.field.name
+        ordered_field_category_name = catalog.models.Category.name.field.name
         ordered_field_item_mainimage = (
-            catalog.models.Item.main_image.related.name)
-        ordered_field_mainimage = (
-            catalog.models.MainImage.image.field.name)
+            catalog.models.Item.main_image.related.name
+        )
+        ordered_field_mainimage = catalog.models.MainImage.image.field.name
         publish = self.get_queryset().filter(
             is_published=True,
             category__is_published=True,
@@ -47,8 +45,7 @@ class ItemManager(django.db.models.Manager):
             catalog.models.Item.text.field.name,
             f"{oredered_field_item_category}__"
             f"{ordered_field_category_name}",
-            f"{ordered_field_item_mainimage}__"
-            f"{ordered_field_mainimage}",
+            f"{ordered_field_item_mainimage}__" f"{ordered_field_mainimage}",
         )
 
     def on_main(self):
