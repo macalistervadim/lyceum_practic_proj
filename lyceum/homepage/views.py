@@ -25,25 +25,17 @@ def endpoint(request):
 
 
 def echo(request):
-    template = "homepage/echo.html"
-    if request.method == "POST":
-        form = homepage.forms.EchoForm()
-        context = {
-            "form": form,
-        }
-        return django.shortcuts.render(request, template, context)
+    form = homepage.forms.EchoForm(request.POST or None)
+    if request.path == django.shortcuts.reverse("homepage:echo_submit"):
+        if request.method == "POST" and form.is_valid():
+            return django.http.HttpResponse(form.cleaned_data["text"])
 
-    return django.http.HttpResponseNotAllowed(["POST"])
+        return django.http.HttpResponseNotAllowed(permitted_methods=["POST"])
 
+    if request.method == "GET":
+        context = {"form": form}
+        return django.shortcuts.render(request, "homepage/echo.html", context)
 
-def submit_echo(request):
-    if request.method == "POST":
-        form = homepage.forms.EchoForm(request.POST)
-        if form.is_valid():
-            text = form.cleaned_data["text"]
-            return django.http.HttpResponse(text, content_type="text/plain")
-
-    return django.http.HttpResponseNotAllowed(["POST"])
-
+    return django.http.HttpResponseNotAllowed(permitted_methods=["GET"])
 
 __all__ = []
