@@ -111,11 +111,11 @@
     "name": "ыв123",
     "is_published": true,
     "normalized_name": "yb123",
-    "created": "2024-03-05T12:31:38.442Z",
-    "updated": "2024-03-10T05:43:17.286Z",
+    "created": "2024-03-11T11:23:14.536Z",
+    "updated": "2024-03-11T11:23:14.546Z",
     "category": 5,
     "text": "<p style=\"text-align: right;\">роскошно</p>",
-    "is_on_main": true,
+    "is_on_main": false,
     "tags": [
       3,
       4,
@@ -130,11 +130,11 @@
     "name": "ывааываы",
     "is_published": true,
     "normalized_name": "ybaaybay",
-    "created": "2024-03-05T12:52:57.483Z",
-    "updated": "2024-03-10T05:43:17.289Z",
+    "created": "2024-03-11T11:23:14.536Z",
+    "updated": "2024-03-11T11:23:14.546Z",
     "category": 1,
     "text": "<p>роскошно</p>",
-    "is_on_main": true,
+    "is_on_main": false,
     "tags": [
       5
     ]
@@ -147,11 +147,11 @@
     "name": "ыва",
     "is_published": true,
     "normalized_name": "yba",
-    "created": "2024-03-05T12:53:10.112Z",
-    "updated": "2024-03-10T05:43:17.287Z",
+    "created": "2024-03-11T11:23:14.536Z",
+    "updated": "2024-03-11T11:23:14.546Z",
     "category": 5,
     "text": "<p>роскошно</p>",
-    "is_on_main": true,
+    "is_on_main": false,
     "tags": [
       3
     ]
@@ -164,11 +164,11 @@
     "name": "рпопро",
     "is_published": true,
     "normalized_name": "rrorro",
-    "created": "2024-03-05T12:53:18.157Z",
-    "updated": "2024-03-10T05:43:17.284Z",
+    "created": "2024-03-11T11:23:14.536Z",
+    "updated": "2024-03-11T11:23:14.546Z",
     "category": 1,
     "text": "<p>роскошно</p>",
-    "is_on_main": true,
+    "is_on_main": false,
     "tags": [
       4
     ]
@@ -181,11 +181,11 @@
     "name": "олрромси",
     "is_published": true,
     "normalized_name": "olrromsi",
-    "created": "2024-03-05T12:53:28.727Z",
-    "updated": "2024-03-10T05:43:17.282Z",
+    "created": "2024-03-11T11:23:14.536Z",
+    "updated": "2024-03-11T11:23:14.546Z",
     "category": 4,
     "text": "<p>роскошно</p>",
-    "is_on_main": true,
+    "is_on_main": false,
     "tags": [
       3,
       4,
@@ -200,11 +200,11 @@
     "name": "рпопропро",
     "is_published": true,
     "normalized_name": "rrorrorro",
-    "created": "2024-03-08T13:09:56.196Z",
-    "updated": "2024-03-10T05:43:17.284Z",
+    "created": "2024-03-11T11:23:14.536Z",
+    "updated": "2024-03-11T11:23:14.546Z",
     "category": 2,
     "text": "<p>роскошно</p>",
-    "is_on_main": true,
+    "is_on_main": false,
     "tags": [
       1,
       2,
@@ -220,11 +220,11 @@
     "name": "шщяэыь",
     "is_published": true,
     "normalized_name": "shschjaey",
-    "created": "2024-03-08T05:28:44.271Z",
-    "updated": "2024-03-10T05:43:17.285Z",
+    "created": "2024-03-11T11:23:14.536Z",
+    "updated": "2024-03-11T11:23:14.546Z",
     "category": 4,
     "text": "<p>роскошно</p>",
-    "is_on_main": true,
+    "is_on_main": false,
     "tags": [
       2,
       3
@@ -235,64 +235,64 @@
   "model": "catalog.mainimage",
   "pk": 3,
   "fields": {
-    "item": 1,
-    "image": "catalog/1/79d36a40-b717-4364-8825-f59e08431086.jpg"
+    "image": "catalog/1/79d36a40-b717-4364-8825-f59e08431086.jpg",
+    "item": 1
   }
 },
 {
   "model": "catalog.mainimage",
   "pk": 4,
   "fields": {
-    "item": 3,
-    "image": "catalog/3/f0b10a0b-ddb2-4014-a004-53e09b92e6ab.jpg"
+    "image": "catalog/3/f0b10a0b-ddb2-4014-a004-53e09b92e6ab.jpg",
+    "item": 3
   }
 },
 {
   "model": "catalog.mainimage",
   "pk": 5,
   "fields": {
-    "item": 7,
-    "image": "catalog/7/c943198c-3b55-4c5e-ad41-e9e22df36976.jpg"
+    "image": "catalog/7/c943198c-3b55-4c5e-ad41-e9e22df36976.jpg",
+    "item": 7
   }
 },
 {
   "model": "catalog.galleryimage",
   "pk": 2,
   "fields": {
-    "item": 1,
-    "image": "catalog/1/1996a603-0b2c-471e-8ecc-823514065885.jpg"
+    "image": "catalog/1/1996a603-0b2c-471e-8ecc-823514065885.jpg",
+    "item": 1
   }
 },
 {
   "model": "catalog.galleryimage",
   "pk": 3,
   "fields": {
-    "item": 2,
-    "image": "catalog/2/f3fae9ae-2d26-4668-a29d-8297489d427f.jpg"
+    "image": "catalog/2/f3fae9ae-2d26-4668-a29d-8297489d427f.jpg",
+    "item": 2
   }
 },
 {
   "model": "catalog.galleryimage",
   "pk": 4,
   "fields": {
-    "item": 7,
-    "image": "catalog/7/b6ca9aa5-c170-4f6b-a9dd-1fc49d7092e6.jpg"
+    "image": "catalog/7/b6ca9aa5-c170-4f6b-a9dd-1fc49d7092e6.jpg",
+    "item": 7
   }
 },
 {
   "model": "catalog.galleryimage",
   "pk": 5,
   "fields": {
-    "item": 7,
-    "image": "catalog/7/aca861b0-6f17-4e88-bd3c-634d76b47837.jpg"
+    "image": "catalog/7/aca861b0-6f17-4e88-bd3c-634d76b47837.jpg",
+    "item": 7
   }
 },
 {
   "model": "catalog.galleryimage",
   "pk": 6,
   "fields": {
-    "item": 7,
-    "image": "catalog/7/7fc05bef-295a-4f15-84f8-2b074edbaae0.jpeg"
+    "image": "catalog/7/7fc05bef-295a-4f15-84f8-2b074edbaae0.jpeg",
+    "item": 7
   }
 }
 ]

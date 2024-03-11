@@ -1,6 +1,3 @@
-import pathlib
-import uuid
-
 import django.contrib
 import django.core.exceptions
 import django.core.validators
@@ -13,16 +10,16 @@ import catalog.validators
 import core.models
 
 
-def item_directory_path(instance, filename):
-    ext = filename.split(".")[-1]
-    filename = f"{uuid.uuid4()}.{ext}"
-    return pathlib.Path("catalog") / str(instance.item.id) / filename
-
-
 class ItemManager(django.db.models.Manager):
     def published(self):
-        oredered_field_item_category = catalog.models.Item.category.field.name
-        ordered_field_category_name = catalog.models.Category.name.field.name
+        oredered_field_item_category = (
+            catalog.models.Item.category.field.name)
+        ordered_field_category_name = (
+            catalog.models.Category.name.field.name)
+        ordered_field_item_mainimage = (
+            catalog.models.Item.main_image.related.name)
+        ordered_field_mainimage = (
+            catalog.models.MainImage.image.field.name)
         publish = self.get_queryset().filter(
             is_published=True,
             category__is_published=True,
@@ -33,6 +30,7 @@ class ItemManager(django.db.models.Manager):
         )
         select_related = order_by.select_related(
             oredered_field_item_category,
+            Item.main_image.related.name,
         )
         prefetch_related = select_related.prefetch_related(
             django.db.models.Prefetch(
@@ -49,6 +47,8 @@ class ItemManager(django.db.models.Manager):
             catalog.models.Item.text.field.name,
             f"{oredered_field_item_category}__"
             f"{ordered_field_category_name}",
+            f"{ordered_field_item_mainimage}__"
+            f"{ordered_field_mainimage}",
         )
 
     def on_main(self):
@@ -153,11 +153,8 @@ class MainImage(core.models.AbstractModelImage):
     item = django.db.models.OneToOneField(
         Item,
         on_delete=django.db.models.CASCADE,
-    )
-    image = django.db.models.ImageField(
-        "главное изображение",
-        upload_to=item_directory_path,
-        help_text="Будет приведено к размеру 300x300",
+        related_name="main_image",
+        related_query_name="main_image",
     )
 
 
@@ -167,11 +164,6 @@ class GalleryImage(core.models.AbstractModelImage):
         on_delete=django.db.models.CASCADE,
         related_name="gallery_images",
         related_query_name="gallery_image",
-    )
-    image = django.db.models.ImageField(
-        "изображения",
-        upload_to=item_directory_path,
-        help_text="Будет приведено к размеру 300x300",
     )
 
 

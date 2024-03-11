@@ -6,11 +6,11 @@ class Feedback(django.db.models.Model):
         "текстовое поле",
         help_text="Введите текстовое поле обращения",
     )
-    created = django.db.models.DateTimeField(
-        "дата создания",
+    created_on = django.db.models.DateTimeField(
+        "дата и время создания",
         auto_now_add=True,
         null=True,
-        help_text="Дата создания",
+        help_text="Дата и время создания",
     )
     mail = django.db.models.EmailField(
         "электронный адрес",

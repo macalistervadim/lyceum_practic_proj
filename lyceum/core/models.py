@@ -1,4 +1,6 @@
+import pathlib
 import re
+import uuid
 
 import django.core.exceptions
 import django.db
@@ -9,6 +11,12 @@ import transliterate
 
 
 ONLY_LETTERS_REGEX = re.compile(r"[^a-z0-9]")
+
+
+def item_directory_path(instance, filename):
+    ext = filename.split(".")[-1]
+    filename = f"{uuid.uuid4()}.{ext}"
+    return pathlib.Path("catalog") / str(instance.item.id) / filename
 
 
 class TimeStampedModel(django.db.models.Model):
@@ -85,11 +93,16 @@ class TimeStampedModel(django.db.models.Model):
 
 
 class AbstractModelImage(django.db.models.Model):
+    image = sorl.thumbnail.ImageField(
+        upload_to=item_directory_path,
+        verbose_name="изображение",
+    )
+
     class Meta:
         abstract = True
 
     def __str__(self):
-        return f"Картинка для {self.item}"
+        return pathlib.Path(self.image.path).stem
 
     def get_image_300x300(self):
         return sorl.thumbnail.get_thumbnail(
@@ -116,6 +129,7 @@ class AbstractModelImage(django.db.models.Model):
 
     image_tmb.short_description = "превью"
     image_tmb.allow_tags = True
+    image_tmb.field_name = "image_tmb"
 
 
 __all__ = []

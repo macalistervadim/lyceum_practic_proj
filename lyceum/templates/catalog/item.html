@@ -8,10 +8,10 @@
 {% block content %}
 <div class="container">
 <h1>{{ item.name }}</h1>
-{% if item.mainimage %}
+{% if item.main_image %}
   <div class="col-md-3 mb-3">
-      <a href="{% url 'download:download-image' item.mainimage.image.name %}">Скачать картинку</a>
-    <img src="{{ item.mainimage.get_image_x1280.url }}" alt="Main Image" class="img-thumbnail">
+      <a href="{% url 'download:download-image' item.main_image.image.name %}">Скачать картинку</a>
+    <img src="{{ item.main_image.get_image_x1280.url }}" alt="Main Image" class="img-thumbnail">
   </div>
 {% endif %}
 <p>{{ item.text|safe }}</p>

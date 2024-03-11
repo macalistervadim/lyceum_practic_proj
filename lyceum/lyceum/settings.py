@@ -59,10 +59,6 @@ if DEBUG:
     )
     MIDDLEWARE.insert(0, "debug_toolbar.middleware.DebugToolbarMiddleware")
     INTERNAL_IPS = ["127.0.0.1", "localhost"]
-    EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
-    EMAIL_FILE_PATH = BASE_DIR / "send_mail"
-    DJANGO_MAIL = os.getenv("DJANGO_MAIL", default="admin-default@mail.ru")
-    EMAIL_HOST = DJANGO_MAIL
 
 ROOT_URLCONF = "lyceum.urls"
 
@@ -148,5 +144,9 @@ MEDIA_URL = "/media/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
+EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+EMAIL_FILE_PATH = BASE_DIR / "send_mail"
+DJANGO_MAIL = os.getenv("DJANGO_MAIL", default="admin-default@mail.ru")
+EMAIL_HOST = DJANGO_MAIL
 
 __all__ = []

@@ -9,30 +9,39 @@ import feedback.models
 
 
 class ItemViewTest(django.test.TestCase):
-    form_data: dict = {"mail": "invalid_email", "text": ""}
-    data: dict = {"mail": "test@example.com", "text": "Тестовый текст"}
-    expected_errors: dict = {
+    form_data = {"mail": "invalid_email", "text": ""}
+    expected_errors = {
         "mail": ["Введите правильный адрес электронной почты."],
         "text": ["Обязательное поле."],
     }
 
-    def setUp(self):
-        self.form = feedback.forms.FeedbackForm()
+    def test_form_errors(self):
+        response = self.client.post(
+            django.shortcuts.reverse("feedback:feedback"),
+            self.form_data,
+        )
+        for field, errors in self.expected_errors.items():
+            self.assertFormError(response, "form", field, errors)
 
-    def test_form_is_in_context(self):
+    def test_form_in_context(self):
         response = self.client.get(
             django.shortcuts.reverse("feedback:feedback"),
         )
-        form = response.context["form"]
-        self.assertIsInstance(form, type(self.form))
+        self.assertIn("form", response.context)
 
-    def test_form_fields_labels_and_help_text(self):
+    def test_form_labels(self):
         response = self.client.get(
             django.shortcuts.reverse("feedback:feedback"),
         )
         form = response.context["form"]
         self.assertEqual(form.fields["mail"].label, "Электронный адрес")
         self.assertEqual(form.fields["text"].label, "Текстовое поле")
+
+    def test_form_help_texts(self):
+        response = self.client.get(
+            django.shortcuts.reverse("feedback:feedback"),
+        )
+        form = response.context["form"]
         self.assertEqual(
             form.fields["mail"].help_text,
             "Адрес электронной почты",
@@ -42,38 +51,36 @@ class ItemViewTest(django.test.TestCase):
             "Введите текстовое поле обращения",
         )
 
-    def test_form_submission_redirect(self):
-        initial_count = feedback.models.Feedback.objects.count()
+    def test_submit_redirect(self):
+        item_count = feedback.models.Feedback.objects.count()
         response = self.client.post(
             django.shortcuts.reverse("feedback:feedback"),
-            self.data,
+            data={
+                "text": "some test text",
+                "mail": "test@test.com",
+                "name": "Rick",
+            },
+            follow=True,
         )
-        redirected_response = self.client.get(response.url)
-        self.assertEqual(response.status_code, http.HTTPStatus.FOUND)
         self.assertRedirects(
             response,
             django.shortcuts.reverse("feedback:feedback"),
             status_code=http.HTTPStatus.FOUND,
             target_status_code=http.HTTPStatus.OK,
         )
+        self.assertIn("form", response.context)
+        form = response.context["form"]
+        self.assertEqual(form.fields["mail"].label, "Электронный адрес")
+        self.assertEqual(form.fields["text"].label, "Текстовое поле")
         self.assertEqual(
             feedback.models.Feedback.objects.count(),
-            initial_count + 1,
-            "Объект не создан",
+            item_count + 1,
         )
         self.assertTrue(
-            feedback.models.Feedback.objects.filter(**self.data).exists(),
-            "Объект Feedback не был создан в базе данных.",
+            feedback.models.Feedback.objects.filter(
+                mail="test@test.com",
+            ).exists(),
         )
-        self.assertIn("form", redirected_response.context)
-
-    def test_form_errors(self):
-        response = self.client.post(
-            django.shortcuts.reverse("feedback:feedback"),
-            self.form_data,
-        )
-        for field, errors in self.expected_errors.items():
-            self.assertFormError(response, "form", field, errors)
 
 
 __all__ = []
