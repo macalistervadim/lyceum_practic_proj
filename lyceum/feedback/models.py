@@ -9,6 +9,7 @@ class Feedback(django.db.models.Model):
     created = django.db.models.DateTimeField(
         "дата создания",
         auto_now_add=True,
+        null=True,
         help_text="Дата создания",
     )
     mail = django.db.models.EmailField(

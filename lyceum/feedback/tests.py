@@ -9,24 +9,24 @@ import feedback.models
 
 
 class ItemViewTest(django.test.TestCase):
-    @classmethod
-    def setUpClass(cls):
-        super().setUpClass()
-        cls.form = feedback.forms.FeedbackForm()
-        cls.form_data = {"mail": "invalid_email", "text": ""}
-        cls.expected_errors = {
-            "mail": ["Введите правильный адрес электронной почты."],
-            "text": ["Обязательное поле."],
-        }
+    form_data: dict = {"mail": "invalid_email", "text": ""}
+    data: dict = {"mail": "test@example.com", "text": "Тестовый текст"}
+    expected_errors: dict = {
+        "mail": ["Введите правильный адрес электронной почты."],
+        "text": ["Обязательное поле."],
+    }
 
-    def test_form_in_context(self):
+    def setUp(self):
+        self.form = feedback.forms.FeedbackForm()
+
+    def test_form_is_in_context(self):
         response = self.client.get(
             django.shortcuts.reverse("feedback:feedback"),
         )
         form = response.context["form"]
         self.assertIsInstance(form, type(self.form))
 
-    def test_form_fields(self):
+    def test_form_fields_labels_and_help_text(self):
         response = self.client.get(
             django.shortcuts.reverse("feedback:feedback"),
         )
@@ -43,16 +43,27 @@ class ItemViewTest(django.test.TestCase):
         )
 
     def test_form_submission_redirect(self):
-        data = {"mail": "test@example.com", "text": "Тестовый текст"}
+        initial_count = feedback.models.Feedback.objects.count()
         response = self.client.post(
             django.shortcuts.reverse("feedback:feedback"),
-            data,
+            self.data,
         )
         redirected_response = self.client.get(response.url)
         self.assertEqual(response.status_code, http.HTTPStatus.FOUND)
         self.assertRedirects(
             response,
             django.shortcuts.reverse("feedback:feedback"),
+            status_code=http.HTTPStatus.FOUND,
+            target_status_code=http.HTTPStatus.OK,
+        )
+        self.assertEqual(
+            feedback.models.Feedback.objects.count(),
+            initial_count + 1,
+            "Объект не создан",
+        )
+        self.assertTrue(
+            feedback.models.Feedback.objects.filter(**self.data).exists(),
+            "Объект Feedback не был создан в базе данных.",
         )
         self.assertIn("form", redirected_response.context)
 

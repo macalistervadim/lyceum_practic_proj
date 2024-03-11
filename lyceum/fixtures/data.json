@@ -5,7 +5,7 @@
   "fields": {
     "name": "к_1",
     "is_published": true,
-    "normalized_name": "k_1",
+    "normalized_name": "k1",
     "slug": "c_1"
   }
 },
@@ -15,7 +15,7 @@
   "fields": {
     "name": "ка_2",
     "is_published": true,
-    "normalized_name": "ka_2",
+    "normalized_name": "ka2",
     "slug": "ca_2"
   }
 },
@@ -25,7 +25,7 @@
   "fields": {
     "name": "кат_3",
     "is_published": true,
-    "normalized_name": "kat_3",
+    "normalized_name": "kat3",
     "slug": "cat_3"
   }
 },
@@ -35,7 +35,7 @@
   "fields": {
     "name": "кате_4",
     "is_published": true,
-    "normalized_name": "kate_4",
+    "normalized_name": "kate4",
     "slug": "cate_4"
   }
 },
@@ -45,7 +45,7 @@
   "fields": {
     "name": "катег_5",
     "is_published": true,
-    "normalized_name": "kateg_5",
+    "normalized_name": "kateg5",
     "slug": "categ_5"
   }
 },
@@ -55,7 +55,7 @@
   "fields": {
     "name": "к1",
     "is_published": true,
-    "normalized_name": "к1",
+    "normalized_name": "k1",
     "slug": "c_1",
     "weight": 100
   }
@@ -66,7 +66,7 @@
   "fields": {
     "name": "ка_2",
     "is_published": true,
-    "normalized_name": "ka_2",
+    "normalized_name": "ka2",
     "slug": "ca_2",
     "weight": 101
   }
@@ -77,7 +77,7 @@
   "fields": {
     "name": "кат_3",
     "is_published": true,
-    "normalized_name": "kat_3",
+    "normalized_name": "kat3",
     "slug": "cat_3",
     "weight": 103
   }
@@ -88,7 +88,7 @@
   "fields": {
     "name": "кате_4",
     "is_published": true,
-    "normalized_name": "kate_4",
+    "normalized_name": "kate4",
     "slug": "cate_4",
     "weight": 105
   }
@@ -99,31 +99,9 @@
   "fields": {
     "name": "катег_5",
     "is_published": true,
-    "normalized_name": "kateg_5",
+    "normalized_name": "kateg5",
     "slug": "categ_6",
     "weight": 110
-  }
-},
-{
-  "model": "catalog.category",
-  "pk": 6,
-  "fields": {
-    "name": "Вот корги!",
-    "is_published": true,
-    "normalized_name": "votkorgi",
-    "slug": "dsfsfdsfd",
-    "weight": 100
-  }
-},
-{
-  "model": "catalog.category",
-  "pk": 7,
-  "fields": {
-    "name": "bot-kop-Ги",
-    "is_published": true,
-    "normalized_name": "botkopgi",
-    "slug": "fds",
-    "weight": 100
   }
 },
 {

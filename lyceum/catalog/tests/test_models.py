@@ -252,7 +252,7 @@ class TestOtherNormalizedNames(django.test.TestCase):
 
         normalized_name = category1.normalized_name
 
-        with self.assertRaises(Exception):
+        with self.assertRaises(django.db.utils.IntegrityError):
             catalog.models.Category.objects.create(
                 name=name2,
                 normalized_name=normalized_name,

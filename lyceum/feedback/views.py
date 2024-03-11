@@ -13,6 +13,12 @@ def feedback_view(request):
     if form.is_valid():
         mail = form.cleaned_data.get("mail")
         text = form.cleaned_data.get("text")
+
+        feedback.models.Feedback.objects.create(
+            mail=mail,
+            text=text,
+        )
+
         django.core.mail.send_mail(
             "mail form",
             text,
@@ -20,6 +26,7 @@ def feedback_view(request):
             [mail],
             fail_silently=False,
         )
+
         django.contrib.messages.success(request, "Форма успешно отправлена.")
         return django.shortcuts.redirect("feedback:feedback")
 

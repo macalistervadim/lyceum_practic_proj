@@ -85,7 +85,7 @@ def unverified_items(request):
 
 def item_detail(request, pk):
     image_field_name = catalog.models.GalleryImage._meta.get_field(
-        "image",
+        "item_id",
     ).name
     queryset = catalog.models.Item.objects.published().prefetch_related(
         django.db.models.Prefetch(

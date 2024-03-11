@@ -33,7 +33,6 @@ class ItemManager(django.db.models.Manager):
         )
         select_related = order_by.select_related(
             oredered_field_item_category,
-            catalog.models.Item.mainimage.related.name,
         )
         prefetch_related = select_related.prefetch_related(
             django.db.models.Prefetch(
@@ -48,7 +47,6 @@ class ItemManager(django.db.models.Manager):
         return prefetch_related.only(
             catalog.models.Item.name.field.name,
             catalog.models.Item.text.field.name,
-            catalog.models.Item.mainimage.related.name,
             f"{oredered_field_item_category}__"
             f"{ordered_field_category_name}",
         )
