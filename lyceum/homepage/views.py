@@ -38,4 +38,5 @@ def echo(request):
 
     return django.http.HttpResponseNotAllowed(permitted_methods=["GET"])
 
+
 __all__ = []
