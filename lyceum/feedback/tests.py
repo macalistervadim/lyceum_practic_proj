@@ -51,6 +51,12 @@ class ItemViewTest(django.test.TestCase):
             "Введите текстовое поле обращения",
         )
 
+    def test_request_method_get(self):
+        response = self.client.get(
+            django.shortcuts.reverse("feedback:feedback"),
+        )
+        self.assertEqual(response.status_code, http.HTTPStatus.OK)
+
     def test_submit_redirect(self):
         item_count = feedback.models.Feedback.objects.count()
         response = self.client.post(
@@ -68,6 +74,7 @@ class ItemViewTest(django.test.TestCase):
             status_code=http.HTTPStatus.FOUND,
             target_status_code=http.HTTPStatus.OK,
         )
+        self.assertEqual(response.status_code, http.HTTPStatus.OK)
         self.assertIn("form", response.context)
         form = response.context["form"]
         self.assertEqual(form.fields["mail"].label, "Электронный адрес")

@@ -7,10 +7,34 @@
 {% block title %}{% trans 'Эхо форма' %}{% endblock %}
 
 {% block content %}
-<h2>Введите текст:</h2>
-    <form action="{% url 'homepage:submit-echo' %}" method="post">
-        {% csrf_token %}
-        {{ form }}
-        <button type="submit">Отправить</button>
-    </form>
+<form method="POST" action="{% url 'homepage:submit-echo' %}">
+    {% csrf_token %}
+    {% for hidden_field in form.hidden_fields %}
+      {{ hidden_field }}
+    {% endfor %}
+    {% if form.non_field_errors %}
+      <div class="alert alert-danger" role="alert">
+      {% for error in form.non_field_errors %}
+        <div>{{ error }}</div>
+      {% endfor %}
+      </div>
+    {% endif %}
+    {% for field in form.visible_fields %}
+      <div class="mb-3 {% if field.widget_type == 'checkbox' %}form-check{% endif %}">
+      <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+      {{ field }}
+      {% if form.is_bound and field.errors %}
+        {% for error in field.errors %}
+          <div class="invalid-feedback d-block">
+          {{ error }}
+          </div>
+        {% endfor %}
+      {% endif %}
+     {% if field.help_text %}
+      <div class="form-text">{{ field.help_text }}</div>
+     {% endif %}
+      </div>
+    {% endfor %}
+    <button type="submit" class="btn btn-primary">{% trans "Отправить" %}</button>
+</form>
 {% endblock %}

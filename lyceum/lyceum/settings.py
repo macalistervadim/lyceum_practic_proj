@@ -149,4 +149,6 @@ EMAIL_FILE_PATH = BASE_DIR / "send_mail"
 DJANGO_MAIL = os.getenv("DJANGO_MAIL", default="admin-default@mail.ru")
 EMAIL_HOST = DJANGO_MAIL
 
+SESSION_ENGINE = "django.contrib.sessions.backends.db"
+
 __all__ = []

@@ -45,7 +45,7 @@ class ItemManager(django.db.models.Manager):
             catalog.models.Item.text.field.name,
             f"{oredered_field_item_category}__"
             f"{ordered_field_category_name}",
-            f"{ordered_field_item_mainimage}__" f"{ordered_field_mainimage}",
+            f"{ordered_field_item_mainimage}__{ordered_field_mainimage}",
         )
 
     def on_main(self):

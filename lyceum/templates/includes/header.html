@@ -48,6 +48,7 @@
                 <li><a class="dropdown-item {% if view_name == 'catalog:new-items' %}disabled{% endif %}" href="{% url 'catalog:new-items' %}">{% trans 'Новые товары' %}</a></li>
                 <li><a class="dropdown-item {% if view_name == 'catalog:friday-items' %}disabled{% endif %}" href="{% url 'catalog:friday-items' %}">{% trans 'Товары пятницы' %}</a></li>
                 <li><a class="dropdown-item {% if view_name == 'catalog:unverified-items' %}disabled{% endif %}" href="{% url 'catalog:unverified-items' %}">{% trans 'Непроверенные товары' %}</a></li>
+                <li><a class="dropdown-item {% if view_name == 'catalog:item-list' %}disabled{% endif %}" href="{% url 'catalog:item-list' %}">{% trans 'Все товары' %}</a></li>
             </ul>
         </li>
         <li class="nav-item dropdown">
