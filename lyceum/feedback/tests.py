@@ -83,7 +83,6 @@ class ItemViewTest(django.test.TestCase):
             status_code=http.HTTPStatus.FOUND,
             target_status_code=http.HTTPStatus.OK,
         )
-        self.assertEqual(response.status_code, http.HTTPStatus.OK)
         self.assertIn("form", response.context)
         form = response.context["form"]
         self.assertEqual(form.fields["mail"].label, "Электронный адрес")

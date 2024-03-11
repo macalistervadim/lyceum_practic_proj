@@ -10,7 +10,7 @@ def feedback_view(request):
     template = "feedback/feedback.html"
     form = feedback.forms.FeedbackForm(request.POST or None)
 
-    if form.is_valid():
+    if request.method == "POST" and form.is_valid():
         mail = form.cleaned_data.get("mail")
         text = form.cleaned_data.get("text")
 
