@@ -30,7 +30,9 @@ def echo(request):
         if request.method == "POST" and form.is_valid():
             return django.http.HttpResponse(form.cleaned_data["text"])
 
-        return django.http.HttpResponseNotAllowed(permitted_methods=["POST"])
+        return django.http.HttpResponseNotAllowed(
+            permitted_methods=["POST"],
+        )
 
     if request.method == "GET":
         context = {"form": form}
