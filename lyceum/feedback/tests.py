@@ -14,6 +14,11 @@ class ItemViewTest(django.test.TestCase):
         "mail": ["Введите правильный адрес электронной почты."],
         "text": ["Обязательное поле."],
     }
+    data = {
+        "text": "some test text",
+        "mail": "test@test.com",
+        "name": "Rick",
+    }
 
     def test_form_errors(self):
         response = self.client.post(
@@ -57,15 +62,19 @@ class ItemViewTest(django.test.TestCase):
         )
         self.assertEqual(response.status_code, http.HTTPStatus.OK)
 
+    def test_request_method_post(self):
+        response = self.client.post(
+            django.shortcuts.reverse("feedback:feedback"),
+            self.data,
+            follow=True,
+        )
+        self.assertEqual(response.status_code, http.HTTPStatus.OK)
+
     def test_submit_redirect(self):
         item_count = feedback.models.Feedback.objects.count()
         response = self.client.post(
             django.shortcuts.reverse("feedback:feedback"),
-            data={
-                "text": "some test text",
-                "mail": "test@test.com",
-                "name": "Rick",
-            },
+            self.data,
             follow=True,
         )
         self.assertRedirects(

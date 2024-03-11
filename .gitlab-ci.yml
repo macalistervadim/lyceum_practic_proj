@@ -23,7 +23,7 @@ test:
   script:
     - python -m venv $CI_PROJECT_DIR/venv
     - source $CI_PROJECT_DIR/venv/bin/activate
-    - pip install -r requirements/prod.txt -r requirements/test.txt
+    - pip install -r requirements/test.txt
     - cd $CI_PROJECT_DIR/lyceum
     - python manage.py test
     - deactivate

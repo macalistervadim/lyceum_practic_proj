@@ -191,6 +191,21 @@ class TestContentItems(django.test.TestCase):
         items = response.context["items"]
         self.assertIsInstance(items.first(), catalog.models.Item)
 
+    def test_all_items_view(self):
+        response = self.client.get(django.urls.reverse("catalog:item-list"))
+        self.assertEqual(
+            response.status_code,
+            http.HTTPStatus.OK,
+            "Expected status code: 200, Actual status code:  "
+            f"{response.status_code}",
+        )
+        self.assertTemplateUsed(
+            response,
+            "catalog/item_list.html",
+            "The current template differs from the one specified "
+            "in the view function",
+        )
+
     def test_new_items_view(self):
         response = self.client.get(django.urls.reverse("catalog:new-items"))
         self.assertEqual(
