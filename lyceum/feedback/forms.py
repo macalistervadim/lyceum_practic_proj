@@ -16,8 +16,5 @@ class FeedbackForm(django.forms.ModelForm):
             feedback.models.Feedback.status.field.name,
         ]
 
-    def __str__(self):
-        return f"обратная связь ({self.id})"
-
 
 __all__ = []

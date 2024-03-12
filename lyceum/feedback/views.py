@@ -11,20 +11,13 @@ def feedback_view(request):
     form = feedback.forms.FeedbackForm(request.POST or None)
 
     if request.method == "POST" and form.is_valid():
-        mail = form.cleaned_data.get("mail")
-        text = form.cleaned_data.get("text")
-
-        feedback.models.Feedback.objects.create(
-            mail=mail,
-            text=text,
-        )
+        form.save()
 
         django.core.mail.send_mail(
-            "mail form",
-            text,
-            django.conf.settings.EMAIL_HOST,
-            [mail],
-            fail_silently=False,
+            subject="Feedback",
+            message=form.cleaned_data["text"],
+            from_email=django.conf.settings.EMAIL_HOST,
+            recipient_list=[form.cleaned_data["mail"]],
         )
 
         django.contrib.messages.success(request, "Форма успешно отправлена.")
