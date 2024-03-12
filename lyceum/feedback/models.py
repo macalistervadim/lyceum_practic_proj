@@ -29,7 +29,7 @@ class Feedback(django.db.models.Model):
         max_length=150,
         blank=True,
         help_text="Необязательное поле. Укажите имя отправителя. "
-                  "Максимальная длинна - 256 символов.",
+        "Максимальная длинна - 256 символов.",
     )
     status = django.db.models.CharField(
         choices=Status.choices,
