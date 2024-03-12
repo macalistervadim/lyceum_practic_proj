@@ -112,10 +112,10 @@
     "is_published": true,
     "normalized_name": "yb123",
     "created": "2024-03-11T11:23:14.536Z",
-    "updated": "2024-03-11T11:23:14.546Z",
+    "updated": "2024-03-11T13:53:56.330Z",
     "category": 5,
     "text": "<p style=\"text-align: right;\">роскошно</p>",
-    "is_on_main": false,
+    "is_on_main": true,
     "tags": [
       3,
       4,
@@ -165,10 +165,10 @@
     "is_published": true,
     "normalized_name": "rrorro",
     "created": "2024-03-11T11:23:14.536Z",
-    "updated": "2024-03-11T11:23:14.546Z",
+    "updated": "2024-03-11T13:53:56.329Z",
     "category": 1,
     "text": "<p>роскошно</p>",
-    "is_on_main": false,
+    "is_on_main": true,
     "tags": [
       4
     ]
@@ -182,10 +182,10 @@
     "is_published": true,
     "normalized_name": "olrromsi",
     "created": "2024-03-11T11:23:14.536Z",
-    "updated": "2024-03-11T11:23:14.546Z",
+    "updated": "2024-03-11T13:53:56.327Z",
     "category": 4,
     "text": "<p>роскошно</p>",
-    "is_on_main": false,
+    "is_on_main": true,
     "tags": [
       3,
       4,
@@ -201,10 +201,10 @@
     "is_published": true,
     "normalized_name": "rrorrorro",
     "created": "2024-03-11T11:23:14.536Z",
-    "updated": "2024-03-11T11:23:14.546Z",
+    "updated": "2024-03-11T13:53:56.329Z",
     "category": 2,
     "text": "<p>роскошно</p>",
-    "is_on_main": false,
+    "is_on_main": true,
     "tags": [
       1,
       2,
@@ -221,10 +221,10 @@
     "is_published": true,
     "normalized_name": "shschjaey",
     "created": "2024-03-11T11:23:14.536Z",
-    "updated": "2024-03-11T11:23:14.546Z",
+    "updated": "2024-03-11T13:53:56.330Z",
     "category": 4,
     "text": "<p>роскошно</p>",
-    "is_on_main": false,
+    "is_on_main": true,
     "tags": [
       2,
       3
@@ -293,6 +293,28 @@
   "fields": {
     "image": "catalog/7/7fc05bef-295a-4f15-84f8-2b074edbaae0.jpeg",
     "item": 7
+  }
+},
+{
+  "model": "feedback.feedback",
+  "pk": 10,
+  "fields": {
+    "text": "ываыавываыва",
+    "created_on": "2024-03-12T11:03:21.318Z",
+    "mail": "macalistervadim@yandex.ru",
+    "name": null,
+    "status": "в обработке"
+  }
+},
+{
+  "model": "feedback.statuslog",
+  "pk": 1,
+  "fields": {
+    "user": 1,
+    "feedback": 10,
+    "timestamp": "2024-03-12T11:04:23.574Z",
+    "_from": "получено",
+    "to": "в обработке"
   }
 }
 ]

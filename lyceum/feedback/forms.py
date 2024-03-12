@@ -13,6 +13,7 @@ class FeedbackForm(django.forms.ModelForm):
         model = feedback.models.Feedback
         exclude = [
             feedback.models.Feedback.created_on.field.name,
+            feedback.models.Feedback.status.field.name,
         ]
 
     def __str__(self):
