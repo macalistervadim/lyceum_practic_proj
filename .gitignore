@@ -170,3 +170,6 @@ static/
 
 # email sending debug
 send_mail/
+
+# pre-commit
+.pre-commit-config.yaml

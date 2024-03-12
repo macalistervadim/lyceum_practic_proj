@@ -8,7 +8,7 @@ flake8:
   stage: linting
   image: registry.gitlab.com/pipeline-components/flake8:latest
   script:
-    - pip install flake8-implicit-str-concat flake8-bugbear flake8-clean-block flake8-expression-complexity flake8-import-order flake8-quotes pep8-naming flake8-absolute-import flake8-commas flake8-eradicate flake8-comprehensions flake8-fixme flake8-dunder-all flake8-print flake8-type-ignore flake8-comments flake8-use-pathlib flake8-return flake8-builtins
+    - pip install flake8-implicit-str-concat flake8-bugbear flake8-clean-block flake8-expression-complexity flake8-import-order flake8-quotes pep8-naming flake8-absolute-import flake8-eradicate flake8-comprehensions flake8-fixme flake8-dunder-all flake8-print flake8-type-ignore flake8-comments flake8-use-pathlib flake8-return flake8-builtins
     - flake8 --config .flake8
 
 black:
