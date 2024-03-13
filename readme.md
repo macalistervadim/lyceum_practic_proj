@@ -121,11 +121,11 @@ To use fixtures in your Django project, follow these steps:
 
    Windows:
    ```
-   python -Xutf8 manage.py dumpdata --indent 2 -o fixtures/data.json 
+   python -Xutf8 manage.py dumpdata catalog feedback auth sessions --indent 2 -o fixtures/data.json
    ```
    Linux:
    ```
-   python3 manage.py dumpdata --indent 2 -o fixtures/data.json 
+   python3 manage.py dumpdata catalog feedback auth sessions --indent 2 -o fixtures/data.json 
    ```
    
 2. Load fixture data into your database using the loaddata management command:
