@@ -172,24 +172,38 @@ class TestContentItems(django.test.TestCase):
 
     def test_home_page_correct_context(self):
         response = self.client.get(django.urls.reverse("homepage:home"))
-        self.assertIn("items", response.context)
+        self.assertIn("items", response.context, "the page does not contain")
 
     def test_item_list_page_correct_context(self):
         response = self.client.get(django.urls.reverse("catalog:item-list"))
-        self.assertIn("items", response.context)
+        self.assertIn(
+            "items", response.context, "the page does not contain Items"
+        )
 
     def test_home_count_item(self):
         response = self.client.get(django.urls.reverse("homepage:home"))
-        self.assertEqual(len(response.context["items"]), 1)
+        self.assertEqual(
+            len(response.context["items"]),
+            1,
+            "the page does not contain 1 items",
+        )
 
     def test_item_list_count_item(self):
         response = self.client.get(django.urls.reverse("catalog:item-list"))
-        self.assertEqual(len(response.context["items"]), 2)
+        self.assertEqual(
+            len(response.context["items"]),
+            2,
+            "the page does not contain 2 items",
+        )
 
     def test_item_type(self):
         response = self.client.get(django.urls.reverse("catalog:item-list"))
         items = response.context["items"]
-        self.assertIsInstance(items.first(), catalog.models.Item)
+        self.assertIsInstance(
+            items.first(),
+            catalog.models.Item,
+            "Item not does not belong to catalog.Item",
+        )
 
     def test_all_items_view(self):
         response = self.client.get(django.urls.reverse("catalog:item-list"))

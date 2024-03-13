@@ -2,6 +2,7 @@ import re
 
 import django.core.exceptions
 import django.utils.deconstruct
+import django.utils.translation as translation
 
 
 WORDS_REGEX = re.compile(r"\w+|\W+")
@@ -17,7 +18,9 @@ class ValidateMustContain:
         words = set(WORDS_REGEX.findall(value.lower()))
         if not self.validate_words & words:
             raise django.core.exceptions.ValidationError(
-                f"В тексте '{value}' нет слов {self.pattern} ",
+                translation.gettext_lazy(
+                    f"В тексте '{value}' нет слов {self.pattern}"
+                ),
             )
 
 
@@ -25,7 +28,9 @@ def validator_for_item_text(value):
     words = set(WORDS_REGEX.findall(value.lower()))
     if not {"превосходно", "роскошно"} & words:
         raise django.core.exceptions.ValidationError(
-            "Текст должен содержать слово 'превосходно' или 'роскошно'.",
+            translation.gettext_lazy(
+                "Текст должен содержать слово 'превосходно' или 'роскошно'."
+            ),
         )
 
 

@@ -3,108 +3,64 @@ import django.core.exceptions
 import django.core.validators
 import django.db
 import django.utils
+import django.utils.translation as translation
 import tinymce.models
 
+import catalog.managers
 import catalog.models
 import catalog.validators
 import core.models
 
 
-class ItemManager(django.db.models.Manager):
-    def published(self):
-        oredered_field_item_category = catalog.models.Item.category.field.name
-        ordered_field_category_name = catalog.models.Category.name.field.name
-        ordered_field_item_mainimage = (
-            catalog.models.Item.main_image.related.name
-        )
-        ordered_field_mainimage = catalog.models.MainImage.image.field.name
-        publish = self.get_queryset().filter(
-            is_published=True,
-            category__is_published=True,
-        )
-        order_by = publish.order_by(
-            f"{oredered_field_item_category}__{ordered_field_category_name}",
-            catalog.models.Item.name.field.name,
-        )
-        select_related = order_by.select_related(
-            oredered_field_item_category,
-            Item.main_image.related.name,
-        )
-        prefetch_related = select_related.prefetch_related(
-            django.db.models.Prefetch(
-                catalog.models.Item.tags.field.name,
-                queryset=catalog.models.Tag.objects.filter(
-                    is_published=True,
-                ).only(
-                    catalog.models.Tag.name.field.name,
-                ),
-            ),
-        )
-        return prefetch_related.only(
-            catalog.models.Item.name.field.name,
-            catalog.models.Item.text.field.name,
-            f"{oredered_field_item_category}__"
-            f"{ordered_field_category_name}",
-            f"{ordered_field_item_mainimage}__{ordered_field_mainimage}",
-        )
-
-    def on_main(self):
-        return (
-            self.published()
-            .filter(
-                is_on_main=True,
-            )
-            .order_by(
-                catalog.models.Item.name.field.name,
-            )
-        )
-
-
 class Tag(core.models.TimeStampedModel):
     slug = django.db.models.SlugField(
-        "слаг",
+        translation.gettext_lazy("слаг"),
         max_length=200,
-        help_text="Введите слаг для тэга, максимальная длинна - 200",
+        help_text=translation.gettext_lazy(
+            "Введите слаг для тэга, максимальная длинна - 200"
+        ),
     )
 
     class Meta:
         ordering = ("name",)
-        verbose_name = "тег"
-        verbose_name_plural = "теги"
+        verbose_name = translation.gettext_lazy("тег")
+        verbose_name_plural = translation.gettext_lazy("теги")
 
 
 class Category(core.models.TimeStampedModel):
     slug = django.db.models.SlugField(
-        "слаг",
+        translation.gettext_lazy("слаг"),
         max_length=200,
-        help_text="Введите слаг для тэга, максимальная длинна - 200",
+        help_text=translation.gettext_lazy(
+            "Введите слаг для тэга, максимальная длинна - 200"
+        ),
     )
     weight = django.db.models.IntegerField(
-        "вес",
+        translation.gettext_lazy("вес"),
         default=100,
         validators=[
             django.core.validators.MinValueValidator(1),
             django.core.validators.MaxValueValidator(32767),
         ],
-        help_text="Введите вес (от 1 до 32767)",
+        help_text=translation.gettext_lazy("Введите вес (от 1 до 32767)"),
     )
 
     class Meta:
         ordering = ("name",)
-        verbose_name = "категория"
-        verbose_name_plural = "категории"
+        verbose_name = translation.gettext_lazy("категория")
+        verbose_name_plural = translation.gettext_lazy("категории")
 
 
 class Item(core.models.TimeStampedModel):
-    objects = ItemManager()
+    objects = catalog.managers.ItemManager()
 
     created = django.db.models.DateTimeField(
-        "дата создания",
+        translation.gettext_lazy("дата создания"),
         auto_now_add=True,
         null=True,
     )
     updated = django.db.models.DateTimeField(
-        "последнее изменение",
+        translation.gettext_lazy("последнее изменение"),
         auto_now=True,
         null=True,
     )
@@ -113,17 +69,17 @@ class Item(core.models.TimeStampedModel):
         on_delete=django.db.models.CASCADE,
         related_name="items",
         related_query_name="item",
-        verbose_name="категория",
-        help_text="Выберите категорию",
+        verbose_name=translation.gettext_lazy("категория"),
+        help_text=translation.gettext_lazy("Выберите категорию"),
     )
     tags = django.db.models.ManyToManyField(
         Tag,
         related_name="items",
-        verbose_name="теги",
-        help_text="Выберите тэг",
+        verbose_name=translation.gettext_lazy("теги"),
+        help_text=translation.gettext_lazy("Выберите тэг"),
     )
     text = tinymce.models.HTMLField(
-        "текст",
+        translation.gettext_lazy("текст"),
         validators=[
             catalog.validators.ValidateMustContain(
                 "превосходно",
@@ -131,19 +87,21 @@ class Item(core.models.TimeStampedModel):
             ),
         ],
         help_text=(
-            "Введите сообщение с содержанием следующих слов: "
-            "превосходно/роскошно"
+            translation.gettext_lazy(
+                "Введите сообщение с содержанием следующих слов: "
+                "превосходно/роскошно"
+            )
         ),
     )
     is_on_main = django.db.models.BooleanField(
-        "для главной",
+        translation.gettext_lazy("отображать для главной"),
         default=False,
     )
 
     class Meta:
         ordering = ("name",)
-        verbose_name = "товар"
-        verbose_name_plural = "товары"
+        verbose_name = translation.gettext_lazy("товар")
+        verbose_name_plural = translation.gettext_lazy("товары")
 
 
 class MainImage(core.models.AbstractModelImage):

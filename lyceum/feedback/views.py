@@ -2,6 +2,7 @@ import django.conf
 import django.contrib
 import django.core.mail
 import django.shortcuts
+import django.utils.translation as translation
 
 import feedback.forms
 
@@ -20,7 +21,9 @@ def feedback_view(request):
             recipient_list=[form.cleaned_data["mail"]],
         )
 
-        django.contrib.messages.success(request, "Форма успешно отправлена.")
+        django.contrib.messages.success(
+            request, translation.gettext_lazy("Форма успешно отправлена.")
+        )
         return django.shortcuts.redirect("feedback:feedback")
 
     context = {"form": form}

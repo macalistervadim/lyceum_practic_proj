@@ -7,7 +7,7 @@
 {% block title %}{% trans 'Обратная связь' %}{% endblock %}
 
 {% block content %}
-<h1>Обратная связь</h1>
+<h1>{% trans 'Обратная связь' %}</h1>
 <hr>
 {% if messages %}
   {% for message in messages %}
@@ -42,6 +42,9 @@
    {% if field.help_text %}
     <div class="form-text">{{ field.help_text }}</div>
    {% endif %}
+    {% if not field.field.required %}
+      <small class="form-text text-muted">{% trans 'Это поле необязательно для заполнения' %}.</small>
+    {% endif %}
     </div>
   {% endfor %}
   <button type="submit" class="btn btn-primary">{% trans "Отправить" %}</button>

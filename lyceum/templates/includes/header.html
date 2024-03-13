@@ -16,7 +16,7 @@
     <ul class="navbar-nav ms-auto">
         {% if user.is_superuser %}
         <li class="nav-item">
-          <a class="nav-link {% if view_name == 'admin:index' %}active{% endif %}" href="{% url 'admin:index' %}">Админ-панель</a>
+          <a class="nav-link {% if view_name == 'admin:index' %}active{% endif %}" href="{% url 'admin:index' %}">{% trans 'Админ-панель' %}</a>
         </li>
         {% endif %}
         <li class="nav-item">
@@ -42,7 +42,7 @@
         </li>
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownItems" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Список товаров
+                {% trans 'Список товаров' %}
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdownItems">
                 <li><a class="dropdown-item {% if view_name == 'catalog:new-items' %}disabled{% endif %}" href="{% url 'catalog:new-items' %}">{% trans 'Новые товары' %}</a></li>

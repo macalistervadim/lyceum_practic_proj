@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-03 15:56+0600\n"
+"POT-Creation-Date: 2024-03-13 19:23+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,15 +18,248 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: .\lyceum\templates\about\about.html:5
+#: .\about\apps.py:7
+#, fuzzy
+#| msgid "О проекте"
+msgid "О приложении"
+msgstr "About"
+
+#: .\catalog\apps.py:8
+msgid "Каталог"
+msgstr "Catalog"
+
+#: .\catalog\models.py:17 .\catalog\models.py:30
+msgid "слаг"
+msgstr "slug"
+
+#: .\catalog\models.py:19 .\catalog\models.py:32
+msgid "Введите слаг для тэга, максимальная длинна - 200"
+msgstr "Enter a slug for the tag, maximum length - 200"
+
+#: .\catalog\models.py:24
+msgid "тег"
+msgstr "tag"
+
+#: .\catalog\models.py:25 .\catalog\models.py:74
+msgid "теги"
+msgstr "tags"
+
+#: .\catalog\models.py:35
+msgid "вес"
+msgstr "weight"
+
+#: .\catalog\models.py:41
+msgid "Введите вес (от 1 до 32767)"
+msgstr "Enter weight (from 1 to 32767)"
+
+#: .\catalog\models.py:46 .\catalog\models.py:68
+msgid "категория"
+msgstr "category"
+
+#: .\catalog\models.py:47
+msgid "категории"
+msgstr "categories"
+
+#: .\catalog\models.py:54
+msgid "дата создания"
+msgstr "creation date"
+
+#: .\catalog\models.py:59
+msgid "последнее изменение"
+msgstr "last modification"
+
+#: .\catalog\models.py:69
+msgid "Выберите категорию"
+msgstr "Choose category"
+
+#: .\catalog\models.py:75
+msgid "Выберите тэг"
+msgstr "Choose tag"
+
+#: .\catalog\models.py:78
+msgid "текст"
+msgstr "text"
+
+#: .\catalog\models.py:86
+msgid "Введите сообщение с содержанием следующих слов: превосходно/роскошно"
+msgstr "Enter a message containing the following words: превосходно/роскошно"
+
+#: .\catalog\models.py:91
+msgid "отображать для главной"
+msgstr "display on the main page"
+
+#: .\catalog\models.py:97
+msgid "товар"
+msgstr "product"
+
+#: .\catalog\models.py:98
+msgid "товары"
+msgstr "products"
+
+#: .\catalog\validators.py:21
+#, python-brace-format
+msgid "В тексте '{value}' нет слов {self.pattern}"
+msgstr "In text '{value}' not words {self.pattern}"
+
+#: .\catalog\validators.py:29
+msgid "Текст должен содержать слово 'превосходно' или 'роскошно'."
+msgstr "Message containing the following words: превосходно/роскошно"
+
+#: .\core\apps.py:8
+msgid "Абстрактные модели"
+msgstr "Abstract models"
+
+#: .\core\models.py:25
+msgid "название"
+msgstr "title"
+
+#: .\core\models.py:27
+msgid "Введите название, максимальная длинна - 150"
+msgstr "Enter a name, the maximum length is 150"
+
+#: .\core\models.py:31
+msgid "опубликовано"
+msgstr "published"
+
+#: .\core\models.py:33
+msgid "Дата публикации"
+msgstr "Date of publication"
+
+#: .\core\models.py:36
+msgid "исправленное значение"
+msgstr "corrected value"
+
+#: .\core\models.py:63
+msgid "Похожее имя есть в базе данных"
+msgstr "There is a similar name in the database"
+
+#: .\core\models.py:99
+msgid "изображение"
+msgstr "image"
+
+#: .\core\models.py:129
+msgid "Нет изображения"
+msgstr "There is no image"
+
+#: .\core\models.py:131
+msgid "превью"
+msgstr "preview"
+
+#: .\download\apps.py:8
+msgid "Загрузки"
+msgstr "Downloads"
+
+#: .\feedback\apps.py:8 .\templates\feedback\feedback.html:7
+#: .\templates\feedback\feedback.html:10 .\templates\includes\header.html:38
+#: .\templates\includes\header.html:40
+msgid "Обратная связь"
+msgstr "Feedback"
+
+#: .\feedback\models.py:6
+msgid "получено"
+msgstr "received"
+
+#: .\feedback\models.py:7
+msgid "в обработке"
+msgstr "in processing"
+
+#: .\feedback\models.py:8
+msgid "ответ дан"
+msgstr "answer is given"
+
+#: .\feedback\models.py:13
+msgid "текстовое поле"
+msgstr "the text field"
+
+#: .\feedback\models.py:14
+msgid "Введите текстовое поле обращения"
+msgstr "Enter the message text field"
+
+#: .\feedback\models.py:17
+msgid "дата и время создания"
+msgstr "date and time of creation"
+
+#: .\feedback\models.py:20
+msgid "Дата и время создания"
+msgstr "Date and time of creation"
+
+#: .\feedback\models.py:23
+msgid "электронный адрес"
+msgstr "email"
+
+#: .\feedback\models.py:24
+msgid "Адрес электронной почты"
+msgstr "Email"
+
+#: .\feedback\models.py:27
+msgid "имя отправителя"
+msgstr "sender's name"
+
+#: .\feedback\models.py:31
+msgid "Укажите имя отправителя. Максимальная длинна - 256 символов."
+msgstr "Specify the sender's name. The maximum length is 256 characters."
+
+#: .\feedback\models.py:38
+msgid "статус обработки"
+msgstr "processing status"
+
+#: .\feedback\models.py:42
+msgid "обратная связь"
+msgstr "feedback"
+
+#: .\feedback\models.py:43
+msgid "обратные связи"
+msgstr "feedbacks"
+
+#: .\feedback\models.py:61 .\feedback\models.py:62
+msgid "дата и время изменения"
+msgstr "date and time of the change"
+
+#: .\feedback\models.py:70
+msgid "перешло из состояния"
+msgstr "moved from the state"
+
+#: .\feedback\models.py:75
+msgid "перешло в состояние"
+msgstr "moved to the state"
+
+#: .\feedback\models.py:79
+msgid "журнал состояния"
+msgstr "status log"
+
+#: .\feedback\models.py:80
+msgid "журнал состояний"
+msgstr "status log"
+
+#: .\feedback\views.py:24
+msgid "Форма успешно отправлена."
+msgstr "The form has been successfully submitted."
+
+#: .\homepage\apps.py:8
+msgid "Домашняя страница"
+msgstr "Home"
+
+#: .\homepage\forms.py:11
+msgid "Текст"
+msgstr "Text"
+
+#: .\lyceum\settings.py:122
+msgid "Английский"
+msgstr "English"
+
+#: .\lyceum\settings.py:123
+msgid "Русский"
+msgstr "Russian"
+
+#: .\templates\about\about.html:6
 msgid "О самой жестокой специализации"
 msgstr "About the most brutal specialization"
 
-#: .\lyceum\templates\about\about.html:13
+#: .\templates\about\about.html:14
 msgid "Коротко о самой жестокой специализации"
 msgstr "Briefly about the most brutal specialization"
 
-#: .\lyceum\templates\about\about.html:14
+#: .\templates\about\about.html:15
 msgid ""
 "Совет - ни за что на свете, не пытайтесь дети, не пытайтесь дети, в "
 "специализацию по джанге лезть!"
@@ -34,23 +267,73 @@ msgstr ""
 "Advice - no way in the world, do not try children, do not try children, to "
 "get into the specialization in Django!"
 
-#: .\lyceum\templates\catalog\item.html:5
+#: .\templates\base.html:9 .\templates\includes\footer.html:6
+msgid "Специализация Джанго - боль"
+msgstr "Django's specialty is pain"
+
+#: .\templates\catalog\item.html:6
 msgid "Детали товара"
 msgstr "Item detail"
 
-#: .\lyceum\templates\catalog\item_list.html:5
-#: .\lyceum\templates\catalog\item_list.html:8
-#: .\lyceum\templates\homepage\home.html:13
-#: .\lyceum\templates\includes\header.html:23
+#: .\templates\catalog\item.html:13 .\templates\catalog\item.html:31
+msgid "Скачать картинку"
+msgstr "Download image"
+
+#: .\templates\catalog\item.html:18
+msgid "Категория"
+msgstr "Category"
+
+#: .\templates\catalog\item.html:19
+msgid "Тэги"
+msgstr "Tags"
+
+#: .\templates\catalog\item.html:25
+msgid "Изображения галереи"
+msgstr "Image gallery"
+
+#: .\templates\catalog\item_filter_date.html:7
+#: .\templates\catalog\item_filter_date.html:18
+msgid "Новинки"
+msgstr "New"
+
+#: .\templates\catalog\item_filter_date.html:9
+#: .\templates\catalog\item_filter_date.html:20
+msgid "Пятница"
+msgstr "Friday"
+
+#: .\templates\catalog\item_filter_date.html:11
+#: .\templates\catalog\item_filter_date.html:22
+msgid "Непроверенное"
+msgstr "Unverified"
+
+#: .\templates\catalog\item_filter_date.html:32
+#: .\templates\catalog\item_list.html:19 .\templates\homepage\home.html:22
+msgid "К сожалению, здесь пока ничего нет"
+msgstr "Unfortunately, there is nothing here yet"
+
+#: .\templates\catalog\item_list.html:5 .\templates\catalog\item_list.html:8
+#: .\templates\homepage\home.html:14
 msgid "Список товаров"
 msgstr "Items"
 
-#: .\lyceum\templates\homepage\home.html:5
-#: .\lyceum\templates\includes\header.html:17
+#: .\templates\feedback\feedback.html:46
+msgid "Это поле необязательно для заполнения"
+msgstr "This field is optional to fill in"
+
+#: .\templates\feedback\feedback.html:50 .\templates\homepage\echo.html:37
+msgid "Отправить"
+msgstr "Send"
+
+#: .\templates\homepage\echo.html:5
+msgid "Эхо"
+msgstr "Echo"
+
+#: .\templates\homepage\home.html:6 .\templates\includes\header.html:24
+#: .\templates\includes\header.html:26
 msgid "Главная"
 msgstr "Home"
 
-#: .\lyceum\templates\homepage\home.html:8
+#: .\templates\homepage\home.html:9
 msgid ""
 "Добро пожаловать на главную страницу сайта одного из страдальцев "
 "специализации Яндекс Лицея \"Django\"!"
@@ -58,7 +341,7 @@ msgstr ""
 "Welcome to the main page of the website of one of the sufferers of the "
 "\"specialization of Yandex Lyceum \"Django\"!"
 
-#: .\lyceum\templates\homepage\home.html:9
+#: .\templates\homepage\home.html:10
 msgid ""
 "Очень надеюсь, что злой енотик не попадет в мой репозиторий и не напишет "
 "ишьюсы в 2 раза больше самого задания"
@@ -66,20 +349,37 @@ msgstr ""
 "I really hope that the evil raccoon does not get into my repository and does "
 "not write the questions are 2 times more than the task itself"
 
-#: .\lyceum\templates\includes\footer.html:5
-msgid "Специализация Джанго - боль"
-msgstr "Django's specialty is pain"
-
-#: .\lyceum\templates\includes\header.html:20
+#: .\templates\includes\header.html:31 .\templates\includes\header.html:33
 msgid "О проекте"
 msgstr "About"
 
-#: .\lyceum\templates\includes\item_card.html:13
+#: .\templates\includes\header.html:48
+msgid "Новые товары"
+msgstr "New items"
+
+#: .\templates\includes\header.html:49
+msgid "Товары пятницы"
+msgstr "Friday items"
+
+#: .\templates\includes\header.html:50
+msgid "Непроверенные товары"
+msgstr "Unverified items"
+
+#: .\templates\includes\header.html:51
+msgid "Все товары"
+msgstr "All items"
+
+#: .\templates\includes\header.html:56
+msgid "Выбрать язык"
+msgstr "Choose a language"
+
+#: .\templates\includes\header.html:69
+msgid "Сменить язык"
+msgstr "Choose a language"
+
+#: .\templates\includes\item_card.html:13
 msgid "Подробнее"
 msgstr "About"
 
-#~ msgid "Английский"
-#~ msgstr "English"
-
-#~ msgid "Русский"
-#~ msgstr "Russian"
+msgid "Админ-панель"
+msgstr "Admin-panel"

@@ -6,6 +6,7 @@ import django.core.exceptions
 import django.db
 import django.dispatch
 import django.utils.html
+import django.utils.translation as translation
 import sorl.thumbnail
 import transliterate
 
@@ -21,18 +22,20 @@ def item_directory_path(instance, filename):
 
 class TimeStampedModel(django.db.models.Model):
     name = django.db.models.CharField(
-        "название",
+        translation.gettext_lazy("название"),
         max_length=150,
-        help_text="Введите название, максимальная длинна - 150",
+        help_text=translation.gettext_lazy(
+            "Введите название, максимальная длинна - 150"
+        ),
         unique=True,
     )
     is_published = django.db.models.BooleanField(
-        "опубликовано",
+        translation.gettext_lazy("опубликовано"),
         default=True,
-        help_text="Дата публикации",
+        help_text=translation.gettext_lazy("Дата публикации"),
     )
     normalized_name = django.db.models.CharField(
-        "исправленное значение",
+        translation.gettext_lazy("исправленное значение"),
         max_length=150,
         unique=True,
         editable=False,
@@ -59,7 +62,7 @@ class TimeStampedModel(django.db.models.Model):
             .exists()
         ):
             raise django.core.exceptions.ValidationError(
-                "Похожее имя есть в базе данных",
+                translation.gettext_lazy("Похожее имя есть в базе данных"),
             )
 
     @staticmethod
@@ -95,7 +98,7 @@ class TimeStampedModel(django.db.models.Model):
 class AbstractModelImage(django.db.models.Model):
     image = sorl.thumbnail.ImageField(
         upload_to=item_directory_path,
-        verbose_name="изображение",
+        verbose_name=translation.gettext_lazy("изображение"),
     )
 
     class Meta:
@@ -125,9 +128,9 @@ class AbstractModelImage(django.db.models.Model):
                 f"<img src='{self.get_image_300x300().url}' width='50'>",
             )
 
-        return "Нет изображения"
+        return translation.gettext_lazy("Нет изображения")
 
-    image_tmb.short_description = "превью"
+    image_tmb.short_description = translation.gettext_lazy("превью")
     image_tmb.allow_tags = True
     image_tmb.field_name = "image_tmb"
 
