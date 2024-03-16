@@ -31,12 +31,12 @@ urlpatterns = [
         name="item-detail",
     ),
     django.urls.path(
-        "converter-item/<positive_int:number>/",
+        "converter-item/<positive_int:pk>/",
         catalog.views.item_detail,
         name="catalog-converter",
     ),
     django.urls.re_path(
-        r"^re/(?P<number>\d*[1-9]\d*)/$",
+        r"^re/(?P<pk>\d*[1-9]\d*)/$",
         catalog.views.item_detail,
         name="catalog-regex",
     ),

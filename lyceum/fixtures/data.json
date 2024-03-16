@@ -201,7 +201,7 @@
     "is_published": true,
     "normalized_name": "rrorrorro",
     "created": "2024-03-11T11:23:14.536Z",
-    "updated": "2024-03-11T13:53:56.329Z",
+    "updated": "2024-03-16T08:21:32.096Z",
     "category": 2,
     "text": "<p>роскошно</p>",
     "is_on_main": true,
@@ -256,6 +256,14 @@
   }
 },
 {
+  "model": "catalog.mainimage",
+  "pk": 6,
+  "fields": {
+    "image": "catalog/6/a8cf3af4-ea5f-4695-83d8-4de15f7fd13b.png",
+    "item": 6
+  }
+},
+{
   "model": "catalog.galleryimage",
   "pk": 2,
   "fields": {
@@ -293,6 +301,30 @@
   "fields": {
     "image": "catalog/7/7fc05bef-295a-4f15-84f8-2b074edbaae0.jpeg",
     "item": 7
+  }
+},
+{
+  "model": "catalog.galleryimage",
+  "pk": 7,
+  "fields": {
+    "image": "catalog/6/05a23f9f-87f7-4167-a7ff-59ae01ede35b.png",
+    "item": 6
+  }
+},
+{
+  "model": "catalog.galleryimage",
+  "pk": 8,
+  "fields": {
+    "image": "catalog/6/b20af68f-5f13-467e-b004-487267e0af19.jpeg",
+    "item": 6
+  }
+},
+{
+  "model": "catalog.galleryimage",
+  "pk": 9,
+  "fields": {
+    "image": "catalog/6/ea7dddf9-1bac-4f3e-88f3-0e73d622b72b.jpg",
+    "item": 6
   }
 },
 {

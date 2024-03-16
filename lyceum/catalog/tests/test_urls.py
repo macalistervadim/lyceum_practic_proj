@@ -9,111 +9,104 @@ import catalog.models
 
 
 class UrlTests(django.test.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.published_category = catalog.models.Category.objects.create(
+            name="Тестовая кат.",
+        )
+        cls.item1 = catalog.models.Item.objects.create(
+            name="name1", category=cls.published_category, id=1
+        )
+        cls.item2 = catalog.models.Item.objects.create(
+            name="name6", category=cls.published_category, id=6
+        )
+
     PARAMETRIZED_PARAMETERS = [
-        1,
-        25,
-        42,
-        9999,
-        0o123,
-        "abc",
-        0,
-        -0,
-        0o10,
-        "01",
-        "010",
-        -123,
-        0.231,
-        1.1231,
-        "123adfs",
-        "asdad1123",
-        "10^2",
-        "123$abc",
-        "abc%123",
+        (1, 2),
+        (6, 3),
     ]
 
     @parameterized.parameterized.expand(PARAMETRIZED_PARAMETERS)
-    def test_item_list_reverse(self, pk):
-        try:
-            if isinstance(pk, int):
-                url = django.urls.reverse(
-                    "catalog:item-detail",
-                    kwargs={"pk": pk},
-                )
-                response = self.client.get(url)
-                if response.status_code == http.HTTPStatus.OK:
-                    self.assertEqual(
-                        response.status_code,
-                        http.HTTPStatus.OK,
-                        f"Unexpected status code: {response.status_code}",
-                    )
-                elif response.status_code == http.HTTPStatus.NOT_FOUND:
-                    self.assertEqual(
-                        response.status_code,
-                        http.HTTPStatus.NOT_FOUND,
-                        f"Unexpected status code: {response.status_code}",
-                    )
-                else:
-                    self.fail(
-                        f"Unexpected status code: {response.status_code}",
-                    )
-        except django.urls.exceptions.NoReverseMatch:
-            pass
+    def test_item_detail_view(self, pk_200, pk_404):
+
+        url_200 = django.urls.reverse(
+            "catalog:item-detail", kwargs={"pk": pk_200}
+        )
+
+        response_200 = self.client.get(url_200)
+
+        self.assertEqual(
+            response_200.status_code,
+            http.HTTPStatus.OK,
+            f"Unexpected status code for pk={pk_200}",
+        )
+
+        url_404 = django.urls.reverse(
+            "catalog:item-detail", kwargs={"pk": pk_404}
+        )
+
+        response_404 = self.client.get(url_404)
+
+        self.assertEqual(
+            response_404.status_code,
+            http.HTTPStatus.NOT_FOUND,
+            f"Expected status code for pk={pk_404}",
+        )
 
     @parameterized.parameterized.expand(PARAMETRIZED_PARAMETERS)
-    def test_catalog_regex(self, pk):
-        try:
-            if isinstance(pk, int):
-                url = django.urls.reverse(
-                    "catalog:catalog-regex",
-                    kwargs={"pk": pk},
-                )
-                response = self.client.get(url)
-                if response.status_code == http.HTTPStatus.OK:
-                    self.assertEqual(
-                        response.status_code,
-                        http.HTTPStatus.OK,
-                        f"Unexpected status code: {response.status_code}",
-                    )
-                elif response.status_code == http.HTTPStatus.NOT_FOUND:
-                    self.assertEqual(
-                        response.status_code,
-                        http.HTTPStatus.NOT_FOUND,
-                        f"Unexpected status code: {response.status_code}",
-                    )
-                else:
-                    self.fail(
-                        f"Unexpected status code: {response.status_code}",
-                    )
-        except django.urls.exceptions.NoReverseMatch:
-            pass
+    def test_catalog_regex(self, pk_200, pk_404):
+
+        url_200 = django.urls.reverse(
+            "catalog:catalog-regex", kwargs={"pk": pk_200}
+        )
+
+        response_200 = self.client.get(url_200)
+
+        self.assertEqual(
+            response_200.status_code,
+            http.HTTPStatus.OK,
+            f"Unexpected status code for pk={pk_200}",
+        )
+
+        url_404 = django.urls.reverse(
+            "catalog:catalog-regex", kwargs={"pk": pk_404}
+        )
+
+        response_404 = self.client.get(url_404)
+
+        self.assertEqual(
+            response_404.status_code,
+            http.HTTPStatus.NOT_FOUND,
+            f"Expected status code for pk={pk_404}",
+        )
 
     @parameterized.parameterized.expand(PARAMETRIZED_PARAMETERS)
-    def test_catalog_converter(self, pk):
-        try:
-            if isinstance(pk, int):
-                url = django.urls.reverse(
-                    "catalog:catalog-converter",
-                    kwargs={"pk": pk},
-                )
-                response = self.client.get(url)
-                if response.status_code == http.HTTPStatus.OK:
-                    self.assertEqual(
-                        response.status_code,
-                        http.HTTPStatus.OK,
-                        f"Unexpected status code: {response.status_code}",
-                    )
-                elif response.status_code == http.HTTPStatus.NOT_FOUND:
-                    self.assertEqual(
-                        response.status_code,
-                        http.HTTPStatus.NOT_FOUND,
-                        f"Unexpected status code: {response.status_code}",
-                    )
-                else:
-                    self.fail(
-                        f"Unexpected status code: {response.status_code}",
-                    )
-        except django.urls.exceptions.NoReverseMatch:
-            pass
+    def test_catalog_converter(self, pk_200, pk_404):
+
+        url_200 = django.urls.reverse(
+            "catalog:catalog-converter", kwargs={"pk": pk_200}
+        )
+
+        response_200 = self.client.get(url_200)
+
+        self.assertEqual(
+            response_200.status_code,
+            http.HTTPStatus.OK,
+            f"Unexpected status code for pk={pk_200}",
+        )
+
+        url_404 = django.urls.reverse(
+            "catalog:catalog-converter", kwargs={"pk": pk_404}
+        )
+
+        response_404 = self.client.get(url_404)
+
+        self.assertEqual(
+            response_404.status_code,
+            http.HTTPStatus.NOT_FOUND,
+            f"Expected status code for pk={pk_404}",
+        )
 
 
 class TestContentItems(django.test.TestCase):
