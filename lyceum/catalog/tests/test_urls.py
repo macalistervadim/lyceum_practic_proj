@@ -16,15 +16,15 @@ class UrlTests(django.test.TestCase):
             name="Тестовая кат.",
         )
         cls.item1 = catalog.models.Item.objects.create(
-            name="name1", category=cls.published_category, id=1
+            name="name1", category=cls.published_category,
         )
         cls.item2 = catalog.models.Item.objects.create(
-            name="name6", category=cls.published_category, id=6
+            name="name6", category=cls.published_category,
         )
 
     PARAMETRIZED_PARAMETERS = [
-        (1, 2),
-        (6, 3),
+        (1, 5),
+        (2, 7),
     ]
 
     @parameterized.parameterized.expand(PARAMETRIZED_PARAMETERS)
