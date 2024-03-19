@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     "download.apps.DownloadConfig",
     "feedback.apps.FeedbackConfig",
     "homepage.apps.HomepageConfig",
+    "users.apps.UsersConfig",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -91,28 +92,28 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        "NAME": (
+        "NAME": 
             "django.contrib.auth.password_validation"
             ".UserAttributeSimilarityValidator"
-        ),
+        
     },
     {
-        "NAME": (
+        "NAME": 
             "django.contrib.auth.password_validation"
             ".MinimumLengthValidator",
-        ),
+        
     },
     {
-        "NAME": (
+        "NAME": 
             "django.contrib.auth.password_validation"
             ".CommonPasswordValidator",
-        ),
+        
     },
     {
-        "NAME": (
+        "NAME": 
             "django.contrib.auth.password_validation"
             ".NumericPasswordValidator",
-        ),
+        
     },
 ]
 
@@ -150,5 +151,11 @@ DJANGO_MAIL = os.getenv("DJANGO_MAIL", default="admin-default@mail.ru")
 EMAIL_HOST = DJANGO_MAIL
 
 SESSION_ENGINE = "django.contrib.sessions.backends.db"
+
+LOGIN_URL = "/auth/login/"
+LOGIN_REDIRECT_URL = "/"
+LOGOUT_REDIRECT_URL = "/auth/login/"
+
+DEFAULT_USER_IS_ACTIVE = os.getenv("DEFAULT_USER_IS_ACTIVE", default=DEBUG if DEBUG else False)
 
 __all__ = []

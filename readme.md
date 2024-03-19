@@ -85,7 +85,9 @@ To get started with the project, you'll need to copy the `.env.example` file and
 
     # DJANGO_ALLOW_REVERSE
     `DJANGO_ALLOW_REVERSE=True/False`
-    
+   
+    # DEFAULT_USER_IS_ACTIVE
+    `DEFAULT_USER_IS_ACTIVE=True/False`
     # Other environment variables...
     ```
 

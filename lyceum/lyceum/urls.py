@@ -1,7 +1,9 @@
 import django.conf
 import django.contrib
+import django.contrib.auth.urls
 import django.urls
 import django.views.i18n
+
 
 urlpatterns = [
     django.urls.path("admin/", django.contrib.admin.site.urls),
@@ -16,6 +18,8 @@ urlpatterns = [
         django.views.i18n.set_language,
         name="set-language",
     ),
+    django.urls.path("auth/", django.urls.include("users.urls")),
+
 ]
 
 if django.conf.settings.DEBUG:
