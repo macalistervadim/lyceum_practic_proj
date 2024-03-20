@@ -1,4 +1,3 @@
-
 import unittest.mock
 
 import django.contrib.auth.models as auth_models
