@@ -438,6 +438,46 @@
   }
 },
 {
+  "model": "users.profile",
+  "pk": 1,
+  "fields": {
+    "user": 1,
+    "birthday": "2024-03-14",
+    "coffee_count": 18,
+    "image": ""
+  }
+},
+{
+  "model": "users.profile",
+  "pk": 2,
+  "fields": {
+    "user": 33,
+    "birthday": null,
+    "coffee_count": 0,
+    "image": "users/33/9498928b-3dba-40e4-9da6-dc4b75a36cd3.png"
+  }
+},
+{
+  "model": "users.profile",
+  "pk": 3,
+  "fields": {
+    "user": 30,
+    "birthday": null,
+    "coffee_count": 1,
+    "image": "users/30/ac4e7783-7489-4ee0-8768-1a2550db3c1d.png"
+  }
+},
+{
+  "model": "users.profile",
+  "pk": 4,
+  "fields": {
+    "user": 35,
+    "birthday": null,
+    "coffee_count": 0,
+    "image": "users/4/e7cb962e-f1e8-47ce-835f-f058368afade.jpeg"
+  }
+},
+{
   "model": "auth.permission",
   "pk": 1,
   "fields": {
@@ -942,21 +982,628 @@
   }
 },
 {
+  "model": "auth.permission",
+  "pk": 57,
+  "fields": {
+    "name": "Can add обратная связь",
+    "content_type": 6,
+    "codename": "add_feedback"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 58,
+  "fields": {
+    "name": "Can change обратная связь",
+    "content_type": 6,
+    "codename": "change_feedback"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 59,
+  "fields": {
+    "name": "Can delete обратная связь",
+    "content_type": 6,
+    "codename": "delete_feedback"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 60,
+  "fields": {
+    "name": "Can view обратная связь",
+    "content_type": 6,
+    "codename": "view_feedback"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 61,
+  "fields": {
+    "name": "Can add журнал состояния",
+    "content_type": 7,
+    "codename": "add_statuslog"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 62,
+  "fields": {
+    "name": "Can change журнал состояния",
+    "content_type": 7,
+    "codename": "change_statuslog"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 63,
+  "fields": {
+    "name": "Can delete журнал состояния",
+    "content_type": 7,
+    "codename": "delete_statuslog"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 64,
+  "fields": {
+    "name": "Can view журнал состояния",
+    "content_type": 7,
+    "codename": "view_statuslog"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 65,
+  "fields": {
+    "name": "Can add log entry",
+    "content_type": 8,
+    "codename": "add_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 66,
+  "fields": {
+    "name": "Can change log entry",
+    "content_type": 8,
+    "codename": "change_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 67,
+  "fields": {
+    "name": "Can delete log entry",
+    "content_type": 8,
+    "codename": "delete_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 68,
+  "fields": {
+    "name": "Can view log entry",
+    "content_type": 8,
+    "codename": "view_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 69,
+  "fields": {
+    "name": "Can add permission",
+    "content_type": 9,
+    "codename": "add_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 70,
+  "fields": {
+    "name": "Can change permission",
+    "content_type": 9,
+    "codename": "change_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 71,
+  "fields": {
+    "name": "Can delete permission",
+    "content_type": 9,
+    "codename": "delete_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 72,
+  "fields": {
+    "name": "Can view permission",
+    "content_type": 9,
+    "codename": "view_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 73,
+  "fields": {
+    "name": "Can add group",
+    "content_type": 10,
+    "codename": "add_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 74,
+  "fields": {
+    "name": "Can change group",
+    "content_type": 10,
+    "codename": "change_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 75,
+  "fields": {
+    "name": "Can delete group",
+    "content_type": 10,
+    "codename": "delete_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 76,
+  "fields": {
+    "name": "Can view group",
+    "content_type": 10,
+    "codename": "view_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 77,
+  "fields": {
+    "name": "Can add user",
+    "content_type": 11,
+    "codename": "add_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 78,
+  "fields": {
+    "name": "Can change user",
+    "content_type": 11,
+    "codename": "change_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 79,
+  "fields": {
+    "name": "Can delete user",
+    "content_type": 11,
+    "codename": "delete_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 80,
+  "fields": {
+    "name": "Can view user",
+    "content_type": 11,
+    "codename": "view_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 81,
+  "fields": {
+    "name": "Can add content type",
+    "content_type": 12,
+    "codename": "add_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 82,
+  "fields": {
+    "name": "Can change content type",
+    "content_type": 12,
+    "codename": "change_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 83,
+  "fields": {
+    "name": "Can delete content type",
+    "content_type": 12,
+    "codename": "delete_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 84,
+  "fields": {
+    "name": "Can view content type",
+    "content_type": 12,
+    "codename": "view_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 85,
+  "fields": {
+    "name": "Can add session",
+    "content_type": 13,
+    "codename": "add_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 86,
+  "fields": {
+    "name": "Can change session",
+    "content_type": 13,
+    "codename": "change_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 87,
+  "fields": {
+    "name": "Can delete session",
+    "content_type": 13,
+    "codename": "delete_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 88,
+  "fields": {
+    "name": "Can view session",
+    "content_type": 13,
+    "codename": "view_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 89,
+  "fields": {
+    "name": "Can add kv store",
+    "content_type": 14,
+    "codename": "add_kvstore"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 90,
+  "fields": {
+    "name": "Can change kv store",
+    "content_type": 14,
+    "codename": "change_kvstore"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 91,
+  "fields": {
+    "name": "Can delete kv store",
+    "content_type": 14,
+    "codename": "delete_kvstore"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 92,
+  "fields": {
+    "name": "Can view kv store",
+    "content_type": 14,
+    "codename": "view_kvstore"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 93,
+  "fields": {
+    "name": "Can add профиль пользователя",
+    "content_type": 15,
+    "codename": "add_profile"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 94,
+  "fields": {
+    "name": "Can change профиль пользователя",
+    "content_type": 15,
+    "codename": "change_profile"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 95,
+  "fields": {
+    "name": "Can delete профиль пользователя",
+    "content_type": 15,
+    "codename": "delete_profile"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 96,
+  "fields": {
+    "name": "Can view профиль пользователя",
+    "content_type": 15,
+    "codename": "view_profile"
+  }
+},
+{
   "model": "auth.user",
   "pk": 1,
   "fields": {
-    "password": "pbkdf2_sha256$600000$JjeyfpwZHXFtEVp7NNQRVX$IiehIwc8///t1TNS+5TvgaH2/1nm++zV0qpX0hMadvM=",
-    "last_login": "2024-03-13T11:47:21.377Z",
+    "password": "pbkdf2_sha256$600000$inmqnzPDKDzVWdZBYRCTQx$tMiO3Xap9MfsDVbMM/+1JxZBmtQt9Wis66Qq98YbmaI=",
+    "last_login": "2024-03-20T09:03:26Z",
     "is_superuser": true,
     "username": "admin",
-    "first_name": "",
-    "last_name": "",
-    "email": "",
+    "first_name": "Алён",
+    "last_name": "Старцев",
+    "email": "macalister@mail.ru",
     "is_staff": true,
     "is_active": true,
-    "date_joined": "2024-03-04T16:05:56.859Z",
+    "date_joined": "2024-03-04T16:05:56Z",
     "groups": [],
     "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 29,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$j08zu0cOMhX4Faf1I7LOUr$0d+5XZrEiVhspChgl9+PiFq9RfuHlBitdAz3cFWiyGE=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "test",
+    "first_name": "",
+    "last_name": "",
+    "email": "test@test.test",
+    "is_staff": false,
+    "is_active": false,
+    "date_joined": "2024-03-17T14:49:18.528Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 30,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$D0YmpaZiwPIQFRI4kh04pr$5wfuFkKIivb3r/9oxkEZ9IU1JJgkwwse7p0JYPqtS60=",
+    "last_login": "2024-03-19T13:17:05Z",
+    "is_superuser": true,
+    "username": "dfsdfs",
+    "first_name": "Вадим",
+    "last_name": "Старцев",
+    "email": "sdf@mail.ru",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2024-03-17T14:51:54Z",
+    "groups": [],
+    "user_permissions": [
+      29,
+      65,
+      30,
+      66,
+      31,
+      67,
+      32,
+      68,
+      37,
+      73,
+      38,
+      74,
+      39,
+      75,
+      40,
+      76,
+      69,
+      33,
+      70,
+      34,
+      71,
+      35,
+      72,
+      36,
+      41,
+      77,
+      42,
+      78,
+      43,
+      79,
+      44,
+      80,
+      1,
+      2,
+      3,
+      4,
+      17,
+      18,
+      19,
+      20,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      5,
+      6,
+      7,
+      8,
+      81,
+      45,
+      82,
+      46,
+      83,
+      47,
+      84,
+      48,
+      57,
+      21,
+      58,
+      22,
+      59,
+      23,
+      60,
+      24,
+      25,
+      61,
+      26,
+      62,
+      27,
+      63,
+      28,
+      64,
+      49,
+      85,
+      50,
+      86,
+      51,
+      87,
+      52,
+      88,
+      89,
+      53,
+      90,
+      54,
+      91,
+      55,
+      92,
+      56,
+      93,
+      94,
+      95,
+      96
+    ]
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 31,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$vyyhWFirNtpsXBFxB087jF$1MREGyB35ZqBOrHrIg0dOzvpcIAWHXfhyI2zCTTs9vU=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "dfsdfsdfs",
+    "first_name": "",
+    "last_name": "",
+    "email": "sdf@mail.ru",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2024-03-17T14:55:25Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 32,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$I5vqguNJBsNH2vvnGPvNgw$S3S0wdb3FPxhZWdkdwS/guwowcahOFxfzsdFU7LBtzM=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "dfsdfsdfsx",
+    "first_name": "",
+    "last_name": "",
+    "email": "sdf@mail.ru",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2024-03-17T14:55:53Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 33,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$aDuIRXYERI6if5JVViIMEu$YKfZY7dXlaS7ByjSDKy8+O1qR6R9M+PMC6ELQldkkQQ=",
+    "last_login": "2024-03-17T14:56:54Z",
+    "is_superuser": false,
+    "username": "sdfsdfsdfdsfsdfsdfsdfsdfdsfdfsdsfsdffds",
+    "first_name": "",
+    "last_name": "",
+    "email": "dfsdsf@sdf.sd",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2024-03-17T14:56:32Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 34,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$IxgNzF6v2OtApgXWcdykmB$P+bfGXOzVteOS4qE7Y+BCPyem4zcRi1fROtK91IoFr4=",
+    "last_login": "2024-03-19T13:15:09.498Z",
+    "is_superuser": false,
+    "username": "testtest",
+    "first_name": "",
+    "last_name": "",
+    "email": "test@mail.ru",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2024-03-19T13:10:50.322Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 35,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$f1TxBxCJhY08ikdZTAqK0U$QgQRXVCvgJ0zY7St3ge6lOgTwBJkqBJY/M+1I2qcqH8=",
+    "last_login": "2024-03-20T09:01:30Z",
+    "is_superuser": false,
+    "username": "img",
+    "first_name": "Вадим",
+    "last_name": "Старцев",
+    "email": "imgimg@img.img",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2024-03-20T09:01:16Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "61y64whr6y3biju2un60csupgnnnb78y",
+  "fields": {
+    "session_data": "e30:1rlrRJ:x4qrdDnUnyMty0dMGuGc-qFgYd5DSXoK1oOicFOfuYc",
+    "expire_date": "2024-03-31T14:24:41.791Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "758xq6ktu64qja1i4jay2w7m1meyfspx",
+  "fields": {
+    "session_data": ".eJxVjDEOwjAMRe-SGUW0bhObkZ0zRI6dkAJqpaadEHdHkTrA-t97_20C71sJe01rmNRcTGdOv1tkeaa5AX3wfF-sLPO2TtE2xR602tui6XU93L-DwrW0WrADzcRKNKLgSD1gFHEOCZnPvQ4AHYn3Xj26PgOw84OwsOYByHy-4Rk3yQ:1rmrr4:vNEq76_6OCIbpyimmukpi9hzQih7Eusy5i9CNfR_GNQ",
+    "expire_date": "2024-04-03T09:03:26.360Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "b4jbjdmg31pno7whfy59uqo2bfiqoj6t",
+  "fields": {
+    "session_data": "e30:1rlrFB:pQ2YrcftR_Yp2gm3dcTdtLZQjD4BF086epK655ajPF0",
+    "expire_date": "2024-03-31T14:12:09.163Z"
   }
 },
 {
@@ -969,10 +1616,50 @@
 },
 {
   "model": "sessions.session",
-  "pk": "t1q5i2offo9qsuk7w5g52doip4jifhkd",
+  "pk": "o0nh46dt93gqqirg8t2oczvmbq0lqt2y",
   "fields": {
-    "session_data": ".eJxVjEEOwiAQRe_C2hCmhQIu3XsGMjCDVA0kpV0Z765NutDtf-_9lwi4rSVsnZcwkzgLEKffLWJ6cN0B3bHemkytrssc5a7Ig3Z5bcTPy-H-HRTs5VurzNmicmkcwYHTiiYXx8FwtCYD2Wys0poskh04KTQajPY8Oe8BEoJ4fwDUfzdE:1rkN4r:obt-Ljpo7BSyUHzmWK6gzP5-miOI34eraFj9Hn7ULFM",
-    "expire_date": "2024-03-27T11:47:21.393Z"
+    "session_data": "e30:1rlrd2:3HA7M_4o182Cp1q0DEciv2DIWEkmlyeJIjxhcJyv588",
+    "expire_date": "2024-03-31T14:36:48.146Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "qecsmvd6ghn8g8xnxasgnyeybml297cy",
+  "fields": {
+    "session_data": "e30:1rlrFo:Ti51HCj6ODWu4AveWGNCi166DpyZvEC5GXuNth91buE",
+    "expire_date": "2024-03-31T14:12:48.430Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "sjj3boood0m4e7icl7vu1hzxrxqqnqei",
+  "fields": {
+    "session_data": ".eJxVjEEOwiAQRe_C2hCwDC0u3fcMzTAzlaqBpLQr492VpAvd_vfef6kJ9y1Ne5V1WlhdlFWn3y0iPSQ3wHfMt6Kp5G1dom6KPmjVY2F5Xg_37yBhTd_aDx1ZCkAkEOGMRpwjgs7i0AdPM8fZA1knfXCGCZG4eYDRWO9NVO8P-CA4fg:1rlnZX:KVGBbcYkHeNTBnBLjFs8rgilpAZ__JGhzqQ1doPf53w",
+    "expire_date": "2024-03-31T10:16:55.416Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "tpsqr8b3ih8x3huxsrloue1e65u2qnxu",
+  "fields": {
+    "session_data": ".eJxVjMsOwiAQRf-FtSFAebp07zeQYRikaiAp7cr479qkC93ec859sQjbWuM2aIlzZmcm2el3S4APajvId2i3zrG3dZkT3xV-0MGvPdPzcrh_BxVG_dbeCUMh66l4CNZrRJTC5yKDDUBTgeKUDD4ZScFh0SYVDROgt8YorQR7fwDjVDe9:1rlnXS:k0xcQlkEEB7641eYVJnt9nBjJRCtXlhEc-3V0rHDiUw",
+    "expire_date": "2024-03-31T10:14:46.044Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "xgjj4057of2l9iju9bn6u09wdr259gyi",
+  "fields": {
+    "session_data": ".eJxVjDEOwyAUQ-_CXCEgQEjH7jkD-vwPJW0FUkimqncvkTK0m-1n-8087Fv2e4urX4hdmWSX3ywAPmM5AD2g3CvHWrZ1Cfyo8JM2PleKr9vZ_TvI0HJfK3IW7ZAghITaKIy6e9QjIkYFyZkouxZOWIlhIoJhAEjGTCAUjYp9vheVORM:1rlnd8:xz5CqHJiCzKLD_QOhejXHkQefdxmDhylGwIBiCKtSOs",
+    "expire_date": "2024-03-31T10:20:38.383Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "zqbubnd2c64dko3xivqyabv1bux69l1k",
+  "fields": {
+    "session_data": "e30:1rlrII:a8SFYj6H_sqXxph-BQqHZ13XkRvLLgLUi_RB9Nn1vbI",
+    "expire_date": "2024-03-31T14:15:22.999Z"
   }
 }
 ]
