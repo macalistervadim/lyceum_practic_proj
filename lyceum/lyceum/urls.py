@@ -19,7 +19,6 @@ urlpatterns = [
         name="set-language",
     ),
     django.urls.path("auth/", django.urls.include("users.urls")),
-
 ]
 
 if django.conf.settings.DEBUG:

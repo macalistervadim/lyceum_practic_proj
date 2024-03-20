@@ -11,7 +11,7 @@
 <div class="col-md-8 offset-md-2">
     <h2 class="text-center">{% trans "Информация о пользователе" %}</h2>
     <strong>{% trans "Картинка" %}:</strong> {% if user.image %}
-    <img src="{{ user.get_image_128x128.url }}" alt="User Image">
+    <img src="{{ user.image.url }}" alt="User Image">
     {% else %}
     <span class="text-muted">{% trans "неуказано" %}</span>
     {% endif %}

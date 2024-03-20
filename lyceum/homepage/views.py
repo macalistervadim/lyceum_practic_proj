@@ -1,8 +1,9 @@
-import http
-
+import django.contrib
+import django.contrib.auth.decorators
 import django.db.models
 import django.http
 import django.shortcuts
+import django.utils.translation as translation
 
 import catalog.models
 import homepage.forms
@@ -17,11 +18,20 @@ def home(request):
     return django.shortcuts.render(request, template, context)
 
 
+@django.contrib.auth.decorators.login_required
 def endpoint(request):
-    return django.http.HttpResponse(
-        "Я чайник",
-        status=http.HTTPStatus.IM_A_TEAPOT,
-    )
+    if request.method == "POST":
+        user_profile = request.user.profile
+        user_profile.coffee_count += 1
+        user_profile.save()
+        django.contrib.messages.add_message(
+            request,
+            django.contrib.messages.SUCCESS,
+            translation.gettext_lazy("Вы выпили кофе"),
+        )
+        return django.shortcuts.redirect("users:profile")
+
+    return django.http.HttpResponseNotAllowed["POST"]
 
 
 def echo(request):
