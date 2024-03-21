@@ -3,20 +3,20 @@
 {% load static %}
 
 {% block title %}
-  {% trans "Список активных пользователей" %}
+{% trans "Список активных пользователей" %}
 {% endblock title %}
 
 {% block content %}
 <div class="row">
 <div class="col-md-8 offset-md-2">
-    <h2 class="text-center">{% trans "Список активных пользователей" %}</h2>
-    <ul class="list-group">
-    {% for profile in user_list %}
-        <li class="list-group-item">{{ profile.username }}</li>
-    {% empty %}
-        <li class="list-group-item">{% trans "Нет активных пользователей." %}</li>
-    {% endfor %}
-    </ul>
+  <h2 class="text-center">{% trans "Список активных пользователей" %}</h2>
+  <ul class="list-group">
+  {% for profile in user_list %}
+      <li class="list-group-item">{{ profile.username }}</li>
+  {% empty %}
+      <li class="list-group-item">{% trans "Нет активных пользователей." %}</li>
+  {% endfor %}
+  </ul>
 </div>
 </div>
 {% endblock content %}

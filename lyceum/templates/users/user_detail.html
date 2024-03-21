@@ -9,33 +9,33 @@
 {% block content %}
 <div class="row">
 <div class="col-md-8 offset-md-2">
-    <h2 class="text-center">{% trans "Информация о пользователе" %}</h2>
-    <strong>{% trans "Картинка" %}:</strong> {% if user.image %}
-    <img src="{{ user.image.url }}" alt="User Image">
-    {% else %}
-    <span class="text-muted">{% trans "неуказано" %}</span>
-    {% endif %}
-    <div class="card">
-    <div class="card-body">
-        <ul class="list-group">
-        <li class="list-group-item">
-            <strong>{% trans "Почта" %}:</strong> {{ user.user__email }}
-        </li>
-        <li class="list-group-item">
-            <strong>{% trans "Имя" %}:</strong> {% if user.user__first_name %}{{ user.user__first_name }}{% else %}<span class="text-muted">{% trans "неуказано" %}</span>{% endif %}
-        </li>
-        <li class="list-group-item">
-            <strong>{% trans "Фамилия" %}:</strong> {% if user.user__last_name %}{{ user.user__last_name }}{% else %}<span class="text-muted">{% trans "неуказано" %}</span>{% endif %}
-        </li>
-        <li class="list-group-item">
-            <strong>{% trans "Дата рождения" %}:</strong> {% if user.birthday %}{{ user.birthday|date:"d.m.Y" }}{% else %}<span class="text-muted">{% trans "неуказано" %}</span>{% endif %}
-        </li>
-        <li class="list-group-item">
-            <strong>{% trans "Количество выпитого кофе" %}:</strong> {{ user.coffee_count }}
-        </li>
-        </ul>
-    </div>
-    </div>
+  <h2 class="text-center">{% trans "Информация о пользователе" %}</h2>
+  <strong>{% trans "Картинка" %}:</strong> {% if user.image %}
+  <img src="{{ user.image.url }}" alt="User Image">
+  {% else %}
+  <span class="text-muted">{% trans "неуказано" %}</span>
+  {% endif %}
+  <div class="card">
+  <div class="card-body">
+      <ul class="list-group">
+      <li class="list-group-item">
+          <strong>{% trans "Почта" %}:</strong> {{ user.user__email }}
+      </li>
+      <li class="list-group-item">
+          <strong>{% trans "Имя" %}:</strong> {% if user.user__first_name %}{{ user.user__first_name }}{% else %}<span class="text-muted">{% trans "неуказано" %}</span>{% endif %}
+      </li>
+      <li class="list-group-item">
+          <strong>{% trans "Фамилия" %}:</strong> {% if user.user__last_name %}{{ user.user__last_name }}{% else %}<span class="text-muted">{% trans "неуказано" %}</span>{% endif %}
+      </li>
+      <li class="list-group-item">
+          <strong>{% trans "Дата рождения" %}:</strong> {% if user.birthday %}{{ user.birthday|date:"d.m.Y" }}{% else %}<span class="text-muted">{% trans "неуказано" %}</span>{% endif %}
+      </li>
+      <li class="list-group-item">
+          <strong>{% trans "Количество выпитого кофе" %}:</strong> {{ user.coffee_count }}
+      </li>
+      </ul>
+  </div>
+  </div>
 </div>
 </div>
 {% endblock content %}

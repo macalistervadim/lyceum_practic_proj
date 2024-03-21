@@ -2,93 +2,93 @@
 <header>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 <div class="container">
-  {% load static %}
-  {% load i18n %}
-  <a class="navbar-brand" href="{% url 'homepage:home' %}">
-      <img src="{% static 'img/django-logo.png' %}" alt="Логотип" width="80" height="40">
-  </a>
-  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    {% with request.resolver_match.view_name as view_name %}
-    <ul class="navbar-nav ms-auto">
-        {% if user.is_superuser %}
-        <li class="nav-item">
-          <a class="nav-link {% if view_name == 'admin:index' %}active{% endif %}" href="{% url 'admin:index' %}">{% trans 'Админ-панель' %}</a>
-        </li>
-        {% endif %}
-        <li class="nav-item">
-            {% if view_name == 'homepage:home' %}
-                <span class="nav-link disabled">{% trans 'Главная' %}</span>
-            {% else %}
-                <a class="nav-link" href="{% url 'homepage:home' %}">{% trans 'Главная' %}</a>
-            {% endif %}
-        </li>
-        <li class="nav-item">
-            {% if view_name == 'about:about' %}
-                <span class="nav-link disabled">{% trans 'О проекте' %}</span>
-            {% else %}
-                <a class="nav-link {% if view_name == 'about:about' %}active{% endif %}" href="{% url 'about:about' %}">{% trans 'О проекте' %}</a>
-            {% endif %}
-        </li>
-        <li class="nav-item">
-          {% if view_name == 'feedback:feedback' %}
-              <span class="nav-link disabled">{% trans 'Обратная связь' %}</span>
+{% load static %}
+{% load i18n %}
+<a class="navbar-brand" href="{% url 'homepage:home' %}">
+    <img src="{% static 'img/django-logo.png' %}" alt="Логотип" width="80" height="40">
+</a>
+<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="navbarNav">
+  {% with request.resolver_match.view_name as view_name %}
+  <ul class="navbar-nav ms-auto">
+      {% if user.is_superuser %}
+      <li class="nav-item">
+        <a class="nav-link {% if view_name == 'admin:index' %}active{% endif %}" href="{% url 'admin:index' %}">{% trans 'Админ-панель' %}</a>
+      </li>
+      {% endif %}
+      <li class="nav-item">
+          {% if view_name == 'homepage:home' %}
+              <span class="nav-link disabled">{% trans 'Главная' %}</span>
           {% else %}
-              <a class="nav-link {% if view_name == 'feedback:feedback' %}active{% endif %}" href="{% url 'feedback:feedback' %}">{% trans 'Обратная связь' %}</a>
+              <a class="nav-link" href="{% url 'homepage:home' %}">{% trans 'Главная' %}</a>
           {% endif %}
-        </li>
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownItems" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                {% trans 'Список товаров' %}
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdownItems">
-                <li><a class="dropdown-item {% if view_name == 'catalog:new-items' %}disabled{% endif %}" href="{% url 'catalog:new-items' %}">{% trans 'Новые товары' %}</a></li>
-                <li><a class="dropdown-item {% if view_name == 'catalog:friday-items' %}disabled{% endif %}" href="{% url 'catalog:friday-items' %}">{% trans 'Товары пятницы' %}</a></li>
-                <li><a class="dropdown-item {% if view_name == 'catalog:unverified-items' %}disabled{% endif %}" href="{% url 'catalog:unverified-items' %}">{% trans 'Непроверенные товары' %}</a></li>
-                <li><a class="dropdown-item {% if view_name == 'catalog:item-list' %}disabled{% endif %}" href="{% url 'catalog:item-list' %}">{% trans 'Все товары' %}</a></li>
-            </ul>
-        </li>
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                {% trans "Выбрать язык" %}
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <form action="{% url 'set-language' %}" method="post" class="dropdown-item">
-                    {% csrf_token %}
-                    <input type="hidden" name="next" value="{{ request.path }}">
-                    <select name="language" class="form-select" aria-label="Выберите язык">
-                        {% get_current_language as LANGUAGE_CODE %}
-                        {% get_available_languages as LANGUAGES %}
-                        {% for lang_code, lang_name in LANGUAGES %}
-                          <option value="{{ lang_code }}" {% if lang_code == language_code %}selected{% endif %}>{{ lang_name }}</option>
-                        {% endfor %}
-                    </select>
-                    <button type="submit" class="btn btn-primary mt-2">{% trans "Сменить язык" %}</button>
-                </form>
-            </ul>
-        </li>
-        {% if user.is_authenticated %}
-            <ul class="navbar-nav ms-auto">
-                <a class="nav-link" href="{% url 'users:logout' %}">
-                    <button type="button" class="btn btn-outline-primary btn-sm">{% trans 'Выйти' %}</button>
-                </a>
-                <a class="nav-link" href="{% url 'users:profile' %}">
-                    <button type="button" class="btn btn-outline-primary btn-sm">{% trans 'Личный кабинет' %}</button>
-                </a>
-            </li>
+      </li>
+      <li class="nav-item">
+          {% if view_name == 'about:about' %}
+              <span class="nav-link disabled">{% trans 'О проекте' %}</span>
+          {% else %}
+              <a class="nav-link {% if view_name == 'about:about' %}active{% endif %}" href="{% url 'about:about' %}">{% trans 'О проекте' %}</a>
+          {% endif %}
+      </li>
+      <li class="nav-item">
+        {% if view_name == 'feedback:feedback' %}
+            <span class="nav-link disabled">{% trans 'Обратная связь' %}</span>
         {% else %}
-            <ul class="navbar-nav ms-auto">
-                <a class="nav-link" href="{% url 'users:login' %}">
-                    <button type="button" class="btn btn-outline-primary btn-sm">{% trans 'Войти' %}</button>
-                </a>
-            </li>
+            <a class="nav-link {% if view_name == 'feedback:feedback' %}active{% endif %}" href="{% url 'feedback:feedback' %}">{% trans 'Обратная связь' %}</a>
         {% endif %}
-    </ul>
-    {% endwith %}
-  </div>
+      </li>
+      <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownItems" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              {% trans 'Список товаров' %}
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownItems">
+              <li><a class="dropdown-item {% if view_name == 'catalog:new-items' %}disabled{% endif %}" href="{% url 'catalog:new-items' %}">{% trans 'Новые товары' %}</a></li>
+              <li><a class="dropdown-item {% if view_name == 'catalog:friday-items' %}disabled{% endif %}" href="{% url 'catalog:friday-items' %}">{% trans 'Товары пятницы' %}</a></li>
+              <li><a class="dropdown-item {% if view_name == 'catalog:unverified-items' %}disabled{% endif %}" href="{% url 'catalog:unverified-items' %}">{% trans 'Непроверенные товары' %}</a></li>
+              <li><a class="dropdown-item {% if view_name == 'catalog:item-list' %}disabled{% endif %}" href="{% url 'catalog:item-list' %}">{% trans 'Все товары' %}</a></li>
+          </ul>
+      </li>
+      <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              {% trans "Выбрать язык" %}
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <form action="{% url 'set-language' %}" method="post" class="dropdown-item">
+                  {% csrf_token %}
+                  <input type="hidden" name="next" value="{{ request.path }}">
+                  <select name="language" class="form-select" aria-label="Выберите язык">
+                      {% get_current_language as LANGUAGE_CODE %}
+                      {% get_available_languages as LANGUAGES %}
+                      {% for lang_code, lang_name in LANGUAGES %}
+                        <option value="{{ lang_code }}" {% if lang_code == language_code %}selected{% endif %}>{{ lang_name }}</option>
+                      {% endfor %}
+                  </select>
+                  <button type="submit" class="btn btn-primary mt-2">{% trans "Сменить язык" %}</button>
+              </form>
+          </ul>
+      </li>
+      {% if user.is_authenticated %}
+          <ul class="navbar-nav ms-auto">
+              <a class="nav-link" href="{% url 'users:logout' %}">
+                  <button type="button" class="btn btn-outline-primary btn-sm">{% trans 'Выйти' %}</button>
+              </a>
+              <a class="nav-link" href="{% url 'users:profile' %}">
+                  <button type="button" class="btn btn-outline-primary btn-sm">{% trans 'Личный кабинет' %}</button>
+              </a>
+          </li>
+      {% else %}
+          <ul class="navbar-nav ms-auto">
+              <a class="nav-link" href="{% url 'users:login' %}">
+                  <button type="button" class="btn btn-outline-primary btn-sm">{% trans 'Войти' %}</button>
+              </a>
+          </li>
+      {% endif %}
+  </ul>
+  {% endwith %}
+</div>
 </div>
 </nav>
 </header>
