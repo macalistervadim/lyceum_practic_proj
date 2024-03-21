@@ -26,7 +26,9 @@ urlpatterns = [
         "change-password/",
         auth_views.PasswordChangeView.as_view(
             template_name="users/password_change.html",
-            success_url=django.urls.reverse_lazy("users:change-password-done"),
+            success_url=django.urls.reverse_lazy(
+                "users:change-password-done",
+            ),
         ),
         name="change-password",
     ),
@@ -43,7 +45,9 @@ urlpatterns = [
             template_name="users/password_reset.html",
             email_template_name="users/password_reset_email.html",
             subject_template_name="users/subjects/password_reset_subject.txt",
-            success_url=django.urls.reverse_lazy("users:password-reset-done"),
+            success_url=django.urls.reverse_lazy(
+                "users:password-reset-done",
+            ),
         ),
         name="reset-password",
     ),

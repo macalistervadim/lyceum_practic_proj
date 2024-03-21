@@ -9,5 +9,9 @@ urlpatterns = [
     django.urls.path("coffee/", homepage.views.endpoint, name="coffee"),
     django.urls.path("echo/", homepage.views.echo, name="echo"),
     django.urls.path("echo/", homepage.views.echo, name="echo"),
-    django.urls.path("echo/submit/", homepage.views.echo, name="echo_submit"),
+    django.urls.path(
+        "echo/submit/",
+        homepage.views.echo,
+        name="echo_submit",
+    ),
 ]

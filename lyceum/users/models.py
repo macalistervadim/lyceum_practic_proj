@@ -42,23 +42,34 @@ class Profile(django.db.models.Model):
         translation.gettext_lazy("дата рождения"),
         null=True,
         blank=True,
+        help_text=translation.gettext_lazy(
+            "Выберите дату своего рождения",
+        ),
     )
     coffee_count = django.db.models.IntegerField(
         translation.gettext_lazy("количество выпитого кофе"),
         null=False,
         default=0,
         validators=[django.core.validators.MinValueValidator(0)],
+        help_text=translation.gettext_lazy("Счётчик выпитого кофе"),
     )
     image = django.db.models.ImageField(
         upload_to=item_directory_path,
         verbose_name=translation.gettext_lazy("изображение"),
         blank=True,
         null=True,
+        help_text=translation.gettext_lazy("Аватарка"),
     )
 
     class Meta:
         verbose_name = translation.gettext_lazy("дополнительное поле")
-        verbose_name_plural = translation.gettext_lazy("дополнительные поля")
+        verbose_name_plural = translation.gettext_lazy(
+            "дополнительные поля",
+        )
+        ordering = ("user",)
+
+    def __str__(self):
+        return self.user.username[:25]
 
     def get_image_350x350(self):
         return sorl.thumbnail.get_thumbnail(

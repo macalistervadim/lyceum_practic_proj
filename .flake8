@@ -3,4 +3,4 @@ application_import_names = about, catalog, core, download, feedback, homepage, l
 inline-quotes = double
 exclude = .git, __pycache__, migrations, venv
 import-order-style = google
-max-line-lenght = 79
+max-line-lenght = 75

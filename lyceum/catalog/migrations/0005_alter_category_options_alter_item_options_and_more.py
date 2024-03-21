@@ -58,7 +58,9 @@ class Migration(migrations.Migration):
             model_name='item',
             name='updated',
             field=models.DateTimeField(
-                auto_now=True, null=True, verbose_name='последнее изменение'
+                auto_now=True,
+                null=True,
+                verbose_name='последнее изменение',
             ),
         ),
         migrations.AlterField(

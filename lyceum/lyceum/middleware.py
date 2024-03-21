@@ -19,11 +19,17 @@ class ReverseRussianMiddleware:
             and django.conf.settings.DJANGO_ALLOW_REVERSE
         ):
             content = response.content.decode()
-            for word in re.finditer(r"\b[а-яё]+\b", content, re.IGNORECASE):
+            for word in re.finditer(
+                r"\b[а-яё]+\b",
+                content,
+                re.IGNORECASE,
+            ):
                 start = word.start()
                 end = word.end()
                 content = (
-                    content[:start] + content[start:end][::-1] + content[end:]
+                    content[:start]
+                    + content[start:end][::-1]
+                    + content[end:]
                 )
 
             response.content = content.encode()

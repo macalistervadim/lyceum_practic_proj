@@ -42,7 +42,11 @@ def echo(request):
 
     if request.method == "GET":
         context = {"form": form}
-        return django.shortcuts.render(request, "homepage/echo.html", context)
+        return django.shortcuts.render(
+            request,
+            "homepage/echo.html",
+            context,
+        )
 
     return django.http.HttpResponseNotAllowed(permitted_methods=["GET"])
 

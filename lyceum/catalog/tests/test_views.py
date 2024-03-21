@@ -85,7 +85,9 @@ class ItemViewTest(django.test.TestCase):
         )
 
     def test_fields_item_published(self):
-        response = self.client.get(django.urls.reverse("catalog:item-list"))
+        response = self.client.get(
+            django.urls.reverse("catalog:item-list"),
+        )
         for field_name in self.ignored_fields:
             self.assertNotIn(
                 field_name,
@@ -95,7 +97,9 @@ class ItemViewTest(django.test.TestCase):
             )
 
     def test_fields_tags_published(self):
-        response = self.client.get(django.urls.reverse("catalog:item-list"))
+        response = self.client.get(
+            django.urls.reverse("catalog:item-list"),
+        )
         items = response.context["items"]
         for item in items:
             if hasattr(item, "tag_names"):
@@ -103,7 +107,9 @@ class ItemViewTest(django.test.TestCase):
                 for tag in tag_names:
                     expected_fields = ["_state", "id", "name"]
                     if hasattr(tag, "_prefetch_related_val_item_id"):
-                        expected_fields.append("_prefetch_related_val_item_id")
+                        expected_fields.append(
+                            "_prefetch_related_val_item_id",
+                        )
 
                     self.assertNotIn(
                         "_prefetched_objects_cache",

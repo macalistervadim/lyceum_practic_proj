@@ -55,7 +55,10 @@ class Migration(migrations.Migration):
                         verbose_name="ID",
                     ),
                 ),
-                ("image", models.ImageField(upload_to="gallery_images_item/")),
+                (
+                    "image",
+                    models.ImageField(upload_to="gallery_images_item/"),
+                ),
                 (
                     "item",
                     models.ForeignKey(

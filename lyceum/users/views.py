@@ -93,7 +93,9 @@ def activate(request, signed_username):
 
 def user_list(request):
     template = "users/user_list.html"
-    users = django.contrib.auth.get_user_model().objects.filter(is_active=True)
+    users = django.contrib.auth.get_user_model().objects.filter(
+        is_active=True,
+    )
 
     context = {
         "user_list": users,
@@ -121,7 +123,10 @@ def profile(request):
         request.FILES or None,
         instance=user.profile,
     )
-    user_form = users.forms.UserChangeForm(request.POST or None, instance=user)
+    user_form = users.forms.UserChangeForm(
+        request.POST or None,
+        instance=user,
+    )
     if (
         request.method == "POST"
         and user_form.is_valid()

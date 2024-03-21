@@ -8,8 +8,12 @@ import catalog.models
 
 class ItemManager(django.db.models.Manager):
     def published(self):
-        ordered_field_item_category = catalog.models.Item.category.field.name
-        ordered_field_category_name = catalog.models.Category.name.field.name
+        ordered_field_item_category = (
+            catalog.models.Item.category.field.name
+        )
+        ordered_field_category_name = (
+            catalog.models.Category.name.field.name
+        )
         ordered_field_item_mainimage = "main_image"
         ordered_field_mainimage = catalog.models.MainImage.image.field.name
 
@@ -33,7 +37,9 @@ class ItemManager(django.db.models.Manager):
 
         prefetch_tags = django.db.models.Prefetch(
             "tags",
-            queryset=catalog.models.Tag.objects.filter(is_published=True).only(
+            queryset=catalog.models.Tag.objects.filter(
+                is_published=True,
+            ).only(
                 "name",
             ),
         )
@@ -85,7 +91,9 @@ class ItemManager(django.db.models.Manager):
         return filter_item.order_by(f"-{filter_order}")
 
     def new_items(self):
-        one_week_ago = django.utils.timezone.now() - datetime.timedelta(days=7)
+        one_week_ago = django.utils.timezone.now() - datetime.timedelta(
+            days=7,
+        )
 
         new_items = catalog.models.Item.objects.published().filter(
             created__gte=one_week_ago,

@@ -12,7 +12,9 @@ class Status(django.db.models.TextChoices):
 class Feedback(django.db.models.Model):
     text = django.db.models.TextField(
         translation.gettext_lazy("текстовое поле"),
-        help_text=translation.gettext_lazy("Введите текстовое поле обращения"),
+        help_text=translation.gettext_lazy(
+            "Введите текстовое поле обращения",
+        ),
     )
     created_on = django.db.models.DateTimeField(
         translation.gettext_lazy("дата и время создания"),

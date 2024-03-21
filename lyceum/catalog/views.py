@@ -11,7 +11,11 @@ def item_list(request):
     context = {
         "items": items,
     }
-    return django.shortcuts.render(request, "catalog/item_list.html", context)
+    return django.shortcuts.render(
+        request,
+        "catalog/item_list.html",
+        context,
+    )
 
 
 def new_items(request):

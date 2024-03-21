@@ -173,10 +173,16 @@ class TestContentItems(django.test.TestCase):
 
     def test_home_page_correct_context(self):
         response = self.client.get(django.urls.reverse("homepage:home"))
-        self.assertIn("items", response.context, "the page does not contain")
+        self.assertIn(
+            "items",
+            response.context,
+            "the page does not contain",
+        )
 
     def test_item_list_page_correct_context(self):
-        response = self.client.get(django.urls.reverse("catalog:item-list"))
+        response = self.client.get(
+            django.urls.reverse("catalog:item-list"),
+        )
         self.assertIn(
             "items",
             response.context,
@@ -192,7 +198,9 @@ class TestContentItems(django.test.TestCase):
         )
 
     def test_item_list_count_item(self):
-        response = self.client.get(django.urls.reverse("catalog:item-list"))
+        response = self.client.get(
+            django.urls.reverse("catalog:item-list"),
+        )
         self.assertEqual(
             len(response.context["items"]),
             2,
@@ -200,7 +208,9 @@ class TestContentItems(django.test.TestCase):
         )
 
     def test_item_type(self):
-        response = self.client.get(django.urls.reverse("catalog:item-list"))
+        response = self.client.get(
+            django.urls.reverse("catalog:item-list"),
+        )
         items = response.context["items"]
         self.assertIsInstance(
             items.first(),
@@ -209,7 +219,9 @@ class TestContentItems(django.test.TestCase):
         )
 
     def test_all_items_view(self):
-        response = self.client.get(django.urls.reverse("catalog:item-list"))
+        response = self.client.get(
+            django.urls.reverse("catalog:item-list"),
+        )
         self.assertEqual(
             response.status_code,
             http.HTTPStatus.OK,
@@ -224,7 +236,9 @@ class TestContentItems(django.test.TestCase):
         )
 
     def test_new_items_view(self):
-        response = self.client.get(django.urls.reverse("catalog:new-items"))
+        response = self.client.get(
+            django.urls.reverse("catalog:new-items"),
+        )
         self.assertEqual(
             response.status_code,
             http.HTTPStatus.OK,
@@ -239,7 +253,9 @@ class TestContentItems(django.test.TestCase):
         )
 
     def test_friday_items_view(self):
-        response = self.client.get(django.urls.reverse("catalog:friday-items"))
+        response = self.client.get(
+            django.urls.reverse("catalog:friday-items"),
+        )
         self.assertEqual(
             response.status_code,
             http.HTTPStatus.OK,
@@ -279,7 +295,9 @@ class TestContentItems(django.test.TestCase):
         ),
     )
     def test_filds_item_main(self, field_name):
-        response = self.client.get(django.shortcuts.reverse("homepage:home"))
+        response = self.client.get(
+            django.shortcuts.reverse("homepage:home"),
+        )
         self.assertNotIn(
             field_name,
             response.context["items"].first().__dict__,
@@ -311,7 +329,9 @@ class TestContentItems(django.test.TestCase):
             "name",
             "_prefetch_related_val_item_id",
         ]
-        response = self.client.get(django.shortcuts.reverse("homepage:home"))
+        response = self.client.get(
+            django.shortcuts.reverse("homepage:home"),
+        )
         item = response.context["items"].first()
         tag = item._prefetched_objects_cache["tags"].first()
         self.assertQuerySetEqual(

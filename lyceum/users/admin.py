@@ -35,7 +35,10 @@ class UserAdmin(django.contrib.auth.admin.UserAdmin):
 
 
 django.contrib.admin.site.unregister(django.contrib.auth.models.User)
-django.contrib.admin.site.register(django.contrib.auth.models.User, UserAdmin)
+django.contrib.admin.site.register(
+    django.contrib.auth.models.User,
+    UserAdmin,
+)
 
 
 __all__ = []

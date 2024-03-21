@@ -6,7 +6,10 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('feedback', '0003_alter_feedback_options_feedback_status_and_more'),
+        (
+            'feedback',
+            '0003_alter_feedback_options_feedback_status_and_more',
+        ),
     ]
 
     operations = [

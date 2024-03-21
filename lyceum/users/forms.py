@@ -1,11 +1,11 @@
 import django.contrib.auth.forms
 import django.contrib.auth.models
-import django.forms
+import django.forms as forms
 
 import users.models
 
 
-class UserChange(django.forms.ModelForm):
+class UserChange(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for field in self.visible_fields():
@@ -31,7 +31,7 @@ class SignUpForm(django.contrib.auth.forms.UserCreationForm):
         ]
 
 
-class ProfileUpdateForm(django.forms.ModelForm):
+class ProfileUpdateForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         if self.instance.birthday:
@@ -49,11 +49,10 @@ class ProfileUpdateForm(django.forms.ModelForm):
             users.models.Profile.image.field.name,
         ]
         widgets = {
-            users.models.Profile.birthday.field.name: django.forms.DateInput(
+            users.models.Profile.birthday.field.name: forms.DateInput(
                 attrs={"class": "form-control", "type": "date"},
             ),
-            users.models.Profile.coffee_count.field.name:
-                django.forms.NumberInput(
+            users.models.Profile.coffee_count.field.name: forms.NumberInput(
                 attrs={
                     "readonly": "readonly",
                     "disabled": "disabled",
