@@ -22,7 +22,8 @@ def feedback_view(request):
         )
 
         django.contrib.messages.success(
-            request, translation.gettext_lazy("Форма успешно отправлена.")
+            request,
+            translation.gettext_lazy("Форма успешно отправлена."),
         )
         return django.shortcuts.redirect("feedback:feedback")
 

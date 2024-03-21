@@ -93,7 +93,7 @@ DATABASES = {
 AUTH_PASSWORD_VALIDATORS = [
     {
         "NAME": "django.contrib.auth.password_validation"
-        ".UserAttributeSimilarityValidator"
+        ".UserAttributeSimilarityValidator",
     },
     {
         "NAME": "django.contrib.auth.password_validation"
@@ -146,10 +146,11 @@ SESSION_ENGINE = "django.contrib.sessions.backends.db"
 
 LOGIN_URL = "/auth/login/"
 LOGIN_REDIRECT_URL = "/"
-LOGOUT_REDIRECT_URL = "/auth/login/"
+LOGOUT_REDIRECT_URL = "/auth/logout/"
 
 DEFAULT_USER_IS_ACTIVE = os.getenv(
-    "DEFAULT_USER_IS_ACTIVE", default=DEBUG if DEBUG else False
+    "DEFAULT_USER_IS_ACTIVE",
+    default=DEBUG if DEBUG else False,
 )
 
 __all__ = []

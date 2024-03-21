@@ -33,7 +33,7 @@ def registration(request):
                 django.urls.reverse(
                     "users:activate",
                     kwargs={"signed_username": signed_username},
-                )
+                ),
             )
             django.core.mail.send_mail(
                 subject="Активация профиля",
@@ -50,7 +50,7 @@ def registration(request):
                     request,
                     django.contrib.messages.SUCCESS,
                     translation.gettext_lazy(
-                        "Вы зарегистрированы. Войдите с новыми данными"
+                        "Вы зарегистрированы. Войдите с новыми данными",
                     ),
                 )
             else:
@@ -59,7 +59,7 @@ def registration(request):
                     django.contrib.messages.WARNING,
                     translation.gettext_lazy(
                         "Вам необходимо активировать Ваш профиль. "
-                        "Проверьте указанную почту"
+                        "Проверьте указанную почту",
                     ),
                 )
 
@@ -82,7 +82,7 @@ def activate(request, signed_username):
         user = usermodel.objects.get(username=username)
     except (django.core.signing.BadSignature, usermodel.DoesNotExist):
         return django.http.HttpResponseNotFound(
-            "Неверная или просроченная ссылка активации"
+            "Неверная или просроченная ссылка активации",
         )
 
     user.is_active = True
@@ -104,7 +104,7 @@ def user_list(request):
 def user_detail(request, pk):
     template = "users/user_detail.html"
     user_info = django.shortcuts.get_object_or_404(
-        users.models.Profile.objects.user_detail(pk)
+        users.models.Profile.objects.user_detail(pk),
     )
     context = {
         "user": user_info,
@@ -114,12 +114,14 @@ def user_detail(request, pk):
 
 @django.contrib.auth.decorators.login_required
 def profile(request):
-    template = "users/user_profile.html"
+    template = "users/profile.html"
     user = request.user
     profile_form = users.forms.ProfileUpdateForm(
-        request.POST or None, request.FILES or None, instance=user.profile
+        request.POST or None,
+        request.FILES or None,
+        instance=user.profile,
     )
-    user_form = users.forms.UserUpdateForm(request.POST or None, instance=user)
+    user_form = users.forms.UserChangeForm(request.POST or None, instance=user)
     if (
         request.method == "POST"
         and user_form.is_valid()

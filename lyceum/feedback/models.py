@@ -30,7 +30,7 @@ class Feedback(django.db.models.Model):
         max_length=150,
         blank=True,
         help_text=translation.gettext_lazy(
-            "Укажите имя отправителя. Максимальная длинна - 256 символов."
+            "Укажите имя отправителя. Максимальная длинна - 256 символов.",
         ),
     )
     status = django.db.models.CharField(

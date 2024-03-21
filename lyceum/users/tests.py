@@ -22,8 +22,8 @@ class RegistrationTestCase(django.test.TestCase):
         self.assertRedirects(response, django.urls.reverse("users:login"))
         self.assertTrue(
             django.contrib.auth.models.User.objects.filter(
-                username=self.valid_data["username"]
-            )
+                username=self.valid_data["username"],
+            ),
         )
         mock_send_mail.assert_called_once_with(
             subject="Активация профиля",
@@ -38,7 +38,10 @@ class RegistrationTestCase(django.test.TestCase):
         response = self.client.post(self.url, data=invalid_data)
         self.assertEqual(response.status_code, 200)
         self.assertFormError(
-            response, "form", "password2", "Введенные пароли не совпадают."
+            response,
+            "form",
+            "password2",
+            "Введенные пароли не совпадают.",
         )
 
 
@@ -55,8 +58,9 @@ class ActivateTestCase(django.test.TestCase):
         signed_username = signer.sign(user.username)
         response = self.client.get(
             django.urls.reverse(
-                "users:activate", kwargs={"signed_username": signed_username}
-            )
+                "users:activate",
+                kwargs={"signed_username": signed_username},
+            ),
         )
         self.assertTemplateUsed(response, "users/activation_success.html")
         user.refresh_from_db()
@@ -67,13 +71,15 @@ class ActivateTestCase(django.test.TestCase):
             django.urls.reverse(
                 "users:activate",
                 kwargs={"signed_username": "invalid_signature"},
-            )
+            ),
         )
         self.assertEqual(response.status_code, 404)
 
     def test_activate_expired_signature(self):
         user = auth_models.User.objects.create(
-            username="testuser", email="test@example.com", is_active=False
+            username="testuser",
+            email="test@example.com",
+            is_active=False,
         )
         signer = django.core.signing.TimestampSigner()
         signed_username = signer.sign(user.username)
@@ -82,7 +88,7 @@ class ActivateTestCase(django.test.TestCase):
             django.urls.reverse(
                 "users:activate",
                 kwargs={"signed_username": expired_signed_username},
-            )
+            ),
         )
         self.assertEqual(response.status_code, 404)
 

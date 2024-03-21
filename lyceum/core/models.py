@@ -25,7 +25,7 @@ class TimeStampedModel(django.db.models.Model):
         translation.gettext_lazy("название"),
         max_length=150,
         help_text=translation.gettext_lazy(
-            "Введите название, максимальная длинна - 150"
+            "Введите название, максимальная длинна - 150",
         ),
         unique=True,
     )

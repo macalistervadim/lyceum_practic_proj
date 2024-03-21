@@ -19,7 +19,7 @@ class ValidateMustContain:
         if not self.validate_words & words:
             raise django.core.exceptions.ValidationError(
                 translation.gettext_lazy(
-                    f"В тексте '{value}' нет слов {self.pattern}"
+                    f"В тексте '{value}' нет слов {self.pattern}",
                 ),
             )
 
@@ -29,7 +29,7 @@ def validator_for_item_text(value):
     if not {"превосходно", "роскошно"} & words:
         raise django.core.exceptions.ValidationError(
             translation.gettext_lazy(
-                "Текст должен содержать слово 'превосходно' или 'роскошно'."
+                "Текст должен содержать слово 'превосходно' или 'роскошно'.",
             ),
         )
 

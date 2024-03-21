@@ -28,7 +28,11 @@ class ItemViewTest(django.test.TestCase):
         )
         for field, errors in self.expected_errors.items():
             self.assertFormError(
-                response, "form", field, errors, "Not found expected errors"
+                response,
+                "form",
+                field,
+                errors,
+                "Not found expected errors",
             )
 
     def test_form_in_context(self):

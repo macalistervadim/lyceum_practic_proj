@@ -4,6 +4,7 @@ import django.urls
 
 import users.views
 
+
 app_name = "users"
 
 urlpatterns = [
@@ -16,13 +17,15 @@ urlpatterns = [
     ),
     django.urls.path(
         "logout/",
-        auth_views.LogoutView.as_view(),
+        auth_views.LogoutView.as_view(
+            template_name="users/logout.html",
+        ),
         name="logout",
     ),
     django.urls.path(
         "change-password/",
         auth_views.PasswordChangeView.as_view(
-            template_name="users/change_password.html",
+            template_name="users/password_change.html",
             success_url=django.urls.reverse_lazy("users:change-password-done"),
         ),
         name="change-password",
@@ -30,14 +33,14 @@ urlpatterns = [
     django.urls.path(
         "change-password/done/",
         auth_views.PasswordChangeDoneView.as_view(
-            template_name="users/change_password_done.html",
+            template_name="users/password_change_done.html",
         ),
         name="change-password-done",
     ),
     django.urls.path(
         "reset-password/",
         auth_views.PasswordResetView.as_view(
-            template_name="users/reset_password.html",
+            template_name="users/password_reset.html",
             email_template_name="users/password_reset_email.html",
             subject_template_name="users/subjects/password_reset_subject.txt",
             success_url=django.urls.reverse_lazy("users:password-reset-done"),
@@ -47,16 +50,16 @@ urlpatterns = [
     django.urls.path(
         "reset-password/done/",
         auth_views.PasswordResetDoneView.as_view(
-            template_name="users/reset_password_done.html",
+            template_name="users/password_reset_done.html",
         ),
         name="password-reset-done",
     ),
     django.urls.path(
         "reset-password/confirm/<uidb64>/<token>/",
         auth_views.PasswordResetConfirmView.as_view(
-            template_name="users/reset_password_confirm.html",
+            template_name="users/password_reset_confirm.html",
             success_url=django.urls.reverse_lazy(
-                "users:password-reset-complete"
+                "users:password-reset-complete",
             ),
         ),
         name="password-reset-confirm",
@@ -64,7 +67,7 @@ urlpatterns = [
     django.urls.path(
         "reset-password/complete/",
         auth_views.PasswordResetCompleteView.as_view(
-            template_name="users/reset_password_complete.html",
+            template_name="users/password_reset_complete.html",
         ),
         name="password-reset-complete",
     ),

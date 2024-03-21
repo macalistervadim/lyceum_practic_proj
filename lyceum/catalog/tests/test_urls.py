@@ -33,7 +33,8 @@ class UrlTests(django.test.TestCase):
     def test_item_detail_view(self, pk_200, pk_404):
 
         url_200 = django.urls.reverse(
-            "catalog:item-detail", kwargs={"pk": pk_200}
+            "catalog:item-detail",
+            kwargs={"pk": pk_200},
         )
 
         response_200 = self.client.get(url_200)
@@ -45,7 +46,8 @@ class UrlTests(django.test.TestCase):
         )
 
         url_404 = django.urls.reverse(
-            "catalog:item-detail", kwargs={"pk": pk_404}
+            "catalog:item-detail",
+            kwargs={"pk": pk_404},
         )
 
         response_404 = self.client.get(url_404)
@@ -60,7 +62,8 @@ class UrlTests(django.test.TestCase):
     def test_catalog_regex(self, pk_200, pk_404):
 
         url_200 = django.urls.reverse(
-            "catalog:catalog-regex", kwargs={"pk": pk_200}
+            "catalog:catalog-regex",
+            kwargs={"pk": pk_200},
         )
 
         response_200 = self.client.get(url_200)
@@ -72,7 +75,8 @@ class UrlTests(django.test.TestCase):
         )
 
         url_404 = django.urls.reverse(
-            "catalog:catalog-regex", kwargs={"pk": pk_404}
+            "catalog:catalog-regex",
+            kwargs={"pk": pk_404},
         )
 
         response_404 = self.client.get(url_404)
@@ -87,7 +91,8 @@ class UrlTests(django.test.TestCase):
     def test_catalog_converter(self, pk_200, pk_404):
 
         url_200 = django.urls.reverse(
-            "catalog:catalog-converter", kwargs={"pk": pk_200}
+            "catalog:catalog-converter",
+            kwargs={"pk": pk_200},
         )
 
         response_200 = self.client.get(url_200)
@@ -99,7 +104,8 @@ class UrlTests(django.test.TestCase):
         )
 
         url_404 = django.urls.reverse(
-            "catalog:catalog-converter", kwargs={"pk": pk_404}
+            "catalog:catalog-converter",
+            kwargs={"pk": pk_404},
         )
 
         response_404 = self.client.get(url_404)
@@ -172,7 +178,9 @@ class TestContentItems(django.test.TestCase):
     def test_item_list_page_correct_context(self):
         response = self.client.get(django.urls.reverse("catalog:item-list"))
         self.assertIn(
-            "items", response.context, "the page does not contain Items"
+            "items",
+            response.context,
+            "the page does not contain Items",
         )
 
     def test_home_count_item(self):

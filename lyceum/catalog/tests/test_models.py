@@ -62,7 +62,7 @@ class DBItemTests(django.test.TestCase):
             ("test", "Я превосх%одно"),
             ("test", "превосходнороскошно"),
             ("test" * 38, "превосходно"),
-        ]
+        ],
     )
     def test_db_item_invalid(self, name, expected_text):
         item_count = catalog.models.Item.objects.count()
@@ -125,7 +125,7 @@ class DBCategoryTests(django.test.TestCase):
             ("test", "abs", 32768),
             ("test", "abs", 0),
             ("test", "abs", -1),
-        ]
+        ],
     )
     def test_db_category_invalid(self, name, slug, weight):
         category_count = catalog.models.Category.objects.count()

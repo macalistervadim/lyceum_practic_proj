@@ -17,7 +17,7 @@ class Tag(core.models.TimeStampedModel):
         translation.gettext_lazy("слаг"),
         max_length=200,
         help_text=translation.gettext_lazy(
-            "Введите слаг для тэга, максимальная длинна - 200"
+            "Введите слаг для тэга, максимальная длинна - 200",
         ),
     )
 
@@ -32,7 +32,7 @@ class Category(core.models.TimeStampedModel):
         translation.gettext_lazy("слаг"),
         max_length=200,
         help_text=translation.gettext_lazy(
-            "Введите слаг для тэга, максимальная длинна - 200"
+            "Введите слаг для тэга, максимальная длинна - 200",
         ),
     )
     weight = django.db.models.IntegerField(
@@ -89,7 +89,7 @@ class Item(core.models.TimeStampedModel):
         help_text=(
             translation.gettext_lazy(
                 "Введите сообщение с содержанием следующих слов: "
-                "превосходно/роскошно"
+                "превосходно/роскошно",
             )
         ),
     )

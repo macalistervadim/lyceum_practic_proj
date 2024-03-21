@@ -442,9 +442,9 @@
   "pk": 1,
   "fields": {
     "user": 1,
-    "birthday": "2024-03-14",
-    "coffee_count": 18,
-    "image": ""
+    "birthday": "2024-03-24",
+    "coffee_count": 3,
+    "image": "users/1/86e0e7ce-784b-4075-887c-ca75807ef4e2.png"
   }
 },
 {
@@ -475,6 +475,16 @@
     "birthday": null,
     "coffee_count": 0,
     "image": "users/4/e7cb962e-f1e8-47ce-835f-f058368afade.jpeg"
+  }
+},
+{
+  "model": "users.profile",
+  "pk": 5,
+  "fields": {
+    "user": 32,
+    "birthday": "2024-03-20",
+    "coffee_count": 0,
+    "image": ""
   }
 },
 {
@@ -1346,10 +1356,10 @@
   "pk": 1,
   "fields": {
     "password": "pbkdf2_sha256$600000$inmqnzPDKDzVWdZBYRCTQx$tMiO3Xap9MfsDVbMM/+1JxZBmtQt9Wis66Qq98YbmaI=",
-    "last_login": "2024-03-20T09:03:26Z",
+    "last_login": "2024-03-20T13:56:26Z",
     "is_superuser": true,
     "username": "admin",
-    "first_name": "Алён",
+    "first_name": "Алёна",
     "last_name": "Старцев",
     "email": "macalister@mail.ru",
     "is_staff": true,
@@ -1583,6 +1593,24 @@
   }
 },
 {
+  "model": "auth.user",
+  "pk": 36,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$wa4Dva1eOJdBHqzsC4ObmO$669roSSdGM72bC1MDINxPogIdAlcKhkqgLP8x9goakE=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "macalistervadim@",
+    "first_name": "",
+    "last_name": "",
+    "email": "macalistervadim@yandex.ru",
+    "is_staff": false,
+    "is_active": false,
+    "date_joined": "2024-03-20T13:54:11.590Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
   "model": "sessions.session",
   "pk": "61y64whr6y3biju2un60csupgnnnb78y",
   "fields": {
@@ -1592,18 +1620,18 @@
 },
 {
   "model": "sessions.session",
-  "pk": "758xq6ktu64qja1i4jay2w7m1meyfspx",
-  "fields": {
-    "session_data": ".eJxVjDEOwjAMRe-SGUW0bhObkZ0zRI6dkAJqpaadEHdHkTrA-t97_20C71sJe01rmNRcTGdOv1tkeaa5AX3wfF-sLPO2TtE2xR602tui6XU93L-DwrW0WrADzcRKNKLgSD1gFHEOCZnPvQ4AHYn3Xj26PgOw84OwsOYByHy-4Rk3yQ:1rmrr4:vNEq76_6OCIbpyimmukpi9hzQih7Eusy5i9CNfR_GNQ",
-    "expire_date": "2024-04-03T09:03:26.360Z"
-  }
-},
-{
-  "model": "sessions.session",
   "pk": "b4jbjdmg31pno7whfy59uqo2bfiqoj6t",
   "fields": {
     "session_data": "e30:1rlrFB:pQ2YrcftR_Yp2gm3dcTdtLZQjD4BF086epK655ajPF0",
     "expire_date": "2024-03-31T14:12:09.163Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "kg1agyh2s54p36d238qrlwre3hk9ubht",
+  "fields": {
+    "session_data": ".eJxVjUtuwzAMRO-idWtYH4tkl933DAJFyrHTwgosBwES5O6JgSzS7byZNzeT-LxN6dzKmmY1X8aaj_css_yWZQd65OVQO6nLts652yvdi7bup2r5-351_wkmbtO-FrReR2IlGlBwIOcxi8SIhMy90-C9JQEABYxu9J4jBGFhHYOnXXri1i511bSWVra01efbUy0B8nX-dGihF9BCBcPIqKA5DqDoqLcFrbk_ACovTHI:1rmwQc:XROJCOW-Ld1JosltAsi6QOSArSZIgsToQqvNUt6AbEA",
+    "expire_date": "2024-04-03T13:56:26.251Z"
   }
 },
 {

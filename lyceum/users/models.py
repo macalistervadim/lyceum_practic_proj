@@ -2,6 +2,7 @@ import pathlib
 import uuid
 
 import django.contrib.auth.models
+import django.core.validators
 import django.db
 import django.utils.translation as translation
 import sorl.thumbnail
@@ -34,7 +35,8 @@ class Profile(django.db.models.Model):
     objects = ProfileManager()
 
     user = django.db.models.OneToOneField(
-        django.contrib.auth.models.User, on_delete=django.db.models.CASCADE
+        django.contrib.auth.models.User,
+        on_delete=django.db.models.CASCADE,
     )
     birthday = django.db.models.DateField(
         translation.gettext_lazy("дата рождения"),
@@ -45,6 +47,7 @@ class Profile(django.db.models.Model):
         translation.gettext_lazy("количество выпитого кофе"),
         null=False,
         default=0,
+        validators=[django.core.validators.MinValueValidator(0)],
     )
     image = django.db.models.ImageField(
         upload_to=item_directory_path,
@@ -59,7 +62,10 @@ class Profile(django.db.models.Model):
 
     def get_image_350x350(self):
         return sorl.thumbnail.get_thumbnail(
-            self.image, "350x350", crop="center", quality=85
+            self.image,
+            "350x350",
+            crop="center",
+            quality=85,
         )
 
 
