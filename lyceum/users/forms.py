@@ -1,5 +1,5 @@
 import django.contrib.auth.forms
-import django.contrib.auth.models
+import django.contrib.auth.models as auth_models
 import django.forms as forms
 
 import users.models as u_models
@@ -13,8 +13,8 @@ class SignUpForm(django.contrib.auth.forms.UserCreationForm):
 
     class Meta(django.contrib.auth.forms.UserCreationForm.Meta):
         fields = [
-            django.contrib.auth.models.User.email.field.name,
-            django.contrib.auth.models.User.username.field.name,
+            auth_models.User.email.field.name,
+            auth_models.User.username.field.name,
             "password1",
             "password2",
         ]
@@ -52,6 +52,7 @@ class ProfileUpdateForm(forms.ModelForm):
 
 class UserChangeForm(django.contrib.auth.forms.UserChangeForm):
     password = None
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for field in self.visible_fields():
@@ -59,12 +60,12 @@ class UserChangeForm(django.contrib.auth.forms.UserChangeForm):
 
     class Meta(django.contrib.auth.forms.UserChangeForm.Meta):
         fields = [
-            django.contrib.auth.models.User.first_name.field.name,
-            django.contrib.auth.models.User.last_name.field.name,
-            django.contrib.auth.models.User.email.field.name,
+            auth_models.User.first_name.field.name,
+            auth_models.User.last_name.field.name,
+            auth_models.User.email.field.name,
         ]
         exclude = [
-            django.contrib.auth.models.User.password.field.name,
+            auth_models.User.password.field.name,
         ]
 
 

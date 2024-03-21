@@ -443,7 +443,7 @@
   "fields": {
     "user": 1,
     "birthday": "2024-03-24",
-    "coffee_count": 3,
+    "coffee_count": 4,
     "image": "users/1/86e0e7ce-784b-4075-887c-ca75807ef4e2.png"
   }
 },
@@ -1356,11 +1356,11 @@
   "pk": 1,
   "fields": {
     "password": "pbkdf2_sha256$600000$inmqnzPDKDzVWdZBYRCTQx$tMiO3Xap9MfsDVbMM/+1JxZBmtQt9Wis66Qq98YbmaI=",
-    "last_login": "2024-03-20T13:56:26Z",
+    "last_login": "2024-03-21T14:29:40.679Z",
     "is_superuser": true,
     "username": "admin",
-    "first_name": "Алёна",
-    "last_name": "Старцев",
+    "first_name": "Vadim",
+    "last_name": "Старце",
     "email": "macalister@mail.ru",
     "is_staff": true,
     "is_active": true,
@@ -1611,6 +1611,24 @@
   }
 },
 {
+  "model": "auth.user",
+  "pk": 37,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$7guqHNTSoU3sJsxG4h1tuI$giAGe6WeEI9iH9nbhE81KiYbrNKJS36wOmpXyhQH4nM=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "adminadmin",
+    "first_name": "",
+    "last_name": "",
+    "email": "startsevvadim2007@gmail.com",
+    "is_staff": false,
+    "is_active": false,
+    "date_joined": "2024-03-21T14:29:15.914Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
   "model": "sessions.session",
   "pk": "61y64whr6y3biju2un60csupgnnnb78y",
   "fields": {
@@ -1624,14 +1642,6 @@
   "fields": {
     "session_data": "e30:1rlrFB:pQ2YrcftR_Yp2gm3dcTdtLZQjD4BF086epK655ajPF0",
     "expire_date": "2024-03-31T14:12:09.163Z"
-  }
-},
-{
-  "model": "sessions.session",
-  "pk": "kg1agyh2s54p36d238qrlwre3hk9ubht",
-  "fields": {
-    "session_data": ".eJxVjUtuwzAMRO-idWtYH4tkl933DAJFyrHTwgosBwES5O6JgSzS7byZNzeT-LxN6dzKmmY1X8aaj_css_yWZQd65OVQO6nLts652yvdi7bup2r5-351_wkmbtO-FrReR2IlGlBwIOcxi8SIhMy90-C9JQEABYxu9J4jBGFhHYOnXXri1i511bSWVra01efbUy0B8nX-dGihF9BCBcPIqKA5DqDoqLcFrbk_ACovTHI:1rmwQc:XROJCOW-Ld1JosltAsi6QOSArSZIgsToQqvNUt6AbEA",
-    "expire_date": "2024-04-03T13:56:26.251Z"
   }
 },
 {
@@ -1664,6 +1674,14 @@
   "fields": {
     "session_data": ".eJxVjEEOwiAQRe_C2hCwDC0u3fcMzTAzlaqBpLQr492VpAvd_vfef6kJ9y1Ne5V1WlhdlFWn3y0iPSQ3wHfMt6Kp5G1dom6KPmjVY2F5Xg_37yBhTd_aDx1ZCkAkEOGMRpwjgs7i0AdPM8fZA1knfXCGCZG4eYDRWO9NVO8P-CA4fg:1rlnZX:KVGBbcYkHeNTBnBLjFs8rgilpAZ__JGhzqQ1doPf53w",
     "expire_date": "2024-03-31T10:16:55.416Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "t69qxu061b1br41vmoakjod806dhxgy2",
+  "fields": {
+    "session_data": ".eJxVjDEOwjAMRe-SGUW0bhObkZ0zRI6dkAJqpaadEHdHkTrA-t97_20C71sJe01rmNRcTGdOv1tkeaa5AX3wfF-sLPO2TtE2xR602tui6XU93L-DwrW0WrADzcRKNKLgSD1gFHEOCZnPvQ4AHYn3Xj26PgOw84OwsOYByHy-4Rk3yQ:1rnJQK:H_YyOPvegx51dbQ-0D-g9w7PMGZQryZN9z7xj_tsKb8",
+    "expire_date": "2024-04-04T14:29:40.684Z"
   }
 },
 {

@@ -1,6 +1,6 @@
 import http
 
-import django.contrib.auth.models
+import django.contrib.auth.models as auth_models
 import django.test
 import django.urls
 
@@ -20,8 +20,8 @@ class HomePageTest(django.test.TestCase):
 
 class EndPointCoffeeTest(django.test.TestCase):
     def test_coffee_endpoint(self):
-        user = django.contrib.auth.models.User.objects.create(
-            username='testuser'
+        user = auth_models.User.objects.create(
+            username="testuser",
         )
         users.models.Profile.objects.create(user=user)
 

@@ -23,10 +23,10 @@ def endpoint(request):
         request.user.profile.coffee_count += 1
         request.user.profile.save()
 
-        return django.http.HttpResponse(
-            "Я чайник",
-            status=http.HTTPStatus.IM_A_TEAPOT,
-        )
+    return django.http.HttpResponse(
+        "Я чайник",
+        status=http.HTTPStatus.IM_A_TEAPOT,
+    )
 
 
 def echo(request):
