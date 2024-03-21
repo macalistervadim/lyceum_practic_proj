@@ -2,18 +2,7 @@ import django.contrib.auth.forms
 import django.contrib.auth.models
 import django.forms as forms
 
-import users.models
-
-
-class UserChange(forms.ModelForm):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        for field in self.visible_fields():
-            field.field.widget.attrs["class"] = "form-control"
-
-    class Meta:
-        model = django.contrib.auth.models.User
-        fields = ["email"]
+import users.models as u_models
 
 
 class SignUpForm(django.contrib.auth.forms.UserCreationForm):
@@ -22,10 +11,10 @@ class SignUpForm(django.contrib.auth.forms.UserCreationForm):
         for field in self.visible_fields():
             field.field.widget.attrs["class"] = "form-control"
 
-    class Meta(UserChange.Meta):
+    class Meta(django.contrib.auth.forms.UserCreationForm.Meta):
         fields = [
-            "email",
-            "username",
+            django.contrib.auth.models.User.email.field.name,
+            django.contrib.auth.models.User.username.field.name,
             "password1",
             "password2",
         ]
@@ -42,17 +31,17 @@ class ProfileUpdateForm(forms.ModelForm):
         for field in self.visible_fields():
             field.field.widget.attrs["class"] = "form-control"
 
-    class Meta(UserChange.Meta):
-        model = users.models.Profile
+    class Meta:
+        model = u_models.Profile
         fields = [
-            users.models.Profile.birthday.field.name,
-            users.models.Profile.image.field.name,
+            u_models.Profile.birthday.field.name,
+            u_models.Profile.image.field.name,
         ]
         widgets = {
-            users.models.Profile.birthday.field.name: forms.DateInput(
+            u_models.Profile.birthday.field.name: forms.DateInput(
                 attrs={"class": "form-control", "type": "date"},
             ),
-            users.models.Profile.coffee_count.field.name: forms.NumberInput(
+            u_models.Profile.coffee_count.field.name: forms.NumberInput(
                 attrs={
                     "readonly": "readonly",
                     "disabled": "disabled",
@@ -61,9 +50,22 @@ class ProfileUpdateForm(forms.ModelForm):
         }
 
 
-class UserChangeForm(UserChange):
-    class Meta(UserChange.Meta):
-        fields = ["first_name", "last_name"]
+class UserChangeForm(django.contrib.auth.forms.UserChangeForm):
+    password = None
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.visible_fields():
+            field.field.widget.attrs["class"] = "form-control"
+
+    class Meta(django.contrib.auth.forms.UserChangeForm.Meta):
+        fields = [
+            django.contrib.auth.models.User.first_name.field.name,
+            django.contrib.auth.models.User.last_name.field.name,
+            django.contrib.auth.models.User.email.field.name,
+        ]
+        exclude = [
+            django.contrib.auth.models.User.password.field.name,
+        ]
 
 
 __all__ = []

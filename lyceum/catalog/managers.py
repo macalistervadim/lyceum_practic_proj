@@ -8,12 +8,8 @@ import catalog.models
 
 class ItemManager(django.db.models.Manager):
     def published(self):
-        ordered_field_item_category = (
-            catalog.models.Item.category.field.name
-        )
-        ordered_field_category_name = (
-            catalog.models.Category.name.field.name
-        )
+        ordered_field_item_category = catalog.models.Item.category.field.name
+        ordered_field_category_name = catalog.models.Category.name.field.name
         ordered_field_item_mainimage = "main_image"
         ordered_field_mainimage = catalog.models.MainImage.image.field.name
 

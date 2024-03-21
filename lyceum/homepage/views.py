@@ -18,16 +18,15 @@ def home(request):
     return django.shortcuts.render(request, template, context)
 
 
-@django.contrib.auth.decorators.login_required
 def endpoint(request):
-    user_profile = request.user.profile
-    user_profile.coffee_count += 1
-    user_profile.save()
+    if request.user.is_authenticated:
+        request.user.profile.coffee_count += 1
+        request.user.profile.save()
 
-    return django.http.HttpResponse(
-        "Я чайник",
-        status=http.HTTPStatus.IM_A_TEAPOT,
-    )
+        return django.http.HttpResponse(
+            "Я чайник",
+            status=http.HTTPStatus.IM_A_TEAPOT,
+        )
 
 
 def echo(request):

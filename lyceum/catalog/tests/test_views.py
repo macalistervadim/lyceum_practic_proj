@@ -48,11 +48,7 @@ class ItemViewTest(django.test.TestCase):
         url = django.urls.reverse("catalog:item-list")
         response = self.client.get(url)
         items = response.context["items"]
-        self.assertEqual(
-            len(items),
-            1,
-            msg="Expected exactly 1 item in 'items' context",
-        )
+        self.assertEqual(len(items), 1)
         for item in items:
             self.assertIsInstance(
                 item,

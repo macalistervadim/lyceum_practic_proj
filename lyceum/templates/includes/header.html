@@ -14,19 +14,6 @@
   <div class="collapse navbar-collapse" id="navbarNav">
     {% with request.resolver_match.view_name as view_name %}
     <ul class="navbar-nav ms-auto">
-        {% if user.is_authenticated %}
-        <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'users:logout' %}">{% trans "Выйти" %}</a>
-            </li>
-        </ul>
-        {% else %}
-        <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'users:login' %}">{% trans "Войти" %}</a>
-            </li>
-        </ul>
-        {% endif %}
         {% if user.is_superuser %}
         <li class="nav-item">
           <a class="nav-link {% if view_name == 'admin:index' %}active{% endif %}" href="{% url 'admin:index' %}">{% trans 'Админ-панель' %}</a>
@@ -83,6 +70,22 @@
                 </form>
             </ul>
         </li>
+        {% if user.is_authenticated %}
+            <ul class="navbar-nav ms-auto">
+                <a class="nav-link" href="{% url 'users:logout' %}">
+                    <button type="button" class="btn btn-outline-primary btn-sm">{% trans 'Выйти' %}</button>
+                </a>
+                <a class="nav-link" href="{% url 'users:profile' %}">
+                    <button type="button" class="btn btn-outline-primary btn-sm">{% trans 'Личный кабинет' %}</button>
+                </a>
+            </li>
+        {% else %}
+            <ul class="navbar-nav ms-auto">
+                <a class="nav-link" href="{% url 'users:login' %}">
+                    <button type="button" class="btn btn-outline-primary btn-sm">{% trans 'Войти' %}</button>
+                </a>
+            </li>
+        {% endif %}
     </ul>
     {% endwith %}
   </div>

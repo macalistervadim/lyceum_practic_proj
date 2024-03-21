@@ -1,5 +1,6 @@
 import http
 
+import django.contrib.auth.models
 import django.test
 import django.urls
 
@@ -19,26 +20,19 @@ class HomePageTest(django.test.TestCase):
 
 class EndPointCoffeeTest(django.test.TestCase):
     def test_coffee_endpoint(self):
-        user = django.contrib.auth.get_user_model().objects.create_user(
-            username="testuser",
-            password="testpassword",
+        user = django.contrib.auth.models.User.objects.create(
+            username='testuser'
         )
         users.models.Profile.objects.create(user=user)
+
         self.client.force_login(user)
 
         url = django.urls.reverse("homepage:coffee")
         response = self.client.get(url)
+        self.assertEqual(response.status_code, 418)
 
-        self.assertEqual(
-            response.status_code,
-            http.HTTPStatus.IM_A_TEAPOT,
-            "Unexpected status code",
-        )
-        self.assertEqual(
-            response.content.decode("utf-8"),
-            "Я чайник",
-            "Incorrect response text",
-        )
+        updated_profile = users.models.Profile.objects.get(user=user)
+        self.assertEqual(updated_profile.coffee_count, 1)
 
 
 __all__ = []

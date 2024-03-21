@@ -27,9 +27,7 @@ class ReverseRussianMiddleware:
                 start = word.start()
                 end = word.end()
                 content = (
-                    content[:start]
-                    + content[start:end][::-1]
-                    + content[end:]
+                    content[:start] + content[start:end][::-1] + content[end:]
                 )
 
             response.content = content.encode()

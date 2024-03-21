@@ -41,7 +41,10 @@
         {% endif %}
       </div>
     {% endfor %}
-    <button type="submit" class="btn btn-primary">{% trans "Войти" %}</button>
-    <a href="#" class="btn btn-link">{% trans "Забыли пароль?" %}</a>
+    <button type="submit" class="btn btn-primary btn-sm">{% trans "Войти" %}</button>
+    <a href="{% url 'users:reset-password' %}" class="btn btn-link btn-sm">{% trans "Забыли пароль?" %}</a>
+    <a class="nav-link" href="{% url 'users:signup' %}">
+      <button type="button" class="btn btn-outline-primary btn-sm">{% trans 'Зарегистрироваться' %}</button>
+    </a>
   </form>
 {% endblock content %}

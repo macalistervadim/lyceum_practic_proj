@@ -17,9 +17,9 @@ class ProfileManager(django.db.models.Manager):
                 "user__email",
                 "user__first_name",
                 "user__last_name",
-                "birthday",
-                "image",
-                "coffee_count",
+                Profile.birthday.field.name,
+                Profile.image.field.name,
+                Profile.coffee_count.field.name,
             )
         )
 
@@ -46,11 +46,10 @@ class Profile(django.db.models.Model):
             "Выберите дату своего рождения",
         ),
     )
-    coffee_count = django.db.models.IntegerField(
+    coffee_count = django.db.models.PositiveIntegerField(
         translation.gettext_lazy("количество выпитого кофе"),
         null=False,
         default=0,
-        validators=[django.core.validators.MinValueValidator(0)],
         help_text=translation.gettext_lazy("Счётчик выпитого кофе"),
     )
     image = django.db.models.ImageField(

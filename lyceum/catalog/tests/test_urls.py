@@ -191,21 +191,13 @@ class TestContentItems(django.test.TestCase):
 
     def test_home_count_item(self):
         response = self.client.get(django.urls.reverse("homepage:home"))
-        self.assertEqual(
-            len(response.context["items"]),
-            1,
-            "the page does not contain 1 items",
-        )
+        self.assertEqual(len(response.context["items"]), 1)
 
     def test_item_list_count_item(self):
         response = self.client.get(
             django.urls.reverse("catalog:item-list"),
         )
-        self.assertEqual(
-            len(response.context["items"]),
-            2,
-            "the page does not contain 2 items",
-        )
+        self.assertEqual(len(response.context["items"]), 2)
 
     def test_item_type(self):
         response = self.client.get(

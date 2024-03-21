@@ -173,3 +173,6 @@ send_mail/
 
 # pre-commit
 .pre-commit-config.yaml
+
+# migrations
+users/migrations/
