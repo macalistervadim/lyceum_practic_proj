@@ -77,27 +77,27 @@ urlpatterns = [
     ),
     django.urls.path(
         "signup/",
-        users.views.registration,
+        users.views.RegistrationView.as_view(),
         name="signup",
     ),
     django.urls.path(
         "activate/<signed_username>/",
-        users.views.activate,
+        users.views.ActivateView.as_view(),
         name="activate",
     ),
     django.urls.path(
         "user-list/",
-        users.views.user_list,
+        users.views.UserListView.as_view(),
         name="user-list",
     ),
     django.urls.path(
         "user-detail/<int:pk>/",
-        users.views.user_detail,
+        users.views.UserDetailView.as_view(),
         name="user-detail",
     ),
     django.urls.path(
         "profile/",
-        users.views.profile,
+        users.views.ProfileView.as_view(),
         name="profile",
     ),
 ]

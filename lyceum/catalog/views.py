@@ -2,71 +2,52 @@ import django.db
 import django.http
 import django.shortcuts
 import django.utils
+import django.views.generic
 
 import catalog.models
 
 
-def item_list(request):
-    items = catalog.models.Item.objects.published()
-    context = {
-        "items": items,
-    }
-    return django.shortcuts.render(
-        request,
-        "catalog/item_list.html",
-        context,
-    )
+class ItemList(django.views.generic.ListView):
+    template_name = "catalog/item_list.html"
+    context_object_name = "items"
+
+    def get_queryset(self):
+        return catalog.models.Item.objects.published()
 
 
-def new_items(request):
-    queryset = catalog.models.Item.objects.new_items()
-    context = {
-        "items": queryset,
-        "view_type": "new_items",
-    }
-    return django.shortcuts.render(
-        request,
-        "catalog/item_filter_date.html",
-        context,
-    )
+class NewItems(django.views.generic.ListView):
+    template_name = "catalog/item_filter_date.html"
+    context_object_name = "items"
+    extra_context = {"view_type": "new_items"}
+
+    def get_queryset(self):
+        return catalog.models.Item.objects.new_items()
 
 
-def friday_items(request):
-    queryset = catalog.models.Item.objects.friday_items()
+class FridayItems(django.views.generic.ListView):
+    template_name = "catalog/item_filter_date.html"
+    context_object_name = "items"
+    extra_context = {"view_type": "friday_items"}
 
-    context = {
-        "items": queryset[:5],
-        "view_type": "friday_items",
-    }
-    return django.shortcuts.render(
-        request,
-        "catalog/item_filter_date.html",
-        context,
-    )
+    def get_queryset(self):
+        return catalog.models.Item.objects.friday_items()
 
 
-def unverified_items(request):
-    queryset = catalog.models.Item.objects.unverified_items()
-    context = {
-        "items": queryset,
-        "view_type": "unverified_items",
-    }
+class UnverifiedItems(django.views.generic.ListView):
+    tempalte_name = "catalog/item_filter_date.html"
+    extra_context = {"view_type": "unverified_items"}
+    context_object_name = "items"
 
-    return django.shortcuts.render(
-        request,
-        "catalog/item_filter_date.html",
-        context,
-    )
+    def get_queryset(self):
+        return catalog.models.Item.objects.unverified_items()
 
 
-def item_detail(request, pk):
-    queryset = catalog.models.Item.objects.gallery_images()
+class ItemDetail(django.views.generic.DetailView):
+    template_name = "catalog/item.html"
+    context_object_name = "item"
 
-    item = django.shortcuts.get_object_or_404(queryset, pk=pk)
-    context = {
-        "item": item,
-    }
-    return django.shortcuts.render(request, "catalog/item.html", context)
+    def get_queryset(self):
+        return catalog.models.Item.objects.gallery_images()
 
 
 __all__ = []

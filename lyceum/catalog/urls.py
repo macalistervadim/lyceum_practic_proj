@@ -24,35 +24,35 @@ django.urls.register_converter(PositiveIntegerConverter, "positive_int")
 
 
 urlpatterns = [
-    django.urls.path("", catalog.views.item_list, name="item-list"),
+    django.urls.path("", catalog.views.ItemList.as_view(), name="item-list"),
     django.urls.path(
         "<int:pk>/",
-        catalog.views.item_detail,
+        catalog.views.ItemDetail.as_view(),
         name="item-detail",
     ),
     django.urls.path(
         "converter-item/<positive_int:pk>/",
-        catalog.views.item_detail,
+        catalog.views.ItemDetail.as_view(),
         name="catalog-converter",
     ),
     django.urls.re_path(
         r"^re/(?P<pk>\d*[1-9]\d*)/$",
-        catalog.views.item_detail,
+        catalog.views.ItemDetail.as_view(),
         name="catalog-regex",
     ),
     django.urls.path(
         "friday-items/",
-        catalog.views.friday_items,
+        catalog.views.FridayItems.as_view(),
         name="friday-items",
     ),
     django.urls.path(
         "new-items/",
-        catalog.views.new_items,
+        catalog.views.NewItems.as_view(),
         name="new-items",
     ),
     django.urls.path(
         "unverified-items/",
-        catalog.views.unverified_items,
+        catalog.views.UnverifiedItems.as_view(),
         name="unverified-items",
     ),
 ]

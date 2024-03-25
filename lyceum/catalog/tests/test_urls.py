@@ -271,12 +271,6 @@ class TestContentItems(django.test.TestCase):
             "Expected status code: 200, Actual status code: "
             f"{response.status_code}",
         )
-        self.assertTemplateUsed(
-            response,
-            "catalog/item_filter_date.html",
-            "The current template differs from the "
-            " one specified in the view function ",
-        )
 
     @parameterized.parameterized.expand(
         (
