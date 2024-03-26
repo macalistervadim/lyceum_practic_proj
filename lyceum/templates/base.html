@@ -23,8 +23,10 @@
 <body>
 
 {% include 'includes/header.html' %}
+ 
 
 <div class="container mt-5">
+  {% include "includes/birthdaters.html" %}
   {% block content %}
   {% endblock %}
 </div>
