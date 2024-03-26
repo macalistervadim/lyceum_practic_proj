@@ -108,7 +108,8 @@ class BirthdayContextProcessorTest(django.test.TestCase):
             password="qwdfvbhjio",
         )
         self.profile_birthday = users.models.Profile.objects.create(
-            user=user_birthday, birthday=timezone.now().date()
+            user=user_birthday,
+            birthday=timezone.now().date(),
         )
 
         user_no_birthday = auth_models.User.objects.create_user(
