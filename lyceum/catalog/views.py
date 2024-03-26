@@ -2,9 +2,29 @@ import django.db
 import django.http
 import django.shortcuts
 import django.utils
+import django.utils.translation as translation
 import django.views.generic
 
 import catalog.models
+import rating.forms
+import rating.models
+
+
+class RatingMixin:
+    def get_rating_info(self, item):
+        ratings = rating.models.Rating.objects.filter(item=item)
+        total_ratings = ratings.count()
+        average_rating = ratings.aggregate(
+            avg_rating=django.db.models.Avg("value"),
+        )["avg_rating"]
+        user_rating = None
+        if self.request.user.is_authenticated:
+            user_rating = rating.models.Rating.objects.filter(
+                item=item,
+                user=self.request.user,
+            ).first()
+
+        return average_rating, total_ratings, user_rating
 
 
 class ItemList(django.views.generic.ListView):
@@ -42,12 +62,61 @@ class UnverifiedItems(django.views.generic.ListView):
         return catalog.models.Item.objects.unverified_items()
 
 
-class ItemDetail(django.views.generic.DetailView):
+class ItemDetail(RatingMixin, django.views.generic.DetailView):
     template_name = "catalog/item.html"
     context_object_name = "item"
+    form_class = rating.forms.RatingForm
 
     def get_queryset(self):
         return catalog.models.Item.objects.gallery_images()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        item = self.object
+
+        average_rating, total_ratings, user_rating = self.get_rating_info(item)
+        context["average_rating"] = average_rating
+        context["total_ratings"] = total_ratings
+        context["user_rating"] = user_rating
+        context["rating_form"] = self.form_class(initial={"item": item})
+
+        return context
+
+    def post(self, request, *args, **kwargs):
+        item = self.get_object()
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            user_rating, created = rating.models.Rating.objects.get_or_create(
+                user=request.user,
+                item=item,
+                defaults={"value": form.cleaned_data["value"]},
+            )
+            if not created:
+                user_rating.value = form.cleaned_data["value"]
+                user_rating.save()
+
+            django.contrib.messages.success(
+                request,
+                translation.gettext_lazy("Вы поставили оценку"),
+            )
+
+            return django.shortcuts.redirect("catalog:item-detail", pk=item.pk)
+
+        return super().post(request, *args, **kwargs)
+
+
+class RatingDeleteView(django.views.View):
+    def post(self, request, *args, **kwargs):
+        item_id = kwargs.get("item_id")
+        user = request.user
+
+        ratings = rating.models.Rating.objects.get(item_id=item_id, user=user)
+        ratings.delete()
+        django.contrib.messages.success(
+            request,
+            translation.gettext_lazy("Оценка удалена"),
+        )
+        return django.shortcuts.redirect("catalog:item-detail", pk=item_id)
 
 
 __all__ = []

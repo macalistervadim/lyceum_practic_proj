@@ -55,6 +55,11 @@ urlpatterns = [
         catalog.views.UnverifiedItems.as_view(),
         name="unverified-items",
     ),
+    django.urls.path(
+        "rating/<int:item_id>/delete/",
+        catalog.views.RatingDeleteView.as_view(),
+        name="delete-rating",
+    ),
 ]
 
 

@@ -201,7 +201,7 @@
     "is_published": true,
     "normalized_name": "rrorrorro",
     "created": "2024-03-11T11:23:14.536Z",
-    "updated": "2024-03-16T08:21:32.096Z",
+    "updated": "2024-03-25T14:30:01.595Z",
     "category": 2,
     "text": "<p>роскошно</p>",
     "is_on_main": true,
@@ -228,6 +228,23 @@
     "tags": [
       2,
       3
+    ]
+  }
+},
+{
+  "model": "catalog.item",
+  "pk": 8,
+  "fields": {
+    "name": "dfsfsdfsd",
+    "is_published": true,
+    "normalized_name": "dfsfsdfsd",
+    "created": "2024-03-25T14:13:25.658Z",
+    "updated": "2024-03-25T14:13:25.658Z",
+    "category": 1,
+    "text": "<p>превосходно</p>",
+    "is_on_main": true,
+    "tags": [
+      4
     ]
   }
 },
@@ -259,7 +276,7 @@
   "model": "catalog.mainimage",
   "pk": 6,
   "fields": {
-    "image": "catalog/6/a8cf3af4-ea5f-4695-83d8-4de15f7fd13b.png",
+    "image": "catalog/6/ba41a16b-da94-4832-a076-ea656b95bd6b.png",
     "item": 6
   }
 },
@@ -372,6 +389,72 @@
   }
 },
 {
+  "model": "feedback.feedback",
+  "pk": 14,
+  "fields": {
+    "text": "sdfsdfsdfsd",
+    "created_on": "2024-03-25T14:33:33.864Z",
+    "mail": "macalistervadim@yandex.ru",
+    "name": "Категория1",
+    "status": "получено"
+  }
+},
+{
+  "model": "feedback.feedback",
+  "pk": 15,
+  "fields": {
+    "text": "sdfsdfsdfsd",
+    "created_on": "2024-03-25T14:34:34.341Z",
+    "mail": "macalistervadim@yandex.ru",
+    "name": "Категория1",
+    "status": "получено"
+  }
+},
+{
+  "model": "feedback.feedback",
+  "pk": 16,
+  "fields": {
+    "text": "аывааывваыаывваы",
+    "created_on": "2024-03-25T14:34:59.795Z",
+    "mail": "startsevvadim2007@gmail.com",
+    "name": "Для детей",
+    "status": "получено"
+  }
+},
+{
+  "model": "feedback.feedback",
+  "pk": 17,
+  "fields": {
+    "text": "выаываыав",
+    "created_on": "2024-03-26T14:07:11.205Z",
+    "mail": "startsevvadim2007@gmail.com",
+    "name": "выа",
+    "status": "получено"
+  }
+},
+{
+  "model": "feedback.feedback",
+  "pk": 18,
+  "fields": {
+    "text": "dsfsdfsdf",
+    "created_on": "2024-03-26T14:07:48.315Z",
+    "mail": "macalistervadim@yandex.ru",
+    "name": "fsd",
+    "status": "получено"
+  }
+},
+{
+  "model": "feedback.feedback",
+  "pk": 19,
+  "fields": {
+    "text": "sdfsdf",
+    "created_on": "2024-03-26T14:07:56.115Z",
+    "mail": "startsevvadim2007@gmail.com",
+    "name": "sdf",
+    "status": "получено"
+  }
+},
+{
   "model": "feedback.statuslog",
   "pk": 1,
   "fields": {
@@ -435,56 +518,6 @@
     "timestamp": "2024-03-13T14:34:16.913Z",
     "_from": "ответ дан",
     "to": "в обработке"
-  }
-},
-{
-  "model": "users.profile",
-  "pk": 1,
-  "fields": {
-    "user": 1,
-    "birthday": "2024-03-24",
-    "coffee_count": 4,
-    "image": "users/1/86e0e7ce-784b-4075-887c-ca75807ef4e2.png"
-  }
-},
-{
-  "model": "users.profile",
-  "pk": 2,
-  "fields": {
-    "user": 33,
-    "birthday": null,
-    "coffee_count": 0,
-    "image": "users/33/9498928b-3dba-40e4-9da6-dc4b75a36cd3.png"
-  }
-},
-{
-  "model": "users.profile",
-  "pk": 3,
-  "fields": {
-    "user": 30,
-    "birthday": null,
-    "coffee_count": 1,
-    "image": "users/30/ac4e7783-7489-4ee0-8768-1a2550db3c1d.png"
-  }
-},
-{
-  "model": "users.profile",
-  "pk": 4,
-  "fields": {
-    "user": 35,
-    "birthday": null,
-    "coffee_count": 0,
-    "image": "users/4/e7cb962e-f1e8-47ce-835f-f058368afade.jpeg"
-  }
-},
-{
-  "model": "users.profile",
-  "pk": 5,
-  "fields": {
-    "user": 32,
-    "birthday": "2024-03-20",
-    "coffee_count": 0,
-    "image": ""
   }
 },
 {
@@ -1352,15 +1385,51 @@
   }
 },
 {
+  "model": "auth.permission",
+  "pk": 97,
+  "fields": {
+    "name": "Can add рейтинг",
+    "content_type": 16,
+    "codename": "add_rating"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 98,
+  "fields": {
+    "name": "Can change рейтинг",
+    "content_type": 16,
+    "codename": "change_rating"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 99,
+  "fields": {
+    "name": "Can delete рейтинг",
+    "content_type": 16,
+    "codename": "delete_rating"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 100,
+  "fields": {
+    "name": "Can view рейтинг",
+    "content_type": 16,
+    "codename": "view_rating"
+  }
+},
+{
   "model": "auth.user",
   "pk": 1,
   "fields": {
     "password": "pbkdf2_sha256$600000$inmqnzPDKDzVWdZBYRCTQx$tMiO3Xap9MfsDVbMM/+1JxZBmtQt9Wis66Qq98YbmaI=",
-    "last_login": "2024-03-21T14:29:40.679Z",
+    "last_login": "2024-03-25T15:31:07.046Z",
     "is_superuser": true,
     "username": "admin",
     "first_name": "Vadim",
-    "last_name": "Старце",
+    "last_name": "Старц",
     "email": "macalister@mail.ru",
     "is_staff": true,
     "is_active": true,
@@ -1629,6 +1698,60 @@
   }
 },
 {
+  "model": "auth.user",
+  "pk": 38,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$xRllN1UFG4RgxQyRS8WEY6$AELYbHVrv586i6hY8plDLH5ahwad8eXAR5s4jKw2Y3Y=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "+7923676877",
+    "first_name": "",
+    "last_name": "",
+    "email": "sdfsdfdssfds@mail.ru",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2024-03-25T15:05:56.199Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 39,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$YAYWMpYuf4gPCc3fZThO4q$RAxPF4dFAfgte9dRbyIwgFhWG2B/QppogFn1gTN+3Mc=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "macalistervadim@yandex.ru",
+    "first_name": "",
+    "last_name": "",
+    "email": "macalistervadim@yandex.ru",
+    "is_staff": false,
+    "is_active": false,
+    "date_joined": "2024-03-25T15:09:22.792Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 40,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$h9QRknvM0WLUBr79NS9CYo$8eaTpJv/Oi0RonUdqGt3NMi9TQPJH6WpTnhwFDa5AsM=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "dfsdfssdfsdfsdfsdfsdfsdfsdf",
+    "first_name": "",
+    "last_name": "",
+    "email": "macalistervadim@yandex.ru",
+    "is_staff": false,
+    "is_active": false,
+    "date_joined": "2024-03-25T15:09:53.796Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
   "model": "sessions.session",
   "pk": "61y64whr6y3biju2un60csupgnnnb78y",
   "fields": {
@@ -1642,6 +1765,14 @@
   "fields": {
     "session_data": "e30:1rlrFB:pQ2YrcftR_Yp2gm3dcTdtLZQjD4BF086epK655ajPF0",
     "expire_date": "2024-03-31T14:12:09.163Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "b93gpzp7gv9h37mv1at1rm2g2r002obf",
+  "fields": {
+    "session_data": ".eJxVjDEOwjAMRe-SGUW0bhObkZ0zRI6dkAJqpaadEHdHkTrA-t97_20C71sJe01rmNRcTGdOv1tkeaa5AX3wfF-sLPO2TtE2xR602tui6XU93L-DwrW0WrADzcRKNKLgSD1gFHEOCZnPvQ4AHYn3Xj26PgOw84OwsOYByHy-4Rk3yQ:1romHz:-6_RwzMmeYKLpxTuTP2iSt-5Vvs7mcv7-xCwIA-kfUk",
+    "expire_date": "2024-04-08T15:31:07.062Z"
   }
 },
 {
@@ -1674,14 +1805,6 @@
   "fields": {
     "session_data": ".eJxVjEEOwiAQRe_C2hCwDC0u3fcMzTAzlaqBpLQr492VpAvd_vfef6kJ9y1Ne5V1WlhdlFWn3y0iPSQ3wHfMt6Kp5G1dom6KPmjVY2F5Xg_37yBhTd_aDx1ZCkAkEOGMRpwjgs7i0AdPM8fZA1knfXCGCZG4eYDRWO9NVO8P-CA4fg:1rlnZX:KVGBbcYkHeNTBnBLjFs8rgilpAZ__JGhzqQ1doPf53w",
     "expire_date": "2024-03-31T10:16:55.416Z"
-  }
-},
-{
-  "model": "sessions.session",
-  "pk": "t69qxu061b1br41vmoakjod806dhxgy2",
-  "fields": {
-    "session_data": ".eJxVjDEOwjAMRe-SGUW0bhObkZ0zRI6dkAJqpaadEHdHkTrA-t97_20C71sJe01rmNRcTGdOv1tkeaa5AX3wfF-sLPO2TtE2xR602tui6XU93L-DwrW0WrADzcRKNKLgSD1gFHEOCZnPvQ4AHYn3Xj26PgOw84OwsOYByHy-4Rk3yQ:1rnJQK:H_YyOPvegx51dbQ-0D-g9w7PMGZQryZN9z7xj_tsKb8",
-    "expire_date": "2024-04-04T14:29:40.684Z"
   }
 },
 {

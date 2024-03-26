@@ -9,7 +9,7 @@ class RatingChoices(django.db.models.TextChoices):
     HATE = translation.gettext_lazy("ненависть")
     DISLIKE = translation.gettext_lazy("неприязнь")
     NEUTRAL = translation.gettext_lazy("нейтрально")
-    ADORATION = translation.gettext_lazy("обожание")
+    ADORE = translation.gettext_lazy("обожание")
     LOVE = translation.gettext_lazy("любовь")
 
 
@@ -22,19 +22,23 @@ class Rating(django.db.models.Model):
         catalog.models.Item,
         on_delete=django.db.models.CASCADE,
     )
-    value = django.db.models.CharField(
-        choices=RatingChoices.choices,
-        max_length=11,
+    value = django.db.models.IntegerField(
         verbose_name=translation.gettext_lazy("оценка"),
+        choices=(
+            (1, RatingChoices.HATE),
+            (2, RatingChoices.DISLIKE),
+            (3, RatingChoices.NEUTRAL),
+            (4, RatingChoices.ADORE),
+            (5, RatingChoices.LOVE),
+        ),
+        blank=True,
+        null=True,
     )
 
     class Meta:
         ordering = ("user",)
         verbose_name = translation.gettext_lazy("рейтинг")
         verbose_name_plural = translation.gettext_lazy("рейтинги")
-
-    def __str__(self):
-        return self.value
 
 
 __all__ = []

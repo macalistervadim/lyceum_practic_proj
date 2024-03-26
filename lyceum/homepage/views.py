@@ -59,6 +59,5 @@ class EchoView(django.views.View):
                 permitted_methods=["GET", "POST"]
             )
 
-#test
 
 __all__ = []

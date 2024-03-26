@@ -6,18 +6,18 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('feedback', '0001_initial'),
+        ("feedback", "0001_initial"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='feedback',
-            name='name',
+            model_name="feedback",
+            name="name",
             field=models.CharField(
-                help_text='Укажите имя отправителя. Максимальная длинна - 256 символов.',
+                help_text="Укажите имя отправителя. Максимальная длинна - 256 символов.",
                 max_length=256,
                 null=True,
-                verbose_name='имя отправителя',
+                verbose_name="имя отправителя",
             ),
         ),
     ]

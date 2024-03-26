@@ -33,7 +33,6 @@ class RegistrationView(django.views.View):
         if form.is_valid():
             user = form.save(commit=False)
             user.is_active = django.conf.settings.DEFAULT_USER_IS_ACTIVE
-            user.is_staff = False
             user.save()
 
             signer = django.core.signing.TimestampSigner()

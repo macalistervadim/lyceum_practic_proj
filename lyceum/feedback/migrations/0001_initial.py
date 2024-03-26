@@ -11,39 +11,39 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Feedback',
+            name="Feedback",
             fields=[
                 (
-                    'id',
+                    "id",
                     models.BigAutoField(
                         auto_created=True,
                         primary_key=True,
                         serialize=False,
-                        verbose_name='ID',
+                        verbose_name="ID",
                     ),
                 ),
                 (
-                    'text',
+                    "text",
                     models.TextField(
-                        help_text='Введите текстовое поле обращения',
-                        verbose_name='текстовое поле',
+                        help_text="Введите текстовое поле обращения",
+                        verbose_name="текстовое поле",
                     ),
                 ),
                 (
-                    'created_on',
+                    "created_on",
                     models.DateTimeField(
                         auto_now_add=True,
-                        help_text='Дата и время создания',
+                        help_text="Дата и время создания",
                         null=True,
-                        verbose_name='дата и время создания',
+                        verbose_name="дата и время создания",
                     ),
                 ),
                 (
-                    'mail',
+                    "mail",
                     models.EmailField(
-                        help_text='Адрес электронной почты',
+                        help_text="Адрес электронной почты",
                         max_length=254,
-                        verbose_name='электронный адрес',
+                        verbose_name="электронный адрес",
                     ),
                 ),
             ],

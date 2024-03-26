@@ -7,17 +7,17 @@ class Migration(migrations.Migration):
 
     dependencies = [
         (
-            'catalog',
-            '0005_alter_category_options_alter_item_options_and_more',
+            "catalog",
+            "0005_alter_category_options_alter_item_options_and_more",
         ),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='item',
-            name='is_on_main',
+            model_name="item",
+            name="is_on_main",
             field=models.BooleanField(
-                default=False, verbose_name='отображать для главной'
+                default=False, verbose_name="отображать для главной"
             ),
         ),
     ]
