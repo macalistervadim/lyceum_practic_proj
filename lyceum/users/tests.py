@@ -4,6 +4,11 @@ import django.contrib.auth.models as auth_models
 import django.core
 import django.test
 import django.urls
+from django.utils import timezone
+
+
+from lyceum import settings
+import users.models
 
 
 class RegistrationTestCase(django.test.TestCase):
@@ -91,6 +96,59 @@ class ActivateTestCase(django.test.TestCase):
             ),
         )
         self.assertEqual(response.status_code, 404)
+
+
+class BirthdayContextProcessorTest(django.test.TestCase):
+    def setUp(self):
+
+        self.client = django.test.Client()
+
+        user_birthday = auth_models.User.objects.create_user(
+            username="testuser",
+            password="qwdfvbhjio",
+        )
+        self.profile_birthday = users.models.Profile.objects.create(
+            user=user_birthday,
+            birthday=timezone.now().date(),
+        )
+
+        user_no_birthday = auth_models.User.objects.create_user(
+            username="testuser_no_birtday",
+            password="qwdfvbhjio1",
+        )
+
+        self.profile_no_birthday = users.models.Profile.objects.create(
+            user=user_no_birthday,
+            birthday="2001-10-10",
+        )
+
+    @unittest.mock.patch("users.context_processors.get_timezone_from_ip")
+    def test_birthday_context_processor(self, mock_get_timezone_from_ip):
+        mock_get_timezone_from_ip.return_value = settings.TIME_ZONE
+
+        self.client.login(username="testuser", password="qwdfvbhjio")
+
+        response = self.client.get("/")
+
+        self.assertIn(
+            self.profile_birthday,
+            response.context["profiles_with_birthday_today"],
+        )
+        self.assertNotIn(
+            self.profile_no_birthday,
+            response.context["profiles_with_birthday_today"],
+        )
+
+        response = self.client.get("/catalog/")
+
+        self.assertIn(
+            self.profile_birthday,
+            response.context["profiles_with_birthday_today"],
+        )
+        self.assertNotIn(
+            self.profile_no_birthday,
+            response.context["profiles_with_birthday_today"],
+        )
 
 
 __all__ = []

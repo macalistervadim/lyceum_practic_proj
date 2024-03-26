@@ -1,0 +1,10 @@
+{% if profiles_with_birthday_today %}
+    <h2>Сегодня день рождения у:</h2>
+    <ul>
+    {% for profile in profiles_with_birthday_today %}
+        <h5> Поздравьте его: {{ profile.user.username }} ({{ profile.user.email }})</h5>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>Сегодня нет именинников.</p>
+{% endif %}
