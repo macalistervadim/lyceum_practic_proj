@@ -5,15 +5,14 @@ import django.utils.translation as translation
 import catalog.models
 
 
-class RatingChoices(django.db.models.TextChoices):
-    HATE = translation.gettext_lazy("ненависть")
-    DISLIKE = translation.gettext_lazy("неприязнь")
-    NEUTRAL = translation.gettext_lazy("нейтрально")
-    ADORE = translation.gettext_lazy("обожание")
-    LOVE = translation.gettext_lazy("любовь")
-
-
 class Rating(django.db.models.Model):
+    class RatingChoices(django.db.models.IntegerChoices):
+        HATE = 1, translation.gettext_lazy("Ненависть")
+        DISLIKE = 2, translation.gettext_lazy("Неприязнь")
+        NEUTRAL = 3, translation.gettext_lazy("Нейтрально")
+        ADORE = 4, translation.gettext_lazy("Обожание")
+        LOVE = 5, translation.gettext_lazy("Любовь")
+
     user = django.db.models.ForeignKey(
         django.contrib.auth.get_user_model(),
         on_delete=django.db.models.CASCADE,
@@ -24,15 +23,7 @@ class Rating(django.db.models.Model):
     )
     value = django.db.models.IntegerField(
         verbose_name=translation.gettext_lazy("оценка"),
-        choices=(
-            (1, RatingChoices.HATE),
-            (2, RatingChoices.DISLIKE),
-            (3, RatingChoices.NEUTRAL),
-            (4, RatingChoices.ADORE),
-            (5, RatingChoices.LOVE),
-        ),
-        blank=True,
-        null=True,
+        choices=RatingChoices.choices,
     )
 
     class Meta:

@@ -35,6 +35,10 @@ class RegistrationView(django.views.View):
             user.is_active = django.conf.settings.DEFAULT_USER_IS_ACTIVE
             user.save()
 
+            users.models.Profile.objects.create(
+                user=user,
+            )
+
             signer = django.core.signing.TimestampSigner()
             signed_username = signer.sign(user.username)
             activate_link = request.build_absolute_uri(

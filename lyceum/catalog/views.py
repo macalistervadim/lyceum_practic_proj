@@ -12,19 +12,24 @@ import rating.models
 
 class RatingMixin:
     def get_rating_info(self, item):
-        ratings = rating.models.Rating.objects.filter(item=item)
-        total_ratings = ratings.count()
-        average_rating = ratings.aggregate(
-            avg_rating=django.db.models.Avg("value"),
-        )["avg_rating"]
-        user_rating = None
+        ratings = (
+            rating.models.Rating.objects.filter(item=item)
+            .annotate(
+                avg_rating=django.db.models.Avg('value'),
+                total_ratings=django.db.models.Count('value')
+            )
+            .first()
+        )
         if self.request.user.is_authenticated:
             user_rating = rating.models.Rating.objects.filter(
                 item=item,
                 user=self.request.user,
             ).first()
 
-        return average_rating, total_ratings, user_rating
+        if ratings:
+            return ratings.avg_rating, ratings.total_ratings, user_rating
+        else:
+            return None, 0, None
 
 
 class ItemList(django.views.generic.ListView):

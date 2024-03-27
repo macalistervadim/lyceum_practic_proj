@@ -106,52 +106,16 @@
 },
 {
   "model": "catalog.item",
-  "pk": 1,
+  "pk": 9,
   "fields": {
-    "name": "ыв123",
+    "name": "товар_1",
     "is_published": true,
-    "normalized_name": "yb123",
-    "created": "2024-03-11T11:23:14.536Z",
-    "updated": "2024-03-11T13:53:56.330Z",
-    "category": 5,
-    "text": "<p style=\"text-align: right;\">роскошно</p>",
+    "normalized_name": "tobar1",
+    "created": "2024-03-27T10:02:34.714Z",
+    "updated": "2024-03-27T10:02:34.714Z",
+    "category": 3,
+    "text": "<p>превосходно</p>",
     "is_on_main": true,
-    "tags": [
-      3,
-      4,
-      5
-    ]
-  }
-},
-{
-  "model": "catalog.item",
-  "pk": 2,
-  "fields": {
-    "name": "ывааываы",
-    "is_published": true,
-    "normalized_name": "ybaaybay",
-    "created": "2024-03-11T11:23:14.536Z",
-    "updated": "2024-03-11T11:23:14.546Z",
-    "category": 1,
-    "text": "<p>роскошно</p>",
-    "is_on_main": false,
-    "tags": [
-      5
-    ]
-  }
-},
-{
-  "model": "catalog.item",
-  "pk": 3,
-  "fields": {
-    "name": "ыва",
-    "is_published": true,
-    "normalized_name": "yba",
-    "created": "2024-03-11T11:23:14.536Z",
-    "updated": "2024-03-11T11:23:14.546Z",
-    "category": 5,
-    "text": "<p>роскошно</p>",
-    "is_on_main": false,
     "tags": [
       3
     ]
@@ -159,88 +123,14 @@
 },
 {
   "model": "catalog.item",
-  "pk": 4,
+  "pk": 10,
   "fields": {
-    "name": "рпопро",
+    "name": "товар_2",
     "is_published": true,
-    "normalized_name": "rrorro",
-    "created": "2024-03-11T11:23:14.536Z",
-    "updated": "2024-03-11T13:53:56.329Z",
-    "category": 1,
-    "text": "<p>роскошно</p>",
-    "is_on_main": true,
-    "tags": [
-      4
-    ]
-  }
-},
-{
-  "model": "catalog.item",
-  "pk": 5,
-  "fields": {
-    "name": "олрромси",
-    "is_published": true,
-    "normalized_name": "olrromsi",
-    "created": "2024-03-11T11:23:14.536Z",
-    "updated": "2024-03-11T13:53:56.327Z",
-    "category": 4,
-    "text": "<p>роскошно</p>",
-    "is_on_main": true,
-    "tags": [
-      3,
-      4,
-      5
-    ]
-  }
-},
-{
-  "model": "catalog.item",
-  "pk": 6,
-  "fields": {
-    "name": "рпопропро",
-    "is_published": true,
-    "normalized_name": "rrorrorro",
-    "created": "2024-03-11T11:23:14.536Z",
-    "updated": "2024-03-25T14:30:01.595Z",
-    "category": 2,
-    "text": "<p>роскошно</p>",
-    "is_on_main": true,
-    "tags": [
-      1,
-      2,
-      3,
-      4
-    ]
-  }
-},
-{
-  "model": "catalog.item",
-  "pk": 7,
-  "fields": {
-    "name": "шщяэыь",
-    "is_published": true,
-    "normalized_name": "shschjaey",
-    "created": "2024-03-11T11:23:14.536Z",
-    "updated": "2024-03-11T13:53:56.330Z",
-    "category": 4,
-    "text": "<p>роскошно</p>",
-    "is_on_main": true,
-    "tags": [
-      2,
-      3
-    ]
-  }
-},
-{
-  "model": "catalog.item",
-  "pk": 8,
-  "fields": {
-    "name": "dfsfsdfsd",
-    "is_published": true,
-    "normalized_name": "dfsfsdfsd",
-    "created": "2024-03-25T14:13:25.658Z",
-    "updated": "2024-03-25T14:13:25.658Z",
-    "category": 1,
+    "normalized_name": "tobar2",
+    "created": "2024-03-27T10:03:00.204Z",
+    "updated": "2024-03-27T10:03:00.204Z",
+    "category": 5,
     "text": "<p>превосходно</p>",
     "is_on_main": true,
     "tags": [
@@ -249,99 +139,69 @@
   }
 },
 {
-  "model": "catalog.mainimage",
-  "pk": 3,
+  "model": "catalog.item",
+  "pk": 11,
   "fields": {
-    "image": "catalog/1/79d36a40-b717-4364-8825-f59e08431086.jpg",
-    "item": 1
+    "name": "товар_3",
+    "is_published": true,
+    "normalized_name": "tobar3",
+    "created": "2024-03-27T10:03:09.414Z",
+    "updated": "2024-03-27T10:03:09.414Z",
+    "category": 2,
+    "text": "<p>превосходно</p>",
+    "is_on_main": true,
+    "tags": [
+      1
+    ]
+  }
+},
+{
+  "model": "catalog.item",
+  "pk": 12,
+  "fields": {
+    "name": "товар_4",
+    "is_published": true,
+    "normalized_name": "tobar4",
+    "created": "2024-03-27T10:03:16.869Z",
+    "updated": "2024-03-27T10:03:16.869Z",
+    "category": 2,
+    "text": "<p>превосходно</p>",
+    "is_on_main": false,
+    "tags": [
+      1
+    ]
   }
 },
 {
   "model": "catalog.mainimage",
-  "pk": 4,
-  "fields": {
-    "image": "catalog/3/f0b10a0b-ddb2-4014-a004-53e09b92e6ab.jpg",
-    "item": 3
-  }
-},
-{
-  "model": "catalog.mainimage",
-  "pk": 5,
-  "fields": {
-    "image": "catalog/7/c943198c-3b55-4c5e-ad41-e9e22df36976.jpg",
-    "item": 7
-  }
-},
-{
-  "model": "catalog.mainimage",
-  "pk": 6,
-  "fields": {
-    "image": "catalog/6/ba41a16b-da94-4832-a076-ea656b95bd6b.png",
-    "item": 6
-  }
-},
-{
-  "model": "catalog.galleryimage",
-  "pk": 2,
-  "fields": {
-    "image": "catalog/1/1996a603-0b2c-471e-8ecc-823514065885.jpg",
-    "item": 1
-  }
-},
-{
-  "model": "catalog.galleryimage",
-  "pk": 3,
-  "fields": {
-    "image": "catalog/2/f3fae9ae-2d26-4668-a29d-8297489d427f.jpg",
-    "item": 2
-  }
-},
-{
-  "model": "catalog.galleryimage",
-  "pk": 4,
-  "fields": {
-    "image": "catalog/7/b6ca9aa5-c170-4f6b-a9dd-1fc49d7092e6.jpg",
-    "item": 7
-  }
-},
-{
-  "model": "catalog.galleryimage",
-  "pk": 5,
-  "fields": {
-    "image": "catalog/7/aca861b0-6f17-4e88-bd3c-634d76b47837.jpg",
-    "item": 7
-  }
-},
-{
-  "model": "catalog.galleryimage",
-  "pk": 6,
-  "fields": {
-    "image": "catalog/7/7fc05bef-295a-4f15-84f8-2b074edbaae0.jpeg",
-    "item": 7
-  }
-},
-{
-  "model": "catalog.galleryimage",
   "pk": 7,
   "fields": {
-    "image": "catalog/6/05a23f9f-87f7-4167-a7ff-59ae01ede35b.png",
-    "item": 6
+    "image": "catalog/9/058d9ab3-ed70-4252-8c6d-b1ed9a22813c.png",
+    "item": 9
   }
 },
 {
-  "model": "catalog.galleryimage",
+  "model": "catalog.mainimage",
   "pk": 8,
   "fields": {
-    "image": "catalog/6/b20af68f-5f13-467e-b004-487267e0af19.jpeg",
-    "item": 6
+    "image": "catalog/10/e105a1b0-503e-4482-991f-24e2fb60bd9d.jpeg",
+    "item": 10
   }
 },
 {
   "model": "catalog.galleryimage",
-  "pk": 9,
+  "pk": 10,
   "fields": {
-    "image": "catalog/6/ea7dddf9-1bac-4f3e-88f3-0e73d622b72b.jpg",
-    "item": 6
+    "image": "catalog/10/ef774d6e-25f6-46cd-9af3-d70fec7bf7bd.jpeg",
+    "item": 10
+  }
+},
+{
+  "model": "catalog.galleryimage",
+  "pk": 11,
+  "fields": {
+    "image": "catalog/10/870cb77d-e1e5-448f-9afb-812a67a510d5.png",
+    "item": 10
   }
 },
 {
@@ -1425,7 +1285,7 @@
   "pk": 1,
   "fields": {
     "password": "pbkdf2_sha256$600000$inmqnzPDKDzVWdZBYRCTQx$tMiO3Xap9MfsDVbMM/+1JxZBmtQt9Wis66Qq98YbmaI=",
-    "last_login": "2024-03-25T15:31:07.046Z",
+    "last_login": "2024-03-25T15:31:07Z",
     "is_superuser": true,
     "username": "admin",
     "first_name": "Vadim",
@@ -1434,319 +1294,6 @@
     "is_staff": true,
     "is_active": true,
     "date_joined": "2024-03-04T16:05:56Z",
-    "groups": [],
-    "user_permissions": []
-  }
-},
-{
-  "model": "auth.user",
-  "pk": 29,
-  "fields": {
-    "password": "pbkdf2_sha256$600000$j08zu0cOMhX4Faf1I7LOUr$0d+5XZrEiVhspChgl9+PiFq9RfuHlBitdAz3cFWiyGE=",
-    "last_login": null,
-    "is_superuser": false,
-    "username": "test",
-    "first_name": "",
-    "last_name": "",
-    "email": "test@test.test",
-    "is_staff": false,
-    "is_active": false,
-    "date_joined": "2024-03-17T14:49:18.528Z",
-    "groups": [],
-    "user_permissions": []
-  }
-},
-{
-  "model": "auth.user",
-  "pk": 30,
-  "fields": {
-    "password": "pbkdf2_sha256$600000$D0YmpaZiwPIQFRI4kh04pr$5wfuFkKIivb3r/9oxkEZ9IU1JJgkwwse7p0JYPqtS60=",
-    "last_login": "2024-03-19T13:17:05Z",
-    "is_superuser": true,
-    "username": "dfsdfs",
-    "first_name": "Вадим",
-    "last_name": "Старцев",
-    "email": "sdf@mail.ru",
-    "is_staff": true,
-    "is_active": true,
-    "date_joined": "2024-03-17T14:51:54Z",
-    "groups": [],
-    "user_permissions": [
-      29,
-      65,
-      30,
-      66,
-      31,
-      67,
-      32,
-      68,
-      37,
-      73,
-      38,
-      74,
-      39,
-      75,
-      40,
-      76,
-      69,
-      33,
-      70,
-      34,
-      71,
-      35,
-      72,
-      36,
-      41,
-      77,
-      42,
-      78,
-      43,
-      79,
-      44,
-      80,
-      1,
-      2,
-      3,
-      4,
-      17,
-      18,
-      19,
-      20,
-      9,
-      10,
-      11,
-      12,
-      13,
-      14,
-      15,
-      16,
-      5,
-      6,
-      7,
-      8,
-      81,
-      45,
-      82,
-      46,
-      83,
-      47,
-      84,
-      48,
-      57,
-      21,
-      58,
-      22,
-      59,
-      23,
-      60,
-      24,
-      25,
-      61,
-      26,
-      62,
-      27,
-      63,
-      28,
-      64,
-      49,
-      85,
-      50,
-      86,
-      51,
-      87,
-      52,
-      88,
-      89,
-      53,
-      90,
-      54,
-      91,
-      55,
-      92,
-      56,
-      93,
-      94,
-      95,
-      96
-    ]
-  }
-},
-{
-  "model": "auth.user",
-  "pk": 31,
-  "fields": {
-    "password": "pbkdf2_sha256$600000$vyyhWFirNtpsXBFxB087jF$1MREGyB35ZqBOrHrIg0dOzvpcIAWHXfhyI2zCTTs9vU=",
-    "last_login": null,
-    "is_superuser": false,
-    "username": "dfsdfsdfs",
-    "first_name": "",
-    "last_name": "",
-    "email": "sdf@mail.ru",
-    "is_staff": false,
-    "is_active": true,
-    "date_joined": "2024-03-17T14:55:25Z",
-    "groups": [],
-    "user_permissions": []
-  }
-},
-{
-  "model": "auth.user",
-  "pk": 32,
-  "fields": {
-    "password": "pbkdf2_sha256$600000$I5vqguNJBsNH2vvnGPvNgw$S3S0wdb3FPxhZWdkdwS/guwowcahOFxfzsdFU7LBtzM=",
-    "last_login": null,
-    "is_superuser": false,
-    "username": "dfsdfsdfsx",
-    "first_name": "",
-    "last_name": "",
-    "email": "sdf@mail.ru",
-    "is_staff": false,
-    "is_active": true,
-    "date_joined": "2024-03-17T14:55:53Z",
-    "groups": [],
-    "user_permissions": []
-  }
-},
-{
-  "model": "auth.user",
-  "pk": 33,
-  "fields": {
-    "password": "pbkdf2_sha256$600000$aDuIRXYERI6if5JVViIMEu$YKfZY7dXlaS7ByjSDKy8+O1qR6R9M+PMC6ELQldkkQQ=",
-    "last_login": "2024-03-17T14:56:54Z",
-    "is_superuser": false,
-    "username": "sdfsdfsdfdsfsdfsdfsdfsdfdsfdfsdsfsdffds",
-    "first_name": "",
-    "last_name": "",
-    "email": "dfsdsf@sdf.sd",
-    "is_staff": false,
-    "is_active": true,
-    "date_joined": "2024-03-17T14:56:32Z",
-    "groups": [],
-    "user_permissions": []
-  }
-},
-{
-  "model": "auth.user",
-  "pk": 34,
-  "fields": {
-    "password": "pbkdf2_sha256$600000$IxgNzF6v2OtApgXWcdykmB$P+bfGXOzVteOS4qE7Y+BCPyem4zcRi1fROtK91IoFr4=",
-    "last_login": "2024-03-19T13:15:09.498Z",
-    "is_superuser": false,
-    "username": "testtest",
-    "first_name": "",
-    "last_name": "",
-    "email": "test@mail.ru",
-    "is_staff": false,
-    "is_active": true,
-    "date_joined": "2024-03-19T13:10:50.322Z",
-    "groups": [],
-    "user_permissions": []
-  }
-},
-{
-  "model": "auth.user",
-  "pk": 35,
-  "fields": {
-    "password": "pbkdf2_sha256$600000$f1TxBxCJhY08ikdZTAqK0U$QgQRXVCvgJ0zY7St3ge6lOgTwBJkqBJY/M+1I2qcqH8=",
-    "last_login": "2024-03-20T09:01:30Z",
-    "is_superuser": false,
-    "username": "img",
-    "first_name": "Вадим",
-    "last_name": "Старцев",
-    "email": "imgimg@img.img",
-    "is_staff": false,
-    "is_active": true,
-    "date_joined": "2024-03-20T09:01:16Z",
-    "groups": [],
-    "user_permissions": []
-  }
-},
-{
-  "model": "auth.user",
-  "pk": 36,
-  "fields": {
-    "password": "pbkdf2_sha256$600000$wa4Dva1eOJdBHqzsC4ObmO$669roSSdGM72bC1MDINxPogIdAlcKhkqgLP8x9goakE=",
-    "last_login": null,
-    "is_superuser": false,
-    "username": "macalistervadim@",
-    "first_name": "",
-    "last_name": "",
-    "email": "macalistervadim@yandex.ru",
-    "is_staff": false,
-    "is_active": false,
-    "date_joined": "2024-03-20T13:54:11.590Z",
-    "groups": [],
-    "user_permissions": []
-  }
-},
-{
-  "model": "auth.user",
-  "pk": 37,
-  "fields": {
-    "password": "pbkdf2_sha256$600000$7guqHNTSoU3sJsxG4h1tuI$giAGe6WeEI9iH9nbhE81KiYbrNKJS36wOmpXyhQH4nM=",
-    "last_login": null,
-    "is_superuser": false,
-    "username": "adminadmin",
-    "first_name": "",
-    "last_name": "",
-    "email": "startsevvadim2007@gmail.com",
-    "is_staff": false,
-    "is_active": false,
-    "date_joined": "2024-03-21T14:29:15.914Z",
-    "groups": [],
-    "user_permissions": []
-  }
-},
-{
-  "model": "auth.user",
-  "pk": 38,
-  "fields": {
-    "password": "pbkdf2_sha256$600000$xRllN1UFG4RgxQyRS8WEY6$AELYbHVrv586i6hY8plDLH5ahwad8eXAR5s4jKw2Y3Y=",
-    "last_login": null,
-    "is_superuser": false,
-    "username": "+7923676877",
-    "first_name": "",
-    "last_name": "",
-    "email": "sdfsdfdssfds@mail.ru",
-    "is_staff": false,
-    "is_active": true,
-    "date_joined": "2024-03-25T15:05:56.199Z",
-    "groups": [],
-    "user_permissions": []
-  }
-},
-{
-  "model": "auth.user",
-  "pk": 39,
-  "fields": {
-    "password": "pbkdf2_sha256$600000$YAYWMpYuf4gPCc3fZThO4q$RAxPF4dFAfgte9dRbyIwgFhWG2B/QppogFn1gTN+3Mc=",
-    "last_login": null,
-    "is_superuser": false,
-    "username": "macalistervadim@yandex.ru",
-    "first_name": "",
-    "last_name": "",
-    "email": "macalistervadim@yandex.ru",
-    "is_staff": false,
-    "is_active": false,
-    "date_joined": "2024-03-25T15:09:22.792Z",
-    "groups": [],
-    "user_permissions": []
-  }
-},
-{
-  "model": "auth.user",
-  "pk": 40,
-  "fields": {
-    "password": "pbkdf2_sha256$600000$h9QRknvM0WLUBr79NS9CYo$8eaTpJv/Oi0RonUdqGt3NMi9TQPJH6WpTnhwFDa5AsM=",
-    "last_login": null,
-    "is_superuser": false,
-    "username": "dfsdfssdfsdfsdfsdfsdfsdfsdf",
-    "first_name": "",
-    "last_name": "",
-    "email": "macalistervadim@yandex.ru",
-    "is_staff": false,
-    "is_active": false,
-    "date_joined": "2024-03-25T15:09:53.796Z",
     "groups": [],
     "user_permissions": []
   }
