@@ -18,17 +18,27 @@ def get_client_ip(request):
 
 
 def get_timezone_from_ip(ip_address):
-    response = requests.get(f"http://ip-api.com/json/{ip_address}")
-    response_json = response.json()
-    return response_json["timezone"]
+    if ip_address != "127.0.0.1":
+        apis = [
+            f"http://ip-api.com/json/{ip_address}",
+            f"https://ipapi.co/{ip_address}/json",
+        ]
+        for api in apis:
+            try:
+                response = requests.get(api)
+                response.raise_for_status()
+                response_json = response.json()
+                return response_json["timezone"]
+            except Exception:
+                pass
+
+    return settings.TIME_ZONE
 
 
 def birthday_context_processor(request):
     ip = get_client_ip(request)
-    if ip == "127.0.0.1":
-        user_timezone = settings.TIME_ZONE
-    else:
-        user_timezone = get_timezone_from_ip(ip)
+
+    user_timezone = get_timezone_from_ip(ip)
 
     user_tz = pytz.timezone(user_timezone)
     current_date = datetime.now(user_tz)
