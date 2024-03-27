@@ -7,29 +7,34 @@ import django.views.generic
 
 import catalog.models
 import rating.forms
-import rating.models
+import rating.models as rating_models
 
 
 class RatingMixin:
     def get_rating_info(self, item):
-        ratings = (
-            rating.models.Rating.objects.filter(item=item)
-            .annotate(
-                avg_rating=django.db.models.Avg('value'),
-                total_ratings=django.db.models.Count('value')
-            )
-            .first()
+        ratings_query = rating_models.Rating.objects.filter(item=item)
+
+        ratings_query_annotated = ratings_query.annotate(
+            avg_rating=django.db.models.Avg("value"),
+            total_ratings=django.db.models.Count("value"),
         )
+
+        ratings = ratings_query_annotated.first()
+
         if self.request.user.is_authenticated:
-            user_rating = rating.models.Rating.objects.filter(
+            user_rating = rating_models.Rating.objects.filter(
                 item=item,
                 user=self.request.user,
             ).first()
 
         if ratings:
-            return ratings.avg_rating, ratings.total_ratings, user_rating
-        else:
-            return None, 0, None
+            return (
+                ratings.avg_rating,
+                ratings.total_ratings,
+                user_rating,
+            )
+
+        return None, 0, None
 
 
 class ItemList(django.views.generic.ListView):
@@ -91,7 +96,7 @@ class ItemDetail(RatingMixin, django.views.generic.DetailView):
         item = self.get_object()
         form = self.form_class(request.POST)
         if form.is_valid():
-            user_rating, created = rating.models.Rating.objects.get_or_create(
+            user_rating, created = rating_models.Rating.objects.get_or_create(
                 user=request.user,
                 item=item,
                 defaults={"value": form.cleaned_data["value"]},
@@ -115,7 +120,7 @@ class RatingDeleteView(django.views.View):
         item_id = kwargs.get("item_id")
         user = request.user
 
-        ratings = rating.models.Rating.objects.get(item_id=item_id, user=user)
+        ratings = rating_models.Rating.objects.get(item_id=item_id, user=user)
         ratings.delete()
         django.contrib.messages.success(
             request,
