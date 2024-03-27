@@ -47,17 +47,5 @@ class EchoView(django.views.View):
             permitted_methods=["POST"],
         )
 
-    # flake8: noqa
-    def dispatch(self, request, *args, **kwargs):
-        if request.path == django.urls.reverse("homepage:echo_submit"):
-            if request.method == "POST":
-                return self.post(request, *args, **kwargs)
-            elif request.method == "GET":
-                return self.get(request, *args, **kwargs)
-
-            return django.http.HttpResponseNotAllowed(
-                permitted_methods=["GET", "POST"]
-            )
-
 
 __all__ = []

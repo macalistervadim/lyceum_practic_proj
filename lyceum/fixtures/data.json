@@ -106,225 +106,102 @@
 },
 {
   "model": "catalog.item",
-  "pk": 1,
-  "fields": {
-    "name": "ыв123",
-    "is_published": true,
-    "normalized_name": "yb123",
-    "created": "2024-03-11T11:23:14.536Z",
-    "updated": "2024-03-11T13:53:56.330Z",
-    "category": 5,
-    "text": "<p style=\"text-align: right;\">роскошно</p>",
-    "is_on_main": true,
-    "tags": [
-      3,
-      4,
-      5
-    ]
-  }
-},
-{
-  "model": "catalog.item",
-  "pk": 2,
-  "fields": {
-    "name": "ывааываы",
-    "is_published": true,
-    "normalized_name": "ybaaybay",
-    "created": "2024-03-11T11:23:14.536Z",
-    "updated": "2024-03-11T11:23:14.546Z",
-    "category": 1,
-    "text": "<p>роскошно</p>",
-    "is_on_main": false,
-    "tags": [
-      5
-    ]
-  }
-},
-{
-  "model": "catalog.item",
-  "pk": 3,
-  "fields": {
-    "name": "ыва",
-    "is_published": true,
-    "normalized_name": "yba",
-    "created": "2024-03-11T11:23:14.536Z",
-    "updated": "2024-03-11T11:23:14.546Z",
-    "category": 5,
-    "text": "<p>роскошно</p>",
-    "is_on_main": false,
-    "tags": [
-      3
-    ]
-  }
-},
-{
-  "model": "catalog.item",
-  "pk": 4,
-  "fields": {
-    "name": "рпопро",
-    "is_published": true,
-    "normalized_name": "rrorro",
-    "created": "2024-03-11T11:23:14.536Z",
-    "updated": "2024-03-11T13:53:56.329Z",
-    "category": 1,
-    "text": "<p>роскошно</p>",
-    "is_on_main": true,
-    "tags": [
-      4
-    ]
-  }
-},
-{
-  "model": "catalog.item",
-  "pk": 5,
-  "fields": {
-    "name": "олрромси",
-    "is_published": true,
-    "normalized_name": "olrromsi",
-    "created": "2024-03-11T11:23:14.536Z",
-    "updated": "2024-03-11T13:53:56.327Z",
-    "category": 4,
-    "text": "<p>роскошно</p>",
-    "is_on_main": true,
-    "tags": [
-      3,
-      4,
-      5
-    ]
-  }
-},
-{
-  "model": "catalog.item",
-  "pk": 6,
-  "fields": {
-    "name": "рпопропро",
-    "is_published": true,
-    "normalized_name": "rrorrorro",
-    "created": "2024-03-11T11:23:14.536Z",
-    "updated": "2024-03-16T08:21:32.096Z",
-    "category": 2,
-    "text": "<p>роскошно</p>",
-    "is_on_main": true,
-    "tags": [
-      1,
-      2,
-      3,
-      4
-    ]
-  }
-},
-{
-  "model": "catalog.item",
-  "pk": 7,
-  "fields": {
-    "name": "шщяэыь",
-    "is_published": true,
-    "normalized_name": "shschjaey",
-    "created": "2024-03-11T11:23:14.536Z",
-    "updated": "2024-03-11T13:53:56.330Z",
-    "category": 4,
-    "text": "<p>роскошно</p>",
-    "is_on_main": true,
-    "tags": [
-      2,
-      3
-    ]
-  }
-},
-{
-  "model": "catalog.mainimage",
-  "pk": 3,
-  "fields": {
-    "image": "catalog/1/79d36a40-b717-4364-8825-f59e08431086.jpg",
-    "item": 1
-  }
-},
-{
-  "model": "catalog.mainimage",
-  "pk": 4,
-  "fields": {
-    "image": "catalog/3/f0b10a0b-ddb2-4014-a004-53e09b92e6ab.jpg",
-    "item": 3
-  }
-},
-{
-  "model": "catalog.mainimage",
-  "pk": 5,
-  "fields": {
-    "image": "catalog/7/c943198c-3b55-4c5e-ad41-e9e22df36976.jpg",
-    "item": 7
-  }
-},
-{
-  "model": "catalog.mainimage",
-  "pk": 6,
-  "fields": {
-    "image": "catalog/6/a8cf3af4-ea5f-4695-83d8-4de15f7fd13b.png",
-    "item": 6
-  }
-},
-{
-  "model": "catalog.galleryimage",
-  "pk": 2,
-  "fields": {
-    "image": "catalog/1/1996a603-0b2c-471e-8ecc-823514065885.jpg",
-    "item": 1
-  }
-},
-{
-  "model": "catalog.galleryimage",
-  "pk": 3,
-  "fields": {
-    "image": "catalog/2/f3fae9ae-2d26-4668-a29d-8297489d427f.jpg",
-    "item": 2
-  }
-},
-{
-  "model": "catalog.galleryimage",
-  "pk": 4,
-  "fields": {
-    "image": "catalog/7/b6ca9aa5-c170-4f6b-a9dd-1fc49d7092e6.jpg",
-    "item": 7
-  }
-},
-{
-  "model": "catalog.galleryimage",
-  "pk": 5,
-  "fields": {
-    "image": "catalog/7/aca861b0-6f17-4e88-bd3c-634d76b47837.jpg",
-    "item": 7
-  }
-},
-{
-  "model": "catalog.galleryimage",
-  "pk": 6,
-  "fields": {
-    "image": "catalog/7/7fc05bef-295a-4f15-84f8-2b074edbaae0.jpeg",
-    "item": 7
-  }
-},
-{
-  "model": "catalog.galleryimage",
-  "pk": 7,
-  "fields": {
-    "image": "catalog/6/05a23f9f-87f7-4167-a7ff-59ae01ede35b.png",
-    "item": 6
-  }
-},
-{
-  "model": "catalog.galleryimage",
-  "pk": 8,
-  "fields": {
-    "image": "catalog/6/b20af68f-5f13-467e-b004-487267e0af19.jpeg",
-    "item": 6
-  }
-},
-{
-  "model": "catalog.galleryimage",
   "pk": 9,
   "fields": {
-    "image": "catalog/6/ea7dddf9-1bac-4f3e-88f3-0e73d622b72b.jpg",
-    "item": 6
+    "name": "товар_1",
+    "is_published": true,
+    "normalized_name": "tobar1",
+    "created": "2024-03-27T10:02:34.714Z",
+    "updated": "2024-03-27T10:02:34.714Z",
+    "category": 3,
+    "text": "<p>превосходно</p>",
+    "is_on_main": true,
+    "tags": [
+      3
+    ]
+  }
+},
+{
+  "model": "catalog.item",
+  "pk": 10,
+  "fields": {
+    "name": "товар_2",
+    "is_published": true,
+    "normalized_name": "tobar2",
+    "created": "2024-03-27T10:03:00.204Z",
+    "updated": "2024-03-27T10:03:00.204Z",
+    "category": 5,
+    "text": "<p>превосходно</p>",
+    "is_on_main": true,
+    "tags": [
+      4
+    ]
+  }
+},
+{
+  "model": "catalog.item",
+  "pk": 11,
+  "fields": {
+    "name": "товар_3",
+    "is_published": true,
+    "normalized_name": "tobar3",
+    "created": "2024-03-27T10:03:09.414Z",
+    "updated": "2024-03-27T10:03:09.414Z",
+    "category": 2,
+    "text": "<p>превосходно</p>",
+    "is_on_main": true,
+    "tags": [
+      1
+    ]
+  }
+},
+{
+  "model": "catalog.item",
+  "pk": 12,
+  "fields": {
+    "name": "товар_4",
+    "is_published": true,
+    "normalized_name": "tobar4",
+    "created": "2024-03-27T10:03:16.869Z",
+    "updated": "2024-03-27T10:03:16.869Z",
+    "category": 2,
+    "text": "<p>превосходно</p>",
+    "is_on_main": false,
+    "tags": [
+      1
+    ]
+  }
+},
+{
+  "model": "catalog.mainimage",
+  "pk": 7,
+  "fields": {
+    "image": "catalog/9/058d9ab3-ed70-4252-8c6d-b1ed9a22813c.png",
+    "item": 9
+  }
+},
+{
+  "model": "catalog.mainimage",
+  "pk": 8,
+  "fields": {
+    "image": "catalog/10/e105a1b0-503e-4482-991f-24e2fb60bd9d.jpeg",
+    "item": 10
+  }
+},
+{
+  "model": "catalog.galleryimage",
+  "pk": 10,
+  "fields": {
+    "image": "catalog/10/ef774d6e-25f6-46cd-9af3-d70fec7bf7bd.jpeg",
+    "item": 10
+  }
+},
+{
+  "model": "catalog.galleryimage",
+  "pk": 11,
+  "fields": {
+    "image": "catalog/10/870cb77d-e1e5-448f-9afb-812a67a510d5.png",
+    "item": 10
   }
 },
 {
@@ -369,6 +246,72 @@
     "mail": "startsevvadim2007@gmail.com",
     "name": "dsfsfdsdfdfs",
     "status": "ответ дан"
+  }
+},
+{
+  "model": "feedback.feedback",
+  "pk": 14,
+  "fields": {
+    "text": "sdfsdfsdfsd",
+    "created_on": "2024-03-25T14:33:33.864Z",
+    "mail": "macalistervadim@yandex.ru",
+    "name": "Категория1",
+    "status": "получено"
+  }
+},
+{
+  "model": "feedback.feedback",
+  "pk": 15,
+  "fields": {
+    "text": "sdfsdfsdfsd",
+    "created_on": "2024-03-25T14:34:34.341Z",
+    "mail": "macalistervadim@yandex.ru",
+    "name": "Категория1",
+    "status": "получено"
+  }
+},
+{
+  "model": "feedback.feedback",
+  "pk": 16,
+  "fields": {
+    "text": "аывааывваыаывваы",
+    "created_on": "2024-03-25T14:34:59.795Z",
+    "mail": "startsevvadim2007@gmail.com",
+    "name": "Для детей",
+    "status": "получено"
+  }
+},
+{
+  "model": "feedback.feedback",
+  "pk": 17,
+  "fields": {
+    "text": "выаываыав",
+    "created_on": "2024-03-26T14:07:11.205Z",
+    "mail": "startsevvadim2007@gmail.com",
+    "name": "выа",
+    "status": "получено"
+  }
+},
+{
+  "model": "feedback.feedback",
+  "pk": 18,
+  "fields": {
+    "text": "dsfsdfsdf",
+    "created_on": "2024-03-26T14:07:48.315Z",
+    "mail": "macalistervadim@yandex.ru",
+    "name": "fsd",
+    "status": "получено"
+  }
+},
+{
+  "model": "feedback.feedback",
+  "pk": 19,
+  "fields": {
+    "text": "sdfsdf",
+    "created_on": "2024-03-26T14:07:56.115Z",
+    "mail": "startsevvadim2007@gmail.com",
+    "name": "sdf",
+    "status": "получено"
   }
 },
 {
@@ -435,56 +378,6 @@
     "timestamp": "2024-03-13T14:34:16.913Z",
     "_from": "ответ дан",
     "to": "в обработке"
-  }
-},
-{
-  "model": "users.profile",
-  "pk": 1,
-  "fields": {
-    "user": 1,
-    "birthday": "2024-03-24",
-    "coffee_count": 4,
-    "image": "users/1/86e0e7ce-784b-4075-887c-ca75807ef4e2.png"
-  }
-},
-{
-  "model": "users.profile",
-  "pk": 2,
-  "fields": {
-    "user": 33,
-    "birthday": null,
-    "coffee_count": 0,
-    "image": "users/33/9498928b-3dba-40e4-9da6-dc4b75a36cd3.png"
-  }
-},
-{
-  "model": "users.profile",
-  "pk": 3,
-  "fields": {
-    "user": 30,
-    "birthday": null,
-    "coffee_count": 1,
-    "image": "users/30/ac4e7783-7489-4ee0-8768-1a2550db3c1d.png"
-  }
-},
-{
-  "model": "users.profile",
-  "pk": 4,
-  "fields": {
-    "user": 35,
-    "birthday": null,
-    "coffee_count": 0,
-    "image": "users/4/e7cb962e-f1e8-47ce-835f-f058368afade.jpeg"
-  }
-},
-{
-  "model": "users.profile",
-  "pk": 5,
-  "fields": {
-    "user": 32,
-    "birthday": "2024-03-20",
-    "coffee_count": 0,
-    "image": ""
   }
 },
 {
@@ -1352,278 +1245,55 @@
   }
 },
 {
+  "model": "auth.permission",
+  "pk": 97,
+  "fields": {
+    "name": "Can add рейтинг",
+    "content_type": 16,
+    "codename": "add_rating"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 98,
+  "fields": {
+    "name": "Can change рейтинг",
+    "content_type": 16,
+    "codename": "change_rating"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 99,
+  "fields": {
+    "name": "Can delete рейтинг",
+    "content_type": 16,
+    "codename": "delete_rating"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 100,
+  "fields": {
+    "name": "Can view рейтинг",
+    "content_type": 16,
+    "codename": "view_rating"
+  }
+},
+{
   "model": "auth.user",
   "pk": 1,
   "fields": {
     "password": "pbkdf2_sha256$600000$inmqnzPDKDzVWdZBYRCTQx$tMiO3Xap9MfsDVbMM/+1JxZBmtQt9Wis66Qq98YbmaI=",
-    "last_login": "2024-03-21T14:29:40.679Z",
+    "last_login": "2024-03-25T15:31:07Z",
     "is_superuser": true,
     "username": "admin",
     "first_name": "Vadim",
-    "last_name": "Старце",
+    "last_name": "Старц",
     "email": "macalister@mail.ru",
     "is_staff": true,
     "is_active": true,
     "date_joined": "2024-03-04T16:05:56Z",
-    "groups": [],
-    "user_permissions": []
-  }
-},
-{
-  "model": "auth.user",
-  "pk": 29,
-  "fields": {
-    "password": "pbkdf2_sha256$600000$j08zu0cOMhX4Faf1I7LOUr$0d+5XZrEiVhspChgl9+PiFq9RfuHlBitdAz3cFWiyGE=",
-    "last_login": null,
-    "is_superuser": false,
-    "username": "test",
-    "first_name": "",
-    "last_name": "",
-    "email": "test@test.test",
-    "is_staff": false,
-    "is_active": false,
-    "date_joined": "2024-03-17T14:49:18.528Z",
-    "groups": [],
-    "user_permissions": []
-  }
-},
-{
-  "model": "auth.user",
-  "pk": 30,
-  "fields": {
-    "password": "pbkdf2_sha256$600000$D0YmpaZiwPIQFRI4kh04pr$5wfuFkKIivb3r/9oxkEZ9IU1JJgkwwse7p0JYPqtS60=",
-    "last_login": "2024-03-19T13:17:05Z",
-    "is_superuser": true,
-    "username": "dfsdfs",
-    "first_name": "Вадим",
-    "last_name": "Старцев",
-    "email": "sdf@mail.ru",
-    "is_staff": true,
-    "is_active": true,
-    "date_joined": "2024-03-17T14:51:54Z",
-    "groups": [],
-    "user_permissions": [
-      29,
-      65,
-      30,
-      66,
-      31,
-      67,
-      32,
-      68,
-      37,
-      73,
-      38,
-      74,
-      39,
-      75,
-      40,
-      76,
-      69,
-      33,
-      70,
-      34,
-      71,
-      35,
-      72,
-      36,
-      41,
-      77,
-      42,
-      78,
-      43,
-      79,
-      44,
-      80,
-      1,
-      2,
-      3,
-      4,
-      17,
-      18,
-      19,
-      20,
-      9,
-      10,
-      11,
-      12,
-      13,
-      14,
-      15,
-      16,
-      5,
-      6,
-      7,
-      8,
-      81,
-      45,
-      82,
-      46,
-      83,
-      47,
-      84,
-      48,
-      57,
-      21,
-      58,
-      22,
-      59,
-      23,
-      60,
-      24,
-      25,
-      61,
-      26,
-      62,
-      27,
-      63,
-      28,
-      64,
-      49,
-      85,
-      50,
-      86,
-      51,
-      87,
-      52,
-      88,
-      89,
-      53,
-      90,
-      54,
-      91,
-      55,
-      92,
-      56,
-      93,
-      94,
-      95,
-      96
-    ]
-  }
-},
-{
-  "model": "auth.user",
-  "pk": 31,
-  "fields": {
-    "password": "pbkdf2_sha256$600000$vyyhWFirNtpsXBFxB087jF$1MREGyB35ZqBOrHrIg0dOzvpcIAWHXfhyI2zCTTs9vU=",
-    "last_login": null,
-    "is_superuser": false,
-    "username": "dfsdfsdfs",
-    "first_name": "",
-    "last_name": "",
-    "email": "sdf@mail.ru",
-    "is_staff": false,
-    "is_active": true,
-    "date_joined": "2024-03-17T14:55:25Z",
-    "groups": [],
-    "user_permissions": []
-  }
-},
-{
-  "model": "auth.user",
-  "pk": 32,
-  "fields": {
-    "password": "pbkdf2_sha256$600000$I5vqguNJBsNH2vvnGPvNgw$S3S0wdb3FPxhZWdkdwS/guwowcahOFxfzsdFU7LBtzM=",
-    "last_login": null,
-    "is_superuser": false,
-    "username": "dfsdfsdfsx",
-    "first_name": "",
-    "last_name": "",
-    "email": "sdf@mail.ru",
-    "is_staff": false,
-    "is_active": true,
-    "date_joined": "2024-03-17T14:55:53Z",
-    "groups": [],
-    "user_permissions": []
-  }
-},
-{
-  "model": "auth.user",
-  "pk": 33,
-  "fields": {
-    "password": "pbkdf2_sha256$600000$aDuIRXYERI6if5JVViIMEu$YKfZY7dXlaS7ByjSDKy8+O1qR6R9M+PMC6ELQldkkQQ=",
-    "last_login": "2024-03-17T14:56:54Z",
-    "is_superuser": false,
-    "username": "sdfsdfsdfdsfsdfsdfsdfsdfdsfdfsdsfsdffds",
-    "first_name": "",
-    "last_name": "",
-    "email": "dfsdsf@sdf.sd",
-    "is_staff": false,
-    "is_active": true,
-    "date_joined": "2024-03-17T14:56:32Z",
-    "groups": [],
-    "user_permissions": []
-  }
-},
-{
-  "model": "auth.user",
-  "pk": 34,
-  "fields": {
-    "password": "pbkdf2_sha256$600000$IxgNzF6v2OtApgXWcdykmB$P+bfGXOzVteOS4qE7Y+BCPyem4zcRi1fROtK91IoFr4=",
-    "last_login": "2024-03-19T13:15:09.498Z",
-    "is_superuser": false,
-    "username": "testtest",
-    "first_name": "",
-    "last_name": "",
-    "email": "test@mail.ru",
-    "is_staff": false,
-    "is_active": true,
-    "date_joined": "2024-03-19T13:10:50.322Z",
-    "groups": [],
-    "user_permissions": []
-  }
-},
-{
-  "model": "auth.user",
-  "pk": 35,
-  "fields": {
-    "password": "pbkdf2_sha256$600000$f1TxBxCJhY08ikdZTAqK0U$QgQRXVCvgJ0zY7St3ge6lOgTwBJkqBJY/M+1I2qcqH8=",
-    "last_login": "2024-03-20T09:01:30Z",
-    "is_superuser": false,
-    "username": "img",
-    "first_name": "Вадим",
-    "last_name": "Старцев",
-    "email": "imgimg@img.img",
-    "is_staff": false,
-    "is_active": true,
-    "date_joined": "2024-03-20T09:01:16Z",
-    "groups": [],
-    "user_permissions": []
-  }
-},
-{
-  "model": "auth.user",
-  "pk": 36,
-  "fields": {
-    "password": "pbkdf2_sha256$600000$wa4Dva1eOJdBHqzsC4ObmO$669roSSdGM72bC1MDINxPogIdAlcKhkqgLP8x9goakE=",
-    "last_login": null,
-    "is_superuser": false,
-    "username": "macalistervadim@",
-    "first_name": "",
-    "last_name": "",
-    "email": "macalistervadim@yandex.ru",
-    "is_staff": false,
-    "is_active": false,
-    "date_joined": "2024-03-20T13:54:11.590Z",
-    "groups": [],
-    "user_permissions": []
-  }
-},
-{
-  "model": "auth.user",
-  "pk": 37,
-  "fields": {
-    "password": "pbkdf2_sha256$600000$7guqHNTSoU3sJsxG4h1tuI$giAGe6WeEI9iH9nbhE81KiYbrNKJS36wOmpXyhQH4nM=",
-    "last_login": null,
-    "is_superuser": false,
-    "username": "adminadmin",
-    "first_name": "",
-    "last_name": "",
-    "email": "startsevvadim2007@gmail.com",
-    "is_staff": false,
-    "is_active": false,
-    "date_joined": "2024-03-21T14:29:15.914Z",
     "groups": [],
     "user_permissions": []
   }
@@ -1642,6 +1312,14 @@
   "fields": {
     "session_data": "e30:1rlrFB:pQ2YrcftR_Yp2gm3dcTdtLZQjD4BF086epK655ajPF0",
     "expire_date": "2024-03-31T14:12:09.163Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "b93gpzp7gv9h37mv1at1rm2g2r002obf",
+  "fields": {
+    "session_data": ".eJxVjDEOwjAMRe-SGUW0bhObkZ0zRI6dkAJqpaadEHdHkTrA-t97_20C71sJe01rmNRcTGdOv1tkeaa5AX3wfF-sLPO2TtE2xR602tui6XU93L-DwrW0WrADzcRKNKLgSD1gFHEOCZnPvQ4AHYn3Xj26PgOw84OwsOYByHy-4Rk3yQ:1romHz:-6_RwzMmeYKLpxTuTP2iSt-5Vvs7mcv7-xCwIA-kfUk",
+    "expire_date": "2024-04-08T15:31:07.062Z"
   }
 },
 {
@@ -1674,14 +1352,6 @@
   "fields": {
     "session_data": ".eJxVjEEOwiAQRe_C2hCwDC0u3fcMzTAzlaqBpLQr492VpAvd_vfef6kJ9y1Ne5V1WlhdlFWn3y0iPSQ3wHfMt6Kp5G1dom6KPmjVY2F5Xg_37yBhTd_aDx1ZCkAkEOGMRpwjgs7i0AdPM8fZA1knfXCGCZG4eYDRWO9NVO8P-CA4fg:1rlnZX:KVGBbcYkHeNTBnBLjFs8rgilpAZ__JGhzqQ1doPf53w",
     "expire_date": "2024-03-31T10:16:55.416Z"
-  }
-},
-{
-  "model": "sessions.session",
-  "pk": "t69qxu061b1br41vmoakjod806dhxgy2",
-  "fields": {
-    "session_data": ".eJxVjDEOwjAMRe-SGUW0bhObkZ0zRI6dkAJqpaadEHdHkTrA-t97_20C71sJe01rmNRcTGdOv1tkeaa5AX3wfF-sLPO2TtE2xR602tui6XU93L-DwrW0WrADzcRKNKLgSD1gFHEOCZnPvQ4AHYn3Xj26PgOw84OwsOYByHy-4Rk3yQ:1rnJQK:H_YyOPvegx51dbQ-0D-g9w7PMGZQryZN9z7xj_tsKb8",
-    "expire_date": "2024-04-04T14:29:40.684Z"
   }
 },
 {

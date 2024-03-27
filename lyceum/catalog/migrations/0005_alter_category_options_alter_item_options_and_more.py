@@ -12,177 +12,177 @@ import tinymce.models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('catalog', '0004_alter_item_text'),
+        ("catalog", "0004_alter_item_text"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='category',
+            name="category",
             options={
-                'ordering': ('name',),
-                'verbose_name': 'категория',
-                'verbose_name_plural': 'категории',
+                "ordering": ("name",),
+                "verbose_name": "категория",
+                "verbose_name_plural": "категории",
             },
         ),
         migrations.AlterModelOptions(
-            name='item',
+            name="item",
             options={
-                'ordering': ('name',),
-                'verbose_name': 'товар',
-                'verbose_name_plural': 'товары',
+                "ordering": ("name",),
+                "verbose_name": "товар",
+                "verbose_name_plural": "товары",
             },
         ),
         migrations.AlterModelOptions(
-            name='tag',
+            name="tag",
             options={
-                'ordering': ('name',),
-                'verbose_name': 'тег',
-                'verbose_name_plural': 'теги',
+                "ordering": ("name",),
+                "verbose_name": "тег",
+                "verbose_name_plural": "теги",
             },
         ),
         migrations.AddField(
-            model_name='item',
-            name='created',
+            model_name="item",
+            name="created",
             field=models.DateTimeField(
-                auto_now_add=True, null=True, verbose_name='дата создания'
+                auto_now_add=True, null=True, verbose_name="дата создания"
             ),
         ),
         migrations.AddField(
-            model_name='item',
-            name='is_on_main',
+            model_name="item",
+            name="is_on_main",
             field=models.BooleanField(
-                default=False, verbose_name='для главной'
+                default=False, verbose_name="для главной"
             ),
         ),
         migrations.AddField(
-            model_name='item',
-            name='updated',
+            model_name="item",
+            name="updated",
             field=models.DateTimeField(
                 auto_now=True,
                 null=True,
-                verbose_name='последнее изменение',
+                verbose_name="последнее изменение",
             ),
         ),
         migrations.AlterField(
-            model_name='category',
-            name='name',
+            model_name="category",
+            name="name",
             field=models.CharField(
-                help_text='Введите название, максимальная длинна - 150',
+                help_text="Введите название, максимальная длинна - 150",
                 max_length=150,
                 unique=True,
-                verbose_name='название',
+                verbose_name="название",
             ),
         ),
         migrations.AlterField(
-            model_name='category',
-            name='slug',
+            model_name="category",
+            name="slug",
             field=models.SlugField(
-                help_text='Введите слаг для тэга, максимальная длинна - 200',
+                help_text="Введите слаг для тэга, максимальная длинна - 200",
                 max_length=200,
-                verbose_name='слаг',
+                verbose_name="слаг",
             ),
         ),
         migrations.AlterField(
-            model_name='category',
-            name='weight',
+            model_name="category",
+            name="weight",
             field=models.IntegerField(
                 default=100,
-                help_text='Введите вес (от 1 до 32767)',
+                help_text="Введите вес (от 1 до 32767)",
                 validators=[
                     django.core.validators.MinValueValidator(1),
                     django.core.validators.MaxValueValidator(32767),
                 ],
-                verbose_name='вес',
+                verbose_name="вес",
             ),
         ),
         migrations.AlterField(
-            model_name='galleryimage',
-            name='image',
+            model_name="galleryimage",
+            name="image",
             field=sorl.thumbnail.fields.ImageField(
                 upload_to=core.models.item_directory_path,
-                verbose_name='изображение',
+                verbose_name="изображение",
             ),
         ),
         migrations.AlterField(
-            model_name='galleryimage',
-            name='item',
+            model_name="galleryimage",
+            name="item",
             field=models.ForeignKey(
                 on_delete=django.db.models.deletion.CASCADE,
-                related_name='gallery_images',
-                related_query_name='gallery_image',
-                to='catalog.item',
+                related_name="gallery_images",
+                related_query_name="gallery_image",
+                to="catalog.item",
             ),
         ),
         migrations.AlterField(
-            model_name='item',
-            name='category',
+            model_name="item",
+            name="category",
             field=models.ForeignKey(
-                help_text='Выберите категорию',
+                help_text="Выберите категорию",
                 on_delete=django.db.models.deletion.CASCADE,
-                related_name='items',
-                related_query_name='item',
-                to='catalog.category',
-                verbose_name='категория',
+                related_name="items",
+                related_query_name="item",
+                to="catalog.category",
+                verbose_name="категория",
             ),
         ),
         migrations.AlterField(
-            model_name='item',
-            name='name',
+            model_name="item",
+            name="name",
             field=models.CharField(
-                help_text='Введите название, максимальная длинна - 150',
+                help_text="Введите название, максимальная длинна - 150",
                 max_length=150,
                 unique=True,
-                verbose_name='название',
+                verbose_name="название",
             ),
         ),
         migrations.AlterField(
-            model_name='item',
-            name='text',
+            model_name="item",
+            name="text",
             field=tinymce.models.HTMLField(
-                help_text='Введите сообщение с содержанием следующих слов: превосходно/роскошно',
+                help_text="Введите сообщение с содержанием следующих слов: превосходно/роскошно",
                 validators=[
                     catalog.validators.ValidateMustContain(
-                        'превосходно', 'роскошно'
+                        "превосходно", "роскошно"
                     )
                 ],
-                verbose_name='текст',
+                verbose_name="текст",
             ),
         ),
         migrations.AlterField(
-            model_name='mainimage',
-            name='image',
+            model_name="mainimage",
+            name="image",
             field=sorl.thumbnail.fields.ImageField(
                 upload_to=core.models.item_directory_path,
-                verbose_name='изображение',
+                verbose_name="изображение",
             ),
         ),
         migrations.AlterField(
-            model_name='mainimage',
-            name='item',
+            model_name="mainimage",
+            name="item",
             field=models.OneToOneField(
                 on_delete=django.db.models.deletion.CASCADE,
-                related_name='main_image',
-                related_query_name='main_image',
-                to='catalog.item',
+                related_name="main_image",
+                related_query_name="main_image",
+                to="catalog.item",
             ),
         ),
         migrations.AlterField(
-            model_name='tag',
-            name='name',
+            model_name="tag",
+            name="name",
             field=models.CharField(
-                help_text='Введите название, максимальная длинна - 150',
+                help_text="Введите название, максимальная длинна - 150",
                 max_length=150,
                 unique=True,
-                verbose_name='название',
+                verbose_name="название",
             ),
         ),
         migrations.AlterField(
-            model_name='tag',
-            name='slug',
+            model_name="tag",
+            name="slug",
             field=models.SlugField(
-                help_text='Введите слаг для тэга, максимальная длинна - 200',
+                help_text="Введите слаг для тэга, максимальная длинна - 200",
                 max_length=200,
-                verbose_name='слаг',
+                verbose_name="слаг",
             ),
         ),
     ]

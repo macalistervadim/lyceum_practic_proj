@@ -8,21 +8,21 @@ import tinymce.models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('catalog', '0003_alter_galleryimage_image_alter_mainimage_image'),
+        ("catalog", "0003_alter_galleryimage_image_alter_mainimage_image"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='item',
-            name='text',
+            model_name="item",
+            name="text",
             field=tinymce.models.HTMLField(
-                help_text='Введите сообщение',
+                help_text="Введите сообщение",
                 validators=[
                     catalog.validators.ValidateMustContain(
-                        'превосходно', 'роскошно'
+                        "превосходно", "роскошно"
                     )
                 ],
-                verbose_name='текст',
+                verbose_name="текст",
             ),
         ),
     ]

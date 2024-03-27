@@ -7,7 +7,45 @@
 
 {% block content %}
 <div class="container">
+{% if messages %}
+{% for message in messages %}
+  <div class="alert alert-success" role="alert">
+    {{ message }}
+  </div>
+{% endfor %}
+{% endif %}
+
 <h1>{{ item.name }}</h1>
+
+{% if average_rating %}
+    <p>Средняя оценка: {{ average_rating|floatformat:"1" }} ({{ total_ratings }} оценок)</p>
+{% else %}
+    <p>Пока товар не оценен</p>
+{% endif %}
+
+{% if user_rating %}
+    <div class="mb-3">
+        <p class="font-weight-bold">Ваша оценка: {{ user_rating.get_value_display }}</p>
+        <form method="post" action="">
+            {% csrf_token %}
+            {{ rating_form.as_p }}
+            <button type="submit" class="btn btn-primary mr-2 btn-sm">Изменить оценку</button>
+        </form>
+        <form method="post" action="{% url 'catalog:delete-rating' item.id %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger btn-sm">Удалить оценку</button>
+        </form>
+    </div>
+{% elif request.user.is_authenticated %}
+    <div class="mb-3">
+        <form method="post" action="">
+            {% csrf_token %}
+            {{ rating_form.as_p }}
+            <button type="submit" class="btn btn-primary">Оценить товар</button>
+        </form>
+    </div>
+{% endif %}
+
 {% if item.main_image %}
   <div class="col-md-3 mb-3">
     <a href="{% url 'download:download-image' item.main_image.image.name %}" class="btn btn-primary btn-download" download>

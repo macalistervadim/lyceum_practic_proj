@@ -7,37 +7,37 @@ class Migration(migrations.Migration):
 
     dependencies = [
         (
-            'feedback',
-            '0003_alter_feedback_options_feedback_status_and_more',
+            "feedback",
+            "0003_alter_feedback_options_feedback_status_and_more",
         ),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='feedback',
+            name="feedback",
             options={
-                'ordering': ('name',),
-                'verbose_name': 'обратная связь',
-                'verbose_name_plural': 'обратные связи',
+                "ordering": ("name",),
+                "verbose_name": "обратная связь",
+                "verbose_name_plural": "обратные связи",
             },
         ),
         migrations.AlterModelOptions(
-            name='statuslog',
+            name="statuslog",
             options={
-                'ordering': ('user',),
-                'verbose_name': 'журнал состояния',
-                'verbose_name_plural': 'журнал состояний',
+                "ordering": ("user",),
+                "verbose_name": "журнал состояния",
+                "verbose_name_plural": "журнал состояний",
             },
         ),
         migrations.AlterField(
-            model_name='feedback',
-            name='name',
+            model_name="feedback",
+            name="name",
             field=models.CharField(
                 blank=True,
-                help_text='Укажите имя отправителя. Максимальная длинна - 256 символов.',
+                help_text="Укажите имя отправителя. Максимальная длинна - 256 символов.",
                 max_length=150,
                 null=True,
-                verbose_name='имя отправителя',
+                verbose_name="имя отправителя",
             ),
         ),
     ]

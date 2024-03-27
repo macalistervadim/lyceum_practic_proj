@@ -16,46 +16,46 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Profile',
+            name="Profile",
             fields=[
                 (
-                    'id',
+                    "id",
                     models.BigAutoField(
                         auto_created=True,
                         primary_key=True,
                         serialize=False,
-                        verbose_name='ID',
+                        verbose_name="ID",
                     ),
                 ),
                 (
-                    'birthday',
+                    "birthday",
                     models.DateField(
                         blank=True,
-                        help_text='Выберите дату своего рождения',
+                        help_text="Выберите дату своего рождения",
                         null=True,
-                        verbose_name='дата рождения',
+                        verbose_name="дата рождения",
                     ),
                 ),
                 (
-                    'coffee_count',
+                    "coffee_count",
                     models.PositiveIntegerField(
                         default=0,
-                        help_text='Счётчик выпитого кофе',
-                        verbose_name='количество выпитого кофе',
+                        help_text="Счётчик выпитого кофе",
+                        verbose_name="количество выпитого кофе",
                     ),
                 ),
                 (
-                    'image',
+                    "image",
                     models.ImageField(
                         blank=True,
-                        help_text='Аватарка',
+                        help_text="Аватарка",
                         null=True,
                         upload_to=users.models.item_directory_path,
-                        verbose_name='изображение',
+                        verbose_name="изображение",
                     ),
                 ),
                 (
-                    'user',
+                    "user",
                     models.OneToOneField(
                         on_delete=django.db.models.deletion.CASCADE,
                         to=settings.AUTH_USER_MODEL,
@@ -63,9 +63,9 @@ class Migration(migrations.Migration):
                 ),
             ],
             options={
-                'verbose_name': 'дополнительное поле',
-                'verbose_name_plural': 'дополнительные поля',
-                'ordering': ('user',),
+                "verbose_name": "дополнительное поле",
+                "verbose_name_plural": "дополнительные поля",
+                "ordering": ("user",),
             },
         ),
     ]

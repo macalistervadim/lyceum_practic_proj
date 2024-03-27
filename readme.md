@@ -131,6 +131,11 @@ To use fixtures in your Django project, follow these steps:
    ```
    
 2. Load fixture data into your database using the loaddata management command:
+   Windows:
+   ```
+   python manage.py loaddata fixtures/data.json 
+   ```
+   Linux:
    ```
    python3 manage.py loaddata fixtures/data.json 
    ```
