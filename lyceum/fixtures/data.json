@@ -1285,7 +1285,7 @@
   "pk": 1,
   "fields": {
     "password": "pbkdf2_sha256$600000$inmqnzPDKDzVWdZBYRCTQx$tMiO3Xap9MfsDVbMM/+1JxZBmtQt9Wis66Qq98YbmaI=",
-    "last_login": "2024-03-25T15:31:07Z",
+    "last_login": "2024-03-27T10:17:46.267Z",
     "is_superuser": true,
     "username": "admin",
     "first_name": "Vadim",
@@ -1316,10 +1316,10 @@
 },
 {
   "model": "sessions.session",
-  "pk": "b93gpzp7gv9h37mv1at1rm2g2r002obf",
+  "pk": "geqygtyx2ywfgukh1j1887alr57g6euh",
   "fields": {
-    "session_data": ".eJxVjDEOwjAMRe-SGUW0bhObkZ0zRI6dkAJqpaadEHdHkTrA-t97_20C71sJe01rmNRcTGdOv1tkeaa5AX3wfF-sLPO2TtE2xR602tui6XU93L-DwrW0WrADzcRKNKLgSD1gFHEOCZnPvQ4AHYn3Xj26PgOw84OwsOYByHy-4Rk3yQ:1romHz:-6_RwzMmeYKLpxTuTP2iSt-5Vvs7mcv7-xCwIA-kfUk",
-    "expire_date": "2024-04-08T15:31:07.062Z"
+    "session_data": ".eJxVjDEOwjAMRe-SGUW0bhObkZ0zRI6dkAJqpaadEHdHkTrA-t97_20C71sJe01rmNRcTGdOv1tkeaa5AX3wfF-sLPO2TtE2xR602tui6XU93L-DwrW0WrADzcRKNKLgSD1gFHEOCZnPvQ4AHYn3Xj26PgOw84OwsOYByHy-4Rk3yQ:1rpQLq:R153lY9_qTUsc4xvaL-wJUT66C6r2ITsqEBj0VQVNtk",
+    "expire_date": "2024-04-10T10:17:46.272Z"
   }
 },
 {
